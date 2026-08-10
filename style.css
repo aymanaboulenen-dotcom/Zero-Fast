@@ -47,9 +47,17 @@ body {
 }
 
 @media (min-width: 701px) {
-    .a4-page {
-        height: 85vh;
+    .pages-pair {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .pages-pair .a4-page {
+        height: 60vh;
         width: auto;
         aspect-ratio: 210 / 297;
+        margin: 20px 0;
     }
 }
