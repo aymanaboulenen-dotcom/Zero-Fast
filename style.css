@@ -1,23 +1,52 @@
+```css
+/* إخفاء الصفحات غير النشطة */
 .page-group {
     display: none;
 }
 
+/* الصفحة النشطة */
 .page-group.active {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    width: 100%;
 }
 
+/* صفحة A4 */
 .a4-page {
     width: 210mm;
     height: 297mm;
+    max-width: 95vw;
+    max-height: 90vh;
+
+    aspect-ratio: 210 / 297;
+
     background: white;
-    margin: 20px 0;
+    margin: 20px auto;
+
+    box-sizing: border-box;
 }
 
+/* أزرار التنقل */
 .navigation {
     display: flex;
     justify-content: center;
     gap: 10px;
     margin: 20px;
 }
+
+/* الموبايل */
+@media (max-width: 600px) {
+
+    .a4-page {
+        width: 95vw;
+        height: auto;
+        aspect-ratio: 210 / 297;
+        margin: 10px auto;
+    }
+
+    .navigation {
+        margin: 10px;
+        gap: 5px;
+    }
+}
+```
