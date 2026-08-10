@@ -1,10 +1,10 @@
 ```css
-/* إخفاء الصفحات غير النشطة */
+/* إخفاء جميع الصفحات */
 .page-group {
     display: none;
 }
 
-/* الصفحة النشطة */
+/* إظهار الصفحة المطلوبة فقط */
 .page-group.active {
     display: flex;
     justify-content: center;
@@ -17,19 +17,7 @@
     height: 297mm;
     background: white;
     margin: 10px auto;
-
     box-sizing: border-box;
-
-    /* تصغير الصفحة حسب الشاشة */
-    transform-origin: top center;
-}
-
-/* أزرار التنقل */
-.navigation {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin: 10px;
 }
 
 
@@ -40,9 +28,8 @@
 @media (min-width: 601px) {
 
     .a4-page {
-        width: min(210mm, 70vw);
-        height: auto;
-        aspect-ratio: 210 / 297;
+        width: 70vw;
+        height: calc(70vw * 1.414);
     }
 
 }
@@ -54,21 +41,20 @@
 
 @media (max-width: 600px) {
 
-    .page-group.active {
-        padding: 0;
-    }
-
     .a4-page {
         width: 80vw;
-        height: auto;
-        aspect-ratio: 210 / 297;
+        height: calc(80vw * 1.414);
         margin: 5px auto;
     }
 
-    .navigation {
-        margin: 8px;
-        gap: 5px;
-    }
+}
 
+
+/* أزرار التنقل */
+.navigation {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 10px;
 }
 ```
