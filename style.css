@@ -1,41 +1,55 @@
 body {
     background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+.pages-pair {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
 }
 
 .a4-page {
     width: 210mm;
     height: 297mm;
     background-color: white;
-    margin: 20px auto;
+    margin: 20px 0;
 }
-@media (max-width: 700px) {
-    .a4-page {
-        width: 100%;
-        height: auto;
-        min-height: 141.4vw;
-        margin: 10px auto;
-    }
-}
-@media (min-width: 701px) {
-    .a4-page {
-       height: 85vh;
-        width: auto;
-        aspect-ratio: 210 / 297;
-        margin: 20px auto;
-    }
-}
+
 .navigation {
-    width: 100%;
-    max-width: 210mm;
-    margin: 8px auto 0;
     display: flex;
     justify-content: center;
-    align-items: center;
     gap: 10px;
+    margin: 8px auto 20px;
 }
 
 .navigation button {
     padding: 6px 14px;
     font-size: 14px;
-    cursor: pointer;
+}
+
+@media (max-width: 700px) {
+    .pages-pair {
+        display: block;
+    }
+
+    .a4-page {
+        width: 100%;
+        height: auto;
+        min-height: 141.4vw;
+        margin: 10px 0;
+    }
+
+    .pages-pair .a4-page:not(:first-child) {
+        display: none;
+    }
+}
+
+@media (min-width: 701px) {
+    .a4-page {
+        height: 85vh;
+        width: auto;
+        aspect-ratio: 210 / 297;
+    }
 }
