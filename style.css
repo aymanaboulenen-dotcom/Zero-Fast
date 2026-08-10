@@ -1,60 +1,69 @@
-```css
-/* إخفاء جميع الصفحات */
+html,
+body {
+margin: 0;
+padding: 0;
+width: 100%;
+background: #eee;
+}
+
+/* إخفاء كل الشاشات */
 .page-group {
-    display: none;
+display: none !important;
 }
 
-/* إظهار الصفحة المطلوبة فقط */
+/* إظهار الشاشة الحالية فقط */
 .page-group.active {
-    display: flex;
-    justify-content: center;
-    width: 100%;
+display: flex !important;
+justify-content: center;
+align-items: flex-start;
+gap: 10px;
+width: 100%;
 }
 
-/* صفحة A4 */
+/* صفحات A4 */
 .a4-page {
-    width: 210mm;
-    height: 297mm;
-    background: white;
-    margin: 10px auto;
-    box-sizing: border-box;
+width: 600px;
+height: 848px;
+background: white;
+margin: 10px;
+box-sizing: border-box;
+flex-shrink: 0;
 }
 
-
-/* ========================= */
 /* الكمبيوتر */
-/* ========================= */
+@media screen and (min-width: 601px) {
 
-@media (min-width: 601px) {
-
-    .a4-page {
-        width: 70vw;
-        height: calc(70vw * 1.414);
-    }
+```
+.a4-page {
+    width: 600px;
+    height: 848px;
+}
+```
 
 }
 
-
-/* ========================= */
 /* الموبايل */
-/* ========================= */
+@media screen and (max-width: 600px) {
 
-@media (max-width: 600px) {
-
-    .a4-page {
-        width: 80vw;
-        height: calc(80vw * 1.414);
-        margin: 5px auto;
-    }
-
+```
+.page-group.active {
+    width: 100vw;
+    overflow: hidden;
 }
 
+.a4-page {
+    width: 85vw;
+    height: calc(85vw * 1.414);
+    margin: 5px;
+}
+```
+
+}
 
 /* أزرار التنقل */
 .navigation {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin: 10px;
+display: flex;
+justify-content: center;
+gap: 10px;
+margin: 10px;
 }
-```
