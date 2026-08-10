@@ -18,8 +18,9 @@ body {
 }
 @media (min-width: 701px) {
     .a4-page {
-        width: min(210mm, 45vw);
-        height: auto;
+        height: calc(100vh - 40px);
+        width: auto;
         aspect-ratio: 210 / 297;
+        margin: 20px auto;
     }
 }
