@@ -15,15 +15,13 @@
 .a4-page {
     width: 210mm;
     height: 297mm;
-    max-width: 95vw;
-    max-height: 90vh;
-
-    aspect-ratio: 210 / 297;
-
     background: white;
-    margin: 20px auto;
+    margin: 10px auto;
 
     box-sizing: border-box;
+
+    /* تصغير الصفحة حسب الشاشة */
+    transform-origin: top center;
 }
 
 /* أزرار التنقل */
@@ -31,22 +29,46 @@
     display: flex;
     justify-content: center;
     gap: 10px;
-    margin: 20px;
+    margin: 10px;
 }
 
-/* الموبايل */
-@media (max-width: 600px) {
+
+/* ========================= */
+/* الكمبيوتر */
+/* ========================= */
+
+@media (min-width: 601px) {
 
     .a4-page {
-        width: 95vw;
+        width: min(210mm, 70vw);
         height: auto;
         aspect-ratio: 210 / 297;
-        margin: 10px auto;
+    }
+
+}
+
+
+/* ========================= */
+/* الموبايل */
+/* ========================= */
+
+@media (max-width: 600px) {
+
+    .page-group.active {
+        padding: 0;
+    }
+
+    .a4-page {
+        width: 80vw;
+        height: auto;
+        aspect-ratio: 210 / 297;
+        margin: 5px auto;
     }
 
     .navigation {
-        margin: 10px;
+        margin: 8px;
         gap: 5px;
     }
+
 }
 ```
