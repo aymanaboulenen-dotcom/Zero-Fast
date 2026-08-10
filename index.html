@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Zero Fast</title>
 
     <link rel="stylesheet" href="style.css">
@@ -12,15 +14,18 @@
 
     <!-- الشاشة 1 -->
     <div class="page-group active">
+
         <div class="a4-page">
             <h1>Zero Fast</h1>
             <p>Page 1</p>
         </div>
+
     </div>
 
 
     <!-- الشاشة 2 -->
     <div class="page-group">
+
         <div class="a4-page">
             <h1>Page 2</h1>
             <p>Demo Version</p>
@@ -30,11 +35,13 @@
             <h1>Page 3</h1>
             <p>Demo Version</p>
         </div>
+
     </div>
 
 
     <!-- الشاشة 3 -->
     <div class="page-group">
+
         <div class="a4-page">
             <h1>Page 4</h1>
             <p>Demo Version</p>
@@ -44,23 +51,30 @@
             <h1>Page 5</h1>
             <p>Demo Version</p>
         </div>
+
     </div>
 
 
     <!-- الشاشة 4 -->
     <div class="page-group">
+
         <div class="a4-page">
             <h1>Page 6</h1>
             <p>Demo Version</p>
         </div>
+
     </div>
 
 
     <!-- أزرار التنقل -->
     <div class="navigation">
+
         <button onclick="previousPage()">Previous</button>
+
         <button onclick="goToContents()">Contents</button>
+
         <button onclick="nextPage()">Next</button>
+
     </div>
 
 
@@ -82,7 +96,9 @@
             }
 
             pageGroups.forEach(function(group) {
+
                 group.classList.remove("active");
+
             });
 
             pageGroups[index].classList.add("active");
@@ -94,7 +110,9 @@
         function nextPage() {
 
             if (currentPage < pageGroups.length - 1) {
+
                 showPage(currentPage + 1);
+
             }
 
         }
@@ -103,7 +121,9 @@
         function previousPage() {
 
             if (currentPage > 0) {
+
                 showPage(currentPage - 1);
+
             }
 
         }
@@ -121,4 +141,5 @@
     </script>
 
 </body>
+
 </html>
