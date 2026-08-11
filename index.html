@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-
-<html lang="en">
-
-<head>
-
-```
+```html
 <meta charset="UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,23 +6,24 @@
 <title>Zero Fast</title>
 
 <link rel="stylesheet" href="style.css">
-```
 
-</head>
 
-<body>
-
-```
-<!-- Page 1 -->
+<!-- =========================
+     Page 1
+     ========================= -->
 
 <div class="page-group active">
 
     <div class="a4-page cover-page">
-    <h1>Zero Fast</h1>
+        <h1>Zero Fast</h1>
+    </div>
+
 </div>
 
 
-<!-- Page 2 + Page 3 -->
+<!-- =========================
+     Page 2 + Page 3
+     ========================= -->
 
 <div class="page-group">
 
@@ -43,7 +38,9 @@
 </div>
 
 
-<!-- Page 4 + Page 5 -->
+<!-- =========================
+     Page 4 + Page 5
+     ========================= -->
 
 <div class="page-group">
 
@@ -58,7 +55,9 @@
 </div>
 
 
-<!-- Page 6 -->
+<!-- =========================
+     Page 6
+     ========================= -->
 
 <div class="page-group">
 
@@ -69,7 +68,9 @@
 </div>
 
 
-<!-- Navigation -->
+<!-- =========================
+     Navigation
+     ========================= -->
 
 <div class="navigation">
 
@@ -110,7 +111,6 @@
 
 
 <script>
-
 
     let currentPage = 0;
 
@@ -283,13 +283,13 @@
         const menu = document.getElementById('contentsMenu');
 
 
-        if (menu.style.display === 'flex') {
+        if (menu.style.display === 'block') {
 
             menu.style.display = 'none';
 
         } else {
 
-            menu.style.display = 'flex';
+            menu.style.display = 'block';
 
         }
 
@@ -412,7 +412,3 @@
 
 </script>
 ```
-
-</body>
-
-</html>
