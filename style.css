@@ -16,8 +16,8 @@
    صفحة A4
    ========================= */
 .a4-page {
-    width: 210mm;
-    height: 297mm;
+    width: 600px;
+    height: 848px;
     background: white;
     box-sizing: border-box;
     margin: 10px;
