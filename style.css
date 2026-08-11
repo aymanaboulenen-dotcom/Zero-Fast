@@ -215,3 +215,11 @@ Contents - Mobile
 
 
 }
+/* =========================
+   Page 1 - Cover
+   ========================= */
+
+.cover-page {
+    background: #102A43;
+    text-align: center;
+}
