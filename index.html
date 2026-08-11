@@ -1,24 +1,89 @@
-```html
-<meta charset="UTF-8">
+html
+<!DOCTYPE html>
+<html lang="ar">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
 
-<title>Zero Fast</title>
+    <meta charset="UTF-8">
 
-<link rel="stylesheet" href="style.css">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Zero Fast</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
 
 
 <!-- =========================
-     Page 1
+     Page 1 - Cover
      ========================= -->
 
 <div class="page-group active">
 
     <div class="a4-page cover-page">
-        <h1>Zero Fast</h1>
+
+
+        <!-- Logo -->
+
+        <div class="logo">
+
+            <span class="logo-zero">Zero</span>
+
+            <span class="logo-fast">Fast</span>
+
+        </div>
+
+
+        <!-- Introduction -->
+
+        <div class="cover-intro">
+
+            <p>
+                مقدمة Zero Fast
+            </p>
+
+        </div>
+
+
+        <!-- Contact -->
+
+        <div class="cover-contact">
+
+
+            <!-- Phone -->
+
+            <div class="contact-item">
+
+                <span class="contact-icon">☎</span>
+
+                <span>00000000</span>
+
+            </div>
+
+
+            <!-- WhatsApp -->
+
+            <div class="contact-item">
+
+                <span class="contact-icon">WhatsApp</span>
+
+                <span>00000000</span>
+
+            </div>
+
+
+        </div>
+
+
     </div>
 
 </div>
+
 
 
 <!-- =========================
@@ -28,14 +93,20 @@
 <div class="page-group">
 
     <div class="a4-page">
+
         <h1>Page 2</h1>
+
     </div>
 
+
     <div class="a4-page">
+
         <h1>Page 3</h1>
+
     </div>
 
 </div>
+
 
 
 <!-- =========================
@@ -45,14 +116,20 @@
 <div class="page-group">
 
     <div class="a4-page">
+
         <h1>Page 4</h1>
+
     </div>
 
+
     <div class="a4-page">
+
         <h1>Page 5</h1>
+
     </div>
 
 </div>
+
 
 
 <!-- =========================
@@ -62,10 +139,13 @@
 <div class="page-group">
 
     <div class="a4-page">
+
         <h1>Page 6</h1>
+
     </div>
 
 </div>
+
 
 
 <!-- =========================
@@ -74,251 +154,218 @@
 
 <div class="navigation">
 
-    <button onclick="prevPage()">Previous</button>
+
+    <!-- Previous -->
+
+    <button onclick="prevPage()">
+
+        Previous
+
+    </button>
+
 
 
     <!-- Contents Dropdown -->
 
     <div class="contents-dropdown">
 
-        <button class="contents-button" onclick="toggleContents()">
+
+        <button
+            class="contents-button"
+            onclick="toggleContents()">
+
             Contents ▾
+
         </button>
 
 
-        <div id="contentsMenu" class="contents-list">
+        <div
+            id="contentsMenu"
+            class="contents-list">
 
-            <button onclick="goToPage(0)">Page 1</button>
 
-            <button onclick="goToPage(1)">Page 2</button>
+            <button onclick="goToPage(0)">
+                Page 1
+            </button>
 
-            <button onclick="goToPage(2)">Page 3</button>
 
-            <button onclick="goToPage(3)">Page 4</button>
+            <button onclick="goToPage(1)">
+                Page 2
+            </button>
 
-            <button onclick="goToPage(4)">Page 5</button>
 
-            <button onclick="goToPage(5)">Page 6</button>
+            <button onclick="goToPage(2)">
+                Page 3
+            </button>
+
+
+            <button onclick="goToPage(3)">
+                Page 4
+            </button>
+
+
+            <button onclick="goToPage(4)">
+                Page 5
+            </button>
+
+
+            <button onclick="goToPage(5)">
+                Page 6
+            </button>
+
 
         </div>
 
     </div>
 
 
-    <button onclick="nextPage()">Next</button>
+
+    <!-- Next -->
+
+    <button onclick="nextPage()">
+
+        Next
+
+    </button>
+
 
 </div>
 
 
+
 <script>
 
-    let currentPage = 0;
 
+/* =========================
+   Current Page
+   ========================= */
 
-    const groups = document.querySelectorAll('.page-group');
+let currentPage = 0;
 
-    const allPages = document.querySelectorAll('.a4-page');
 
 
-    /* =========================
-       Device
-       ========================= */
+/* =========================
+   Pages
+   ========================= */
 
-    function isMobile() {
+const groups =
+    document.querySelectorAll('.page-group');
 
-        return window.innerWidth <= 600;
 
-    }
+const allPages =
+    document.querySelectorAll('.a4-page');
 
 
-    /* =========================
-       Computer
-       1 → 2+3 → 4+5 → 6
-       ========================= */
 
-    function showDesktopPage() {
+/* =========================
+   Device
+   ========================= */
 
-        groups.forEach(group => {
+function isMobile() {
 
-            group.style.display = '';
+    return window.innerWidth <= 600;
 
-            group.classList.remove('active');
+}
 
-        });
 
 
-        allPages.forEach(page => {
+/* =========================
+   Computer
 
-            page.style.display = '';
+   1 → 2+3 → 4+5 → 6
 
-        });
+   ========================= */
 
+function showDesktopPage() {
 
-        groups[currentPage].classList.add('active');
 
-    }
+    groups.forEach(group => {
 
+        group.style.display = '';
 
-    /* =========================
-       Mobile
-       1 → 2 → 3 → 4 → 5 → 6
-       ========================= */
+        group.classList.remove('active');
 
-    function showMobilePage() {
+    });
 
-        groups.forEach(group => {
 
-            group.classList.remove('active');
+    allPages.forEach(page => {
 
-            group.style.display = 'contents';
+        page.style.display = '';
 
-        });
+    });
 
 
-        allPages.forEach(page => {
+    groups[currentPage].classList.add('active');
 
-            page.style.display = 'none';
 
-        });
+}
 
 
-        allPages[currentPage].style.display = 'block';
 
-    }
+/* =========================
+   Mobile
 
+   1 → 2 → 3 → 4 → 5 → 6
 
-    /* =========================
-       Next
-       ========================= */
+   ========================= */
 
-    function nextPage() {
+function showMobilePage() {
 
-        if (isMobile()) {
 
-            if (currentPage < allPages.length - 1) {
+    groups.forEach(group => {
 
-                currentPage++;
+        group.classList.remove('active');
 
-                showMobilePage();
+        group.style.display = 'contents';
 
-            }
+    });
 
-        } else {
 
-            if (currentPage < groups.length - 1) {
+    allPages.forEach(page => {
 
-                currentPage++;
+        page.style.display = 'none';
 
-                showDesktopPage();
+    });
 
-            }
 
-        }
+    allPages[currentPage].style.display = 'block';
 
-    }
 
+}
 
-    /* =========================
-       Previous
-       ========================= */
 
-    function prevPage() {
 
-        if (isMobile()) {
+/* =========================
+   Next
+   ========================= */
 
-            if (currentPage > 0) {
+function nextPage() {
 
-                currentPage--;
 
-                showMobilePage();
+    if (isMobile()) {
 
-            }
 
-        } else {
+        if (
+            currentPage <
+            allPages.length - 1
+        ) {
 
-            if (currentPage > 0) {
-
-                currentPage--;
-
-                showDesktopPage();
-
-            }
-
-        }
-
-    }
-
-
-    /* =========================
-       Go To Page
-       ========================= */
-
-    function goToPage(pageNumber) {
-
-        currentPage = pageNumber;
-
-
-        if (isMobile()) {
+            currentPage++;
 
             showMobilePage();
 
-        } else {
-
-            showDesktopPage();
-
         }
 
 
-        closeContents();
-
-    }
+    } else {
 
 
-    /* =========================
-       Contents Dropdown
-       ========================= */
+        if (
+            currentPage <
+            groups.length - 1
+        ) {
 
-    function toggleContents() {
-
-        const menu = document.getElementById('contentsMenu');
-
-
-        if (menu.style.display === 'block') {
-
-            menu.style.display = 'none';
-
-        } else {
-
-            menu.style.display = 'block';
-
-        }
-
-    }
-
-
-    function closeContents() {
-
-        document.getElementById('contentsMenu').style.display = 'none';
-
-    }
-
-
-    /* =========================
-       Start
-       ========================= */
-
-    function setupPages() {
-
-        currentPage = 0;
-
-        closeContents();
-
-
-        if (isMobile()) {
-
-            showMobilePage();
-
-        } else {
+            currentPage++;
 
             showDesktopPage();
 
@@ -326,68 +373,236 @@
 
     }
 
-
-    setupPages();
-
-
-    /* =========================
-       Touch Navigation
-       ========================= */
-
-    let touchStartX = 0;
-
-    let touchStartY = 0;
+}
 
 
-    document.addEventListener('touchstart', function (event) {
+
+/* =========================
+   Previous
+   ========================= */
+
+function prevPage() {
+
+
+    if (isMobile()) {
+
+
+        if (currentPage > 0) {
+
+            currentPage--;
+
+            showMobilePage();
+
+        }
+
+
+    } else {
+
+
+        if (currentPage > 0) {
+
+            currentPage--;
+
+            showDesktopPage();
+
+        }
+
+    }
+
+}
+
+
+
+/* =========================
+   Go To Page
+   ========================= */
+
+function goToPage(pageNumber) {
+
+
+    currentPage = pageNumber;
+
+
+    if (isMobile()) {
+
+        showMobilePage();
+
+    } else {
+
+        showDesktopPage();
+
+    }
+
+
+    closeContents();
+
+}
+
+
+
+/* =========================
+   Contents Dropdown
+   ========================= */
+
+function toggleContents() {
+
+
+    const menu =
+        document.getElementById(
+            'contentsMenu'
+        );
+
+
+    if (
+        menu.style.display === 'block'
+    ) {
+
+        menu.style.display = 'none';
+
+    } else {
+
+        menu.style.display = 'block';
+
+    }
+
+}
+
+
+
+/* =========================
+   Close Contents
+   ========================= */
+
+function closeContents() {
+
+
+    document.getElementById(
+        'contentsMenu'
+    ).style.display = 'none';
+
+}
+
+
+
+/* =========================
+   Start
+   ========================= */
+
+function setupPages() {
+
+
+    currentPage = 0;
+
+    closeContents();
+
+
+    if (isMobile()) {
+
+        showMobilePage();
+
+    } else {
+
+        showDesktopPage();
+
+    }
+
+}
+
+
+setupPages();
+
+
+
+/* =========================
+   Touch Navigation
+   ========================= */
+
+let touchStartX = 0;
+
+let touchStartY = 0;
+
+
+
+document.addEventListener(
+    'touchstart',
+    function(event) {
+
 
         if (!isMobile()) return;
 
 
-        if (event.touches.length !== 1) return;
+        if (
+            event.touches.length !== 1
+        ) return;
 
 
-        touchStartX = event.touches[0].clientX;
-
-        touchStartY = event.touches[0].clientY;
-
-    }, { passive: true });
+        touchStartX =
+            event.touches[0].clientX;
 
 
-    document.addEventListener('touchend', function (event) {
+        touchStartY =
+            event.touches[0].clientY;
+
+
+    },
+    { passive: true }
+);
+
+
+
+document.addEventListener(
+    'touchend',
+    function(event) {
+
 
         if (!isMobile()) return;
 
 
-        if (event.changedTouches.length !== 1) return;
+        if (
+            event.changedTouches.length !== 1
+        ) return;
 
 
-        const touchEndX = event.changedTouches[0].clientX;
+        const touchEndX =
+            event.changedTouches[0].clientX;
 
-        const touchEndY = event.changedTouches[0].clientY;
+
+        const touchEndY =
+            event.changedTouches[0].clientY;
 
 
-        const deltaX = touchEndX - touchStartX;
+        const deltaX =
+            touchEndX - touchStartX;
 
-        const deltaY = touchEndY - touchStartY;
+
+        const deltaY =
+            touchEndY - touchStartY;
+
 
 
         /* Ignore vertical movement */
 
-        if (Math.abs(deltaY) > Math.abs(deltaX)) {
+        if (
+            Math.abs(deltaY) >
+            Math.abs(deltaX)
+        ) {
 
             return;
 
         }
+
 
 
         /* Ignore small movement */
 
-        if (Math.abs(deltaX) < 30) {
+        if (
+            Math.abs(deltaX) < 30
+        ) {
 
             return;
 
         }
+
 
 
         /* Right to left = Previous */
@@ -399,6 +614,7 @@
         }
 
 
+
         /* Left to right = Next */
 
         else {
@@ -407,8 +623,16 @@
 
         }
 
-    }, { passive: true });
+
+    },
+    { passive: true }
+);
 
 
 </script>
-```
+
+
+</body>
+
+</html>
+
