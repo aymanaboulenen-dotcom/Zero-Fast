@@ -1,18 +1,23 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Zero Fast</title>
 
     <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
 
-    <!-- الشاشة 1 : صفحة 1 مستقلة -->
+
+    <!-- الشاشة 1 : Page 1 -->
+
     <div class="page-group active">
 
         <div class="a4-page">
@@ -22,7 +27,8 @@
     </div>
 
 
-    <!-- الشاشة 2 : الصفحتان 2 + 3 -->
+    <!-- الشاشة 2 : Page 2 + Page 3 -->
+
     <div class="page-group">
 
         <div class="a4-page">
@@ -36,7 +42,8 @@
     </div>
 
 
-    <!-- الشاشة 3 : الصفحتان 4 + 5 -->
+    <!-- الشاشة 3 : Page 4 + Page 5 -->
+
     <div class="page-group">
 
         <div class="a4-page">
@@ -50,7 +57,8 @@
     </div>
 
 
-    <!-- الشاشة 4 : صفحة 6 مستقلة -->
+    <!-- الشاشة 4 : Page 6 -->
+
     <div class="page-group">
 
         <div class="a4-page">
@@ -61,13 +69,18 @@
 
 
     <!-- أزرار التنقل -->
+
     <div class="navigation">
 
-       <div class="navigation">
-    <button onclick="prevPage()">Previous</button>
-    <button>Contents</button>
-    <button onclick="nextPage()">Next</button>
-</div>
+        <button onclick="prevPage()">Previous</button>
+
+        <button>Contents</button>
+
+        <button onclick="nextPage()">Next</button>
+
+    </div>
+
+
     <script>
 
         let currentPage = 0;
@@ -75,15 +88,46 @@
         const pages = document.querySelectorAll('.page-group');
 
 
+        function isMobile() {
+
+            return window.innerWidth <= 600;
+
+        }
+
+
         function nextPage() {
 
-            if (currentPage < pages.length - 1) {
+            if (isMobile()) {
 
-                pages[currentPage].classList.remove('active');
+                const allPages = document.querySelectorAll('.a4-page');
 
-                currentPage++;
+                let currentVisible = document.querySelector('.a4-page.mobile-active');
 
-                pages[currentPage].classList.add('active');
+                let currentIndex = currentVisible
+                    ? Array.from(allPages).indexOf(currentVisible)
+                    : 0;
+
+                if (currentIndex < allPages.length - 1) {
+
+                    document.querySelectorAll('.a4-page').forEach(page => {
+                        page.classList.remove('mobile-active');
+                    });
+
+                    allPages[currentIndex + 1].classList.add('mobile-active');
+
+                }
+
+            } else {
+
+                if (currentPage < pages.length - 1) {
+
+                    pages[currentPage].classList.remove('active');
+
+                    currentPage++;
+
+                    pages[currentPage].classList.add('active');
+
+                }
 
             }
 
@@ -92,19 +136,71 @@
 
         function prevPage() {
 
-            if (currentPage > 0) {
+            if (isMobile()) {
 
-                pages[currentPage].classList.remove('active');
+                const allPages = document.querySelectorAll('.a4-page');
 
-                currentPage--;
+                let currentVisible = document.querySelector('.a4-page.mobile-active');
 
-                pages[currentPage].classList.add('active');
+                let currentIndex = currentVisible
+                    ? Array.from(allPages).indexOf(currentVisible)
+                    : 0;
+
+                if (currentIndex > 0) {
+
+                    document.querySelectorAll('.a4-page').forEach(page => {
+                        page.classList.remove('mobile-active');
+                    });
+
+                    allPages[currentIndex - 1].classList.add('mobile-active');
+
+                }
+
+            } else {
+
+                if (currentPage > 0) {
+
+                    pages[currentPage].classList.remove('active');
+
+                    currentPage--;
+
+                    pages[currentPage].classList.add('active');
+
+                }
 
             }
 
         }
 
+
+        function setupMobile() {
+
+            if (isMobile()) {
+
+                const allPages = document.querySelectorAll('.a4-page');
+
+                document.querySelectorAll('.page-group').forEach(group => {
+                    group.classList.remove('active');
+                });
+
+                allPages.forEach(page => {
+                    page.classList.remove('mobile-active');
+                });
+
+                allPages[0].classList.add('mobile-active');
+
+            }
+
+        }
+
+
+        setupMobile();
+
+
+        window.addEventListener('resize', setupMobile);
+
     </script>
+
 
 </body>
 
