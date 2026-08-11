@@ -17,6 +17,33 @@
 <body>
 
 
+    <!-- Contents Menu -->
+
+    <div id="contentsMenu" class="contents-menu">
+
+        <div class="contents-box">
+
+            <h2>Contents</h2>
+
+            <button onclick="goToPage(0)">Page 1</button>
+
+            <button onclick="goToPage(1)">Page 2</button>
+
+            <button onclick="goToPage(2)">Page 3</button>
+
+            <button onclick="goToPage(3)">Page 4</button>
+
+            <button onclick="goToPage(4)">Page 5</button>
+
+            <button onclick="goToPage(5)">Page 6</button>
+
+            <button onclick="closeContents()">Close</button>
+
+        </div>
+
+    </div>
+
+
     <!-- Page 1 -->
 
     <div class="page-group active">
@@ -75,7 +102,7 @@
 
         <button onclick="prevPage()">Previous</button>
 
-        <button>Contents</button>
+        <button onclick="openContents()">Contents</button>
 
         <button onclick="nextPage()">Next</button>
 
@@ -217,12 +244,55 @@
 
 
         /* =========================
+           Go To Page
+           ========================= */
+
+        function goToPage(pageNumber) {
+
+            currentPage = pageNumber;
+
+            if (isMobile()) {
+
+                showMobilePage();
+
+            } else {
+
+                showDesktopPage();
+
+            }
+
+            closeContents();
+
+        }
+
+
+        /* =========================
+           Contents
+           ========================= */
+
+        function openContents() {
+
+            document.getElementById('contentsMenu').style.display = 'flex';
+
+        }
+
+
+        function closeContents() {
+
+            document.getElementById('contentsMenu').style.display = 'none';
+
+        }
+
+
+        /* =========================
            Start
            ========================= */
 
         function setupPages() {
 
             currentPage = 0;
+
+            closeContents();
 
 
             if (isMobile()) {
@@ -269,6 +339,7 @@
 
             if (event.changedTouches.length !== 1) return;
 
+
             const touchEndX = event.changedTouches[0].clientX;
 
             const touchEndY = event.changedTouches[0].clientY;
@@ -297,27 +368,24 @@
             }
 
 
-                    /* Right to left = Previous */
+            /* Right to left = Previous */
 
-        if (deltaX < 0) {
+            if (deltaX < 0) {
 
-            prevPage();
+                prevPage();
 
-        }
-
-
-        /* Left to right = Next */
-
-        else {
-
-            nextPage();
-
-        }
-
-    }, { passive: true });
+            }
 
 
-</script>
+            /* Left to right = Next */
+
+            else {
+
+                nextPage();
+
+            }
+
+        }, { passive: true });
 
 
     </script>
