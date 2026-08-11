@@ -356,8 +356,8 @@ body {
 
 .page-2 h1,
 .page-3 h1 {
-    margin: 0 0 25px;
-    font-size: 22px;
+    margin: 0 0 15px;
+    font-size: 16px;
     font-family: "Times New Roman", serif;
 }
 
@@ -466,8 +466,8 @@ body {
 
     .page-2 h1,
     .page-3 h1 {
-        font-size: 20px;
-        margin-bottom: 18px;
+        font-size: 16px;
+        margin-bottom: 15px;
     }
 
     .userform-images {
