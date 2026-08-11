@@ -62,10 +62,10 @@ body {
    ========================= */
 
 .logo {
-    margin-top: 35px;
+    margin-top: 30px;
     width: 100%;
     text-align: center;
-    font-size: 48px;
+    font-size: 40px;
     font-weight: bold;
 }
 
@@ -84,29 +84,22 @@ body {
 
 .cover-intro {
     width: 82%;
-    margin: 70px auto 0;
+    margin: 55px auto 0;
     direction: rtl;
     text-align: right;
 }
 
 .cover-intro h2 {
-    margin: 0 0 20px;
-    text-align: center;
     font-size: 20px;
-    color: white;
+    margin-bottom: 22px;
+    text-align: center;
 }
 
 .cover-intro p {
-    margin: 0 0 15px;
-    font-size: 14px;
+    font-size: 13px;
     line-height: 1.7;
-    color: white;
+    margin-bottom: 17px;
 }
-
-.cover-intro strong {
-    color: #F4A261;
-}
-
 /* =========================
    الاتصال
    أسفل أقصى اليسار
