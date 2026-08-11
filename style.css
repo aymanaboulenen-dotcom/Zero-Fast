@@ -40,14 +40,20 @@
    ========================= */
 
 @media screen and (max-width: 600px) {
+
     .page-group.active {
         width: 100vw;
         overflow: hidden;
     }
+
     .a4-page {
         width: 70vw;
         height: calc(70vw * 1.414);
         margin: 5px;
+    }
+
+    .a4-page.mobile-active {
+        display: block !important;
     }
 
 }
