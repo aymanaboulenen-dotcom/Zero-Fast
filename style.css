@@ -69,7 +69,7 @@ body {
 
     .a4-page {
         width: 90vw;
-        height: 70vh;
+        height: 90vh;
         margin: 5px auto;
         flex-shrink: 0;
     }
