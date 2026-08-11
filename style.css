@@ -1,21 +1,33 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background: #eee;
+}
+
+
 /* =========================
    الصفحات
    ========================= */
 
 .page-group {
-    display: none !important;
+    display: none;
 }
+
 .page-group.active {
-    display: flex !important;
+    display: flex;
     justify-content: center;
     align-items: flex-start;
     gap: 10px;
     width: 100%;
-    overflow-x: auto;
 }
+
+
 /* =========================
    صفحة A4
    ========================= */
+
 .a4-page {
     width: 500px;
     height: 707px;
@@ -24,9 +36,12 @@
     margin: 10px;
     flex-shrink: 0;
 }
+
+
 /* =========================
    الكمبيوتر
    ========================= */
+
 @media screen and (min-width: 601px) {
 
     .a4-page {
@@ -35,6 +50,8 @@
     }
 
 }
+
+
 /* =========================
    الموبايل
    ========================= */
@@ -42,31 +59,31 @@
 @media screen and (max-width: 600px) {
 
     .page-group.active {
+        display: flex;
         width: 100vw;
         overflow: hidden;
     }
 
     .a4-page {
-        width: 70vw;
-        height: calc(70vw * 1.414);
-        margin: 5px;
-    }
-
-    .a4-page.mobile-active {
-        display: block !important;
+        width: 85vw;
+        height: calc(85vw * 1.414);
+        margin: 5px auto;
     }
 
 }
 
+
 /* =========================
    أزرار التنقل
    ========================= */
+
 .navigation {
     display: flex;
     justify-content: center;
     gap: 10px;
     margin: 10px;
 }
+
 .navigation button {
     font-weight: bold;
 }
