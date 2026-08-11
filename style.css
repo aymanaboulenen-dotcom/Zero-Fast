@@ -5,6 +5,7 @@ body {
     width: 100%;
     max-width: 100%;
     overflow-x: hidden;
+    overscroll-behavior-x: none;
     background: #cfcfcf;
 }
 
@@ -62,7 +63,7 @@ body {
     body {
         width: 100%;
         overflow-x: hidden;
-        touch-action: pan-y pinch-zoom;
+       touch-action: manipulation;
     }
 
     .page-group {
