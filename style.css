@@ -125,12 +125,22 @@ body {
     font-weight: bold;
 }
 
-.contact-icon,
-.whatsapp-icon {
+.contact-icon {
     color: #E87518;
     font-weight: bold;
 }
 
+.whatsapp-icon {
+    color: #E87518;
+    display: flex;
+    align-items: center;
+}
+
+.whatsapp-icon svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+}
 
 /* =========================
    أزرار التنقل
