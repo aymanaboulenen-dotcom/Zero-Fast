@@ -1,29 +1,93 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
 
-    <meta charset="UTF-8">
+```
+<meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Zero Fast</title>
+<title>Zero Fast</title>
 
-    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
+```
 
 </head>
 
-
 <body>
 
+```
+<!-- Page 1 -->
 
-    <!-- Contents Menu -->
+<div class="page-group active">
 
-    <div id="contentsMenu" class="contents-menu">
+    <div class="a4-page">
+        <h1>Page 1</h1>
+    </div>
 
-        <div class="contents-box">
+</div>
 
-            <h2>Contents</h2>
+
+<!-- Page 2 + Page 3 -->
+
+<div class="page-group">
+
+    <div class="a4-page">
+        <h1>Page 2</h1>
+    </div>
+
+    <div class="a4-page">
+        <h1>Page 3</h1>
+    </div>
+
+</div>
+
+
+<!-- Page 4 + Page 5 -->
+
+<div class="page-group">
+
+    <div class="a4-page">
+        <h1>Page 4</h1>
+    </div>
+
+    <div class="a4-page">
+        <h1>Page 5</h1>
+    </div>
+
+</div>
+
+
+<!-- Page 6 -->
+
+<div class="page-group">
+
+    <div class="a4-page">
+        <h1>Page 6</h1>
+    </div>
+
+</div>
+
+
+<!-- Navigation -->
+
+<div class="navigation">
+
+    <button onclick="prevPage()">Previous</button>
+
+
+    <!-- Contents Dropdown -->
+
+    <div class="contents-dropdown">
+
+        <button class="contents-button" onclick="toggleContents()">
+            Contents ▾
+        </button>
+
+
+        <div id="contentsMenu" class="contents-list">
 
             <button onclick="goToPage(0)">Page 1</button>
 
@@ -37,269 +101,115 @@
 
             <button onclick="goToPage(5)">Page 6</button>
 
-            <button onclick="closeContents()">Close</button>
-
         </div>
 
     </div>
 
 
-    <!-- Page 1 -->
+    <button onclick="nextPage()">Next</button>
 
-    <div class="page-group active">
+</div>
 
-        <div class="a4-page">
-            <h1>Page 1</h1>
-        </div>
 
-    </div>
+<script>
 
 
-    <!-- Page 2 + Page 3 -->
+    let currentPage = 0;
 
-    <div class="page-group">
 
-        <div class="a4-page">
-            <h1>Page 2</h1>
-        </div>
+    const groups = document.querySelectorAll('.page-group');
 
-        <div class="a4-page">
-            <h1>Page 3</h1>
-        </div>
+    const allPages = document.querySelectorAll('.a4-page');
 
-    </div>
 
+    /* =========================
+       Device
+       ========================= */
 
-    <!-- Page 4 + Page 5 -->
+    function isMobile() {
 
-    <div class="page-group">
+        return window.innerWidth <= 600;
 
-        <div class="a4-page">
-            <h1>Page 4</h1>
-        </div>
+    }
 
-        <div class="a4-page">
-            <h1>Page 5</h1>
-        </div>
 
-    </div>
+    /* =========================
+       Computer
+       1 → 2+3 → 4+5 → 6
+       ========================= */
 
+    function showDesktopPage() {
 
-    <!-- Page 6 -->
+        groups.forEach(group => {
 
-    <div class="page-group">
+            group.style.display = '';
 
-        <div class="a4-page">
-            <h1>Page 6</h1>
-        </div>
+            group.classList.remove('active');
 
-    </div>
+        });
 
 
-    <!-- Navigation -->
+        allPages.forEach(page => {
 
-    <div class="navigation">
+            page.style.display = '';
 
-        <button onclick="prevPage()">Previous</button>
+        });
 
-        <button onclick="openContents()">Contents</button>
 
-        <button onclick="nextPage()">Next</button>
+        groups[currentPage].classList.add('active');
 
-    </div>
+    }
 
 
-    <script>
+    /* =========================
+       Mobile
+       1 → 2 → 3 → 4 → 5 → 6
+       ========================= */
 
-        let currentPage = 0;
+    function showMobilePage() {
 
-        const groups = document.querySelectorAll('.page-group');
+        groups.forEach(group => {
 
-        const allPages = document.querySelectorAll('.a4-page');
+            group.classList.remove('active');
 
+            group.style.display = 'contents';
 
-        function isMobile() {
+        });
 
-            return window.innerWidth <= 600;
 
-        }
+        allPages.forEach(page => {
 
+            page.style.display = 'none';
 
-        /* =========================
-           Computer
-           1 → 2+3 → 4+5 → 6
-           ========================= */
+        });
 
-        function showDesktopPage() {
 
-            groups.forEach(group => {
+        allPages[currentPage].style.display = 'block';
 
-                group.style.display = '';
+    }
 
-                group.classList.remove('active');
 
-            });
+    /* =========================
+       Next
+       ========================= */
 
+    function nextPage() {
 
-            allPages.forEach(page => {
+        if (isMobile()) {
 
-                page.style.display = '';
+            if (currentPage < allPages.length - 1) {
 
-            });
-
-
-            groups[currentPage].classList.add('active');
-
-        }
-
-
-        /* =========================
-           Mobile
-           1 → 2 → 3 → 4 → 5 → 6
-           ========================= */
-
-        function showMobilePage() {
-
-            groups.forEach(group => {
-
-                group.classList.remove('active');
-
-                group.style.display = 'contents';
-
-            });
-
-
-            allPages.forEach(page => {
-
-                page.style.display = 'none';
-
-            });
-
-
-            allPages[currentPage].style.display = 'block';
-
-        }
-
-
-        /* =========================
-           Next
-           ========================= */
-
-        function nextPage() {
-
-            if (isMobile()) {
-
-                if (currentPage < allPages.length - 1) {
-
-                    currentPage++;
-
-                    showMobilePage();
-
-                }
-
-            } else {
-
-                if (currentPage < groups.length - 1) {
-
-                    currentPage++;
-
-                    showDesktopPage();
-
-                }
-
-            }
-
-        }
-
-
-        /* =========================
-           Previous
-           ========================= */
-
-        function prevPage() {
-
-            if (isMobile()) {
-
-                if (currentPage > 0) {
-
-                    currentPage--;
-
-                    showMobilePage();
-
-                }
-
-            } else {
-
-                if (currentPage > 0) {
-
-                    currentPage--;
-
-                    showDesktopPage();
-
-                }
-
-            }
-
-        }
-
-
-        /* =========================
-           Go To Page
-           ========================= */
-
-        function goToPage(pageNumber) {
-
-            currentPage = pageNumber;
-
-            if (isMobile()) {
+                currentPage++;
 
                 showMobilePage();
 
-            } else {
-
-                showDesktopPage();
-
             }
 
-            closeContents();
+        } else {
 
-        }
+            if (currentPage < groups.length - 1) {
 
-
-        /* =========================
-           Contents
-           ========================= */
-
-        function openContents() {
-
-            document.getElementById('contentsMenu').style.display = 'flex';
-
-        }
-
-
-        function closeContents() {
-
-            document.getElementById('contentsMenu').style.display = 'none';
-
-        }
-
-
-        /* =========================
-           Start
-           ========================= */
-
-        function setupPages() {
-
-            currentPage = 0;
-
-            closeContents();
-
-
-            if (isMobile()) {
-
-                showMobilePage();
-
-            } else {
+                currentPage++;
 
                 showDesktopPage();
 
@@ -307,89 +217,203 @@
 
         }
 
-
-        setupPages();
-
-
-        /* =========================
-           Touch Navigation
-           ========================= */
-
-        let touchStartX = 0;
-
-        let touchStartY = 0;
+    }
 
 
-        document.addEventListener('touchstart', function (event) {
+    /* =========================
+       Previous
+       ========================= */
 
-            if (!isMobile()) return;
+    function prevPage() {
 
-            if (event.touches.length !== 1) return;
+        if (isMobile()) {
 
-            touchStartX = event.touches[0].clientX;
+            if (currentPage > 0) {
 
-            touchStartY = event.touches[0].clientY;
+                currentPage--;
 
-        }, { passive: true });
-
-
-        document.addEventListener('touchend', function (event) {
-
-            if (!isMobile()) return;
-
-            if (event.changedTouches.length !== 1) return;
-
-
-            const touchEndX = event.changedTouches[0].clientX;
-
-            const touchEndY = event.changedTouches[0].clientY;
-
-
-            const deltaX = touchEndX - touchStartX;
-
-            const deltaY = touchEndY - touchStartY;
-
-
-            /* Ignore vertical movement */
-
-            if (Math.abs(deltaY) > Math.abs(deltaX)) {
-
-                return;
+                showMobilePage();
 
             }
 
+        } else {
 
-            /* Ignore small movement */
+            if (currentPage > 0) {
 
-            if (Math.abs(deltaX) < 30) {
+                currentPage--;
 
-                return;
-
-            }
-
-
-            /* Right to left = Previous */
-
-            if (deltaX < 0) {
-
-                prevPage();
+                showDesktopPage();
 
             }
 
+        }
 
-            /* Left to right = Next */
-
-            else {
-
-                nextPage();
-
-            }
-
-        }, { passive: true });
+    }
 
 
-    </script>
+    /* =========================
+       Go To Page
+       ========================= */
 
+    function goToPage(pageNumber) {
+
+        currentPage = pageNumber;
+
+
+        if (isMobile()) {
+
+            showMobilePage();
+
+        } else {
+
+            showDesktopPage();
+
+        }
+
+
+        closeContents();
+
+    }
+
+
+    /* =========================
+       Contents Dropdown
+       ========================= */
+
+    function toggleContents() {
+
+        const menu = document.getElementById('contentsMenu');
+
+
+        if (menu.style.display === 'flex') {
+
+            menu.style.display = 'none';
+
+        } else {
+
+            menu.style.display = 'flex';
+
+        }
+
+    }
+
+
+    function closeContents() {
+
+        document.getElementById('contentsMenu').style.display = 'none';
+
+    }
+
+
+    /* =========================
+       Start
+       ========================= */
+
+    function setupPages() {
+
+        currentPage = 0;
+
+        closeContents();
+
+
+        if (isMobile()) {
+
+            showMobilePage();
+
+        } else {
+
+            showDesktopPage();
+
+        }
+
+    }
+
+
+    setupPages();
+
+
+    /* =========================
+       Touch Navigation
+       ========================= */
+
+    let touchStartX = 0;
+
+    let touchStartY = 0;
+
+
+    document.addEventListener('touchstart', function (event) {
+
+        if (!isMobile()) return;
+
+
+        if (event.touches.length !== 1) return;
+
+
+        touchStartX = event.touches[0].clientX;
+
+        touchStartY = event.touches[0].clientY;
+
+    }, { passive: true });
+
+
+    document.addEventListener('touchend', function (event) {
+
+        if (!isMobile()) return;
+
+
+        if (event.changedTouches.length !== 1) return;
+
+
+        const touchEndX = event.changedTouches[0].clientX;
+
+        const touchEndY = event.changedTouches[0].clientY;
+
+
+        const deltaX = touchEndX - touchStartX;
+
+        const deltaY = touchEndY - touchStartY;
+
+
+        /* Ignore vertical movement */
+
+        if (Math.abs(deltaY) > Math.abs(deltaX)) {
+
+            return;
+
+        }
+
+
+        /* Ignore small movement */
+
+        if (Math.abs(deltaX) < 30) {
+
+            return;
+
+        }
+
+
+        /* Right to left = Previous */
+
+        if (deltaX < 0) {
+
+            prevPage();
+
+        }
+
+
+        /* Left to right = Next */
+
+        else {
+
+            nextPage();
+
+        }
+
+    }, { passive: true });
+
+
+</script>
+```
 
 </body>
 
