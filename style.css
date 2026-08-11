@@ -116,7 +116,7 @@ font-weight: bold;
 }
 
 /* =========================
-   Contents Dropdown
+   Contents List
    ========================= */
 
 .contents-dropdown {
@@ -124,13 +124,6 @@ font-weight: bold;
     display: inline-block;
 }
 
-
-.contents-button {
-    font-weight: bold;
-}
-
-
-/* القائمة الرأسية */
 
 .contents-list {
     display: none;
@@ -159,36 +152,35 @@ font-weight: bold;
 
     box-sizing: border-box;
 
-    flex-direction: column;
+    text-align: center;
 }
+
+
 /* كل صفحة في سطر مستقل */
 
 .contents-list button {
     display: block !important;
+
     width: 100% !important;
 
     margin: 4px 0 !important;
-    padding: 5px 10px !important;
+
+    padding: 5px 0 !important;
 
     font-weight: bold;
 
+    background: transparent !important;
+
+    border: none !important;
+
+    border-radius: 0 !important;
+
     text-align: center;
-
-    background: transparent;
-
-    border: none;
 
     cursor: pointer;
 
     box-sizing: border-box;
 }
-
-/* عند مرور الماوس */
-
-.contents-list button:hover {
-    background: #eeeeee;
-}
-
 
 /* =========================
    Contents - Mobile
