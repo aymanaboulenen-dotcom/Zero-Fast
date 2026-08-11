@@ -84,29 +84,28 @@ body {
 
 .cover-intro {
     width: 82%;
-    margin: 80px auto 0;
+    margin: 70px auto 0;
     direction: rtl;
     text-align: right;
 }
 
 .cover-intro h2 {
-    margin: 0 0 30px;
+    margin: 0 0 20px;
     text-align: center;
-    font-size: 30px;
+    font-size: 20px;
     color: white;
 }
 
 .cover-intro p {
-    margin: 0 0 22px;
-    font-size: 18px;
-    line-height: 1.9;
+    margin: 0 0 15px;
+    font-size: 14px;
+    line-height: 1.7;
     color: white;
 }
 
 .cover-intro strong {
     color: #F4A261;
 }
-
 
 /* =========================
    الاتصال
@@ -269,14 +268,14 @@ body {
 
 
     .cover-intro h2 {
-        font-size: 26px;
+        font-size: 20px;
         margin-bottom: 22px;
     }
 
 
     .cover-intro p {
-        font-size: 16px;
-        line-height: 1.8;
+        font-size: 14px;
+        line-height: 1.7;
         margin-bottom: 17px;
     }
 
