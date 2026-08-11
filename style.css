@@ -164,15 +164,23 @@ font-weight: bold;
 /* كل صفحة في سطر مستقل */
 
 .contents-list button {
-    display: block;
-    width: 100%;
-    margin: 2px 0;
-    padding: 5px 10px;
+    display: block !important;
+    width: 100% !important;
+
+    margin: 4px 0 !important;
+    padding: 5px 10px !important;
+
     font-weight: bold;
+
     text-align: center;
+
     background: transparent;
+
     border: none;
+
     cursor: pointer;
+
+    box-sizing: border-box;
 }
 
 /* عند مرور الماوس */
