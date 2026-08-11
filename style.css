@@ -68,8 +68,8 @@ body {
     }
 
     .a4-page {
-        width: 90vw;
-        height: 110vh;
+        width: 95vw;
+        height: 100vh;
         margin: 5px auto;
         flex-shrink: 0;
     }
