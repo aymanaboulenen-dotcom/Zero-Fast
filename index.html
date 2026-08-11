@@ -13,10 +13,11 @@
 
 </head>
 
+
 <body>
 
 
-    <!-- الشاشة 1 : Page 1 -->
+    <!-- Page 1 -->
 
     <div class="page-group active">
 
@@ -27,7 +28,7 @@
     </div>
 
 
-    <!-- الشاشة 2 : Page 2 + Page 3 -->
+    <!-- Page 2 + Page 3 -->
 
     <div class="page-group">
 
@@ -42,7 +43,7 @@
     </div>
 
 
-    <!-- الشاشة 3 : Page 4 + Page 5 -->
+    <!-- Page 4 + Page 5 -->
 
     <div class="page-group">
 
@@ -57,7 +58,7 @@
     </div>
 
 
-    <!-- الشاشة 4 : Page 6 -->
+    <!-- Page 6 -->
 
     <div class="page-group">
 
@@ -68,7 +69,7 @@
     </div>
 
 
-    <!-- أزرار التنقل -->
+    <!-- Navigation -->
 
     <div class="navigation">
 
@@ -85,7 +86,9 @@
 
         let currentPage = 0;
 
-        const pages = document.querySelectorAll('.page-group');
+        const groups = document.querySelectorAll('.page-group');
+
+        const allPages = document.querySelectorAll('.a4-page');
 
 
         function isMobile() {
@@ -95,37 +98,85 @@
         }
 
 
+        /* =========================
+           Computer
+           1 → 2+3 → 4+5 → 6
+           ========================= */
+
+        function showDesktopPage() {
+
+            groups.forEach(group => {
+
+                group.style.display = '';
+
+                group.classList.remove('active');
+
+            });
+
+
+            allPages.forEach(page => {
+
+                page.style.display = '';
+
+            });
+
+
+            groups[currentPage].classList.add('active');
+
+        }
+
+
+        /* =========================
+           Mobile
+           1 → 2 → 3 → 4 → 5 → 6
+           ========================= */
+
+        function showMobilePage() {
+
+            groups.forEach(group => {
+
+                group.classList.remove('active');
+
+                group.style.display = 'contents';
+
+            });
+
+
+            allPages.forEach(page => {
+
+                page.style.display = 'none';
+
+            });
+
+
+            allPages[currentPage].style.display = 'block';
+
+        }
+
+
+        /* =========================
+           Next
+           ========================= */
+
         function nextPage() {
 
             if (isMobile()) {
 
-                const allPages = document.querySelectorAll('.a4-page');
+                if (currentPage < allPages.length - 1) {
 
-                let currentVisible = document.querySelector('.a4-page.mobile-active');
+                    currentPage++;
 
-                let currentIndex = currentVisible
-                    ? Array.from(allPages).indexOf(currentVisible)
-                    : 0;
-
-                if (currentIndex < allPages.length - 1) {
-
-                    document.querySelectorAll('.a4-page').forEach(page => {
-                        page.classList.remove('mobile-active');
-                    });
-
-                    allPages[currentIndex + 1].classList.add('mobile-active');
+                    showMobilePage();
 
                 }
 
             } else {
 
-                if (currentPage < pages.length - 1) {
-
-                    pages[currentPage].classList.remove('active');
+                if (currentPage < groups.length - 1) {
 
                     currentPage++;
 
-                    pages[currentPage].classList.add('active');
+                    showDesktopPage();
 
                 }
 
@@ -134,25 +185,19 @@
         }
 
 
+        /* =========================
+           Previous
+           ========================= */
+
         function prevPage() {
 
             if (isMobile()) {
 
-                const allPages = document.querySelectorAll('.a4-page');
+                if (currentPage > 0) {
 
-                let currentVisible = document.querySelector('.a4-page.mobile-active');
+                    currentPage--;
 
-                let currentIndex = currentVisible
-                    ? Array.from(allPages).indexOf(currentVisible)
-                    : 0;
-
-                if (currentIndex > 0) {
-
-                    document.querySelectorAll('.a4-page').forEach(page => {
-                        page.classList.remove('mobile-active');
-                    });
-
-                    allPages[currentIndex - 1].classList.add('mobile-active');
+                    showMobilePage();
 
                 }
 
@@ -160,11 +205,9 @@
 
                 if (currentPage > 0) {
 
-                    pages[currentPage].classList.remove('active');
-
                     currentPage--;
 
-                    pages[currentPage].classList.add('active');
+                    showDesktopPage();
 
                 }
 
@@ -173,31 +216,36 @@
         }
 
 
-        function setupMobile() {
+        /* =========================
+           Start
+           ========================= */
+
+        function setupPages() {
+
+            currentPage = 0;
+
 
             if (isMobile()) {
 
-                const allPages = document.querySelectorAll('.a4-page');
+                showMobilePage();
 
-                document.querySelectorAll('.page-group').forEach(group => {
-                    group.classList.remove('active');
-                });
+            } else {
 
-                allPages.forEach(page => {
-                    page.classList.remove('mobile-active');
-                });
-
-                allPages[0].classList.add('mobile-active');
+                showDesktopPage();
 
             }
 
         }
 
 
-        setupMobile();
+        setupPages();
 
 
-        window.addEventListener('resize', setupMobile);
+        /* =========================
+           Screen resize
+           ========================= */
+
+        window.addEventListener('resize', setupPages);
 
     </script>
 
