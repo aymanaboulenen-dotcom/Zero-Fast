@@ -1,4 +1,3 @@
-css
 html,
 body {
     margin: 0;
@@ -100,6 +99,8 @@ body {
     line-height: 1.7;
     margin-bottom: 17px;
 }
+
+
 /* =========================
    الاتصال
    أسفل أقصى اليسار
@@ -141,6 +142,7 @@ body {
     height: 20px;
     fill: currentColor;
 }
+
 
 /* =========================
    أزرار التنقل
@@ -232,12 +234,10 @@ body {
         touch-action: manipulation;
     }
 
-
     .page-group {
         width: 100%;
         overflow: hidden;
     }
-
 
     .a4-page {
         width: 90vw;
@@ -247,14 +247,18 @@ body {
     }
 
 
-    /* الغلاف */
+    /* =========================
+       الغلاف
+       ========================= */
 
     .cover-page {
         padding: 0;
     }
 
 
-    /* اللوجو */
+    /* =========================
+       اللوجو
+       ========================= */
 
     .logo {
         margin-top: 25px;
@@ -262,19 +266,19 @@ body {
     }
 
 
-    /* المقدمة */
+    /* =========================
+       المقدمة
+       ========================= */
 
     .cover-intro {
         width: 84%;
         margin-top: 55px;
     }
 
-
     .cover-intro h2 {
         font-size: 20px;
         margin-bottom: 22px;
     }
-
 
     .cover-intro p {
         font-size: 14px;
@@ -283,7 +287,9 @@ body {
     }
 
 
-    /* الاتصال */
+    /* =========================
+       الاتصال
+       ========================= */
 
     .cover-contact {
         left: 15px;
@@ -291,13 +297,14 @@ body {
         gap: 8px;
     }
 
-
     .contact-item {
         font-size: 16px;
     }
 
 
-    /* أزرار التنقل */
+    /* =========================
+       أزرار التنقل
+       ========================= */
 
     .navigation {
         width: 100%;
@@ -307,14 +314,15 @@ body {
         margin: 10px 0;
     }
 
-
     .navigation button {
         font-size: 16px;
         padding: 8px 12px;
     }
 
 
-    /* القائمة */
+    /* =========================
+       القائمة
+       ========================= */
 
     .contents-list {
         width: 150px;
@@ -324,6 +332,8 @@ body {
     }
 
 }
+
+
 /* =========================
    Page 2 - Orange
    ========================= */
@@ -357,39 +367,7 @@ body {
 .page-2 h1,
 .page-3 h1 {
     margin: 0 0 15px;
-    font-size: 16px;
-    font-family: "Times New Roman", serif;
-}
-
-
-/* =========================
-   حاوية الصور
-   ========================= */
-
-.userform-images {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 25px;
-}
-
-
-/* =========================
-   مربع الصورة
-   ========================= */
-
-.userform-card {
-    width: 170px;
-    text-align: center;
-}
-/* =========================
-   عنوان الصفحات
-   ========================= */
-
-.page-2 h1,
-.page-3 h1 {
-    margin: 0 0 15px;
-    font-size: 18px;
+    font-size: 20px;
     font-family: "Times New Roman", serif;
 }
 
@@ -424,14 +402,11 @@ body {
     width: 150px;
     height: 150px;
     box-sizing: border-box;
-
     border: 3px solid currentColor;
     border-radius: 8px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     overflow: hidden;
     background: white;
     margin: 0 auto;
@@ -459,10 +434,12 @@ body {
     font-size: 13px;
     line-height: 1.4;
     font-family: "Times New Roman", serif;
+    font-weight: bold;
 }
 
+
 /* =========================
-   الكمبيوتر
+   إعدادات الكمبيوتر
    ========================= */
 
 @media screen and (min-width: 601px) {
@@ -484,7 +461,7 @@ body {
 
 
 /* =========================
-   الموبايل
+   إعدادات الموبايل
    ========================= */
 
 @media screen and (max-width: 600px) {
@@ -496,7 +473,7 @@ body {
 
     .page-2 h1,
     .page-3 h1 {
-        font-size: 16px;
+        font-size: 18px;
         margin-bottom: 15px;
     }
 
@@ -519,9 +496,7 @@ body {
     .userform-description {
         font-size: 13px;
         line-height: 1.5;
-    }
-
-}
+        font-weight: bold;
     }
 
 }
