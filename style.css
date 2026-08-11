@@ -1,4 +1,4 @@
-```css
+css
 /* =========================
    الصفحات
    ========================= */
@@ -10,6 +10,8 @@
 .page-group.active {
     display: flex;
     justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
     width: 100%;
 }
 
@@ -23,7 +25,8 @@
     height: 297mm;
     background: white;
     box-sizing: border-box;
-    margin: 10px auto;
+    margin: 10px;
+    flex-shrink: 0;
 }
 
 
@@ -47,10 +50,15 @@
 
 @media screen and (max-width: 600px) {
 
+    .page-group.active {
+        width: 100vw;
+        overflow: hidden;
+    }
+
     .a4-page {
         width: 70vw;
         height: calc(70vw * 1.414);
-        margin: 5px auto;
+        margin: 5px;
     }
 
 }
@@ -66,4 +74,4 @@
     gap: 10px;
     margin: 10px;
 }
-```
+
