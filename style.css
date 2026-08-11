@@ -61,3 +61,6 @@
     gap: 10px;
     margin: 10px;
 }
+.navigation button {
+    font-weight: bold;
+}
