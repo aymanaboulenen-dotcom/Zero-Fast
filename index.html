@@ -242,59 +242,81 @@
 
 
         /* =========================
-           Screen resize
+           Touch Navigation
            ========================= */
 
-        window.addEventListener('resize', setupPages);
-window.addEventListener('resize', setupPages);
+        let touchStartX = 0;
+
+        let touchStartY = 0;
 
 
-/* =========================
-   لمس يمين / يسار الموبايل
-   ========================= */
+        document.addEventListener('touchstart', function (event) {
 
-let touchStartX = 0;
-let touchStartY = 0;
+            if (!isMobile()) return;
 
-document.addEventListener('touchstart', function (event) {
+            if (event.touches.length !== 1) return;
 
-    if (!isMobile()) return;
+            touchStartX = event.touches[0].clientX;
 
-    if (event.touches.length !== 1) return;
+            touchStartY = event.touches[0].clientY;
 
-    touchStartX = event.touches[0].clientX;
-    touchStartY = event.touches[0].clientY;
-
-}, { passive: true });
+        }, { passive: true });
 
 
-document.addEventListener('touchend', function (event) {
+        document.addEventListener('touchend', function (event) {
 
-    if (!isMobile()) return;
+            if (!isMobile()) return;
 
-    if (event.changedTouches.length !== 1) return;
+            if (event.changedTouches.length !== 1) return;
 
-    const touchEndX = event.changedTouches[0].clientX;
-    const touchEndY = event.changedTouches[0].clientY;
+            const touchEndX = event.changedTouches[0].clientX;
 
-    const deltaX = touchEndX - touchStartX;
-    const deltaY = touchEndY - touchStartY;
+            const touchEndY = event.changedTouches[0].clientY;
 
-    if (Math.abs(deltaY) > Math.abs(deltaX)) {
-        return;
-    }
 
-    if (Math.abs(deltaX) < 30) {
-        return;
-    }
+            const deltaX = touchEndX - touchStartX;
 
-    if (deltaX < 0) {
-        nextPage();
-    } else {
-        prevPage();
-    }
+            const deltaY = touchEndY - touchStartY;
 
-});
+
+            /* Ignore vertical movement */
+
+            if (Math.abs(deltaY) > Math.abs(deltaX)) {
+
+                return;
+
+            }
+
+
+            /* Ignore small movement */
+
+            if (Math.abs(deltaX) < 30) {
+
+                return;
+
+            }
+
+
+            /* Right to left = Next */
+
+            if (deltaX < 0) {
+
+                nextPage();
+
+            }
+
+
+            /* Left to right = Previous */
+
+            else {
+
+                prevPage();
+
+            }
+
+        }, { passive: true });
+
+
     </script>
 
 
