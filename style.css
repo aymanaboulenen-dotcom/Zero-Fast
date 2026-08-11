@@ -1,111 +1,184 @@
 html,
 body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
-    overscroll-behavior-x: none;
-    background: #cfcfcf;
+margin: 0;
+padding: 0;
+width: 100%;
+max-width: 100%;
+overflow-x: hidden;
+overscroll-behavior-x: none;
+background: #cfcfcf;
 }
 
 /* =========================
-   الصفحات
-   ========================= */
+الصفحات
+========================= */
 
 .page-group {
-    display: none;
+display: none;
 }
 
 .page-group.active {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 10px;
-    width: 100%;
+display: flex;
+justify-content: center;
+align-items: flex-start;
+gap: 10px;
+width: 100%;
+}
+
+/* =========================
+صفحة A4
+========================= */
+
+.a4-page {
+width: 500px;
+height: 707px;
+background: white;
+box-sizing: border-box;
+margin: 10px;
+flex-shrink: 0;
+}
+
+/* =========================
+الكمبيوتر
+========================= */
+
+@media screen and (min-width: 601px) {
+
+
+.a4-page {
+    width: 380px;
+    height: 537px;
 }
 
 
+}
+
 /* =========================
-   صفحة A4
-   ========================= */
+الموبايل
+========================= */
+
+@media screen and (max-width: 600px) {
+
+
+body {
+    width: 100%;
+    overflow-x: hidden;
+    touch-action: manipulation;
+}
+
+
+.page-group {
+    width: 100%;
+    overflow: hidden;
+}
+
 
 .a4-page {
-    width: 500px;
-    height: 707px;
-    background: white;
-    box-sizing: border-box;
-    margin: 10px;
+    width: 90vw;
+    height: 85vh;
+    margin: 5px auto;
     flex-shrink: 0;
 }
 
 
-/* =========================
-   الكمبيوتر
-   ========================= */
-
-@media screen and (min-width: 601px) {
-
-    .a4-page {
-        width: 380px;
-        height: 537px;
-    }
-
-}
-
-
-/* =========================
-   الموبايل
-   ========================= */
-
-@media screen and (max-width: 600px) {
-
-    body {
-        width: 100%;
-        overflow-x: hidden;
-       touch-action: manipulation;
-    }
-
-    .page-group {
-        width: 100%;
-        overflow: hidden;
-    }
-
-    .a4-page {
-        width: 90vw;
-        height:85vh;
-        margin: 5px auto;
-        flex-shrink: 0;
-    }
-
-    .navigation {
-        width: 100%;
-        box-sizing: border-box;
-        justify-content: center;
-        gap: 8px;
-        margin: 10px 0;
-    }
-
-    .navigation button {
-        font-weight: bold;
-        font-size: 16px;
-        padding: 8px 12px;
-    }
-
-}
-
-
-/* =========================
-   أزرار التنقل
-   ========================= */
-
 .navigation {
-    display: flex;
+    width: 100%;
+    box-sizing: border-box;
     justify-content: center;
-    gap: 10px;
-    margin: 10px;
+    gap: 8px;
+    margin: 10px 0;
 }
+
 
 .navigation button {
     font-weight: bold;
+    font-size: 16px;
+    padding: 8px 12px;
+}
+
+
+}
+
+/* =========================
+أزرار التنقل
+========================= */
+
+.navigation {
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 10px;
+margin: 10px;
+}
+
+.navigation button {
+font-weight: bold;
+}
+
+/* =========================
+Contents Dropdown
+========================= */
+
+.contents-dropdown {
+position: relative;
+display: inline-block;
+}
+
+.contents-button {
+font-weight: bold;
+}
+
+.contents-list {
+display: none;
+position: absolute;
+bottom: 100%;
+left: 50%;
+transform: translateX(-50%);
+
+
+min-width: 140px;
+
+background: white;
+
+border: 1px solid #999;
+
+border-radius: 6px;
+
+padding: 5px;
+
+z-index: 9999;
+
+box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
+
+
+}
+
+.contents-list button {
+display: block;
+
+
+width: 100%;
+
+margin: 3px 0;
+
+font-weight: bold;
+
+cursor: pointer;
+
+
+}
+
+/* =========================
+Contents - Mobile
+========================= */
+
+@media screen and (max-width: 600px) {
+
+
+.contents-list {
+    min-width: 150px;
+    bottom: 100%;
+}
+
+
 }
