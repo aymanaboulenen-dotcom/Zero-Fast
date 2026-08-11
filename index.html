@@ -297,24 +297,27 @@
             }
 
 
-            /* Right to left = Next */
+                    /* Right to left = Previous */
 
-            if (deltaX < 0) {
+        if (deltaX < 0) {
 
-                nextPage();
+            prevPage();
 
-            }
+        }
 
 
-            /* Left to right = Previous */
+        /* Left to right = Next */
 
-            else {
+        else {
 
-                prevPage();
+            nextPage();
 
-            }
+        }
 
-        }, { passive: true });
+    }, { passive: true });
+
+
+</script>
 
 
     </script>
