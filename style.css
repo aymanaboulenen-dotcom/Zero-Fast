@@ -8,6 +8,7 @@ body {
     overflow-x: hidden;
     overscroll-behavior-x: none;
     background: #cfcfcf;
+    font-family: "Times New Roman", serif;
 }
 
 
@@ -43,36 +44,16 @@ body {
 
 
 /* =========================
-   الكمبيوتر
-   ========================= */
-
-@media screen and (min-width: 601px) {
-
-    .a4-page {
-        width: 380px;
-        height: 537px;
-    }
-
-}
-
-
-/* =========================
-   صفحة الغلاف
+   Page 1 - Cover
    ========================= */
 
 .cover-page {
+    position: relative;
     background: #102A43;
     color: white;
-
-    display: flex;
-    flex-direction: column;
-
-    align-items: center;
-    text-align: center;
-
+    box-sizing: border-box;
+    overflow: hidden;
     font-family: "Times New Roman", serif;
-
-    padding: 40px 25px;
 }
 
 
@@ -81,12 +62,11 @@ body {
    ========================= */
 
 .logo {
-    margin-top: 20px;
-
-    font-size: 52px;
-    font-weight: bold;
-
+    margin-top: 35px;
+    width: 100%;
     text-align: center;
+    font-size: 48px;
+    font-weight: bold;
 }
 
 .logo-zero {
@@ -103,54 +83,59 @@ body {
    ========================= */
 
 .cover-intro {
-    margin-top: 100px;
+    width: 82%;
+    margin: 80px auto 0;
+    direction: rtl;
+    text-align: right;
+}
 
-    font-size: 24px;
-    line-height: 1.8;
+.cover-intro h2 {
+    margin: 0 0 30px;
+    text-align: center;
+    font-size: 30px;
+    color: white;
+}
 
-    max-width: 90%;
+.cover-intro p {
+    margin: 0 0 22px;
+    font-size: 18px;
+    line-height: 1.9;
+    color: white;
+}
+
+.cover-intro strong {
+    color: #F4A261;
 }
 
 
 /* =========================
    الاتصال
+   أسفل أقصى اليسار
    ========================= */
 
 .cover-contact {
-
-    margin-top: auto;
-
-    margin-bottom: 30px;
-
+    position: absolute;
+    left: 25px;
+    bottom: 25px;
     display: flex;
     flex-direction: column;
-
-    align-items: center;
-
-    gap: 15px;
-
-    font-size: 20px;
+    align-items: flex-start;
+    gap: 10px;
+    direction: ltr;
 }
-
 
 .contact-item {
-
     display: flex;
-
     align-items: center;
-
-    justify-content: center;
-
     gap: 10px;
-
     color: white;
+    font-size: 18px;
+    font-weight: bold;
 }
 
-
-.contact-icon {
-
-    color: #E67E22;
-
+.contact-icon,
+.whatsapp-icon {
+    color: #E87518;
     font-weight: bold;
 }
 
@@ -160,23 +145,16 @@ body {
    ========================= */
 
 .navigation {
-
     display: flex;
-
     justify-content: center;
-
     align-items: center;
-
     gap: 10px;
-
     margin: 10px;
 }
 
-
 .navigation button {
-
+    font-family: "Times New Roman", serif;
     font-weight: bold;
-
     cursor: pointer;
 }
 
@@ -186,42 +164,24 @@ body {
    ========================= */
 
 .contents-dropdown {
-
     position: relative;
-
     display: inline-block;
 }
 
-
 .contents-list {
-
     display: none;
-
     position: absolute;
-
     bottom: calc(100% + 8px);
-
     left: 50%;
-
     transform: translateX(-50%);
-
     width: 150px;
-
     background: white;
-
     border: 1px solid #999;
-
     border-radius: 6px;
-
     padding: 6px;
-
     z-index: 9999;
-
-    box-shadow:
-        0 4px 12px rgba(0, 0, 0, 0.25);
-
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
     box-sizing: border-box;
-
     text-align: center;
 }
 
@@ -229,28 +189,32 @@ body {
 /* كل صفحة في سطر مستقل */
 
 .contents-list button {
-
     display: block !important;
-
     width: 100% !important;
-
     margin: 4px 0 !important;
-
     padding: 5px 0 !important;
-
+    font-family: "Times New Roman", serif;
     font-weight: bold;
-
     background: transparent !important;
-
     border: none !important;
-
     border-radius: 0 !important;
-
     text-align: center;
-
     cursor: pointer;
-
     box-sizing: border-box;
+}
+
+
+/* =========================
+   الكمبيوتر
+   ========================= */
+
+@media screen and (min-width: 601px) {
+
+    .a4-page {
+        width: 380px;
+        height: 537px;
+    }
+
 }
 
 
@@ -261,102 +225,100 @@ body {
 @media screen and (max-width: 600px) {
 
     body {
-
         width: 100%;
-
         overflow-x: hidden;
-
         touch-action: manipulation;
     }
 
 
     .page-group {
-
         width: 100%;
-
         overflow: hidden;
     }
 
 
     .a4-page {
-
         width: 90vw;
-
         height: 85vh;
-
         margin: 5px auto;
-
         flex-shrink: 0;
     }
 
 
-    /* الغلاف على الموبايل */
+    /* الغلاف */
 
     .cover-page {
-
-        padding: 25px 15px;
+        padding: 0;
     }
 
+
+    /* اللوجو */
 
     .logo {
-
-        font-size: 42px;
-
-        margin-top: 15px;
+        margin-top: 25px;
+        font-size: 40px;
     }
 
+
+    /* المقدمة */
 
     .cover-intro {
-
-        margin-top: 60px;
-
-        font-size: 20px;
-
+        width: 84%;
+        margin-top: 55px;
     }
 
+
+    .cover-intro h2 {
+        font-size: 26px;
+        margin-bottom: 22px;
+    }
+
+
+    .cover-intro p {
+        font-size: 16px;
+        line-height: 1.8;
+        margin-bottom: 17px;
+    }
+
+
+    /* الاتصال */
 
     .cover-contact {
-
-        margin-bottom: 20px;
-
-        font-size: 17px;
-
-        gap: 12px;
+        left: 15px;
+        bottom: 18px;
+        gap: 8px;
     }
 
 
+    .contact-item {
+        font-size: 16px;
+    }
+
+
+    /* أزرار التنقل */
+
     .navigation {
-
         width: 100%;
-
         box-sizing: border-box;
-
         justify-content: center;
-
         gap: 8px;
-
         margin: 10px 0;
     }
 
 
     .navigation button {
-
         font-size: 16px;
-
         padding: 8px 12px;
     }
 
 
+    /* القائمة */
+
     .contents-list {
-
         width: 150px;
-
         bottom: calc(100% + 8px);
-
         left: 50%;
-
         transform: translateX(-50%);
     }
 
 }
-```
