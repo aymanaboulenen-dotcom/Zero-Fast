@@ -4,21 +4,16 @@ css
    ========================= */
 
 .page-group {
-    display: none;
-}
-
-.page-group {
-    display: none;
+    display: none !important;
 }
 
 .page-group.active {
-    display: flex;
+    display: flex !important;
     justify-content: center;
     align-items: flex-start;
     gap: 10px;
     width: 100%;
 }
-
 /* =========================
    صفحة A4
    ========================= */
