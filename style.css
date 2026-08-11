@@ -58,16 +58,35 @@ body {
 
 @media screen and (max-width: 600px) {
 
-    .page-group.active {
-        display: flex;
-        width: 100vw;
+    body {
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    .page-group {
+        width: 100%;
         overflow: hidden;
     }
 
     .a4-page {
-        width: 85vw;
-        height: calc(85vw * 1.414);
+        width: 90vw;
+        height: 75vh;
         margin: 5px auto;
+        flex-shrink: 0;
+    }
+
+    .navigation {
+        width: 100%;
+        box-sizing: border-box;
+        justify-content: center;
+        gap: 8px;
+        margin: 10px 0;
+    }
+
+    .navigation button {
+        font-weight: bold;
+        font-size: 16px;
+        padding: 8px 12px;
     }
 
 }
