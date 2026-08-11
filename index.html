@@ -1,69 +1,40 @@
-css
-/* =========================
-   الصفحات
-   ========================= */
+```html
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-.page-group {
-    display: none;
-}
+    <title>Zero Fast</title>
 
-.page-group.active {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-}
+    <link rel="stylesheet" href="style.css">
+</head>
 
+<body>
 
-/* =========================
-   صفحة A4
-   ========================= */
+    <!-- الصفحة الأولى -->
+    <div class="page-group active">
+        <div class="a4-page">
+            <h1>Zero Fast</h1>
+            <p>Page 1</p>
+        </div>
+    </div>
 
-.a4-page {
-    width: 210mm;
-    height: 297mm;
-    background: white;
-    box-sizing: border-box;
-    margin: 10px auto;
-}
+    <!-- الصفحة الثانية -->
+    <div class="page-group">
+        <div class="a4-page">
+            <h1>Zero Fast</h1>
+            <p>Page 2</p>
+        </div>
+    </div>
 
+    <!-- أزرار التنقل -->
+    <div class="navigation">
+        <button>السابق</button>
+        <button>الفهرس</button>
+        <button>التالي</button>
+    </div>
 
-/* =========================
-   الكمبيوتر
-   ========================= */
-
-@media screen and (min-width: 601px) {
-
-    .a4-page {
-        width: 60vw;
-        height: calc(60vw * 1.414);
-    }
-
-}
-
-
-/* =========================
-   الموبايل
-   ========================= */
-
-@media screen and (max-width: 600px) {
-
-    .a4-page {
-        width: 70vw;
-        height: calc(70vw * 1.414);
-        margin: 5px auto;
-    }
-
-}
-
-
-/* =========================
-   أزرار التنقل
-   ========================= */
-
-.navigation {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin: 10px;
-}
-
+</body>
+</html>
+```
