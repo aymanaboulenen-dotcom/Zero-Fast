@@ -379,7 +379,39 @@ body {
    ========================= */
 
 .userform-card {
-    width: 190px;
+    width: 170px;
+    text-align: center;
+}
+/* =========================
+   عنوان الصفحات
+   ========================= */
+
+.page-2 h1,
+.page-3 h1 {
+    margin: 0 0 15px;
+    font-size: 18px;
+    font-family: "Times New Roman", serif;
+}
+
+
+/* =========================
+   حاوية الصور
+   ========================= */
+
+.userform-images {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+
+/* =========================
+   مربع الصورة
+   ========================= */
+
+.userform-card {
+    width: 170px;
     text-align: center;
 }
 
@@ -389,8 +421,8 @@ body {
    ========================= */
 
 .userform-image-frame {
-    width: 190px;
-    height: 190px;
+    width: 150px;
+    height: 150px;
     box-sizing: border-box;
 
     border: 3px solid currentColor;
@@ -402,6 +434,7 @@ body {
 
     overflow: hidden;
     background: white;
+    margin: 0 auto;
 }
 
 
@@ -423,13 +456,10 @@ body {
 
 .userform-description {
     margin-top: 8px;
-
     font-size: 13px;
-    line-height: 1.6;
-
+    line-height: 1.4;
     font-family: "Times New Roman", serif;
 }
-
 
 /* =========================
    الكمبيوتر
@@ -476,17 +506,22 @@ body {
 
     .userform-card {
         width: 165px;
+        text-align: center;
     }
 
     .userform-image-frame {
-        width: 130px;
-        height: 130px;
+        width: 150px;
+        height: 150px;
         border-width: 3px;
+        margin: 0 auto;
     }
 
     .userform-description {
         font-size: 13px;
         line-height: 1.5;
+    }
+
+}
     }
 
 }
