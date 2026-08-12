@@ -102,44 +102,79 @@ body {
 
 
 /* =========================================================
-   الاتصال
+   شريط الاتصال - الصفحة 1 والصفحة 6
    ========================================================= */
 
-.cover-contact {
+.contact-bar {
     position: absolute;
-    left: 25px;
-    bottom: 25px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-    direction: ltr;
-}
+    left: 0;
+    bottom: 0;
 
-.contact-item {
+    width: 100%;
+    height: 30mm;
+
     display: flex;
     align-items: center;
-    gap: 10px;
+    justify-content: center;
+
+    gap: 45px;
+
+    box-sizing: border-box;
+
+    direction: ltr;
+
+    z-index: 50;
+}
+
+.contact-bar-page1 {
+    background: #F4A261;
+    color: #102A43;
+}
+
+.contact-bar-page6 {
+    background: #102A43;
     color: white;
+}
+
+.contact-bar .contact-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
     font-size: 18px;
     font-weight: bold;
+
+    color: inherit;
 }
 
-.contact-icon {
-    color: #E87518;
+.contact-bar .contact-icon {
+    color: inherit;
     font-weight: bold;
 }
 
-.whatsapp-icon {
-    color: #E87518;
+.contact-bar .whatsapp-icon {
+    color: inherit;
+
     display: flex;
     align-items: center;
 }
 
-.whatsapp-icon svg {
+.contact-bar .whatsapp-icon svg {
     width: 20px;
     height: 20px;
     fill: currentColor;
+}
+
+
+/* =========================================================
+   أي اتصال قديم - إخفاؤه إذا بقي في أي صفحة قديمة
+   ========================================================= */
+
+.cover-page .cover-contact,
+.page-6 .cover-contact {
+    display: none;
 }
 
 
@@ -173,33 +208,56 @@ body {
 
 .contents-list {
     display: none;
+
     position: absolute;
+
     bottom: calc(100% + 8px);
     left: 50%;
+
     transform: translateX(-50%);
+
     width: 150px;
+
     background: white;
+
     border: 1px solid #999;
     border-radius: 6px;
+
     padding: 6px;
+
     z-index: 9999;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.25);
+
     box-sizing: border-box;
+
     text-align: center;
 }
 
 .contents-list button {
     display: block !important;
+
     width: 100% !important;
+
     margin: 4px 0 !important;
+
     padding: 5px 0 !important;
+
     font-family: "Times New Roman", serif;
+
     font-weight: bold;
+
     background: transparent !important;
+
     border: none !important;
+
     border-radius: 0 !important;
+
     text-align: center;
+
     cursor: pointer;
+
     box-sizing: border-box;
 }
 
@@ -212,24 +270,28 @@ body {
 .page-2,
 .page-4 {
     position: relative;
+
     overflow: hidden;
+
     background: #F4A261;
+
     color: #102A43;
+
     box-sizing: border-box;
+
     text-align: center;
 }
 
 
 /* =========================================================
-   PAGE 2 + PAGE 4
-   الشكل الرئيسي
-   يبدأ من ربع الأعلى وربع اليسار
-   وينتهي عند الربع السفلي من اليمين
+   الشكل الرئيسي - Page 2 + Page 4
+   شكل رباعي مائل قريب من الـ Diamond
    ========================================================= */
 
 .page-2::before,
 .page-4::before {
     content: "";
+
     position: absolute;
 
     left: 0;
@@ -242,26 +304,29 @@ body {
 
     clip-path: polygon(
         25% 0%,
-        0% 25%,
-        100% 75%
+        100% 75%,
+        25% 50%,
+        0% 25%
     );
 
-    filter: drop-shadow(
-        8px 9px 10px rgba(0, 0, 0, 0.30)
-    );
+    filter:
+        drop-shadow(
+            8px 9px 10px rgba(0, 0, 0, 0.30)
+        );
 
     z-index: 0;
 }
 
 
 /* =========================================================
-   PAGE 2 + PAGE 4
    المثلث القائم أعلى اليمين
+   من ربع الأعلى إلى منتصف اليمين
    ========================================================= */
 
 .page-2::after,
 .page-4::after {
     content: "";
+
     position: absolute;
 
     right: 0;
@@ -278,22 +343,24 @@ body {
         100% 100%
     );
 
-    filter: drop-shadow(
-        -5px 6px 8px rgba(0, 0, 0, 0.25)
-    );
+    filter:
+        drop-shadow(
+            -5px 6px 8px rgba(0, 0, 0, 0.25)
+        );
 
     z-index: 1;
 }
 
 
 /* =========================================================
-   PAGE 2 + PAGE 4
    المثلث القائم أسفل اليسار
+   من ربع الأسفل إلى منتصف اليسار
    ========================================================= */
 
 .page-2 .userform-images::before,
 .page-4 .userform-images::before {
     content: "";
+
     position: absolute;
 
     left: 0;
@@ -305,14 +372,15 @@ body {
     background: #102A43;
 
     clip-path: polygon(
-        0% 0%,
         0% 100%,
-        100% 100%
+        100% 100%,
+        0% 0%
     );
 
-    filter: drop-shadow(
-        5px -5px 8px rgba(0, 0, 0, 0.25)
-    );
+    filter:
+        drop-shadow(
+            5px -5px 8px rgba(0, 0, 0, 0.25)
+        );
 
     z-index: 0;
 }
@@ -326,22 +394,27 @@ body {
 .page-3,
 .page-5 {
     position: relative;
+
     overflow: hidden;
+
     background: #102A43;
+
     color: white;
+
     box-sizing: border-box;
+
     text-align: center;
 }
 
 
 /* =========================================================
-   PAGE 3 + PAGE 5
    الشكل الرئيسي المعكوس
    ========================================================= */
 
 .page-3::before,
 .page-5::before {
     content: "";
+
     position: absolute;
 
     right: 0;
@@ -355,25 +428,27 @@ body {
     clip-path: polygon(
         75% 0%,
         100% 25%,
+        75% 50%,
         0% 75%
     );
 
-    filter: drop-shadow(
-        -8px 9px 10px rgba(0, 0, 0, 0.30)
-    );
+    filter:
+        drop-shadow(
+            -8px 9px 10px rgba(0, 0, 0, 0.30)
+        );
 
     z-index: 0;
 }
 
 
 /* =========================================================
-   PAGE 3 + PAGE 5
    المثلث القائم أعلى اليسار
    ========================================================= */
 
 .page-3::after,
 .page-5::after {
     content: "";
+
     position: absolute;
 
     left: 0;
@@ -390,22 +465,23 @@ body {
         100% 0%
     );
 
-    filter: drop-shadow(
-        5px 6px 8px rgba(0, 0, 0, 0.25)
-    );
+    filter:
+        drop-shadow(
+            5px 6px 8px rgba(0, 0, 0, 0.25)
+        );
 
     z-index: 1;
 }
 
 
 /* =========================================================
-   PAGE 3 + PAGE 5
    المثلث القائم أسفل اليمين
    ========================================================= */
 
 .page-3 .userform-images::before,
 .page-5 .userform-images::before {
     content: "";
+
     position: absolute;
 
     right: 0;
@@ -417,21 +493,22 @@ body {
     background: #F4A261;
 
     clip-path: polygon(
-        100% 0%,
+        100% 100%,
         0% 100%,
-        100% 100%
+        100% 0%
     );
 
-    filter: drop-shadow(
-        -5px -5px 8px rgba(0, 0, 0, 0.25)
-    );
+    filter:
+        drop-shadow(
+            -5px -5px 8px rgba(0, 0, 0, 0.25)
+        );
 
     z-index: 0;
 }
 
 
 /* =========================================================
-   عناوين الصفحات
+   عناوين الصفحات 2 - 5
    ========================================================= */
 
 .page-2 h1,
@@ -439,14 +516,17 @@ body {
 .page-4 h1,
 .page-5 h1 {
     position: relative;
+
     z-index: 30;
 
     margin: 0;
-    padding-top: 28px;
+
+    padding-top: 18px;
 
     font-family: "Times New Roman", serif;
 
     font-size: 25px;
+
     font-weight: bold;
 
     letter-spacing: 1px;
@@ -457,29 +537,12 @@ body {
    ألوان العناوين
    ========================================================= */
 
-/* Page 2 أبيض */
-
 .page-2 h1,
-.page-2 .page-subtitle {
-    color: white;
-}
-
-/* Page 3 أبيض */
-
+.page-2 .page-subtitle,
 .page-3 h1,
-.page-3 .page-subtitle {
-    color: white;
-}
-
-/* Page 4 */
-
+.page-3 .page-subtitle,
 .page-4 h1,
-.page-4 .page-subtitle {
-    color: white;
-}
-
-/* Page 5 */
-
+.page-4 .page-subtitle,
 .page-5 h1,
 .page-5 .page-subtitle {
     color: white;
@@ -492,15 +555,16 @@ body {
 
 .page-subtitle {
     position: relative;
+
     z-index: 30;
 
-    margin-top: 8px;
+    margin-top: 5px;
 
     font-family: "Times New Roman", serif;
 
     font-size: 22px;
 
-    line-height: 1.4;
+    line-height: 1.35;
 
     font-weight: bold;
 
@@ -514,13 +578,14 @@ body {
 
 .userform-images {
     position: relative;
+
     z-index: 10;
 
     width: 100%;
 
     height: calc(100% - 70px);
 
-    margin-top: 10px;
+    margin-top: 6px;
 }
 
 
@@ -589,7 +654,7 @@ body {
 
 
 /* =========================================================
-   الشريط السفلي
+   الشريط السفلي للصفحات الداخلية
    ========================================================= */
 
 .page-footer-note {
@@ -621,50 +686,51 @@ body {
     font-weight: bold;
 
     text-align: center;
+
+    padding: 0 10px;
 }
 
 
-/* =========================================================
-   Page 2 + Page 4
-   ========================================================= */
+/* Page 2 + Page 4 */
 
 .page-2 .page-footer-note,
 .page-4 .page-footer-note {
     background: #102A43;
+
     color: white;
 }
 
 
-/* =========================================================
-   Page 3 + Page 5
-   ========================================================= */
+/* Page 3 + Page 5 */
 
 .page-3 .page-footer-note,
 .page-5 .page-footer-note {
     background: #F4A261;
+
     color: white;
 }
 
 
 /* =========================================================
    PAGE 3
-   الصورة الأولى 45 درجة
+   الصورة الأولى - 45 درجة
    ========================================================= */
 
 .page-3 .userform-card:nth-child(1) {
     transform: rotate(45deg);
+
     transform-origin: center center;
 }
 
 
 /* =========================================================
    PAGE 3
-   الصورة الثانية 112 درجة
-   وهي عنصر التداخل الرئيسي
+   الصورة الثانية - 112 درجة
    ========================================================= */
 
 .page-3 .userform-card:nth-child(2) {
     transform: rotate(112deg);
+
     transform-origin: center center;
 }
 
@@ -728,7 +794,7 @@ body {
 .page-6 .cover-intro {
     width: 82%;
 
-    margin: 25px auto 0;
+    margin: 28px auto 0;
 
     direction: rtl;
 
@@ -737,7 +803,7 @@ body {
 
 
 /* =========================================================
-   Page 6 - عنوان الفوائد
+   عنوان فوائد Page 6
    ========================================================= */
 
 .page-6 .cover-intro h2 {
@@ -747,14 +813,14 @@ body {
 
     margin-top: 0;
 
-    margin-bottom: 30px;
+    margin-bottom: 24px;
 
     text-align: center;
 }
 
 
 /* =========================================================
-   Page 6 - بنود الفوائد
+   فوائد Page 6
    ========================================================= */
 
 .page-6 .cover-intro p {
@@ -762,27 +828,13 @@ body {
 
     font-size: 16px;
 
-    line-height: 1.75;
+    line-height: 1.7;
 
     margin-top: 0;
 
-    margin-bottom: 18px;
+    margin-bottom: 14px;
 
     font-weight: bold;
-}
-
-
-/* =========================================================
-   الاتصال Page 6
-   ========================================================= */
-
-.page-6 .contact-item {
-    color: #102A43;
-}
-
-.page-6 .contact-icon,
-.page-6 .whatsapp-icon {
-    color: #102A43;
 }
 
 
@@ -799,40 +851,60 @@ body {
 
 
     /* =====================================================
-       PAGE 2
-       تكبير الصور 15%
+       Page 1 + Page 6
+       شريط الاتصال
+       ===================================================== */
+
+    .contact-bar {
+        height: 30mm;
+
+        gap: 45px;
+    }
+
+    .contact-bar .contact-item {
+        font-size: 18px;
+    }
+
+
+    /* =====================================================
+       Page 2
+       الصور منفصلة + أكبر
        ===================================================== */
 
     .page-2 .userform-card:nth-child(1) {
         width: 200px;
 
-        top: 82px;
+        top: 78px;
 
-        right: 8px;
+        right: 5px;
         left: auto;
+
+        z-index: 5;
     }
 
     .page-2 .userform-card:nth-child(2) {
         width: 200px;
 
-        bottom: 125px;
+        bottom: 130px;
 
-        left: 8px;
+        left: 5px;
         right: auto;
 
         top: auto;
+
+        z-index: 5;
     }
 
 
     /* =====================================================
-       PAGE 3
-       الصورة الأولى
+       Page 3
+       الصورة الأولى أعلى اليسار
        ===================================================== */
 
     .page-3 .userform-card:nth-child(1) {
         width: 180px;
 
-        top: 35px;
+        top: 25px;
 
         left: 0;
         right: auto;
@@ -842,8 +914,8 @@ body {
 
 
     /* =====================================================
-       PAGE 3
-       الصورة الثانية - التداخل
+       Page 3
+       الصورة الثانية - التداخل الرئيسي
        ===================================================== */
 
     .page-3 .userform-card:nth-child(2) {
@@ -851,7 +923,7 @@ body {
 
         top: 170px;
 
-        right: 4px;
+        right: 0;
         left: auto;
 
         z-index: 8;
@@ -859,57 +931,63 @@ body {
 
 
     /* =====================================================
-       PAGE 3
+       Page 3
        الصورة الثالثة
-       مستقيمة وفي المنتصف بالضبط
+       مستقيمة وفي المنتصف تمامًا
        ===================================================== */
 
     .page-3 .userform-card:nth-child(3) {
         width: 180px;
 
-        bottom: 122px;
+        bottom: 125px;
 
         left: 50%;
         right: auto;
 
         top: auto;
 
-        transform: translateX(-50%) rotate(0deg);
+        transform:
+            translateX(-50%)
+            rotate(0deg);
 
         z-index: 6;
     }
 
 
     /* =====================================================
-       PAGE 4
+       Page 4
        ===================================================== */
 
     .page-4 .userform-card:nth-child(1) {
         width: 180px;
 
-        top: 90px;
-        right: 18px;
+        top: 75px;
+
+        right: 15px;
         left: auto;
     }
 
     .page-4 .userform-card:nth-child(2) {
         width: 180px;
 
-        bottom: 125px;
-        left: 18px;
+        bottom: 130px;
+
+        left: 15px;
         right: auto;
+
         top: auto;
     }
 
 
     /* =====================================================
-       PAGE 5
+       Page 5
        ===================================================== */
 
     .page-5 .userform-card:nth-child(1) {
         width: 180px;
 
-        top: 75px;
+        top: 25px;
+
         left: 0;
         right: auto;
 
@@ -919,8 +997,9 @@ body {
     .page-5 .userform-card:nth-child(2) {
         width: 180px;
 
-        top: 175px;
-        right: 4px;
+        top: 170px;
+
+        right: 0;
         left: auto;
 
         transform: rotate(112deg);
@@ -929,33 +1008,54 @@ body {
     .page-5 .userform-card:nth-child(3) {
         width: 180px;
 
-        bottom: 122px;
+        bottom: 125px;
 
         left: 50%;
         right: auto;
 
         top: auto;
 
-        transform: translateX(-50%) rotate(0deg);
+        transform:
+            translateX(-50%)
+            rotate(0deg);
     }
 
 
     /* =====================================================
-       النصوص
+       العناوين
        ===================================================== */
+
+    .page-2 h1,
+    .page-3 h1,
+    .page-4 h1,
+    .page-5 h1 {
+        padding-top: 18px;
+
+        font-size: 25px;
+    }
+
 
     .page-subtitle {
         font-size: 22px;
+
+        margin-top: 5px;
     }
+
+
+    /* =====================================================
+       الشريط الداخلي
+       ===================================================== */
 
     .page-footer-note {
         height: 30mm !important;
+
         font-size: 18px;
     }
 
 
     /* =====================================================
        Page 6
+       رفع الفوائد
        ===================================================== */
 
     .page-6 .cover-intro {
@@ -964,13 +1064,16 @@ body {
 
     .page-6 .cover-intro h2 {
         font-size: 21px;
-        margin-bottom: 30px;
+
+        margin-bottom: 24px;
     }
 
     .page-6 .cover-intro p {
         font-size: 16px;
-        line-height: 1.75;
-        margin-bottom: 18px;
+
+        line-height: 1.7;
+
+        margin-bottom: 14px;
     }
 
 }
@@ -1010,6 +1113,28 @@ body {
 
 
     /* =====================================================
+       Page 1 + Page 6
+       ===================================================== */
+
+    .contact-bar {
+        height: 30mm;
+
+        gap: 18px;
+
+        padding: 0 10px;
+    }
+
+    .contact-bar .contact-item {
+        font-size: 15px;
+    }
+
+    .contact-bar .whatsapp-icon svg {
+        width: 18px;
+        height: 18px;
+    }
+
+
+    /* =====================================================
        الغلاف
        ===================================================== */
 
@@ -1044,25 +1169,7 @@ body {
 
 
     /* =====================================================
-       الاتصال
-       ===================================================== */
-
-    .cover-contact {
-        left: 15px;
-
-        bottom: 18px;
-
-        gap: 8px;
-    }
-
-
-    .contact-item {
-        font-size: 16px;
-    }
-
-
-    /* =====================================================
-       أزرار التنقل
+       التنقل
        ===================================================== */
 
     .navigation {
@@ -1116,30 +1223,28 @@ body {
     .page-3 h1,
     .page-4 h1,
     .page-5 h1 {
-
         font-size: 20px;
 
-        padding-top: 22px;
-
-        margin-bottom: 0;
+        padding-top: 14px;
     }
 
 
     .page-subtitle {
         font-size: 19px;
 
-        margin-top: 6px;
+        margin-top: 4px;
     }
 
 
     /* =====================================================
        Page 2
+       الصور منفصلة
        ===================================================== */
 
     .page-2 .userform-card:nth-child(1) {
         width: 58%;
 
-        top: 70px;
+        top: 65px;
 
         right: 0;
         left: auto;
@@ -1149,7 +1254,7 @@ body {
     .page-2 .userform-card:nth-child(2) {
         width: 58%;
 
-        bottom: 125px;
+        bottom: 130px;
 
         left: 0;
         right: auto;
@@ -1160,15 +1265,15 @@ body {
 
     /* =====================================================
        Page 3
-       الصورة الأولى - 45 درجة
+       الصورة الأولى
        ===================================================== */
 
     .page-3 .userform-card:nth-child(1) {
         width: 55%;
 
-        top: 35px;
+        top: 25px;
 
-        left: -5%;
+        left: -6%;
         right: auto;
 
         z-index: 5;
@@ -1177,15 +1282,15 @@ body {
 
     /* =====================================================
        Page 3
-       الصورة الثانية - 112 درجة
+       الصورة الثانية
        ===================================================== */
 
     .page-3 .userform-card:nth-child(2) {
         width: 55%;
 
-        top: 190px;
+        top: 180px;
 
-        right: -4%;
+        right: -5%;
         left: auto;
 
         z-index: 8;
@@ -1194,20 +1299,22 @@ body {
 
     /* =====================================================
        Page 3
-       الصورة الثالثة - منتصف الأسفل
+       الصورة الثالثة
        ===================================================== */
 
     .page-3 .userform-card:nth-child(3) {
         width: 55%;
 
-        bottom: 125px;
+        bottom: 130px;
 
         left: 50%;
         right: auto;
 
         top: auto;
 
-        transform: translateX(-50%) rotate(0deg);
+        transform:
+            translateX(-50%)
+            rotate(0deg);
 
         z-index: 6;
     }
@@ -1220,17 +1327,16 @@ body {
     .page-4 .userform-card:nth-child(1) {
         width: 56%;
 
-        top: 70px;
+        top: 65px;
 
         right: 0;
         left: auto;
     }
 
-
     .page-4 .userform-card:nth-child(2) {
         width: 56%;
 
-        bottom: 125px;
+        bottom: 130px;
 
         left: 0;
         right: auto;
@@ -1246,9 +1352,9 @@ body {
     .page-5 .userform-card:nth-child(1) {
         width: 55%;
 
-        top: 45px;
+        top: 25px;
 
-        left: -5%;
+        left: -6%;
         right: auto;
 
         transform: rotate(45deg);
@@ -1258,9 +1364,9 @@ body {
     .page-5 .userform-card:nth-child(2) {
         width: 55%;
 
-        top: 190px;
+        top: 180px;
 
-        right: -4%;
+        right: -5%;
         left: auto;
 
         transform: rotate(112deg);
@@ -1270,14 +1376,16 @@ body {
     .page-5 .userform-card:nth-child(3) {
         width: 55%;
 
-        bottom: 125px;
+        bottom: 130px;
 
         left: 50%;
         right: auto;
 
         top: auto;
 
-        transform: translateX(-50%) rotate(0deg);
+        transform:
+            translateX(-50%)
+            rotate(0deg);
     }
 
 
@@ -1301,23 +1409,23 @@ body {
     .page-6 .cover-intro {
         width: 84%;
 
-        margin-top: 30px;
+        margin-top: 25px;
     }
 
 
     .page-6 .cover-intro h2 {
         font-size: 20px;
 
-        margin-bottom: 28px;
+        margin-bottom: 22px;
     }
 
 
     .page-6 .cover-intro p {
         font-size: 15px;
 
-        line-height: 1.75;
+        line-height: 1.7;
 
-        margin-bottom: 18px;
+        margin-bottom: 14px;
 
         font-weight: bold;
     }
