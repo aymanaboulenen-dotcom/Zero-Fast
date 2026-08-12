@@ -6,13 +6,13 @@ body {
     max-width: 100%;
     overflow-x: hidden;
     overscroll-behavior-x: none;
-    background: #d4d4d4;
+    background: #cfcfcf;
     font-family: "Times New Roman", serif;
 }
 
 
 /* =========================================================
-   PAGE GROUPS
+   الصفحات
    ========================================================= */
 
 .page-group {
@@ -23,114 +23,84 @@ body {
     display: flex;
     justify-content: center;
     align-items: flex-start;
+    gap: 10px;
     width: 100%;
 }
 
 
 /* =========================================================
-   A4 PAGE
+   صفحة A4
    ========================================================= */
 
 .a4-page {
-    width: 540px;
-    height: 764px;
-
-    box-sizing: border-box;
-
-    margin: 10px auto;
-
-    flex-shrink: 0;
-
-    position: relative;
-
-    overflow: hidden;
-
+    width: 500px;
+    height: 707px;
     background: white;
-
-    box-shadow:
-        0 8px 22px rgba(0, 0, 0, 0.22);
-
-    /* إحساس الكتاب */
-    border-left: 9px solid #102A43;
-
-    transform-style: preserve-3d;
-
-    will-change: transform, opacity;
+    box-sizing: border-box;
+    margin: 10px;
+    flex-shrink: 0;
 }
 
 
 /* =========================================================
-   BOOK SIDE / BINDING
-   موجود في كل الصفحات
-   ========================================================= */
-
-.a4-page::marker {
-    display: none;
-}
-
-
-/* =========================================================
-   PAGE FLIP
+   حركة تقليب الصفحات
    ========================================================= */
 
 .page-flip {
     position: relative;
-
     transform-style: preserve-3d;
-
     backface-visibility: hidden;
-
     will-change: transform, opacity;
 }
 
 
 .page-flip.flip-next {
-    animation:
-        pageFlipNext 0.70s ease-out both;
-
+    animation: pageFlipNext 0.65s ease-out both;
     transform-origin: left center;
 }
 
 
 .page-flip.flip-previous {
-    animation:
-        pageFlipPrevious 0.70s ease-out both;
-
+    animation: pageFlipPrevious 0.65s ease-out both;
     transform-origin: right center;
 }
 
+
+/* =========================================================
+   تقليب إلى الأمام
+   ========================================================= */
 
 @keyframes pageFlipNext {
 
     0% {
         transform:
             perspective(1400px)
-            rotateY(70deg)
+            rotateY(65deg)
             translateX(8%);
 
-        opacity: 0.25;
+        opacity: 0.35;
 
-        filter: brightness(0.76);
+        filter: brightness(0.78);
     }
 
     35% {
         transform:
             perspective(1400px)
-            rotateY(32deg)
-            translateX(4%);
+            rotateY(28deg)
+            translateX(3%);
 
-        opacity: 0.70;
+        opacity: 0.78;
 
-        filter: brightness(0.88);
+        filter: brightness(0.90);
     }
 
     70% {
         transform:
             perspective(1400px)
-            rotateY(10deg)
+            rotateY(8deg)
             translateX(1%);
 
-        opacity: 0.94;
+        opacity: 0.95;
 
         filter: brightness(0.97);
     }
@@ -147,38 +117,42 @@ body {
     }
 }
 
+
+/* =========================================================
+   تقليب إلى الخلف
+   ========================================================= */
 
 @keyframes pageFlipPrevious {
 
     0% {
         transform:
             perspective(1400px)
-            rotateY(-70deg)
+            rotateY(-65deg)
             translateX(-8%);
 
-        opacity: 0.25;
+        opacity: 0.35;
 
-        filter: brightness(0.76);
+        filter: brightness(0.78);
     }
 
     35% {
         transform:
             perspective(1400px)
-            rotateY(-32deg)
-            translateX(-4%);
+            rotateY(-28deg)
+            translateX(-3%);
 
-        opacity: 0.70;
+        opacity: 0.78;
 
-        filter: brightness(0.88);
+        filter: brightness(0.90);
     }
 
     70% {
         transform:
             perspective(1400px)
-            rotateY(-10deg)
+            rotateY(-8deg)
             translateX(-1%);
 
-        opacity: 0.94;
+        opacity: 0.95;
 
         filter: brightness(0.97);
     }
@@ -197,181 +171,79 @@ body {
 
 
 /* =========================================================
-   PAGE 1
-   COVER
+   PAGE 1 - COVER
    ========================================================= */
 
 .cover-page {
-
-    background: #102A43;
-
-    color: white;
-
-    font-family: "Times New Roman", serif;
-
-    border-left-color: #F4A261;
-}
-
-
-/* =========================================================
-   PAGE 1 - LARGE ORANGE PANEL
-   ========================================================= */
-
-.cover-page::before {
-
-    content: "";
-
-    position: absolute;
-
-    left: 0;
-    top: 0;
-
-    width: 68%;
-    height: 100%;
-
-    background: #F4A261;
-
-    clip-path: polygon(
-        0 0,
-        88% 0,
-        58% 28%,
-        88% 100%,
-        0 100%
-    );
-
-    z-index: 0;
-}
-
-
-/* =========================================================
-   PAGE 1 - SMALL RECTANGLE AT FAR RIGHT
-   ========================================================= */
-
-.cover-page::after {
-
-    content: "";
-
-    position: absolute;
-
-    right: 0;
-
-    top: 11%;
-
-    width: 42px;
-
-    height: 120px;
-
-    background: #F4A261;
-
-    z-index: 1;
-
-    box-shadow:
-        -6px 6px 12px rgba(0, 0, 0, 0.20);
-}
-
-
-/* =========================================================
-   LOGO
-   Page 1
-   ========================================================= */
-
-.cover-page .logo {
-
     position: relative;
-
-    z-index: 10;
-
-    margin: 0;
-
-    padding-top: 72px;
-
-    padding-left: 34px;
-
-    width: 43%;
-
-    text-align: left;
-
-    font-size: 42px;
-
-    line-height: 1.05;
-}
-
-
-.cover-page .logo-zero {
-
-    color: #102A43;
-}
-
-
-.cover-page .logo-fast {
-
+    background: #102A43;
     color: white;
+    box-sizing: border-box;
+    overflow: hidden;
+    font-family: "Times New Roman", serif;
 }
 
 
 /* =========================================================
-   INTRO PAGE 1
+   Logo
    ========================================================= */
 
-.cover-page .cover-intro {
-
-    position: absolute;
-
-    z-index: 10;
-
-    top: 145px;
-
-    right: 34px;
-
-    width: 40%;
-
-    margin: 0;
-
-    color: white;
-
-    direction: rtl;
-
-    text-align: right;
+.logo {
+    margin-top: 30px;
+    width: 100%;
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
 }
 
-
-.cover-page .cover-intro h2 {
-
-    font-size: 24px;
-
-    margin: 0 0 22px;
-
+.logo-zero {
     color: white;
-
-    text-align: right;
 }
 
-
-.cover-page .cover-intro p {
-
-    font-size: 15px;
-
-    line-height: 1.75;
-
-    margin: 0 0 17px;
+.logo-fast {
+    color: #F4A261;
 }
 
 
 /* =========================================================
-   CONTACT BAR
-   2 CM FROM REAL A4
-   2 / 29.7 = 6.73%
+   المقدمة
+   ========================================================= */
+
+.cover-intro {
+    width: 82%;
+    margin: 55px auto 0;
+    direction: rtl;
+    text-align: right;
+}
+
+.cover-intro h2 {
+    font-size: 20px;
+    margin-bottom: 22px;
+    text-align: center;
+}
+
+.cover-intro p {
+    font-size: 13px;
+    line-height: 1.7;
+    margin-bottom: 17px;
+}
+
+
+/* =========================================================
+   شريط الاتصال
    ========================================================= */
 
 .contact-bar {
-
     position: absolute;
 
     left: 0;
-    right: 0;
     bottom: 0;
 
-    height: 6.73%;
+    width: 100%;
+
+    height: 9%;
+
+    min-height: 45px;
 
     display: flex;
 
@@ -381,56 +253,50 @@ body {
 
     gap: 45px;
 
-    padding: 0 18px;
-
     box-sizing: border-box;
-
-    z-index: 80;
 
     direction: ltr;
 
-    background: #102A43;
-
-    color: white;
+    z-index: 50;
 }
 
 
-.contact-bar-page1,
+.contact-bar-page1 {
+    background: #F4A261;
+    color: #102A43;
+}
+
+
 .contact-bar-page6 {
-
     background: #102A43;
-
     color: white;
 }
 
 
 .contact-bar .contact-item {
-
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
-    gap: 9px;
+    gap: 10px;
 
     font-size: 18px;
 
     font-weight: bold;
 
-    color: white;
+    color: inherit;
 }
 
 
 .contact-bar .contact-icon {
-
-    color: white;
+    color: inherit;
+    font-weight: bold;
 }
 
 
 .contact-bar .whatsapp-icon {
-
-    color: white;
+    color: inherit;
 
     display: flex;
 
@@ -439,472 +305,482 @@ body {
 
 
 .contact-bar .whatsapp-icon svg {
-
     width: 20px;
-
     height: 20px;
 
     fill: currentColor;
 }
 
 
-/* =========================================================
-   PAGE 6
-   نفس الغلاف لكن معكوس الألوان
-   ========================================================= */
-
-.page-6 {
-
-    background: #F4A261;
-
-    color: #102A43;
-
-    border-left-color: #102A43;
+.cover-page .cover-contact,
+.page-6 .cover-contact {
+    display: none;
 }
 
 
 /* =========================================================
-   PAGE 6 - LARGE NAVY PANEL
+   أزرار التنقل
    ========================================================= */
 
-.page-6::before {
+.navigation {
+    display: flex;
 
-    content: "";
+    justify-content: center;
 
-    position: absolute;
+    align-items: center;
 
-    right: 0;
-    top: 0;
+    gap: 10px;
 
-    width: 68%;
-    height: 100%;
-
-    background: #102A43;
-
-    clip-path: polygon(
-        12% 0,
-        100% 0,
-        100% 100%,
-        12% 100%,
-        42% 72%
-    );
-
-    z-index: 0;
+    margin: 10px;
 }
 
 
-/* =========================================================
-   PAGE 6 - SMALL RECTANGLE
-   ========================================================= */
-
-.page-6::after {
-
-    content: "";
-
-    position: absolute;
-
-    left: 0;
-
-    top: 11%;
-
-    width: 42px;
-
-    height: 120px;
-
-    background: #102A43;
-
-    z-index: 1;
-
-    box-shadow:
-        6px 6px 12px rgba(0, 0, 0, 0.20);
-}
-
-
-/* =========================================================
-   PAGE 6 LOGO
-   ========================================================= */
-
-.page-6 .logo {
-
-    position: relative;
-
-    z-index: 10;
-
-    margin: 0;
-
-    padding-top: 72px;
-
-    padding-right: 34px;
-
-    width: 43%;
-
-    margin-left: auto;
-
-    text-align: right;
-
-    font-size: 42px;
-
-    line-height: 1.05;
-}
-
-
-.page-6 .logo-zero {
-
-    color: #F4A261;
-}
-
-
-.page-6 .logo-fast {
-
-    color: white;
-}
-
-
-/* =========================================================
-   PAGE 6 CONTENT
-   ========================================================= */
-
-.page-6 .cover-intro {
-
-    position: absolute;
-
-    z-index: 10;
-
-    top: 135px;
-
-    left: 34px;
-
-    width: 43%;
-
-    margin: 0;
-
-    color: #102A43;
-
-    direction: rtl;
-
-    text-align: right;
-}
-
-
-.page-6 .cover-intro h2 {
-
-    font-size: 23px;
-
-    margin: 0 0 20px;
-
-    color: #102A43;
-
-    text-align: right;
-}
-
-
-.page-6 .cover-intro p {
-
-    font-size: 15px;
-
-    line-height: 1.65;
-
-    margin: 0 0 14px;
-
-    color: #102A43;
+.navigation button {
+    font-family: "Times New Roman", serif;
 
     font-weight: bold;
+
+    cursor: pointer;
 }
 
 
 /* =========================================================
-   PAGES 2 + 4
-   INTERNAL DESIGN A
+   Contents Dropdown
    ========================================================= */
 
-.page-2,
-.page-4 {
+.contents-dropdown {
+    position: relative;
+
+    display: inline-block;
+}
+
+
+.contents-list {
+    display: none;
+
+    position: absolute;
+
+    bottom: calc(100% + 8px);
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 150px;
 
     background: white;
 
-    color: #102A43;
+    border: 1px solid #999;
 
-    border-left-color: #F4A261;
-}
+    border-radius: 6px;
 
+    padding: 6px;
 
-/* Large orange diagonal panel */
+    z-index: 9999;
 
-.page-2::before,
-.page-4::before {
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.25);
 
-    content: "";
-
-    position: absolute;
-
-    left: 0;
-    top: 0;
-
-    width: 30%;
-    height: 100%;
-
-    background: #F4A261;
-
-    clip-path: polygon(
-        0 0,
-        100% 0,
-        65% 50%,
-        100% 100%,
-        0 100%
-    );
-
-    z-index: 0;
-}
-
-
-/* Upper navy panel */
-
-.page-2::after,
-.page-4::after {
-
-    content: "";
-
-    position: absolute;
-
-    right: 0;
-
-    top: 0;
-
-    width: 24%;
-
-    height: 28%;
-
-    background: #102A43;
-
-    clip-path: polygon(
-        25% 0,
-        100% 0,
-        100% 100%
-    );
-
-    z-index: 0;
-}
-
-
-/* =========================================================
-   PAGES 2 + 4 HEADINGS
-   ========================================================= */
-
-.page-2 h1,
-.page-4 h1 {
-
-    position: relative;
-
-    z-index: 10;
-
-    margin: 0;
-
-    padding-top: 28px;
-
-    padding-right: 34px;
-
-    text-align: right;
-
-    color: #102A43;
-
-    font-size: 25px;
-
-    font-weight: bold;
-
-    letter-spacing: 0.5px;
-}
-
-
-.page-2 .page-subtitle,
-.page-4 .page-subtitle {
-
-    position: relative;
-
-    z-index: 10;
-
-    margin: 7px 34px 0;
-
-    color: #102A43;
-
-    font-size: 19px;
-
-    font-weight: bold;
-
-    text-align: right;
-}
-
-
-/* =========================================================
-   PAGES 3 + 5
-   INTERNAL DESIGN B
-   ========================================================= */
-
-.page-3,
-.page-5 {
-
-    background: #102A43;
-
-    color: white;
-
-    border-left-color: #F4A261;
-}
-
-
-/* Large orange panel */
-
-.page-3::before,
-.page-5::before {
-
-    content: "";
-
-    position: absolute;
-
-    right: 0;
-    top: 0;
-
-    width: 30%;
-    height: 100%;
-
-    background: #F4A261;
-
-    clip-path: polygon(
-        0 0,
-        100% 0,
-        100% 100%,
-        0 100%,
-        35% 50%
-    );
-
-    z-index: 0;
-}
-
-
-/* Navy top accent */
-
-.page-3::after,
-.page-5::after {
-
-    content: "";
-
-    position: absolute;
-
-    left: 0;
-
-    top: 0;
-
-    width: 24%;
-
-    height: 28%;
-
-    background: #102A43;
-
-    clip-path: polygon(
-        0 0,
-        100% 0,
-        0 100%
-    );
-
-    z-index: 0;
-}
-
-
-/* =========================================================
-   PAGES 3 + 5 HEADINGS
-   ========================================================= */
-
-.page-3 h1,
-.page-5 h1 {
-
-    position: relative;
-
-    z-index: 10;
-
-    margin: 0;
-
-    padding-top: 28px;
-
-    padding-left: 34px;
-
-    color: white;
-
-    font-size: 25px;
-
-    font-weight: bold;
-
-    text-align: left;
-}
-
-
-.page-3 .page-subtitle,
-.page-5 .page-subtitle {
-
-    position: relative;
-
-    z-index: 10;
-
-    margin: 7px 34px 0;
-
-    color: white;
-
-    font-size: 19px;
-
-    font-weight: bold;
-
-    text-align: left;
-}
-
-
-/* =========================================================
-   IMAGE AREA
-   ========================================================= */
-
-.userform-images {
-
-    position: relative;
-
-    z-index: 5;
-
-    width: 100%;
-
-    height: calc(100% - 105px);
-
-    margin-top: 8px;
-}
-
-
-.userform-card {
-
-    position: absolute;
-
-    z-index: 10;
+    box-sizing: border-box;
 
     text-align: center;
 }
 
 
-.userform-image-frame {
+.contents-list button {
+    display: block !important;
 
+    width: 100% !important;
+
+    margin: 4px 0 !important;
+
+    padding: 5px 0 !important;
+
+    font-family: "Times New Roman", serif;
+
+    font-weight: bold;
+
+    background: transparent !important;
+
+    border: none !important;
+
+    border-radius: 0 !important;
+
+    text-align: center;
+
+    cursor: pointer;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   PAGE 2 + PAGE 4
+   الخلفية البرتقالية
+   ========================================================= */
+
+.page-2,
+.page-4 {
+    position: relative;
+
+    overflow: hidden;
+
+    background: #F4A261;
+
+    color: #102A43;
+
+    box-sizing: border-box;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   الشكل الرئيسي
+   ========================================================= */
+
+.page-2::before,
+.page-4::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: #102A43;
+
+    clip-path: polygon(
+        25% 0%,
+        0% 25%,
+        100% 75%
+    );
+
+    filter:
+        drop-shadow(
+            7px 8px 10px rgba(0, 0, 0, 0.30)
+        );
+
+    z-index: 0;
+}
+
+
+/* =========================================================
+   مثلث أعلى اليمين
+   ========================================================= */
+
+.page-2::after,
+.page-4::after {
+    content: "";
+
+    position: absolute;
+
+    right: 0;
+    top: 0;
+
+    width: 25%;
+    height: 50%;
+
+    background: #102A43;
+
+    clip-path: polygon(
+        0% 0%,
+        100% 0%,
+        100% 100%
+    );
+
+    filter:
+        drop-shadow(
+            -5px 6px 8px rgba(0, 0, 0, 0.25)
+        );
+
+    z-index: 1;
+}
+
+
+/* =========================================================
+   مثلث أسفل اليسار
+   ========================================================= */
+
+.page-2 .userform-images::before,
+.page-4 .userform-images::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    width: 25%;
+    height: 50%;
+
+    background: #102A43;
+
+    clip-path: polygon(
+        0% 0%,
+        0% 100%,
+        100% 100%
+    );
+
+    filter:
+        drop-shadow(
+            5px -5px 8px rgba(0, 0, 0, 0.25)
+        );
+
+    z-index: 0;
+}
+
+
+/* =========================================================
+   PAGE 3 + PAGE 5
+   ========================================================= */
+
+.page-3,
+.page-5 {
+    position: relative;
+
+    overflow: hidden;
+
+    background: #102A43;
+
+    color: white;
+
+    box-sizing: border-box;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   الشكل المعكوس
+   ========================================================= */
+
+.page-3::before,
+.page-5::before {
+    content: "";
+
+    position: absolute;
+
+    right: 0;
+    top: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: #F4A261;
+
+    clip-path: polygon(
+        75% 0%,
+        100% 25%,
+        0% 75%
+    );
+
+    filter:
+        drop-shadow(
+            -7px 8px 10px rgba(0, 0, 0, 0.30)
+        );
+
+    z-index: 0;
+}
+
+
+/* =========================================================
+   مثلث أعلى اليسار
+   ========================================================= */
+
+.page-3::after,
+.page-5::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 25%;
+    height: 50%;
+
+    background: #F4A261;
+
+    clip-path: polygon(
+        0% 0%,
+        0% 100%,
+        100% 0%
+    );
+
+    filter:
+        drop-shadow(
+            5px 6px 8px rgba(0, 0, 0, 0.25)
+        );
+
+    z-index: 1;
+}
+
+
+/* =========================================================
+   مثلث أسفل اليمين
+   ========================================================= */
+
+.page-3 .userform-images::before,
+.page-5 .userform-images::before {
+    content: "";
+
+    position: absolute;
+
+    right: 0;
+    bottom: 0;
+
+    width: 25%;
+    height: 50%;
+
+    background: #F4A261;
+
+    clip-path: polygon(
+        100% 0%,
+        100% 100%,
+        0% 100%
+    );
+
+    filter:
+        drop-shadow(
+            -5px -5px 8px rgba(0, 0, 0, 0.25)
+        );
+
+    z-index: 0;
+}
+
+
+/* =========================================================
+   عناوين الصفحات 2 - 5
+   ========================================================= */
+
+.page-2 h1,
+.page-3 h1,
+.page-4 h1,
+.page-5 h1 {
+    position: relative;
+
+    z-index: 30;
+
+    margin: 0;
+
+    padding-top: 12px;
+
+    font-family: "Times New Roman", serif;
+
+    font-size: 25px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================================================
+   ألوان العناوين
+   ========================================================= */
+
+.page-2 h1,
+.page-2 .page-subtitle,
+.page-3 h1,
+.page-3 .page-subtitle,
+.page-4 h1,
+.page-4 .page-subtitle,
+.page-5 h1,
+.page-5 .page-subtitle {
+    color: white;
+}
+
+
+/* =========================================================
+   شرح قائمة الدخول
+   ========================================================= */
+
+.page-subtitle {
+    position: relative;
+
+    z-index: 30;
+
+    margin-top: 4px;
+
+    font-family: "Times New Roman", serif;
+
+    font-size: 22px;
+
+    line-height: 1.35;
+
+    font-weight: bold;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   حاوية الصور
+   ========================================================= */
+
+.userform-images {
+    position: relative;
+
+    z-index: 10;
+
+    width: 100%;
+
+    height: calc(100% - 70px);
+
+    margin-top: 6px;
+}
+
+
+/* =========================================================
+   بطاقات الصور
+   ========================================================= */
+
+.userform-card {
+    position: absolute;
+
+    text-align: center;
+
+    z-index: 10;
+}
+
+
+/* =========================================================
+   إطار الصور
+   ========================================================= */
+
+.userform-image-frame {
     position: relative;
 
     width: 100%;
 
     aspect-ratio: 1 / 1;
 
+    box-sizing: border-box;
+
+    border: none;
+
+    border-radius: 0;
+
     overflow: hidden;
 
     background: white;
 
-    border: 2px solid rgba(16, 42, 67, 0.15);
-
-    box-sizing: border-box;
+    margin: 0 auto;
 
     box-shadow:
-        0 8px 18px rgba(0, 0, 0, 0.18);
+        0 8px 18px rgba(0, 0, 0, 0.24);
 }
 
 
-.userform-image-frame img {
+/* =========================================================
+   الصور
+   ========================================================= */
 
+.userform-image-frame img {
     display: block;
 
     width: 100%;
@@ -916,155 +792,316 @@ body {
 
 
 /* =========================================================
-   FOOTER NOTE
+   إخفاء الوصف
+   ========================================================= */
+
+.userform-description {
+    display: none;
+}
+
+
+/* =========================================================
+   الشريط السفلي
    ========================================================= */
 
 .page-footer-note {
+    position: absolute !important;
 
-    position: absolute;
+    left: 0 !important;
 
-    left: 0;
-    right: 0;
+    right: 0 !important;
 
-    bottom: 6.73%;
+    bottom: 0 !important;
 
-    z-index: 20;
+    width: 100% !important;
 
-    height: 34px;
+    height: 9% !important;
 
-    display: flex;
+    min-height: 45px;
 
-    align-items: center;
+    display: flex !important;
 
-    justify-content: center;
+    align-items: center !important;
+
+    justify-content: center !important;
+
+    box-sizing: border-box !important;
+
+    z-index: 999 !important;
+
+    font-family: "Times New Roman", serif;
+
+    font-size: 18px;
+
+    line-height: 1.4;
+
+    font-weight: bold;
+
+    text-align: center;
+
+    padding: 0 10px;
+}
+
+
+/* =========================================================
+   Page 2 + Page 4
+   ========================================================= */
+
+.page-2 .page-footer-note,
+.page-4 .page-footer-note {
+    background: #102A43;
+
+    color: white;
+}
+
+
+/* =========================================================
+   Page 3 + Page 5
+   ========================================================= */
+
+.page-3 .page-footer-note,
+.page-5 .page-footer-note {
+    background: #F4A261;
+
+    color: white;
+}
+
+
+/* =========================================================
+   PAGE 3
+   الصورة الأولى
+   ========================================================= */
+
+.page-3 .userform-card:nth-child(1) {
+    transform: rotate(45deg);
+
+    transform-origin: center center;
+}
+
+
+/* =========================================================
+   PAGE 3
+   الصورة الثانية
+   ========================================================= */
+
+.page-3 .userform-card:nth-child(2) {
+    transform: rotate(115deg);
+
+    transform-origin: center center;
+}
+
+
+/* =========================================================
+   PAGE 3
+   الصورة الثالثة
+   ========================================================= */
+
+.page-3 .userform-card:nth-child(3) {
+    transform: rotate(0deg);
+}
+
+
+/* =========================================================
+   PAGE 4 + PAGE 5
+   ========================================================= */
+
+.page-4 .userform-card,
+.page-5 .userform-card {
+    transform: rotate(0deg);
+}
+
+
+/* =========================================================
+   PAGE 6
+   ========================================================= */
+
+.page-6 {
+    position: relative;
+
+    background: #F4A261;
+
+    color: #102A43;
 
     box-sizing: border-box;
 
-    font-size: 16px;
+    overflow: hidden;
 
-    font-weight: bold;
+    font-family: "Times New Roman", serif;
+}
+
+
+/* =========================================================
+   Logo Page 6
+   ========================================================= */
+
+.page-6 .logo-zero {
+    color: #102A43;
+}
+
+.page-6 .logo-fast {
+    color: white;
+}
+
+
+/* =========================================================
+   Page 6 - رفع الكلام
+   ========================================================= */
+
+.page-6 .cover-intro {
+    width: 82%;
+
+    margin: 12px auto 0;
+
+    direction: rtl;
+
+    text-align: right;
+}
+
+
+/* =========================================================
+   عنوان فوائد Page 6
+   ========================================================= */
+
+.page-6 .cover-intro h2 {
+    color: #102A43;
+
+    font-size: 21px;
+
+    margin-top: 0;
+
+    margin-bottom: 16px;
 
     text-align: center;
 }
 
 
-.page-2 .page-footer-note,
-.page-4 .page-footer-note {
+/* =========================================================
+   فوائد Page 6
+   ========================================================= */
 
+.page-6 .cover-intro p {
     color: #102A43;
 
-    background: transparent;
-}
+    font-size: 16px;
 
+    line-height: 1.60;
 
-.page-3 .page-footer-note,
-.page-5 .page-footer-note {
+    margin-top: 0;
 
-    color: white;
+    margin-bottom: 10px;
 
-    background: transparent;
+    font-weight: bold;
 }
 
 
 /* =========================================================
-   DESKTOP
+   COMPUTER
    ========================================================= */
 
 @media screen and (min-width: 601px) {
 
     .a4-page {
+        width: 380px;
 
-        width: 540px;
+        height: 537px;
 
-        height: 764px;
+        aspect-ratio: auto;
 
-        margin: 10px auto;
+        margin: 10px;
+
+        flex-shrink: 0;
     }
 
 
-    /* -------------------------
+    .contact-bar {
+        height: 9%;
+
+        min-height: 45px;
+
+        gap: 45px;
+    }
+
+
+    .contact-bar .contact-item {
+        font-size: 18px;
+    }
+
+
+    /* =====================================================
        PAGE 2
-       ------------------------- */
+       ===================================================== */
 
     .page-2 .userform-card:nth-child(1) {
 
-        width: 210px;
+        width: 200px;
 
-        top: 105px;
+        top: 78px;
 
-        right: 28px;
+        right: 4px;
 
         left: auto;
+
+        z-index: 5;
     }
 
 
     .page-2 .userform-card:nth-child(2) {
 
-        width: 190px;
+        width: 200px;
 
-        bottom: 82px;
+        bottom: 65px;
 
-        left: 35px;
+        left: 4px;
 
         right: auto;
 
         top: auto;
+
+        z-index: 5;
     }
 
 
-    /* -------------------------
+    /* =====================================================
        PAGE 3
-       الأولى أصغر + أعلى + يمين
-       30 درجة
-       ------------------------- */
+       ===================================================== */
 
     .page-3 .userform-card:nth-child(1) {
 
-        width: 145px;
+        width: 175px;
 
-        top: 72px;
+        top: 65px;
 
-        right: 18px;
+        right: -2px;
 
         left: auto;
 
-        transform: rotate(30deg);
+        z-index: 5;
 
-        z-index: 6;
+        transform: rotate(45deg);
     }
 
-
-    /* -------------------------
-       الثانية أصغر + أعلى + شمال
-       115 درجة
-       ------------------------- */
 
     .page-3 .userform-card:nth-child(2) {
 
-        width: 145px;
+        width: 175px;
 
-        top: 120px;
+        top: 190px;
 
-        left: 32px;
+        left: 0;
 
         right: auto;
 
-        transform: rotate(115deg);
-
         z-index: 8;
+
+        transform: rotate(115deg);
     }
 
 
-    /* -------------------------
-       الثالثة GIF أكبر
-       سنتر أسفل
-       ------------------------- */
-
     .page-3 .userform-card:nth-child(3) {
 
-        width: 225px;
+        width: 175px;
 
-        bottom: 72px;
+        bottom: 60px;
 
         left: 50%;
 
@@ -1072,25 +1109,25 @@ body {
 
         top: auto;
 
+        z-index: 6;
+
         transform:
             translateX(-50%)
             rotate(0deg);
-
-        z-index: 7;
     }
 
 
-    /* -------------------------
+    /* =====================================================
        PAGE 4
-       ------------------------- */
+       ===================================================== */
 
     .page-4 .userform-card:nth-child(1) {
 
-        width: 210px;
+        width: 180px;
 
-        top: 105px;
+        top: 75px;
 
-        right: 28px;
+        right: 12px;
 
         left: auto;
     }
@@ -1098,11 +1135,11 @@ body {
 
     .page-4 .userform-card:nth-child(2) {
 
-        width: 190px;
+        width: 180px;
 
-        bottom: 82px;
+        bottom: 65px;
 
-        left: 35px;
+        left: 12px;
 
         right: auto;
 
@@ -1110,34 +1147,33 @@ body {
     }
 
 
-    /* -------------------------
+    /* =====================================================
        PAGE 5
-       نفس تصميم Page 3
-       ------------------------- */
+       ===================================================== */
 
     .page-5 .userform-card:nth-child(1) {
 
-        width: 145px;
+        width: 175px;
 
-        top: 72px;
+        top: 65px;
 
-        right: 18px;
+        left: -2px;
 
-        left: auto;
+        right: auto;
 
-        transform: rotate(30deg);
+        transform: rotate(45deg);
     }
 
 
     .page-5 .userform-card:nth-child(2) {
 
-        width: 145px;
+        width: 175px;
 
-        top: 120px;
+        top: 190px;
 
-        left: 32px;
+        right: 0;
 
-        right: auto;
+        left: auto;
 
         transform: rotate(115deg);
     }
@@ -1145,9 +1181,9 @@ body {
 
     .page-5 .userform-card:nth-child(3) {
 
-        width: 225px;
+        width: 175px;
 
-        bottom: 72px;
+        bottom: 60px;
 
         left: 50%;
 
@@ -1161,20 +1197,67 @@ body {
     }
 
 
-    /* Footer */
+    /* =====================================================
+       العناوين
+       ===================================================== */
+
+    .page-2 h1,
+    .page-3 h1,
+    .page-4 h1,
+    .page-5 h1 {
+
+        padding-top: 12px;
+
+        font-size: 25px;
+    }
+
+
+    .page-subtitle {
+
+        font-size: 22px;
+
+        margin-top: 4px;
+    }
+
 
     .page-footer-note {
 
-        bottom: 6.73%;
+        height: 9% !important;
+
+        min-height: 45px;
+
+        font-size: 18px;
+    }
+
+
+    .page-6 .cover-intro {
+
+        margin-top: 10px;
+    }
+
+
+    .page-6 .cover-intro h2 {
+
+        font-size: 21px;
+
+        margin-bottom: 16px;
+    }
+
+
+    .page-6 .cover-intro p {
 
         font-size: 16px;
+
+        line-height: 1.60;
+
+        margin-bottom: 10px;
     }
+
 }
 
 
 /* =========================================================
    MOBILE
-   الحجم محفوظ كما كان
    ========================================================= */
 
 @media screen and (max-width: 600px) {
@@ -1203,175 +1286,237 @@ body {
 
         height: 85vh;
 
+        aspect-ratio: auto;
+
         margin: 5px auto;
+
+        flex-shrink: 0;
     }
 
-
-    /* -------------------------
-       PAGE 1
-       ------------------------- */
-
-    .cover-page .logo {
-
-        padding-top: 48px;
-
-        padding-left: 20px;
-
-        width: 45%;
-
-        font-size: 32px;
-    }
-
-
-    .cover-page .cover-intro {
-
-        top: 112px;
-
-        right: 18px;
-
-        width: 42%;
-    }
-
-
-    .cover-page .cover-intro h2 {
-
-        font-size: 18px;
-
-        margin-bottom: 14px;
-    }
-
-
-    .cover-page .cover-intro p {
-
-        font-size: 12px;
-
-        line-height: 1.55;
-
-        margin-bottom: 12px;
-    }
-
-
-    /* -------------------------
-       PAGE 6
-       ------------------------- */
-
-    .page-6 .logo {
-
-        padding-top: 48px;
-
-        padding-right: 20px;
-
-        width: 45%;
-
-        font-size: 32px;
-    }
-
-
-    .page-6 .cover-intro {
-
-        top: 105px;
-
-        left: 18px;
-
-        width: 44%;
-    }
-
-
-    .page-6 .cover-intro h2 {
-
-        font-size: 18px;
-
-        margin-bottom: 14px;
-    }
-
-
-    .page-6 .cover-intro p {
-
-        font-size: 12px;
-
-        line-height: 1.5;
-
-        margin-bottom: 10px;
-    }
-
-
-    /* -------------------------
-       Contact
-       ------------------------- */
 
     .contact-bar {
 
-        height: 6.73%;
+        height: 9%;
 
-        min-height: 38px;
+        min-height: 42px;
 
         gap: 18px;
 
-        padding: 0 8px;
+        padding: 0 10px;
     }
 
 
     .contact-bar .contact-item {
 
-        font-size: 13px;
-
-        gap: 6px;
+        font-size: 15px;
     }
 
 
     .contact-bar .whatsapp-icon svg {
 
-        width: 16px;
+        width: 18px;
 
-        height: 16px;
+        height: 18px;
     }
 
 
-    /* -------------------------
-       Page 2 + 4
-       ------------------------- */
+    .logo {
+
+        margin-top: 25px;
+
+        font-size: 40px;
+    }
+
+
+    .cover-intro {
+
+        width: 84%;
+
+        margin-top: 55px;
+    }
+
+
+    .cover-intro h2 {
+
+        font-size: 20px;
+
+        margin-bottom: 22px;
+    }
+
+
+    .cover-intro p {
+
+        font-size: 14px;
+
+        line-height: 1.7;
+
+        margin-bottom: 17px;
+    }
+
+
+    .navigation {
+
+        width: 100%;
+
+        box-sizing: border-box;
+
+        justify-content: center;
+
+        gap: 8px;
+
+        margin: 10px 0;
+    }
+
+
+    .navigation button {
+
+        font-size: 16px;
+
+        padding: 8px 12px;
+    }
+
+
+    .contents-list {
+
+        width: 150px;
+
+        bottom: calc(100% + 8px);
+
+        left: 50%;
+
+        transform: translateX(-50%);
+    }
+
+
+    .page-2,
+    .page-3,
+    .page-4,
+    .page-5 {
+
+        padding: 0;
+    }
+
 
     .page-2 h1,
-    .page-4 h1 {
+    .page-3 h1,
+    .page-4 h1,
+    .page-5 h1 {
 
-        padding-top: 18px;
+        font-size: 20px;
 
-        padding-right: 18px;
+        padding-top: 10px;
+    }
+
+
+    .page-subtitle {
 
         font-size: 19px;
+
+        margin-top: 2px;
     }
 
 
-    .page-2 .page-subtitle,
-    .page-4 .page-subtitle {
+    .page-2 .userform-card:nth-child(1) {
 
-        margin: 5px 18px 0;
+        width: 58%;
 
-        font-size: 15px;
+        top: 65px;
+
+        right: 0;
+
+        left: auto;
+
+        z-index: 5;
     }
 
 
-    .page-2 .userform-card:nth-child(1),
+    .page-2 .userform-card:nth-child(2) {
+
+        width: 58%;
+
+        bottom: 65px;
+
+        left: 0;
+
+        right: auto;
+
+        top: auto;
+
+        z-index: 5;
+    }
+
+
+    .page-3 .userform-card:nth-child(1) {
+
+        width: 55%;
+
+        top: 55px;
+
+        right: -5%;
+
+        left: auto;
+
+        z-index: 5;
+
+        transform: rotate(45deg);
+    }
+
+
+    .page-3 .userform-card:nth-child(2) {
+
+        width: 55%;
+
+        top: 185px;
+
+        left: -4%;
+
+        right: auto;
+
+        z-index: 8;
+
+        transform: rotate(115deg);
+    }
+
+
+    .page-3 .userform-card:nth-child(3) {
+
+        width: 55%;
+
+        bottom: 65px;
+
+        left: 50%;
+
+        right: auto;
+
+        top: auto;
+
+        z-index: 6;
+
+        transform:
+            translateX(-50%)
+            rotate(0deg);
+    }
+
+
     .page-4 .userform-card:nth-child(1) {
 
-        width: 57%;
+        width: 56%;
 
-        top: 90px;
+        top: 65px;
 
-        right: 2%;
+        right: 0;
 
         left: auto;
     }
 
 
-    .page-2 .userform-card:nth-child(2),
     .page-4 .userform-card:nth-child(2) {
 
-        width: 53%;
+        width: 56%;
 
-        bottom: 75px;
+        bottom: 65px;
 
-        left: 3%;
+        left: 0;
 
         right: auto;
 
@@ -1379,70 +1524,39 @@ body {
     }
 
 
-    /* -------------------------
-       Page 3 + 5
-       ------------------------- */
-
-    .page-3 h1,
-    .page-5 h1 {
-
-        padding-top: 18px;
-
-        padding-left: 18px;
-
-        font-size: 19px;
-    }
-
-
-    .page-3 .page-subtitle,
-    .page-5 .page-subtitle {
-
-        margin: 5px 18px 0;
-
-        font-size: 15px;
-    }
-
-
-    .page-3 .userform-card:nth-child(1),
     .page-5 .userform-card:nth-child(1) {
 
-        width: 44%;
+        width: 55%;
 
-        top: 72px;
+        top: 55px;
 
-        right: -2%;
-
-        left: auto;
-
-        transform: rotate(30deg);
-
-        z-index: 6;
-    }
-
-
-    .page-3 .userform-card:nth-child(2),
-    .page-5 .userform-card:nth-child(2) {
-
-        width: 44%;
-
-        top: 115px;
-
-        left: -2%;
+        left: -5%;
 
         right: auto;
 
-        transform: rotate(115deg);
-
-        z-index: 8;
+        transform: rotate(45deg);
     }
 
 
-    .page-3 .userform-card:nth-child(3),
+    .page-5 .userform-card:nth-child(2) {
+
+        width: 55%;
+
+        top: 185px;
+
+        right: -4%;
+
+        left: auto;
+
+        transform: rotate(115deg);
+    }
+
+
     .page-5 .userform-card:nth-child(3) {
 
-        width: 62%;
+        width: 55%;
 
-        bottom: 70px;
+        bottom: 65px;
 
         left: 50%;
 
@@ -1453,38 +1567,53 @@ body {
         transform:
             translateX(-50%)
             rotate(0deg);
-
-        z-index: 7;
     }
 
-
-    /* -------------------------
-       Footer
-       ------------------------- */
 
     .page-footer-note {
 
-        bottom: 6.73%;
+        height: 9% !important;
 
-        height: 28px;
+        min-height: 42px;
 
-        font-size: 13px;
+        font-size: 16px;
+
+        padding: 0 10px;
     }
 
 
-    /* -------------------------
-       Book binding
-       ------------------------- */
+    .page-6 .cover-intro {
 
-    .a4-page {
+        width: 84%;
 
-        border-left-width: 7px;
+        margin-top: 15px;
     }
+
+
+    .page-6 .cover-intro h2 {
+
+        font-size: 20px;
+
+        margin-bottom: 16px;
+    }
+
+
+    .page-6 .cover-intro p {
+
+        font-size: 15px;
+
+        line-height: 1.60;
+
+        margin-bottom: 10px;
+
+        font-weight: bold;
+    }
+
 }
 
 
 /* =========================================================
-   REDUCED MOTION
+   تقليل الحركة
    ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
@@ -1496,4 +1625,5 @@ body {
 
         transform: none !important;
     }
+
 }
