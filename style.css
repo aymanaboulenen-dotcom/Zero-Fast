@@ -6,8 +6,22 @@ body {
     max-width: 100%;
     overflow-x: hidden;
     overscroll-behavior-x: none;
+
     background: #cfcfcf;
+
     font-family: "Times New Roman", serif;
+}
+
+
+/* =========================================================
+   الألوان
+   ========================================================= */
+
+:root {
+    --navy: #102A43;
+    --orange: #F4A261;
+    --light: #e6e6e6;
+    --shadow: rgba(0, 0, 0, 0.24);
 }
 
 
@@ -23,7 +37,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    gap: 10px;
+    gap: 14px;
     width: 100%;
 }
 
@@ -33,63 +47,102 @@ body {
    ========================================================= */
 
 .a4-page {
+    position: relative;
+
     width: 500px;
     height: 707px;
-    background: white;
+
     box-sizing: border-box;
+
     margin: 10px;
+
     flex-shrink: 0;
+
+    overflow: hidden;
+
+    background: var(--navy);
+
+    box-shadow:
+        0 10px 24px rgba(0, 0, 0, 0.22);
+
+    transform-style: preserve-3d;
 }
 
 
 /* =========================================================
-   حركة تقليب الصفحات
+   خط الكتاب الجانبي
+   موجود في كل الصفحات
+   ========================================================= */
+
+.a4-page::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 8px;
+    height: 100%;
+
+    background: var(--orange);
+
+    box-shadow:
+        3px 0 8px rgba(0, 0, 0, 0.22);
+
+    z-index: 90;
+}
+
+
+/* =========================================================
+   حركة تقليب الصفحة
    ========================================================= */
 
 .page-flip {
     position: relative;
+
     transform-style: preserve-3d;
+
     backface-visibility: hidden;
+
     will-change: transform, opacity;
 }
 
-
 .page-flip.flip-next {
-    animation: pageFlipNext 0.65s ease-out both;
+    animation:
+        pageFlipNext 0.70s ease-out both;
+
     transform-origin: left center;
 }
 
-
 .page-flip.flip-previous {
-    animation: pageFlipPrevious 0.65s ease-out both;
+    animation:
+        pageFlipPrevious 0.70s ease-out both;
+
     transform-origin: right center;
 }
 
-
-/* =========================================================
-   تقليب إلى الأمام
-   ========================================================= */
 
 @keyframes pageFlipNext {
 
     0% {
         transform:
             perspective(1400px)
-            rotateY(65deg)
-            translateX(8%);
+            rotateY(68deg)
+            translateX(7%);
 
-        opacity: 0.35;
+        opacity: 0.30;
 
-        filter: brightness(0.78);
+        filter: brightness(0.80);
     }
 
     35% {
         transform:
             perspective(1400px)
-            rotateY(28deg)
+            rotateY(30deg)
             translateX(3%);
 
-        opacity: 0.78;
+        opacity: 0.72;
 
         filter: brightness(0.90);
     }
@@ -97,12 +150,12 @@ body {
     70% {
         transform:
             perspective(1400px)
-            rotateY(8deg)
+            rotateY(9deg)
             translateX(1%);
 
         opacity: 0.95;
 
-        filter: brightness(0.97);
+        filter: brightness(0.98);
     }
 
     100% {
@@ -117,31 +170,27 @@ body {
     }
 }
 
-
-/* =========================================================
-   تقليب إلى الخلف
-   ========================================================= */
 
 @keyframes pageFlipPrevious {
 
     0% {
         transform:
             perspective(1400px)
-            rotateY(-65deg)
-            translateX(-8%);
+            rotateY(-68deg)
+            translateX(-7%);
 
-        opacity: 0.35;
+        opacity: 0.30;
 
-        filter: brightness(0.78);
+        filter: brightness(0.80);
     }
 
     35% {
         transform:
             perspective(1400px)
-            rotateY(-28deg)
+            rotateY(-30deg)
             translateX(-3%);
 
-        opacity: 0.78;
+        opacity: 0.72;
 
         filter: brightness(0.90);
     }
@@ -149,12 +198,12 @@ body {
     70% {
         transform:
             perspective(1400px)
-            rotateY(-8deg)
+            rotateY(-9deg)
             translateX(-1%);
 
         opacity: 0.95;
 
-        filter: brightness(0.97);
+        filter: brightness(0.98);
     }
 
     100% {
@@ -171,29 +220,182 @@ body {
 
 
 /* =========================================================
-   PAGE 1 - COVER
+   المثلثان الصغيران
+   فقط - بدون مثلث كبير
    ========================================================= */
 
-.cover-page {
-    position: relative;
-    background: #102A43;
-    color: white;
-    box-sizing: border-box;
-    overflow: hidden;
-    font-family: "Times New Roman", serif;
+.design-triangle {
+    position: absolute;
+
+    width: 0;
+    height: 0;
+
+    z-index: 2;
+
+    filter:
+        drop-shadow(
+            5px 6px 8px rgba(0, 0, 0, 0.24)
+        );
 }
 
 
 /* =========================================================
-   Logo
+   المثلث الأول
+   ربع الضلع العلوي → نصف الضلع الأيسر
+   ========================================================= */
+
+.design-triangle-1 {
+    left: 0;
+    top: 0;
+
+    border-top: 0 solid transparent;
+
+    border-right:
+        132px solid transparent;
+
+    border-left:
+        0 solid transparent;
+
+    border-bottom:
+        176px solid var(--orange);
+}
+
+
+/* =========================================================
+   المثلث الثاني
+   ربع الضلع الأيمن → نصف الضلع السفلي
+   ========================================================= */
+
+.design-triangle-2 {
+    right: 0;
+    bottom: 0;
+
+    border-top:
+        176px solid transparent;
+
+    border-left:
+        132px solid transparent;
+
+    border-right:
+        0 solid transparent;
+
+    border-bottom:
+        0 solid transparent;
+
+    border-left-color: transparent;
+
+    border-top-color: transparent;
+}
+
+
+/* =========================================================
+   PAGE 1
+   ========================================================= */
+
+.cover-page {
+    background: var(--navy);
+
+    color: white;
+}
+
+
+/* =========================================================
+   PAGE 1
+   المثلثات
+   ========================================================= */
+
+.cover-page .design-triangle-1,
+.page-2 .design-triangle-1,
+.page-4 .design-triangle-1 {
+    border-bottom-color: var(--orange);
+}
+
+.cover-page .design-triangle-2,
+.page-2 .design-triangle-2,
+.page-4 .design-triangle-2 {
+    border-top-color: var(--orange);
+}
+
+
+/* =========================================================
+   دوائر الشعار / العنوان
+   ========================================================= */
+
+.brand-circles {
+    position: absolute;
+
+    top: 45px;
+    right: 35px;
+
+    width: 190px;
+    height: 150px;
+
+    z-index: 20;
+}
+
+
+/* الخلفية */
+
+.brand-circle {
+    position: absolute;
+
+    border-radius: 50%;
+
+    box-sizing: border-box;
+
+    box-shadow:
+        7px 9px 16px var(--shadow);
+}
+
+
+/* الدائرة الخلفية */
+
+.brand-circle-back {
+    width: 110px;
+    height: 110px;
+
+    right: 60px;
+    top: 30px;
+
+    background: var(--orange);
+}
+
+
+/* الدائرة الأمامية */
+
+.brand-circle-front {
+    width: 120px;
+    height: 120px;
+
+    right: 0;
+    top: 0;
+
+    background: var(--navy);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 14px;
+}
+
+
+/* =========================================================
+   شعار Zero Fast
    ========================================================= */
 
 .logo {
-    margin-top: 30px;
+    margin: 0;
+
     width: 100%;
+
     text-align: center;
-    font-size: 40px;
+
+    font-size: 32px;
+
     font-weight: bold;
+
+    line-height: 1.05;
 }
 
 .logo-zero {
@@ -201,248 +403,53 @@ body {
 }
 
 .logo-fast {
-    color: #F4A261;
+    color: var(--orange);
 }
 
 
 /* =========================================================
-   المقدمة
+   مستطيلان متداخلان
+   بدون زوايا دائرية
    ========================================================= */
 
-.cover-intro {
-    width: 82%;
-    margin: 55px auto 0;
-    direction: rtl;
-    text-align: right;
-}
-
-.cover-intro h2 {
-    font-size: 20px;
-    margin-bottom: 22px;
-    text-align: center;
-}
-
-.cover-intro p {
-    font-size: 13px;
-    line-height: 1.7;
-    margin-bottom: 17px;
-}
-
-
-/* =========================================================
-   شريط الاتصال
-   ========================================================= */
-
-.contact-bar {
+.content-panels {
     position: absolute;
 
-    left: 0;
-    bottom: 0;
+    left: 50px;
+    right: 45px;
+
+    top: 190px;
+    bottom: 145px;
+
+    z-index: 10;
+}
+
+
+/* المستطيل الخلفي */
+
+.content-panel-back {
+    position: absolute;
+
+    left: 18px;
+    top: 18px;
 
     width: 100%;
-
-    height: 9%;
-
-    min-height: 45px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    gap: 45px;
+    height: 100%;
 
     box-sizing: border-box;
 
-    direction: ltr;
+    border-radius: 0;
 
-    z-index: 50;
-}
-
-
-.contact-bar-page1 {
-    background: #F4A261;
-    color: #102A43;
-}
-
-
-.contact-bar-page6 {
-    background: #102A43;
-    color: white;
-}
-
-
-.contact-bar .contact-item {
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    gap: 10px;
-
-    font-size: 18px;
-
-    font-weight: bold;
-
-    color: inherit;
-}
-
-
-.contact-bar .contact-icon {
-    color: inherit;
-    font-weight: bold;
-}
-
-
-.contact-bar .whatsapp-icon {
-    color: inherit;
-
-    display: flex;
-
-    align-items: center;
-}
-
-
-.contact-bar .whatsapp-icon svg {
-    width: 20px;
-    height: 20px;
-
-    fill: currentColor;
-}
-
-
-.cover-page .cover-contact,
-.page-6 .cover-contact {
-    display: none;
-}
-
-
-/* =========================================================
-   أزرار التنقل
-   ========================================================= */
-
-.navigation {
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    gap: 10px;
-
-    margin: 10px;
-}
-
-
-.navigation button {
-    font-family: "Times New Roman", serif;
-
-    font-weight: bold;
-
-    cursor: pointer;
-}
-
-
-/* =========================================================
-   Contents Dropdown
-   ========================================================= */
-
-.contents-dropdown {
-    position: relative;
-
-    display: inline-block;
-}
-
-
-.contents-list {
-    display: none;
-
-    position: absolute;
-
-    bottom: calc(100% + 8px);
-
-    left: 50%;
-
-    transform: translateX(-50%);
-
-    width: 150px;
-
-    background: white;
-
-    border: 1px solid #999;
-
-    border-radius: 6px;
-
-    padding: 6px;
-
-    z-index: 9999;
+    background: var(--orange);
 
     box-shadow:
-        0 4px 12px rgba(0, 0, 0, 0.25);
-
-    box-sizing: border-box;
-
-    text-align: center;
+        8px 10px 18px var(--shadow);
 }
 
 
-.contents-list button {
-    display: block !important;
+/* المستطيل الأمامي */
 
-    width: 100% !important;
-
-    margin: 4px 0 !important;
-
-    padding: 5px 0 !important;
-
-    font-family: "Times New Roman", serif;
-
-    font-weight: bold;
-
-    background: transparent !important;
-
-    border: none !important;
-
-    border-radius: 0 !important;
-
-    text-align: center;
-
-    cursor: pointer;
-
-    box-sizing: border-box;
-}
-
-
-/* =========================================================
-   PAGE 2 + PAGE 4
-   الخلفية البرتقالية
-   ========================================================= */
-
-.page-2,
-.page-4 {
-    position: relative;
-
-    overflow: hidden;
-
-    background: #F4A261;
-
-    color: #102A43;
-
-    box-sizing: border-box;
-
-    text-align: center;
-}
-
-
-/* =========================================================
-   الشكل الرئيسي
-   ========================================================= */
-
-.page-2::before,
-.page-4::before {
-    content: "";
-
+.content-panel-front {
     position: absolute;
 
     left: 0;
@@ -451,86 +458,290 @@ body {
     width: 100%;
     height: 100%;
 
-    background: #102A43;
+    box-sizing: border-box;
 
-    clip-path: polygon(
-        25% 0%,
-        0% 25%,
-        100% 75%
-    );
+    border-radius: 0;
 
-    filter:
-        drop-shadow(
-            7px 8px 10px rgba(0, 0, 0, 0.30)
-        );
+    background: var(--navy);
 
-    z-index: 0;
+    border:
+        2px solid rgba(244, 162, 97, 0.72);
+
+    box-shadow:
+        0 10px 22px var(--shadow);
+
+    overflow: hidden;
 }
 
 
 /* =========================================================
-   مثلث أعلى اليمين
+   مقدمة Page 1
    ========================================================= */
 
-.page-2::after,
-.page-4::after {
-    content: "";
+.cover-page .content-panel-back {
+    background: var(--orange);
+}
 
-    position: absolute;
+.cover-page .content-panel-front {
+    background: var(--navy);
+}
 
-    right: 0;
-    top: 0;
 
-    width: 25%;
-    height: 50%;
+.cover-page .cover-intro {
+    width: 88%;
 
-    background: #102A43;
+    height: 100%;
 
-    clip-path: polygon(
-        0% 0%,
-        100% 0%,
-        100% 100%
-    );
+    box-sizing: border-box;
 
-    filter:
-        drop-shadow(
-            -5px 6px 8px rgba(0, 0, 0, 0.25)
-        );
+    margin: 0 auto;
 
-    z-index: 1;
+    padding:
+        24px 26px 18px;
+
+    direction: rtl;
+
+    text-align: right;
+
+    overflow: hidden;
+}
+
+
+.cover-page .cover-intro h2 {
+    margin:
+        0 0 22px;
+
+    color: white;
+
+    font-size: 23px;
+
+    text-align: center;
+}
+
+
+.cover-page .cover-intro p {
+    margin:
+        0 0 16px;
+
+    color: white;
+
+    font-size: 14px;
+
+    line-height: 1.7;
 }
 
 
 /* =========================================================
-   مثلث أسفل اليسار
+   الاتصال - مستطيل صغير أسفل اليسار
    ========================================================= */
 
-.page-2 .userform-images::before,
-.page-4 .userform-images::before {
-    content: "";
-
+.contact-panel {
     position: absolute;
 
-    left: 0;
-    bottom: 0;
+    left: 38px;
+    bottom: 30px;
 
-    width: 25%;
-    height: 50%;
+    min-width: 210px;
 
-    background: #102A43;
+    height: 68px;
 
-    clip-path: polygon(
-        0% 0%,
-        0% 100%,
-        100% 100%
-    );
+    display: flex;
 
-    filter:
-        drop-shadow(
-            5px -5px 8px rgba(0, 0, 0, 0.25)
-        );
+    flex-direction: column;
 
-    z-index: 0;
+    justify-content: center;
+
+    align-items: flex-start;
+
+    gap: 4px;
+
+    padding:
+        8px 15px;
+
+    box-sizing: border-box;
+
+    background: var(--navy);
+
+    border:
+        2px solid var(--orange);
+
+    box-shadow:
+        7px 9px 16px var(--shadow);
+
+    z-index: 40;
+
+    direction: ltr;
+}
+
+
+.contact-item {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: bold;
+}
+
+
+.contact-icon,
+.whatsapp-icon {
+    color: var(--orange);
+}
+
+
+.whatsapp-icon {
+    display: flex;
+
+    align-items: center;
+}
+
+
+.whatsapp-icon svg {
+    width: 16px;
+    height: 16px;
+
+    fill: currentColor;
+}
+
+
+/* =========================================================
+   PAGES 2 + 4
+   ========================================================= */
+
+.page-2,
+.page-4 {
+    background: white;
+
+    color: var(--navy);
+}
+
+
+.page-2::before,
+.page-4::before {
+    background: var(--orange);
+}
+
+
+/* الصفحة الداخلية - ألوان المثلثين */
+
+.page-2 .design-triangle-1,
+.page-4 .design-triangle-1 {
+    border-bottom-color: var(--orange);
+}
+
+.page-2 .design-triangle-2,
+.page-4 .design-triangle-2 {
+    border-top-color: var(--orange);
+}
+
+
+/* دوائر العنوان */
+
+.page-2 .brand-circle-back,
+.page-4 .brand-circle-back {
+    background: var(--orange);
+}
+
+
+.page-2 .brand-circle-front,
+.page-4 .brand-circle-front {
+    background: var(--navy);
+}
+
+
+/* =========================================================
+   عنوان Page 2 + 4 داخل الدائرة
+   ========================================================= */
+
+.page-title-circle {
+    width: 100%;
+
+    text-align: center;
+
+    direction: rtl;
+}
+
+
+.page-title-circle h1 {
+    margin: 0;
+
+    color: white;
+
+    font-family: "Times New Roman", serif;
+
+    font-size: 17px;
+
+    line-height: 1.25;
+
+    font-weight: bold;
+}
+
+
+/* =========================================================
+   الصور داخل المستطيلات
+   ========================================================= */
+
+.page-2 .content-panel-front,
+.page-4 .content-panel-front {
+    background: white;
+
+    border-color:
+        rgba(16, 42, 67, 0.22);
+}
+
+
+.page-2 .content-panel-back,
+.page-4 .content-panel-back {
+    background: var(--orange);
+}
+
+
+/* =========================================================
+   PAGE 2
+   ========================================================= */
+
+.page-2 .userform-images {
+
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    margin: 0;
+}
+
+
+.page-2 .userform-card:nth-child(1) {
+
+    width: 46%;
+
+    top: 8%;
+
+    right: 5%;
+
+    left: auto;
+
+    z-index: 6;
+}
+
+
+.page-2 .userform-card:nth-child(2) {
+
+    width: 43%;
+
+    top: 32%;
+
+    left: 6%;
+
+    right: auto;
+
+    z-index: 7;
 }
 
 
@@ -540,177 +751,241 @@ body {
 
 .page-3,
 .page-5 {
-    position: relative;
+    background: var(--orange);
 
-    overflow: hidden;
+    color: var(--navy);
+}
 
-    background: #102A43;
 
-    color: white;
+.page-3 .design-triangle-1,
+.page-5 .design-triangle-1 {
+    border-bottom-color: var(--navy);
+}
 
-    box-sizing: border-box;
 
-    text-align: center;
+.page-3 .design-triangle-2,
+.page-5 .design-triangle-2 {
+    border-top-color: var(--navy);
+}
+
+
+.page-3 .brand-circle-back,
+.page-5 .brand-circle-back {
+    background: var(--navy);
+}
+
+
+.page-3 .brand-circle-front,
+.page-5 .brand-circle-front {
+    background: var(--orange);
+
+    border:
+        2px solid var(--navy);
+}
+
+
+.page-3 .page-title-circle h1,
+.page-5 .page-title-circle h1 {
+    color: var(--navy);
 }
 
 
 /* =========================================================
-   الشكل المعكوس
+   Content Page 3 + 5
    ========================================================= */
 
-.page-3::before,
-.page-5::before {
-    content: "";
+.page-3 .content-panel-back,
+.page-5 .content-panel-back {
+    background: var(--navy);
+}
 
-    position: absolute;
 
-    right: 0;
-    top: 0;
+.page-3 .content-panel-front,
+.page-5 .content-panel-front {
+    background: white;
+
+    border-color:
+        rgba(16, 42, 67, 0.22);
+}
+
+
+/* =========================================================
+   PAGE 3
+   الصور
+   ========================================================= */
+
+.page-3 .userform-images {
+
+    position: relative;
 
     width: 100%;
     height: 100%;
 
-    background: #F4A261;
+    margin: 0;
+}
 
-    clip-path: polygon(
-        75% 0%,
-        100% 25%,
-        0% 75%
-    );
 
-    filter:
-        drop-shadow(
-            -7px 8px 10px rgba(0, 0, 0, 0.30)
-        );
+/* الصورة الأولى
+   أصغر + أعلى + أقصى اليمين
+   30 درجة */
 
-    z-index: 0;
+.page-3 .userform-card:nth-child(1) {
+
+    width: 27%;
+
+    top: 5%;
+
+    right: 5%;
+
+    left: auto;
+
+    z-index: 6;
+
+    transform:
+        rotate(30deg);
+}
+
+
+/* الصورة الثانية
+   أصغر + أعلى + جهة اليسار
+   115 درجة */
+
+.page-3 .userform-card:nth-child(2) {
+
+    width: 27%;
+
+    top: 16%;
+
+    left: 6%;
+
+    right: auto;
+
+    z-index: 8;
+
+    transform:
+        rotate(115deg);
+}
+
+
+/* الصورة الثالثة
+   GIF أكبر + السنتر السفلي */
+
+.page-3 .userform-card:nth-child(3) {
+
+    width: 44%;
+
+    bottom: 4%;
+
+    left: 50%;
+
+    right: auto;
+
+    top: auto;
+
+    z-index: 7;
+
+    transform:
+        translateX(-50%)
+        rotate(0deg);
 }
 
 
 /* =========================================================
-   مثلث أعلى اليسار
+   PAGE 4
    ========================================================= */
 
-.page-3::after,
-.page-5::after {
-    content: "";
+.page-4 .userform-images {
+
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    margin: 0;
+}
+
+
+/* =========================================================
+   PAGE 5
+   ========================================================= */
+
+.page-5 .userform-images {
+
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    margin: 0;
+}
+
+
+.page-5 .userform-card:nth-child(1) {
+
+    width: 27%;
+
+    top: 5%;
+
+    right: 5%;
+
+    left: auto;
+
+    transform:
+        rotate(30deg);
+}
+
+
+.page-5 .userform-card:nth-child(2) {
+
+    width: 27%;
+
+    top: 16%;
+
+    left: 6%;
+
+    right: auto;
+
+    transform:
+        rotate(115deg);
+}
+
+
+.page-5 .userform-card:nth-child(3) {
+
+    width: 44%;
+
+    bottom: 4%;
+
+    left: 50%;
+
+    right: auto;
+
+    top: auto;
+
+    transform:
+        translateX(-50%)
+        rotate(0deg);
+}
+
+
+/* =========================================================
+   العناوين الفرعية
+   ========================================================= */
+
+.page-subtitle {
 
     position: absolute;
 
     left: 0;
-    top: 0;
-
-    width: 25%;
-    height: 50%;
-
-    background: #F4A261;
-
-    clip-path: polygon(
-        0% 0%,
-        0% 100%,
-        100% 0%
-    );
-
-    filter:
-        drop-shadow(
-            5px 6px 8px rgba(0, 0, 0, 0.25)
-        );
-
-    z-index: 1;
-}
-
-
-/* =========================================================
-   مثلث أسفل اليمين
-   ========================================================= */
-
-.page-3 .userform-images::before,
-.page-5 .userform-images::before {
-    content: "";
-
-    position: absolute;
-
     right: 0;
-    bottom: 0;
 
-    width: 25%;
-    height: 50%;
-
-    background: #F4A261;
-
-    clip-path: polygon(
-        100% 0%,
-        100% 100%,
-        0% 100%
-    );
-
-    filter:
-        drop-shadow(
-            -5px -5px 8px rgba(0, 0, 0, 0.25)
-        );
-
-    z-index: 0;
-}
-
-
-/* =========================================================
-   عناوين الصفحات 2 - 5
-   ========================================================= */
-
-.page-2 h1,
-.page-3 h1,
-.page-4 h1,
-.page-5 h1 {
-    position: relative;
+    top: 138px;
 
     z-index: 30;
 
-    margin: 0;
-
-    padding-top: 12px;
-
     font-family: "Times New Roman", serif;
 
-    font-size: 25px;
-
-    font-weight: bold;
-
-    letter-spacing: 1px;
-}
-
-
-/* =========================================================
-   ألوان العناوين
-   ========================================================= */
-
-.page-2 h1,
-.page-2 .page-subtitle,
-.page-3 h1,
-.page-3 .page-subtitle,
-.page-4 h1,
-.page-4 .page-subtitle,
-.page-5 h1,
-.page-5 .page-subtitle {
-    color: white;
-}
-
-
-/* =========================================================
-   شرح قائمة الدخول
-   ========================================================= */
-
-.page-subtitle {
-    position: relative;
-
-    z-index: 30;
-
-    margin-top: 4px;
-
-    font-family: "Times New Roman", serif;
-
-    font-size: 22px;
-
-    line-height: 1.35;
+    font-size: 18px;
 
     font-weight: bold;
 
@@ -718,81 +993,65 @@ body {
 }
 
 
-/* =========================================================
-   حاوية الصور
-   ========================================================= */
+/* Page 2 + 4 */
 
-.userform-images {
-    position: relative;
+.page-2 .page-subtitle,
+.page-4 .page-subtitle {
 
-    z-index: 10;
+    color: var(--navy);
+}
 
-    width: 100%;
 
-    height: calc(100% - 70px);
+/* Page 3 + 5 */
 
-    margin-top: 6px;
+.page-3 .page-subtitle,
+.page-5 .page-subtitle {
+
+    color: var(--navy);
 }
 
 
 /* =========================================================
-   بطاقات الصور
+   الجملة السفلية
    ========================================================= */
 
-.userform-card {
+.page-footer-note {
+
     position: absolute;
 
+    left: 0;
+    right: 0;
+
+    bottom: 10px;
+
+    z-index: 40;
+
+    color: var(--navy);
+
+    font-size: 15px;
+
+    font-weight: bold;
+
     text-align: center;
+}
 
-    z-index: 10;
+
+.page-2 .page-footer-note,
+.page-4 .page-footer-note {
+
+    color: var(--navy);
+}
+
+
+.page-3 .page-footer-note,
+.page-5 .page-footer-note {
+
+    color: var(--navy);
 }
 
 
 /* =========================================================
-   إطار الصور
-   ========================================================= */
-
-.userform-image-frame {
-    position: relative;
-
-    width: 100%;
-
-    aspect-ratio: 1 / 1;
-
-    box-sizing: border-box;
-
-    border: none;
-
-    border-radius: 0;
-
-    overflow: hidden;
-
-    background: white;
-
-    margin: 0 auto;
-
-    box-shadow:
-        0 8px 18px rgba(0, 0, 0, 0.24);
-}
-
-
-/* =========================================================
-   الصور
-   ========================================================= */
-
-.userform-image-frame img {
-    display: block;
-
-    width: 100%;
-
-    height: 100%;
-
-    object-fit: contain;
-}
-
-
-/* =========================================================
-   إخفاء الوصف
+   إلغاء الوصف القديم
    ========================================================= */
 
 .userform-description {
@@ -801,463 +1060,143 @@ body {
 
 
 /* =========================================================
-   الشريط السفلي
-   ========================================================= */
-
-.page-footer-note {
-    position: absolute !important;
-
-    left: 0 !important;
-
-    right: 0 !important;
-
-    bottom: 0 !important;
-
-    width: 100% !important;
-
-    height: 9% !important;
-
-    min-height: 45px;
-
-    display: flex !important;
-
-    align-items: center !important;
-
-    justify-content: center !important;
-
-    box-sizing: border-box !important;
-
-    z-index: 999 !important;
-
-    font-family: "Times New Roman", serif;
-
-    font-size: 18px;
-
-    line-height: 1.4;
-
-    font-weight: bold;
-
-    text-align: center;
-
-    padding: 0 10px;
-}
-
-
-/* =========================================================
-   Page 2 + Page 4
-   ========================================================= */
-
-.page-2 .page-footer-note,
-.page-4 .page-footer-note {
-    background: #102A43;
-
-    color: white;
-}
-
-
-/* =========================================================
-   Page 3 + Page 5
-   ========================================================= */
-
-.page-3 .page-footer-note,
-.page-5 .page-footer-note {
-    background: #F4A261;
-
-    color: white;
-}
-
-
-/* =========================================================
-   PAGE 3
-   الصورة الأولى
-   ========================================================= */
-
-.page-3 .userform-card:nth-child(1) {
-    transform: rotate(45deg);
-
-    transform-origin: center center;
-}
-
-
-/* =========================================================
-   PAGE 3
-   الصورة الثانية
-   ========================================================= */
-
-.page-3 .userform-card:nth-child(2) {
-    transform: rotate(115deg);
-
-    transform-origin: center center;
-}
-
-
-/* =========================================================
-   PAGE 3
-   الصورة الثالثة
-   ========================================================= */
-
-.page-3 .userform-card:nth-child(3) {
-    transform: rotate(0deg);
-}
-
-
-/* =========================================================
-   PAGE 4 + PAGE 5
-   ========================================================= */
-
-.page-4 .userform-card,
-.page-5 .userform-card {
-    transform: rotate(0deg);
-}
-
-
-/* =========================================================
-   PAGE 6
-   ========================================================= */
-
-.page-6 {
-    position: relative;
-
-    background: #F4A261;
-
-    color: #102A43;
-
-    box-sizing: border-box;
-
-    overflow: hidden;
-
-    font-family: "Times New Roman", serif;
-}
-
-
-/* =========================================================
-   Logo Page 6
-   ========================================================= */
-
-.page-6 .logo-zero {
-    color: #102A43;
-}
-
-.page-6 .logo-fast {
-    color: white;
-}
-
-
-/* =========================================================
-   Page 6 - رفع الكلام
-   ========================================================= */
-
-.page-6 .cover-intro {
-    width: 82%;
-
-    margin: 12px auto 0;
-
-    direction: rtl;
-
-    text-align: right;
-}
-
-
-/* =========================================================
-   عنوان فوائد Page 6
-   ========================================================= */
-
-.page-6 .cover-intro h2 {
-    color: #102A43;
-
-    font-size: 21px;
-
-    margin-top: 0;
-
-    margin-bottom: 16px;
-
-    text-align: center;
-}
-
-
-/* =========================================================
-   فوائد Page 6
-   ========================================================= */
-
-.page-6 .cover-intro p {
-    color: #102A43;
-
-    font-size: 16px;
-
-    line-height: 1.60;
-
-    margin-top: 0;
-
-    margin-bottom: 10px;
-
-    font-weight: bold;
-}
-
-
-/* =========================================================
-   COMPUTER
+   الكمبيوتر
    ========================================================= */
 
 @media screen and (min-width: 601px) {
 
     .a4-page {
-        width: 380px;
 
-        height: 537px;
+        width: 540px;
 
-        aspect-ratio: auto;
+        height: 764px;
 
         margin: 10px;
-
-        flex-shrink: 0;
     }
 
 
-    .contact-bar {
-        height: 9%;
+    /* الخط الجانبي */
 
-        min-height: 45px;
+    .a4-page::before {
 
-        gap: 45px;
+        width: 9px;
     }
 
 
-    .contact-bar .contact-item {
-        font-size: 18px;
+    /* المثلثات */
+
+    .design-triangle-1 {
+
+        border-right-width: 145px;
+
+        border-bottom-width: 195px;
     }
 
 
-    /* =====================================================
-       PAGE 2
-       ===================================================== */
+    .design-triangle-2 {
 
-    .page-2 .userform-card:nth-child(1) {
+        border-left-width: 145px;
 
-        width: 200px;
-
-        top: 78px;
-
-        right: 4px;
-
-        left: auto;
-
-        z-index: 5;
+        border-top-width: 195px;
     }
 
 
-    .page-2 .userform-card:nth-child(2) {
+    /* الدوائر */
 
-        width: 200px;
+    .brand-circles {
 
-        bottom: 65px;
+        top: 48px;
 
-        left: 4px;
+        right: 38px;
 
-        right: auto;
+        width: 205px;
 
-        top: auto;
-
-        z-index: 5;
+        height: 160px;
     }
 
 
-    /* =====================================================
-       PAGE 3
-       ===================================================== */
+    .brand-circle-back {
 
-    .page-3 .userform-card:nth-child(1) {
+        width: 120px;
 
-        width: 175px;
+        height: 120px;
 
-        top: 65px;
+        right: 68px;
 
-        right: -2px;
-
-        left: auto;
-
-        z-index: 5;
-
-        transform: rotate(45deg);
+        top: 32px;
     }
 
 
-    .page-3 .userform-card:nth-child(2) {
+    .brand-circle-front {
 
-        width: 175px;
+        width: 132px;
 
-        top: 190px;
-
-        left: 0;
-
-        right: auto;
-
-        z-index: 8;
-
-        transform: rotate(115deg);
-    }
-
-
-    .page-3 .userform-card:nth-child(3) {
-
-        width: 175px;
-
-        bottom: 60px;
-
-        left: 50%;
-
-        right: auto;
-
-        top: auto;
-
-        z-index: 6;
-
-        transform:
-            translateX(-50%)
-            rotate(0deg);
-    }
-
-
-    /* =====================================================
-       PAGE 4
-       ===================================================== */
-
-    .page-4 .userform-card:nth-child(1) {
-
-        width: 180px;
-
-        top: 75px;
-
-        right: 12px;
-
-        left: auto;
-    }
-
-
-    .page-4 .userform-card:nth-child(2) {
-
-        width: 180px;
-
-        bottom: 65px;
-
-        left: 12px;
-
-        right: auto;
-
-        top: auto;
-    }
-
-
-    /* =====================================================
-       PAGE 5
-       ===================================================== */
-
-    .page-5 .userform-card:nth-child(1) {
-
-        width: 175px;
-
-        top: 65px;
-
-        left: -2px;
-
-        right: auto;
-
-        transform: rotate(45deg);
-    }
-
-
-    .page-5 .userform-card:nth-child(2) {
-
-        width: 175px;
-
-        top: 190px;
+        height: 132px;
 
         right: 0;
 
-        left: auto;
-
-        transform: rotate(115deg);
+        top: 0;
     }
 
 
-    .page-5 .userform-card:nth-child(3) {
+    .logo {
 
-        width: 175px;
-
-        bottom: 60px;
-
-        left: 50%;
-
-        right: auto;
-
-        top: auto;
-
-        transform:
-            translateX(-50%)
-            rotate(0deg);
+        font-size: 34px;
     }
 
 
-    /* =====================================================
-       العناوين
-       ===================================================== */
+    .content-panels {
 
-    .page-2 h1,
-    .page-3 h1,
-    .page-4 h1,
-    .page-5 h1 {
+        left: 55px;
 
-        padding-top: 12px;
+        right: 52px;
 
-        font-size: 25px;
+        top: 205px;
+
+        bottom: 150px;
+    }
+
+
+    .content-panel-back {
+
+        left: 20px;
+
+        top: 20px;
+    }
+
+
+    .contact-panel {
+
+        left: 40px;
+
+        bottom: 28px;
+
+        min-width: 225px;
+
+        height: 70px;
     }
 
 
     .page-subtitle {
 
-        font-size: 22px;
+        top: 148px;
 
-        margin-top: 4px;
+        font-size: 20px;
     }
 
 
     .page-footer-note {
 
-        height: 9% !important;
-
-        min-height: 45px;
-
-        font-size: 18px;
-    }
-
-
-    .page-6 .cover-intro {
-
-        margin-top: 10px;
-    }
-
-
-    .page-6 .cover-intro h2 {
-
-        font-size: 21px;
-
-        margin-bottom: 16px;
-    }
-
-
-    .page-6 .cover-intro p {
+        bottom: 12px;
 
         font-size: 16px;
-
-        line-height: 1.60;
-
-        margin-bottom: 10px;
     }
-
 }
 
 
 /* =========================================================
-   MOBILE
+   الموبايل
+   الحجم القديم محفوظ
    ========================================================= */
 
 @media screen and (max-width: 600px) {
@@ -1286,193 +1225,289 @@ body {
 
         height: 85vh;
 
-        aspect-ratio: auto;
-
         margin: 5px auto;
 
         flex-shrink: 0;
     }
 
 
-    .contact-bar {
+    /* =====================================================
+       الخط الجانبي
+       ===================================================== */
 
-        height: 9%;
+    .a4-page::before {
 
-        min-height: 42px;
-
-        gap: 18px;
-
-        padding: 0 10px;
+        width: 7px;
     }
 
 
-    .contact-bar .contact-item {
+    /* =====================================================
+       المثلثات
+       ===================================================== */
 
-        font-size: 15px;
+    .design-triangle-1 {
+
+        border-right-width: 23vw;
+
+        border-bottom-width: 31vw;
     }
 
 
-    .contact-bar .whatsapp-icon svg {
+    .design-triangle-2 {
 
-        width: 18px;
+        border-left-width: 23vw;
 
-        height: 18px;
+        border-top-width: 31vw;
+    }
+
+
+    /* =====================================================
+       الدوائر
+       ===================================================== */
+
+    .brand-circles {
+
+        top: 25px;
+
+        right: 14px;
+
+        width: 125px;
+
+        height: 100px;
+    }
+
+
+    .brand-circle-back {
+
+        width: 72px;
+
+        height: 72px;
+
+        right: 38px;
+
+        top: 22px;
+    }
+
+
+    .brand-circle-front {
+
+        width: 80px;
+
+        height: 80px;
+
+        right: 0;
+
+        top: 0;
+
+        padding: 8px;
     }
 
 
     .logo {
 
-        margin-top: 25px;
-
-        font-size: 40px;
+        font-size: 21px;
     }
 
 
-    .cover-intro {
+    .page-title-circle h1 {
 
-        width: 84%;
+        font-size: 10px;
 
-        margin-top: 55px;
+        line-height: 1.2;
     }
 
 
-    .cover-intro h2 {
+    /* =====================================================
+       المستطيلات
+       ===================================================== */
 
-        font-size: 20px;
+    .content-panels {
 
-        margin-bottom: 22px;
+        left: 28px;
+
+        right: 24px;
+
+        top: 125px;
+
+        bottom: 95px;
     }
 
 
-    .cover-intro p {
+    .content-panel-back {
 
-        font-size: 14px;
+        left: 10px;
 
-        line-height: 1.7;
-
-        margin-bottom: 17px;
+        top: 10px;
     }
 
 
-    .navigation {
+    /* =====================================================
+       الاتصال
+       ===================================================== */
 
-        width: 100%;
+    .contact-panel {
 
-        box-sizing: border-box;
+        left: 18px;
 
-        justify-content: center;
+        bottom: 16px;
 
-        gap: 8px;
+        min-width: 155px;
 
-        margin: 10px 0;
+        height: 52px;
+
+        gap: 2px;
+
+        padding: 5px 9px;
     }
 
 
-    .navigation button {
+    .contact-item {
 
-        font-size: 16px;
+        font-size: 11px;
 
-        padding: 8px 12px;
+        gap: 5px;
     }
 
 
-    .contents-list {
+    .contact-bar {
 
-        width: 150px;
-
-        bottom: calc(100% + 8px);
-
-        left: 50%;
-
-        transform: translateX(-50%);
+        display: none;
     }
 
 
-    .page-2,
-    .page-3,
-    .page-4,
-    .page-5 {
+    /* =====================================================
+       Page 1
+       ===================================================== */
 
-        padding: 0;
+    .cover-page .cover-intro {
+
+        width: 92%;
+
+        height: 100%;
+
+        padding:
+            14px 14px 10px;
     }
 
 
-    .page-2 h1,
-    .page-3 h1,
-    .page-4 h1,
-    .page-5 h1 {
+    .cover-page .cover-intro h2 {
 
-        font-size: 20px;
+        font-size: 17px;
 
-        padding-top: 10px;
+        margin-bottom: 12px;
     }
 
+
+    .cover-page .cover-intro p {
+
+        font-size: 11px;
+
+        line-height: 1.5;
+
+        margin-bottom: 9px;
+    }
+
+
+    /* =====================================================
+       Page 6
+       ===================================================== */
+
+    .page-6 .cover-intro {
+
+        width: 92%;
+
+        height: 100%;
+
+        padding:
+            14px 14px 10px;
+    }
+
+
+    .page-6 .cover-intro h2 {
+
+        font-size: 17px;
+
+        margin-bottom: 12px;
+    }
+
+
+    .page-6 .cover-intro p {
+
+        font-size: 11px;
+
+        line-height: 1.5;
+
+        margin-bottom: 8px;
+    }
+
+
+    /* =====================================================
+       العناوين الفرعية
+       ===================================================== */
 
     .page-subtitle {
 
-        font-size: 19px;
+        top: 94px;
 
-        margin-top: 2px;
+        font-size: 14px;
     }
 
 
+    /* =====================================================
+       Page 2
+       ===================================================== */
+
     .page-2 .userform-card:nth-child(1) {
 
-        width: 58%;
+        width: 42%;
 
-        top: 65px;
+        top: 7%;
 
-        right: 0;
+        right: 7%;
 
         left: auto;
-
-        z-index: 5;
     }
 
 
     .page-2 .userform-card:nth-child(2) {
 
-        width: 58%;
+        width: 39%;
 
-        bottom: 65px;
+        top: 30%;
 
-        left: 0;
+        left: 8%;
 
         right: auto;
-
-        top: auto;
-
-        z-index: 5;
     }
 
 
+    /* =====================================================
+       Page 3
+       ===================================================== */
+
     .page-3 .userform-card:nth-child(1) {
 
-        width: 55%;
+        width: 23%;
 
-        top: 55px;
+        top: 4%;
 
-        right: -5%;
+        right: 5%;
 
         left: auto;
 
-        z-index: 5;
-
-        transform: rotate(45deg);
+        transform: rotate(30deg);
     }
 
 
     .page-3 .userform-card:nth-child(2) {
 
-        width: 55%;
+        width: 23%;
 
-        top: 185px;
+        top: 13%;
 
-        left: -4%;
+        left: 6%;
 
         right: auto;
-
-        z-index: 8;
 
         transform: rotate(115deg);
     }
@@ -1480,9 +1515,9 @@ body {
 
     .page-3 .userform-card:nth-child(3) {
 
-        width: 55%;
+        width: 48%;
 
-        bottom: 65px;
+        bottom: 4%;
 
         left: 50%;
 
@@ -1490,63 +1525,51 @@ body {
 
         top: auto;
 
-        z-index: 6;
-
         transform:
             translateX(-50%)
             rotate(0deg);
     }
 
 
-    .page-4 .userform-card:nth-child(1) {
+    /* =====================================================
+       Page 4
+       ===================================================== */
 
-        width: 56%;
+    .page-4 .userform-images {
 
-        top: 65px;
+        width: 100%;
 
-        right: 0;
-
-        left: auto;
+        height: 100%;
     }
 
 
-    .page-4 .userform-card:nth-child(2) {
-
-        width: 56%;
-
-        bottom: 65px;
-
-        left: 0;
-
-        right: auto;
-
-        top: auto;
-    }
-
+    /* =====================================================
+       Page 5
+       ===================================================== */
 
     .page-5 .userform-card:nth-child(1) {
 
-        width: 55%;
+        width: 23%;
 
-        top: 55px;
+        top: 4%;
 
-        left: -5%;
+        right: 5%;
 
-        right: auto;
+        left: auto;
 
-        transform: rotate(45deg);
+        transform: rotate(30deg);
     }
 
 
     .page-5 .userform-card:nth-child(2) {
 
-        width: 55%;
+        width: 23%;
 
-        top: 185px;
+        top: 13%;
 
-        right: -4%;
+        left: 6%;
 
-        left: auto;
+        right: auto;
 
         transform: rotate(115deg);
     }
@@ -1554,9 +1577,9 @@ body {
 
     .page-5 .userform-card:nth-child(3) {
 
-        width: 55%;
+        width: 48%;
 
-        bottom: 65px;
+        bottom: 4%;
 
         left: 50%;
 
@@ -1570,45 +1593,78 @@ body {
     }
 
 
+    /* =====================================================
+       الجملة السفلية
+       ===================================================== */
+
     .page-footer-note {
 
-        height: 9% !important;
+        bottom: 7px;
 
-        min-height: 42px;
-
-        font-size: 16px;
-
-        padding: 0 10px;
+        font-size: 12px;
     }
 
 
-    .page-6 .cover-intro {
+    /* =====================================================
+       التنقل
+       مهم: الأزرار في صف واحد
+       ===================================================== */
 
-        width: 84%;
+    .navigation {
 
-        margin-top: 15px;
+        width: 100%;
+
+        box-sizing: border-box;
+
+        display: flex;
+
+        flex-direction: row;
+
+        flex-wrap: nowrap;
+
+        justify-content: center;
+
+        align-items: center;
+
+        gap: 6px;
+
+        margin: 8px 0;
     }
 
 
-    .page-6 .cover-intro h2 {
+    .navigation > button,
+    .contents-dropdown {
 
-        font-size: 20px;
-
-        margin-bottom: 16px;
+        flex: 0 0 auto;
     }
 
 
-    .page-6 .cover-intro p {
+    .navigation button {
 
-        font-size: 15px;
+        font-size: 14px;
 
-        line-height: 1.60;
+        padding: 7px 9px;
 
-        margin-bottom: 10px;
-
-        font-weight: bold;
+        white-space: nowrap;
     }
 
+
+    .contents-dropdown {
+
+        display: inline-block;
+
+        position: relative;
+    }
+
+
+    .contents-list {
+
+        width: 145px;
+
+        left: 50%;
+
+        transform: translateX(-50%);
+    }
 }
 
 
@@ -1625,5 +1681,4 @@ body {
 
         transform: none !important;
     }
-
 }
