@@ -33,140 +33,134 @@ body {
    ========================================================= */
 
 .a4-page {
-    width: min(210mm, 92vw);
-    height: auto;
-    aspect-ratio: 210 / 297;
-
+    width: 500px;
+    height: 707px;
     background: white;
-
     box-sizing: border-box;
-
-    margin: 10px auto;
-
+    margin: 10px;
     flex-shrink: 0;
 }
 
 
 /* =========================================================
-   حركة وتقليب الصفحات
+   حركة تقليب الصفحات
    ========================================================= */
 
 .page-flip {
     position: relative;
-
     transform-style: preserve-3d;
-
     backface-visibility: hidden;
+    will-change: transform, opacity;
+}
 
-    perspective: 1600px;
 
-    will-change: transform;
+/* الكمبيوتر والموبايل */
+
+.page-flip.flip-next {
+    animation: pageFlipNext 0.65s ease-out both;
+    transform-origin: left center;
+}
+
+.page-flip.flip-previous {
+    animation: pageFlipPrevious 0.65s ease-out both;
+    transform-origin: right center;
 }
 
 
 /* تقليب إلى الأمام */
 
-.page-flip.flip-next {
-    animation:
-        pageFlipNext 0.65s ease-out both;
+@keyframes pageFlipNext {
 
-    transform-origin: left center;
+    0% {
+        transform:
+            perspective(1400px)
+            rotateY(65deg)
+            translateX(8%);
+        opacity: 0.35;
+        filter: brightness(0.78);
+    }
+
+    35% {
+        transform:
+            perspective(1400px)
+            rotateY(28deg)
+            translateX(3%);
+        opacity: 0.78;
+        filter: brightness(0.90);
+    }
+
+    70% {
+        transform:
+            perspective(1400px)
+            rotateY(8deg)
+            translateX(1%);
+        opacity: 0.95;
+        filter: brightness(0.97);
+    }
+
+    100% {
+        transform:
+            perspective(1400px)
+            rotateY(0deg)
+            translateX(0);
+        opacity: 1;
+        filter: brightness(1);
+    }
 }
 
 
 /* تقليب إلى الخلف */
 
-.page-flip.flip-previous {
-    animation:
-        pageFlipPrevious 0.65s ease-out both;
-
-    transform-origin: right center;
-}
-
-
-/* الحركة للأمام */
-
-@keyframes pageFlipNext {
-
-    0% {
-        transform:
-            perspective(1600px)
-            rotateY(78deg)
-            translateX(10%);
-        opacity: 0.45;
-        filter: brightness(0.82);
-    }
-
-    45% {
-        transform:
-            perspective(1600px)
-            rotateY(28deg)
-            translateX(3%);
-        opacity: 0.82;
-        filter: brightness(0.92);
-    }
-
-    100% {
-        transform:
-            perspective(1600px)
-            rotateY(0deg)
-            translateX(0);
-        opacity: 1;
-        filter: brightness(1);
-    }
-
-}
-
-
-/* الحركة للخلف */
-
 @keyframes pageFlipPrevious {
 
     0% {
         transform:
-            perspective(1600px)
-            rotateY(-78deg)
-            translateX(-10%);
-        opacity: 0.45;
-        filter: brightness(0.82);
+            perspective(1400px)
+            rotateY(-65deg)
+            translateX(-8%);
+        opacity: 0.35;
+        filter: brightness(0.78);
     }
 
-    45% {
+    35% {
         transform:
-            perspective(1600px)
+            perspective(1400px)
             rotateY(-28deg)
             translateX(-3%);
-        opacity: 0.82;
-        filter: brightness(0.92);
+        opacity: 0.78;
+        filter: brightness(0.90);
+    }
+
+    70% {
+        transform:
+            perspective(1400px)
+            rotateY(-8deg)
+            translateX(-1%);
+        opacity: 0.95;
+        filter: brightness(0.97);
     }
 
     100% {
         transform:
-            perspective(1600px)
+            perspective(1400px)
             rotateY(0deg)
             translateX(0);
         opacity: 1;
         filter: brightness(1);
     }
-
 }
 
 
 /* =========================================================
-   PAGE 1 - COVER
+   PAGE 1
    ========================================================= */
 
 .cover-page {
     position: relative;
-
     background: #102A43;
-
     color: white;
-
     box-sizing: border-box;
-
     overflow: hidden;
-
     font-family: "Times New Roman", serif;
 }
 
@@ -177,13 +171,9 @@ body {
 
 .logo {
     margin-top: 30px;
-
     width: 100%;
-
     text-align: center;
-
     font-size: 40px;
-
     font-weight: bold;
 }
 
@@ -202,34 +192,27 @@ body {
 
 .cover-intro {
     width: 82%;
-
     margin: 55px auto 0;
-
     direction: rtl;
-
     text-align: right;
 }
 
 .cover-intro h2 {
     font-size: 20px;
-
     margin-bottom: 22px;
-
     text-align: center;
 }
 
 .cover-intro p {
     font-size: 13px;
-
     line-height: 1.7;
-
     margin-bottom: 17px;
 }
 
 
 /* =========================================================
-   شريط الاتصال - Page 1 + Page 6
-   3 سم تقريبًا من ارتفاع A4
+   شريط الاتصال Page 1 + Page 6
+   أصغر بحوالي 10% عن الشريط السابق
    ========================================================= */
 
 .contact-bar {
@@ -239,15 +222,12 @@ body {
     bottom: 0;
 
     width: 100%;
+    height: 9%;
 
-    height: 10.1%;
-
-    min-height: 50px;
+    min-height: 45px;
 
     display: flex;
-
     align-items: center;
-
     justify-content: center;
 
     gap: 45px;
@@ -264,7 +244,6 @@ body {
 
 .contact-bar-page1 {
     background: #F4A261;
-
     color: #102A43;
 }
 
@@ -273,49 +252,37 @@ body {
 
 .contact-bar-page6 {
     background: #102A43;
-
     color: white;
 }
 
 
 .contact-bar .contact-item {
     display: flex;
-
     align-items: center;
-
     justify-content: center;
 
     gap: 10px;
 
     font-size: 18px;
-
     font-weight: bold;
 
     color: inherit;
 }
-
 
 .contact-bar .contact-icon {
     color: inherit;
-
     font-weight: bold;
 }
 
-
 .contact-bar .whatsapp-icon {
     color: inherit;
-
     display: flex;
-
     align-items: center;
 }
 
-
 .contact-bar .whatsapp-icon svg {
     width: 20px;
-
     height: 20px;
-
     fill: currentColor;
 }
 
@@ -334,9 +301,7 @@ body {
 
 .navigation {
     display: flex;
-
     justify-content: center;
-
     align-items: center;
 
     gap: 10px;
@@ -346,20 +311,17 @@ body {
 
 .navigation button {
     font-family: "Times New Roman", serif;
-
     font-weight: bold;
-
     cursor: pointer;
 }
 
 
 /* =========================================================
-   Contents Dropdown
+   Contents
    ========================================================= */
 
 .contents-dropdown {
     position: relative;
-
     display: inline-block;
 }
 
@@ -369,7 +331,6 @@ body {
     position: absolute;
 
     bottom: calc(100% + 8px);
-
     left: 50%;
 
     transform: translateX(-50%);
@@ -379,7 +340,6 @@ body {
     background: white;
 
     border: 1px solid #999;
-
     border-radius: 6px;
 
     padding: 6px;
@@ -444,6 +404,7 @@ body {
 
 /* =========================================================
    الشكل الرئيسي Page 2 + Page 4
+   مثلث كبير بالنقاط التي وصفتها
    ========================================================= */
 
 .page-2::before,
@@ -460,24 +421,15 @@ body {
 
     background: #102A43;
 
-    /*
-       نقاط الشكل:
-       25% من الأعلى
-       25% من اليسار
-       75% من اليمين
-       وقاع داخلي للاقتراب من شكل الـDiamond
-    */
-
     clip-path: polygon(
         25% 0%,
-        100% 75%,
-        25% 50%,
-        0% 25%
+        0% 25%,
+        100% 75%
     );
 
     filter:
         drop-shadow(
-            8px 9px 10px rgba(0, 0, 0, 0.30)
+            7px 8px 10px rgba(0, 0, 0, 0.30)
         );
 
     z-index: 0;
@@ -486,6 +438,7 @@ body {
 
 /* =========================================================
    المثلث القائم أعلى اليمين
+   25% من الأعلى + منتصف اليمين
    ========================================================= */
 
 .page-2::after,
@@ -519,6 +472,7 @@ body {
 
 /* =========================================================
    المثلث القائم أسفل اليسار
+   منتصف اليسار + 25% من الأسفل
    ========================================================= */
 
 .page-2 .userform-images::before,
@@ -536,9 +490,9 @@ body {
     background: #102A43;
 
     clip-path: polygon(
+        0% 0%,
         0% 100%,
-        100% 100%,
-        0% 0%
+        100% 100%
     );
 
     filter:
@@ -572,7 +526,8 @@ body {
 
 
 /* =========================================================
-   الشكل الرئيسي المعكوس
+   الشكل الرئيسي Page 3 + Page 5
+   معكوس من Page 2
    ========================================================= */
 
 .page-3::before,
@@ -592,13 +547,12 @@ body {
     clip-path: polygon(
         75% 0%,
         100% 25%,
-        75% 50%,
         0% 75%
     );
 
     filter:
         drop-shadow(
-            -8px 9px 10px rgba(0, 0, 0, 0.30)
+            -7px 8px 10px rgba(0, 0, 0, 0.30)
         );
 
     z-index: 0;
@@ -657,9 +611,9 @@ body {
     background: #F4A261;
 
     clip-path: polygon(
+        100% 0%,
         100% 100%,
-        0% 100%,
-        100% 0%
+        0% 100%
     );
 
     filter:
@@ -685,7 +639,7 @@ body {
 
     margin: 0;
 
-    padding-top: 18px;
+    padding-top: 12px;
 
     font-family: "Times New Roman", serif;
 
@@ -722,7 +676,7 @@ body {
 
     z-index: 30;
 
-    margin-top: 5px;
+    margin-top: 4px;
 
     font-family: "Times New Roman", serif;
 
@@ -767,7 +721,7 @@ body {
 
 
 /* =========================================================
-   إطار الصور
+   إطار الصورة
    ========================================================= */
 
 .userform-image-frame {
@@ -809,7 +763,7 @@ body {
 
 
 /* =========================================================
-   إلغاء الوصف القديم
+   إلغاء الأوصاف
    ========================================================= */
 
 .userform-description {
@@ -819,7 +773,7 @@ body {
 
 /* =========================================================
    الشريط السفلي للصفحات الداخلية
-   3 سم تقريبًا = 10.1% من ارتفاع A4
+   أصغر بحوالي 10%
    ========================================================= */
 
 .page-footer-note {
@@ -831,9 +785,9 @@ body {
 
     width: 100% !important;
 
-    height: 10.1% !important;
+    height: 9% !important;
 
-    min-height: 50px;
+    min-height: 45px;
 
     display: flex !important;
 
@@ -859,53 +813,49 @@ body {
 }
 
 
-/* Page 2 + Page 4 */
+/* Page 2 + 4 */
 
 .page-2 .page-footer-note,
 .page-4 .page-footer-note {
     background: #102A43;
-
     color: white;
 }
 
 
-/* Page 3 + Page 5 */
+/* Page 3 + 5 */
 
 .page-3 .page-footer-note,
 .page-5 .page-footer-note {
     background: #F4A261;
-
     color: white;
 }
 
 
 /* =========================================================
    PAGE 3
-   الصورة الأولى - 45°
+   الصورة الأولى - أقصى اليمين - 45°
    ========================================================= */
 
 .page-3 .userform-card:nth-child(1) {
     transform: rotate(45deg);
-
     transform-origin: center center;
 }
 
 
 /* =========================================================
    PAGE 3
-   الصورة الثانية - 112°
+   الصورة الثانية - منتصف اليسار - 115°
    ========================================================= */
 
 .page-3 .userform-card:nth-child(2) {
-    transform: rotate(112deg);
-
+    transform: rotate(115deg);
     transform-origin: center center;
 }
 
 
 /* =========================================================
    PAGE 3
-   الصورة الثالثة مستقيمة
+   الصورة الثالثة - مستقيمة
    ========================================================= */
 
 .page-3 .userform-card:nth-child(3) {
@@ -956,13 +906,13 @@ body {
 
 
 /* =========================================================
-   Page 6 - رفع الفوائد
+   Page 6 - رفع الكلام
    ========================================================= */
 
 .page-6 .cover-intro {
     width: 82%;
 
-    margin: 22px auto 0;
+    margin: 12px auto 0;
 
     direction: rtl;
 
@@ -981,7 +931,7 @@ body {
 
     margin-top: 0;
 
-    margin-bottom: 20px;
+    margin-bottom: 16px;
 
     text-align: center;
 }
@@ -996,38 +946,42 @@ body {
 
     font-size: 16px;
 
-    line-height: 1.65;
+    line-height: 1.60;
 
     margin-top: 0;
 
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 
     font-weight: bold;
 }
 
 
 /* =========================================================
-   الكمبيوتر
+   COMPUTER
+   مهم: نرجع الحجم السابق
    ========================================================= */
 
 @media screen and (min-width: 601px) {
 
     .a4-page {
-        width: min(210mm, 92vw);
+        width: 380px;
+        height: 537px;
 
-        height: auto;
+        aspect-ratio: auto;
 
-        aspect-ratio: 210 / 297;
+        margin: 10px;
+
+        flex-shrink: 0;
     }
 
 
     /* =====================================================
-       Page 1 + Page 6
+       شريط الاتصال
        ===================================================== */
 
     .contact-bar {
-        height: 10.1%;
-
+        height: 9%;
+        min-height: 45px;
         gap: 45px;
     }
 
@@ -1037,29 +991,28 @@ body {
 
 
     /* =====================================================
-       Page 2
-       الصورتان منفصلتان
+       PAGE 2
+       الصورتان منفصلتان بوضوح
        ===================================================== */
 
     .page-2 .userform-card:nth-child(1) {
-        width: 52%;
+        width: 200px;
 
-        top: 18%;
+        top: 78px;
 
-        right: 2%;
-
+        right: 4px;
         left: auto;
 
         z-index: 5;
     }
 
+
     .page-2 .userform-card:nth-child(2) {
-        width: 52%;
+        width: 200px;
 
-        bottom: 15%;
+        bottom: 65px;
 
-        left: 2%;
-
+        left: 4px;
         right: auto;
 
         top: auto;
@@ -1069,86 +1022,86 @@ body {
 
 
     /* =====================================================
-       Page 3
-       الصورة الأولى
+       PAGE 3
+       الصورة الأولى - أقصى اليمين
        ===================================================== */
 
     .page-3 .userform-card:nth-child(1) {
-        width: 47%;
+        width: 175px;
 
-        top: 7%;
+        top: 65px;
 
-        left: 0;
-
-        right: auto;
+        right: -2px;
+        left: auto;
 
         z-index: 5;
+
+        transform: rotate(45deg);
     }
 
 
     /* =====================================================
-       Page 3
-       الصورة الثانية - عنصر التداخل
+       PAGE 3
+       الصورة الثانية - منتصف اليسار
+       عنصر التداخل الرئيسي
        ===================================================== */
 
     .page-3 .userform-card:nth-child(2) {
-        width: 47%;
+        width: 175px;
 
-        top: 31%;
+        top: 190px;
 
-        right: 0;
-
-        left: auto;
+        left: 0;
+        right: auto;
 
         z-index: 8;
+
+        transform: rotate(115deg);
     }
 
 
     /* =====================================================
-       Page 3
-       الصورة الثالثة - منتصف أسفل الصفحة
+       PAGE 3
+       الصورة الثالثة - سنتر أسفل
        ===================================================== */
 
     .page-3 .userform-card:nth-child(3) {
-        width: 47%;
+        width: 175px;
 
-        bottom: 14%;
+        bottom: 60px;
 
         left: 50%;
-
         right: auto;
 
         top: auto;
+
+        z-index: 6;
 
         transform:
             translateX(-50%)
             rotate(0deg);
-
-        z-index: 6;
     }
 
 
     /* =====================================================
-       Page 4
+       PAGE 4
        ===================================================== */
 
     .page-4 .userform-card:nth-child(1) {
-        width: 47%;
+        width: 180px;
 
-        top: 16%;
+        top: 75px;
 
-        right: 4%;
-
+        right: 12px;
         left: auto;
     }
 
     .page-4 .userform-card:nth-child(2) {
-        width: 47%;
+        width: 180px;
 
-        bottom: 15%;
+        bottom: 65px;
 
-        left: 4%;
-
+        left: 12px;
         right: auto;
 
         top: auto;
@@ -1156,40 +1109,37 @@ body {
 
 
     /* =====================================================
-       Page 5
+       PAGE 5
        ===================================================== */
 
     .page-5 .userform-card:nth-child(1) {
-        width: 47%;
+        width: 175px;
 
-        top: 7%;
+        top: 65px;
 
-        left: 0;
-
+        left: -2px;
         right: auto;
 
         transform: rotate(45deg);
     }
 
     .page-5 .userform-card:nth-child(2) {
-        width: 47%;
+        width: 175px;
 
-        top: 31%;
+        top: 190px;
 
         right: 0;
-
         left: auto;
 
-        transform: rotate(112deg);
+        transform: rotate(115deg);
     }
 
     .page-5 .userform-card:nth-child(3) {
-        width: 47%;
+        width: 175px;
 
-        bottom: 14%;
+        bottom: 60px;
 
         left: 50%;
-
         right: auto;
 
         top: auto;
@@ -1201,7 +1151,7 @@ body {
 
 
     /* =====================================================
-       العناوين - أعلى قليلًا
+       العناوين
        ===================================================== */
 
     .page-2 h1,
@@ -1209,14 +1159,12 @@ body {
     .page-4 h1,
     .page-5 h1 {
         padding-top: 12px;
-
         font-size: 25px;
     }
 
 
     .page-subtitle {
         font-size: 22px;
-
         margin-top: 4px;
     }
 
@@ -1226,8 +1174,8 @@ body {
        ===================================================== */
 
     .page-footer-note {
-        height: 10.1% !important;
-
+        height: 9% !important;
+        min-height: 45px;
         font-size: 18px;
     }
 
@@ -1237,54 +1185,47 @@ body {
        ===================================================== */
 
     .page-6 .cover-intro {
-        margin-top: 18px;
+        margin-top: 10px;
     }
 
     .page-6 .cover-intro h2 {
         font-size: 21px;
-
-        margin-bottom: 18px;
+        margin-bottom: 16px;
     }
 
     .page-6 .cover-intro p {
         font-size: 16px;
-
-        line-height: 1.65;
-
-        margin-bottom: 12px;
+        line-height: 1.60;
+        margin-bottom: 10px;
     }
-
 }
 
 
 /* =========================================================
-   الموبايل
+   MOBILE
+   مهم: نرجع الحجم السابق
    ========================================================= */
 
 @media screen and (max-width: 600px) {
 
     body {
         width: 100%;
-
         overflow-x: hidden;
-
         touch-action: manipulation;
     }
 
 
     .page-group {
         width: 100%;
-
         overflow: hidden;
     }
 
 
     .a4-page {
         width: 90vw;
+        height: 85vh;
 
-        height: auto;
-
-        aspect-ratio: 210 / 297;
+        aspect-ratio: auto;
 
         margin: 5px auto;
 
@@ -1297,7 +1238,9 @@ body {
        ===================================================== */
 
     .contact-bar {
-        height: 10.1%;
+        height: 9%;
+
+        min-height: 42px;
 
         gap: 18px;
 
@@ -1310,7 +1253,6 @@ body {
 
     .contact-bar .whatsapp-icon svg {
         width: 18px;
-
         height: 18px;
     }
 
@@ -1321,30 +1263,25 @@ body {
 
     .logo {
         margin-top: 25px;
-
         font-size: 40px;
     }
 
 
     .cover-intro {
         width: 84%;
-
         margin-top: 55px;
     }
 
 
     .cover-intro h2 {
         font-size: 20px;
-
         margin-bottom: 22px;
     }
 
 
     .cover-intro p {
         font-size: 14px;
-
         line-height: 1.7;
-
         margin-bottom: 17px;
     }
 
@@ -1355,7 +1292,6 @@ body {
 
     .navigation {
         width: 100%;
-
         box-sizing: border-box;
 
         justify-content: center;
@@ -1368,7 +1304,6 @@ body {
 
     .navigation button {
         font-size: 16px;
-
         padding: 8px 12px;
     }
 
@@ -1405,106 +1340,118 @@ body {
     .page-4 h1,
     .page-5 h1 {
         font-size: 20px;
-
         padding-top: 10px;
     }
 
 
     .page-subtitle {
         font-size: 19px;
-
         margin-top: 2px;
     }
 
 
     /* =====================================================
-       Page 2
+       PAGE 2
+       منفصلة
        ===================================================== */
 
     .page-2 .userform-card:nth-child(1) {
         width: 58%;
 
-        top: 17%;
+        top: 65px;
 
         right: 0;
-
         left: auto;
+
+        z-index: 5;
     }
 
 
     .page-2 .userform-card:nth-child(2) {
         width: 58%;
 
-        bottom: 15%;
+        bottom: 65px;
 
         left: 0;
-
         right: auto;
 
         top: auto;
-    }
-
-
-    /* =====================================================
-       Page 3
-       ===================================================== */
-
-    .page-3 .userform-card:nth-child(1) {
-        width: 55%;
-
-        top: 6%;
-
-        left: -6%;
-
-        right: auto;
 
         z-index: 5;
     }
 
 
-    .page-3 .userform-card:nth-child(2) {
+    /* =====================================================
+       PAGE 3
+       الأولى أقصى اليمين 45°
+       ===================================================== */
+
+    .page-3 .userform-card:nth-child(1) {
         width: 55%;
 
-        top: 30%;
+        top: 55px;
 
         right: -5%;
-
         left: auto;
 
-        z-index: 8;
-    }
+        z-index: 5;
 
-
-    .page-3 .userform-card:nth-child(3) {
-        width: 55%;
-
-        bottom: 15%;
-
-        left: 50%;
-
-        right: auto;
-
-        top: auto;
-
-        transform:
-            translateX(-50%)
-            rotate(0deg);
-
-        z-index: 6;
+        transform: rotate(45deg);
     }
 
 
     /* =====================================================
-       Page 4
+       PAGE 3
+       الثانية منتصف اليسار 115°
+       ===================================================== */
+
+    .page-3 .userform-card:nth-child(2) {
+        width: 55%;
+
+        top: 185px;
+
+        left: -4%;
+        right: auto;
+
+        z-index: 8;
+
+        transform: rotate(115deg);
+    }
+
+
+    /* =====================================================
+       PAGE 3
+       الثالثة سنتر أسفل
+       ===================================================== */
+
+    .page-3 .userform-card:nth-child(3) {
+        width: 55%;
+
+        bottom: 65px;
+
+        left: 50%;
+        right: auto;
+
+        top: auto;
+
+        z-index: 6;
+
+        transform:
+            translateX(-50%)
+            rotate(0deg);
+    }
+
+
+    /* =====================================================
+       PAGE 4
        ===================================================== */
 
     .page-4 .userform-card:nth-child(1) {
         width: 56%;
 
-        top: 16%;
+        top: 65px;
 
         right: 0;
-
         left: auto;
     }
 
@@ -1512,10 +1459,9 @@ body {
     .page-4 .userform-card:nth-child(2) {
         width: 56%;
 
-        bottom: 15%;
+        bottom: 65px;
 
         left: 0;
-
         right: auto;
 
         top: auto;
@@ -1523,16 +1469,15 @@ body {
 
 
     /* =====================================================
-       Page 5
+       PAGE 5
        ===================================================== */
 
     .page-5 .userform-card:nth-child(1) {
         width: 55%;
 
-        top: 6%;
+        top: 55px;
 
-        left: -6%;
-
+        left: -5%;
         right: auto;
 
         transform: rotate(45deg);
@@ -1542,23 +1487,21 @@ body {
     .page-5 .userform-card:nth-child(2) {
         width: 55%;
 
-        top: 30%;
+        top: 185px;
 
-        right: -5%;
-
+        right: -4%;
         left: auto;
 
-        transform: rotate(112deg);
+        transform: rotate(115deg);
     }
 
 
     .page-5 .userform-card:nth-child(3) {
         width: 55%;
 
-        bottom: 15%;
+        bottom: 65px;
 
         left: 50%;
-
         right: auto;
 
         top: auto;
@@ -1574,7 +1517,9 @@ body {
        ===================================================== */
 
     .page-footer-note {
-        height: 10.1% !important;
+        height: 9% !important;
+
+        min-height: 42px;
 
         font-size: 16px;
 
@@ -1583,29 +1528,30 @@ body {
 
 
     /* =====================================================
-       Page 6
+       PAGE 6
+       رفع الكلام
        ===================================================== */
 
     .page-6 .cover-intro {
         width: 84%;
 
-        margin-top: 20px;
+        margin-top: 15px;
     }
 
 
     .page-6 .cover-intro h2 {
         font-size: 20px;
 
-        margin-bottom: 18px;
+        margin-bottom: 16px;
     }
 
 
     .page-6 .cover-intro p {
         font-size: 15px;
 
-        line-height: 1.65;
+        line-height: 1.60;
 
-        margin-bottom: 12px;
+        margin-bottom: 10px;
 
         font-weight: bold;
     }
@@ -1621,11 +1567,8 @@ body {
 
     .page-flip.flip-next,
     .page-flip.flip-previous {
-
         animation: none !important;
-
         transform: none !important;
-
     }
 
 }
