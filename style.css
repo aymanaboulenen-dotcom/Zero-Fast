@@ -10,7 +10,9 @@ body {
     max-width: 100%;
     overflow-x: hidden;
     overscroll-behavior-x: none;
+
     background: #cfcfcf;
+
     font-family: "Times New Roman", serif;
 }
 
@@ -22,6 +24,7 @@ body {
 :root {
     --navy: #102A43;
     --orange: #F4A261;
+    --white: #ffffff;
     --shadow: rgba(0, 0, 0, 0.25);
 }
 
@@ -32,30 +35,28 @@ body {
 
 .page-group {
     display: none;
+    width: 100%;
 }
 
 .page-group.active {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    width: 100%;
 }
 
 
 /* =========================================================
    صفحة A4
-   Responsive
    ========================================================= */
 
 .a4-page {
     position: relative;
 
-    width: min(700px, 88vw);
+    width: min(820px, 94vw);
+
     aspect-ratio: 210 / 297;
 
-    margin: 12px auto;
-
-    background: var(--orange);
+    margin: 10px auto;
 
     box-sizing: border-box;
 
@@ -64,12 +65,12 @@ body {
     overflow: hidden;
 
     box-shadow:
-        0 8px 20px rgba(0, 0, 0, 0.20);
+        0 8px 22px rgba(0, 0, 0, 0.22);
 }
 
 
 /* =========================================================
-   الخط الجانبي
+   العمود الجانبي الرئيسي
    ========================================================= */
 
 .a4-page::after {
@@ -80,15 +81,17 @@ body {
     left: 0;
     top: 0;
 
-    width: clamp(6px, 1.1%, 10px);
+    width: 8.5%;
     height: 100%;
 
     background: var(--navy);
 
     box-shadow:
-        3px 0 8px rgba(0, 0, 0, 0.20);
+        4px 0 10px rgba(0, 0, 0, 0.20);
 
-    z-index: 100;
+    z-index: 15;
+
+    pointer-events: none;
 }
 
 
@@ -192,28 +195,33 @@ body {
 
 
 /* =========================================================
-   المثلثان
+   المثلثات
    ========================================================= */
 
 .design-triangle {
     position: absolute;
 
-    z-index: 2;
+    z-index: 4;
+
+    pointer-events: none;
 
     filter:
         drop-shadow(
             5px 6px 8px rgba(0, 0, 0, 0.25)
         );
-
-    pointer-events: none;
 }
 
 
+/* =========================================================
+   المثلث العلوي
+   يلتصق بالعمود
+   ========================================================= */
+
 .design-triangle-1 {
-    left: 3.6%;
+    left: 8.5%;
     top: 2.5%;
 
-    width: 22%;
+    width: 21%;
     height: 48%;
 
     background: var(--navy);
@@ -226,17 +234,22 @@ body {
 }
 
 
+/* =========================================================
+   المثلث السفلي
+   يلتصق بالعمود
+   ========================================================= */
+
 .design-triangle-2 {
-    right: 3.6%;
+    left: 8.5%;
     bottom: 2.5%;
 
-    width: 22%;
+    width: 21%;
     height: 48%;
 
     background: var(--navy);
 
     clip-path: polygon(
-        100% 0,
+        0 0,
         100% 100%,
         0 100%
     );
@@ -288,8 +301,7 @@ body {
 
 
 /* =========================================================
-   عكس الصفحة 6
-   الصفحة 6 = الصفحة 1 معكوسة
+   الصفحة 6 معكوسة
    ========================================================= */
 
 .page-6-reversed {
@@ -297,14 +309,14 @@ body {
 }
 
 
-/* العمود ينتقل إلى اليمين */
+/* العمود ينتقل لليمين */
 
 .page-6-reversed::after {
     left: auto;
     right: 0;
 
     box-shadow:
-        -3px 0 8px rgba(0, 0, 0, 0.20);
+        -4px 0 10px rgba(0, 0, 0, 0.20);
 }
 
 
@@ -312,68 +324,60 @@ body {
 
 .page-6-reversed .design-triangle-1 {
     left: auto;
-    right: 3.6%;
+    right: 8.5%;
+
+    clip-path: polygon(
+        100% 0,
+        0 0,
+        100% 100%
+    );
 }
+
 
 .page-6-reversed .design-triangle-2 {
-    right: auto;
-    left: 3.6%;
-}
-
-
-/* الدوائر */
-
-.page-6-reversed .brand-circles {
-    right: auto;
-    left: 5%;
-}
-
-
-/* مستطيلات المحتوى */
-
-.page-6-reversed .content-panels {
-    left: 45px;
-    right: 55px;
-}
-
-
-/* الاتصال */
-
-.page-6-reversed .contact-panel {
     left: auto;
-    right: 4.8%;
+    right: 8.5%;
+
+    clip-path: polygon(
+        100% 0,
+        0 100%,
+        100% 100%
+    );
 }
 
 
 /* =========================================================
-   الدائرتان
+   الدوائر
    ========================================================= */
 
 .brand-circles {
     position: absolute;
 
     top: 5.5%;
-    right: 5%;
+
+    left: 8.5%;
 
     width: 25%;
     height: 19%;
 
-    z-index: 20;
+    z-index: 25;
 }
 
 
-/* الدائرة الخلفية
-   البرتقالي
+/* =========================================================
+   الدائرة الخلفية
    ========================================================= */
 
 .brand-circle-back {
     position: absolute;
 
     width: 74%;
+
     aspect-ratio: 1 / 1;
 
     top: 7%;
-    right: 20%;
+
+    left: 20%;
 
     border-radius: 50%;
 
@@ -393,10 +397,12 @@ body {
     position: absolute;
 
     width: 77%;
+
     aspect-ratio: 1 / 1;
 
     top: 0;
-    right: 0;
+
+    left: 0;
 
     border-radius: 50%;
 
@@ -418,7 +424,7 @@ body {
 
 
 /* =========================================================
-   الدوائر في الصفحات المعكوسة
+   دوائر الصفحات الكحلية
    ========================================================= */
 
 .page-2 .brand-circle-front,
@@ -433,6 +439,28 @@ body {
 .page-6 .brand-circle-back {
     background:
         rgba(16, 42, 67, 0.42);
+}
+
+
+/* =========================================================
+   الصفحة 6 - الدوائر يمين
+   ========================================================= */
+
+.page-6-reversed .brand-circles {
+    left: auto;
+    right: 8.5%;
+}
+
+
+.page-6-reversed .brand-circle-back {
+    left: auto;
+    right: 20%;
+}
+
+
+.page-6-reversed .brand-circle-front {
+    left: auto;
+    right: 0;
 }
 
 
@@ -486,8 +514,8 @@ body {
 .content-panels {
     position: absolute;
 
-    left: 11%;
-    right: 9%;
+    left: 13%;
+    right: 8%;
 
     top: 25%;
     bottom: 19%;
@@ -496,7 +524,9 @@ body {
 }
 
 
-/* الخلفي */
+/* =========================================================
+   المستطيل الخلفي
+   ========================================================= */
 
 .content-panel-back {
     position: absolute;
@@ -514,7 +544,9 @@ body {
 }
 
 
-/* الأمامي */
+/* =========================================================
+   المستطيل الأمامي
+   ========================================================= */
 
 .content-panel-front {
     position: absolute;
@@ -538,7 +570,7 @@ body {
 
 
 /* =========================================================
-   عكس المستطيلات
+   الصفحات الكحلية
    ========================================================= */
 
 .page-2 .content-panel-back,
@@ -559,6 +591,18 @@ body {
 
 
 /* =========================================================
+   الصفحة 6 - المحتوى إلى اليمين
+   ========================================================= */
+
+.page-6-reversed .content-panels {
+    left: 8%;
+    right: 13%;
+
+    direction: ltr;
+}
+
+
+/* =========================================================
    الصفحة 1 - المقدمة
    ========================================================= */
 
@@ -567,8 +611,6 @@ body {
     bottom: 20%;
 }
 
-
-/* المستطيل أطول قليلًا */
 
 .cover-page .cover-intro {
     width: 94%;
@@ -593,7 +635,8 @@ body {
 .cover-page .cover-intro h2 {
     color: white;
 
-    font-size: clamp(20px, 3.2vw, 27px);
+    font-size:
+        clamp(20px, 3.2vw, 27px);
 
     text-align: center;
 
@@ -605,7 +648,8 @@ body {
 .cover-page .cover-intro p {
     color: white;
 
-    font-size: clamp(13px, 2vw, 17px);
+    font-size:
+        clamp(13px, 2vw, 17px);
 
     line-height: 1.65;
 
@@ -615,19 +659,23 @@ body {
 
 
 /* =========================================================
-   الاتصال
+   مستطيل الاتصال
+   نصفه داخل العمود
+   ونصفه داخل الصفحة
    ========================================================= */
 
 .contact-panel {
     position: absolute;
 
-    left: 4.8%;
+    left: 2.8%;
+
     bottom: 4%;
 
-    width: 16%;
+    width: 13%;
+
     height: 20%;
 
-    min-width: 70px;
+    min-width: 90px;
 
     box-sizing: border-box;
 
@@ -657,7 +705,20 @@ body {
 }
 
 
-/* الصفحات المعكوسة */
+/* =========================================================
+   اتصال الصفحة 6
+   ========================================================= */
+
+.page-6-reversed .contact-panel {
+    left: auto;
+
+    right: 2.8%;
+}
+
+
+/* =========================================================
+   الصفحات الكحلية
+   ========================================================= */
 
 .page-2 .contact-panel,
 .page-4 .contact-panel,
@@ -667,6 +728,10 @@ body {
     border-color: var(--navy);
 }
 
+
+/* =========================================================
+   عناصر الاتصال
+   ========================================================= */
 
 .contact-item {
     display: flex;
@@ -681,7 +746,8 @@ body {
 
     color: white;
 
-    font-size: clamp(10px, 1.8vw, 14px);
+    font-size:
+        clamp(10px, 1.8vw, 14px);
 
     font-weight: bold;
 
@@ -720,8 +786,11 @@ body {
 
 
 .whatsapp-icon svg {
-    width: clamp(16px, 2.5vw, 22px);
-    height: clamp(16px, 2.5vw, 22px);
+    width:
+        clamp(16px, 2.5vw, 22px);
+
+    height:
+        clamp(16px, 2.5vw, 22px);
 
     fill: currentColor;
 }
@@ -743,7 +812,8 @@ body {
 .page-title-circle h1 {
     margin: 0;
 
-    font-size: clamp(11px, 2.1vw, 18px);
+    font-size:
+        clamp(11px, 2.1vw, 18px);
 
     line-height: 1.25;
 
@@ -774,7 +844,8 @@ body {
 
     z-index: 30;
 
-    font-size: clamp(15px, 2.8vw, 22px);
+    font-size:
+        clamp(15px, 2.8vw, 22px);
 
     line-height: 1.3;
 
@@ -848,7 +919,7 @@ body {
 
 
 /* =========================================================
-   GIF واحد - الصفحة 2
+   GIF الصفحة 2
    ========================================================= */
 
 .page-2 .single-gif {
@@ -866,7 +937,7 @@ body {
 .page-2 .single-gif .userform-card {
     position: relative;
 
-    width: 78%;
+    width: 82%;
 
     max-width: 100%;
 
@@ -878,7 +949,7 @@ body {
 
 
 /* =========================================================
-   GIF واحد - الصفحة 3
+   GIF الصفحة 3
    ========================================================= */
 
 .page-3 .single-gif {
@@ -896,7 +967,7 @@ body {
 .page-3 .single-gif .userform-card {
     position: relative;
 
-    width: 82%;
+    width: 86%;
 
     max-width: 100%;
 
@@ -909,7 +980,6 @@ body {
 
 /* =========================================================
    الصفحة 4
-   جاهزة للصور لاحقًا
    ========================================================= */
 
 .page-4 .userform-images {
@@ -923,7 +993,6 @@ body {
 
 /* =========================================================
    الصفحة 5
-   جاهزة للصور لاحقًا
    ========================================================= */
 
 .page-5 .userform-images {
@@ -949,7 +1018,8 @@ body {
 
     z-index: 40;
 
-    font-size: clamp(12px, 2.3vw, 17px);
+    font-size:
+        clamp(12px, 2.3vw, 17px);
 
     font-weight: bold;
 
@@ -996,7 +1066,8 @@ body {
 .page-6 .cover-intro h2 {
     color: var(--navy);
 
-    font-size: clamp(19px, 3.2vw, 27px);
+    font-size:
+        clamp(19px, 3.2vw, 27px);
 
     text-align: center;
 
@@ -1008,7 +1079,8 @@ body {
 .page-6 .cover-intro p {
     color: white;
 
-    font-size: clamp(13px, 2vw, 17px);
+    font-size:
+        clamp(13px, 2vw, 17px);
 
     line-height: 1.55;
 
@@ -1061,15 +1133,17 @@ body {
 
 
 .navigation button {
-    border: none;
+    border: 2px solid var(--navy);
 
     border-radius: 8px;
 
-    background: #d9e2ec;
+    background: var(--orange);
 
     color: var(--navy);
 
-    font-family: "Times New Roman", serif;
+    font-family:
+        "Times New Roman",
+        serif;
 
     font-size: 15px;
 
@@ -1081,34 +1155,41 @@ body {
     cursor: pointer;
 
     box-shadow:
-        0 3px 8px rgba(0, 0, 0, 0.16);
+        0 3px 8px rgba(0, 0, 0, 0.20);
 
     transition:
         transform 0.2s ease,
         background 0.2s ease,
+        color 0.2s ease,
         box-shadow 0.2s ease;
 }
 
 
 .navigation button:hover {
-    background: #c7d4e0;
+    background: var(--navy);
 
-    transform: translateY(-1px);
+    color: white;
+
+    transform:
+        translateY(-1px);
 
     box-shadow:
-        0 5px 10px rgba(0, 0, 0, 0.18);
+        0 5px 10px rgba(0, 0, 0, 0.22);
 }
 
 
 .navigation button:active {
-    transform: translateY(1px);
+    transform:
+        translateY(1px);
 
     box-shadow:
         0 2px 5px rgba(0, 0, 0, 0.14);
 }
 
 
-/* Contents */
+/* =========================================================
+   Contents
+   ========================================================= */
 
 .contents-dropdown {
     display: inline-block;
@@ -1118,11 +1199,13 @@ body {
 
 
 .contents-button {
-    min-width: 100px;
+    min-width: 110px;
 }
 
 
-/* قائمة المحتويات */
+/* =========================================================
+   قائمة المحتويات
+   ========================================================= */
 
 .contents-list {
     display: none;
@@ -1131,15 +1214,20 @@ body {
 
     left: 50%;
 
-    bottom: calc(100% + 8px);
+    bottom:
+        calc(100% + 8px);
 
-    transform: translateX(-50%);
+    transform:
+        translateX(-50%);
 
-    min-width: 120px;
+    min-width: 130px;
 
     padding: 6px;
 
     background: white;
+
+    border:
+        2px solid var(--navy);
 
     border-radius: 8px;
 
@@ -1157,9 +1245,15 @@ body {
 
     margin: 2px 0;
 
-    padding: 7px 10px;
+    padding:
+        7px 10px;
 
-    background: #edf2f7;
+    background: var(--orange);
+
+    color: var(--navy);
+
+    border:
+        1px solid var(--navy);
 
     border-radius: 6px;
 
@@ -1170,23 +1264,11 @@ body {
 
 
 .contents-list button:hover {
-    background: #d9e2ec;
+    background: var(--navy);
+
+    color: white;
 
     transform: none;
-}
-
-
-/* =========================================================
-   انعكاس الصفحة 6 للأزرار والعناصر الداخلية
-   ========================================================= */
-
-.page-6-reversed .content-panels {
-    direction: ltr;
-}
-
-
-.page-6-reversed .cover-intro {
-    direction: rtl;
 }
 
 
@@ -1197,14 +1279,14 @@ body {
 @media screen and (min-width: 1200px) {
 
     .a4-page {
-        width: min(720px, 78vw);
+        width: min(900px, 94vw);
     }
 
     .navigation button {
         font-size: 16px;
 
         padding:
-            10px 20px;
+            10px 22px;
     }
 }
 
@@ -1216,7 +1298,7 @@ body {
 @media screen and (min-width: 601px) and (max-width: 1199px) {
 
     .a4-page {
-        width: min(650px, 84vw);
+        width: min(780px, 94vw);
     }
 }
 
@@ -1244,27 +1326,29 @@ body {
 
 
     .a4-page {
-        width: 92vw;
+        width: 96vw;
 
         height: auto;
 
         aspect-ratio: 210 / 297;
 
-        margin: 5px auto;
+        margin:
+            3px auto;
     }
 
 
-    /* الخط الجانبي */
+    /* العمود */
 
     .a4-page::after {
-        width: 6px;
+        width: 8.5%;
     }
 
 
     /* المثلثات */
 
     .design-triangle-1 {
-        left: 3.5%;
+        left: 8.5%;
+
         top: 2.5%;
 
         width: 22%;
@@ -1274,7 +1358,10 @@ body {
 
 
     .design-triangle-2 {
-        right: 3.5%;
+        left: 8.5%;
+
+        right: auto;
+
         bottom: 2.5%;
 
         width: 22%;
@@ -1288,7 +1375,7 @@ body {
     .brand-circles {
         top: 5%;
 
-        right: 5%;
+        left: 8.5%;
 
         width: 25%;
 
@@ -1301,7 +1388,7 @@ body {
 
         top: 7%;
 
-        right: 20%;
+        left: 20%;
     }
 
 
@@ -1313,19 +1400,21 @@ body {
 
 
     .logo {
-        font-size: clamp(17px, 5vw, 24px);
+        font-size:
+            clamp(17px, 5vw, 26px);
     }
 
 
     .page-title-circle h1 {
-        font-size: clamp(8px, 2.6vw, 12px);
+        font-size:
+            clamp(8px, 2.6vw, 12px);
     }
 
 
-    /* المستطيلات */
+    /* المحتوى */
 
     .content-panels {
-        left: 9%;
+        left: 13%;
 
         right: 7%;
 
@@ -1353,14 +1442,16 @@ body {
 
 
     .cover-page .cover-intro h2 {
-        font-size: clamp(17px, 5vw, 22px);
+        font-size:
+            clamp(17px, 5vw, 22px);
 
         margin-bottom: 4%;
     }
 
 
     .cover-page .cover-intro p {
-        font-size: clamp(10px, 3.2vw, 14px);
+        font-size:
+            clamp(10px, 3.2vw, 14px);
 
         line-height: 1.55;
 
@@ -1371,15 +1462,15 @@ body {
     /* الاتصال */
 
     .contact-panel {
-        left: 4.5%;
+        left: 2.8%;
 
         bottom: 4%;
 
-        width: 16%;
+        width: 14%;
 
         height: 20%;
 
-        min-width: 55px;
+        min-width: 68px;
 
         gap: 7%;
 
@@ -1389,7 +1480,8 @@ body {
 
 
     .contact-item {
-        font-size: clamp(7px, 2.5vw, 10px);
+        font-size:
+            clamp(7px, 2.5vw, 10px);
     }
 
 
@@ -1405,21 +1497,22 @@ body {
     .page-subtitle {
         top: 19.2%;
 
-        font-size: clamp(11px, 4vw, 15px);
+        font-size:
+            clamp(11px, 4vw, 15px);
     }
 
 
     /* GIF الصفحة 2 */
 
     .page-2 .single-gif .userform-card {
-        width: 84%;
+        width: 86%;
     }
 
 
     /* GIF الصفحة 3 */
 
     .page-3 .single-gif .userform-card {
-        width: 88%;
+        width: 90%;
     }
 
 
@@ -1428,44 +1521,45 @@ body {
     .page-footer-note {
         bottom: 1.5%;
 
-        font-size: clamp(9px, 3.2vw, 12px);
+        font-size:
+            clamp(9px, 3.2vw, 12px);
     }
 
 
-    /* الصفحة 6 المعكوسة */
+    /* الصفحة 6 */
 
     .page-6-reversed .brand-circles {
-        left: 5%;
+        left: auto;
 
-        right: auto;
+        right: 8.5%;
     }
 
 
     .page-6-reversed .contact-panel {
         left: auto;
 
-        right: 4.5%;
+        right: 2.8%;
     }
 
 
     .page-6-reversed .content-panels {
         left: 7%;
 
-        right: 9%;
+        right: 13%;
     }
 
 
     .page-6-reversed .design-triangle-1 {
         left: auto;
 
-        right: 3.5%;
+        right: 8.5%;
     }
 
 
     .page-6-reversed .design-triangle-2 {
-        right: auto;
+        left: auto;
 
-        left: 3.5%;
+        right: 8.5%;
     }
 
 
@@ -1475,7 +1569,7 @@ body {
 
     .navigation {
         margin:
-            8px 0 12px;
+            7px 0 10px;
 
         gap: 6px;
     }
@@ -1485,19 +1579,19 @@ body {
         font-size: 12px;
 
         padding:
-            7px 10px;
+            7px 11px;
 
         border-radius: 7px;
     }
 
 
     .contents-button {
-        min-width: 82px;
+        min-width: 86px;
     }
 
 
     .contents-list {
-        min-width: 100px;
+        min-width: 105px;
 
         bottom:
             calc(100% + 6px);
