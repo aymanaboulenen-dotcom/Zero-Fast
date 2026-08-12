@@ -307,7 +307,6 @@
 
     <div class="a4-page page-6">
 
-
         <!-- Logo -->
 
         <div class="logo">
@@ -395,11 +394,10 @@
 
 
 <!-- =========================================================
-     Navigation
+     NAVIGATION
      ========================================================= -->
 
 <div class="navigation">
-
 
     <button onclick="prevPage()">
         Previous
@@ -555,7 +553,6 @@ function nextPage() {
         if (currentPage < allPages.length - 1) {
 
             currentPage++;
-
             showMobilePage();
 
         }
@@ -565,7 +562,6 @@ function nextPage() {
         if (currentPage < groups.length - 1) {
 
             currentPage++;
-
             showDesktopPage();
 
         }
@@ -586,7 +582,6 @@ function prevPage() {
         if (currentPage > 0) {
 
             currentPage--;
-
             showMobilePage();
 
         }
@@ -596,7 +591,6 @@ function prevPage() {
         if (currentPage > 0) {
 
             currentPage--;
-
             showDesktopPage();
 
         }
@@ -618,7 +612,9 @@ function goToPage(pageNumber) {
 
         showMobilePage();
 
-    } else {
+    }
+
+    else {
 
         if (pageNumber === 0) {
 
@@ -701,6 +697,7 @@ function setupPages() {
 
     closeContents();
 
+
     if (isMobile()) {
 
         showMobilePage();
@@ -767,7 +764,7 @@ document.addEventListener(
             touchEndY - touchStartY;
 
 
-        /* Ignore vertical movement */
+        /* تجاهل الحركة الرأسية */
 
         if (Math.abs(deltaY) > Math.abs(deltaX)) {
 
@@ -776,7 +773,7 @@ document.addEventListener(
         }
 
 
-        /* Ignore small movement */
+        /* تجاهل الحركة الصغيرة */
 
         if (Math.abs(deltaX) < 30) {
 
@@ -785,13 +782,15 @@ document.addEventListener(
         }
 
 
-        /* Right to left = Previous */
+        /* من اليمين إلى اليسار */
 
         if (deltaX < 0) {
 
             prevPage();
 
         }
+
+        /* من اليسار إلى اليمين */
 
         else {
 
