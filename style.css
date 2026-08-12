@@ -1,3 +1,7 @@
+/* =========================================================
+   الأساس
+   ========================================================= */
+
 html,
 body {
     margin: 0;
@@ -39,16 +43,17 @@ body {
 
 
 /* =========================================================
-   صفحة A4 الأساسية
+   صفحة A4
+   Responsive
    ========================================================= */
 
 .a4-page {
     position: relative;
 
-    width: 500px;
-    height: 707px;
+    width: min(700px, 88vw);
+    aspect-ratio: 210 / 297;
 
-    margin: 10px auto;
+    margin: 12px auto;
 
     background: var(--orange);
 
@@ -64,8 +69,7 @@ body {
 
 
 /* =========================================================
-   خط الكتاب الجانبي
-   موجود في كل الصفحات
+   الخط الجانبي
    ========================================================= */
 
 .a4-page::after {
@@ -76,7 +80,7 @@ body {
     left: 0;
     top: 0;
 
-    width: 8px;
+    width: clamp(6px, 1.1%, 10px);
     height: 100%;
 
     background: var(--navy);
@@ -102,12 +106,10 @@ body {
     will-change: transform, opacity;
 }
 
-
 .page-flip.flip-next {
     animation: pageFlipNext 0.70s ease-out both;
     transform-origin: left center;
 }
-
 
 .page-flip.flip-previous {
     animation: pageFlipPrevious 0.70s ease-out both;
@@ -191,7 +193,6 @@ body {
 
 /* =========================================================
    المثلثان
-   هامش داخلي 0.5 سم تقريبًا
    ========================================================= */
 
 .design-triangle {
@@ -208,18 +209,12 @@ body {
 }
 
 
-/* =========================================================
-   المثلث الأول
-   25% من أعلى
-   50% من اليسار
-   ========================================================= */
-
 .design-triangle-1 {
-    left: 19px;
-    top: 19px;
+    left: 3.6%;
+    top: 2.5%;
 
-    width: calc(25% - 19px);
-    height: calc(50% - 19px);
+    width: 22%;
+    height: 48%;
 
     background: var(--navy);
 
@@ -231,18 +226,12 @@ body {
 }
 
 
-/* =========================================================
-   المثلث الثاني
-   25% من اليمين
-   50% من الأسفل
-   ========================================================= */
-
 .design-triangle-2 {
-    right: 19px;
-    bottom: 19px;
+    right: 3.6%;
+    bottom: 2.5%;
 
-    width: calc(25% - 19px);
-    height: calc(50% - 19px);
+    width: 22%;
+    height: 48%;
 
     background: var(--navy);
 
@@ -255,7 +244,7 @@ body {
 
 
 /* =========================================================
-   الصفحات 1 + 3 + 5
+   الصفحات البرتقالية
    ========================================================= */
 
 #page1,
@@ -277,8 +266,7 @@ body {
 
 
 /* =========================================================
-   الصفحات 2 + 4 + 6
-   تبديل الألوان
+   الصفحات الكحلية
    ========================================================= */
 
 .page-2,
@@ -300,33 +288,92 @@ body {
 
 
 /* =========================================================
+   عكس الصفحة 6
+   الصفحة 6 = الصفحة 1 معكوسة
+   ========================================================= */
+
+.page-6-reversed {
+    direction: rtl;
+}
+
+
+/* العمود ينتقل إلى اليمين */
+
+.page-6-reversed::after {
+    left: auto;
+    right: 0;
+
+    box-shadow:
+        -3px 0 8px rgba(0, 0, 0, 0.20);
+}
+
+
+/* المثلثات */
+
+.page-6-reversed .design-triangle-1 {
+    left: auto;
+    right: 3.6%;
+}
+
+.page-6-reversed .design-triangle-2 {
+    right: auto;
+    left: 3.6%;
+}
+
+
+/* الدوائر */
+
+.page-6-reversed .brand-circles {
+    right: auto;
+    left: 5%;
+}
+
+
+/* مستطيلات المحتوى */
+
+.page-6-reversed .content-panels {
+    left: 45px;
+    right: 55px;
+}
+
+
+/* الاتصال */
+
+.page-6-reversed .contact-panel {
+    left: auto;
+    right: 4.8%;
+}
+
+
+/* =========================================================
    الدائرتان
-   قريبان جدًا من بعض
    ========================================================= */
 
 .brand-circles {
     position: absolute;
 
-    top: 42px;
-    right: 32px;
+    top: 5.5%;
+    right: 5%;
 
-    width: 170px;
-    height: 125px;
+    width: 25%;
+    height: 19%;
 
     z-index: 20;
 }
 
 
-/* الدائرة الخلفية - خيال / هلال */
+/* الدائرة الخلفية
+   البرتقالي
+   ========================================================= */
 
 .brand-circle-back {
     position: absolute;
 
-    width: 108px;
-    height: 108px;
+    width: 74%;
+    aspect-ratio: 1 / 1;
 
-    top: 7px;
-    right: 40px;
+    top: 7%;
+    right: 20%;
 
     border-radius: 50%;
 
@@ -338,13 +385,15 @@ body {
 }
 
 
-/* الدائرة الأمامية */
+/* =========================================================
+   الدائرة الأمامية
+   ========================================================= */
 
 .brand-circle-front {
     position: absolute;
 
-    width: 112px;
-    height: 112px;
+    width: 77%;
+    aspect-ratio: 1 / 1;
 
     top: 0;
     right: 0;
@@ -364,12 +413,12 @@ body {
 
     box-sizing: border-box;
 
-    padding: 12px;
+    padding: 10%;
 }
 
 
 /* =========================================================
-   عكس الدوائر في الصفحات 2+4+6
+   الدوائر في الصفحات المعكوسة
    ========================================================= */
 
 .page-2 .brand-circle-front,
@@ -388,7 +437,7 @@ body {
 
 
 /* =========================================================
-   الشعار
+   شعار Zero Fast
    ========================================================= */
 
 .logo {
@@ -396,7 +445,7 @@ body {
 
     text-align: center;
 
-    font-size: 30px;
+    font-size: clamp(24px, 4vw, 38px);
 
     font-weight: bold;
 
@@ -414,7 +463,7 @@ body {
 }
 
 
-/* في الصفحات البرتقالية */
+/* الصفحات البرتقالية */
 
 #page1 .logo-zero,
 .page-3 .logo-zero,
@@ -431,18 +480,17 @@ body {
 
 
 /* =========================================================
-   مستطيلان متداخلان
-   قريبان جدًا مثل الظل
+   مستطيلات المحتوى
    ========================================================= */
 
 .content-panels {
     position: absolute;
 
-    left: 55px;
-    right: 45px;
+    left: 11%;
+    right: 9%;
 
-    top: 185px;
-    bottom: 125px;
+    top: 25%;
+    bottom: 19%;
 
     z-index: 10;
 }
@@ -453,8 +501,8 @@ body {
 .content-panel-back {
     position: absolute;
 
-    left: 8px;
-    top: 8px;
+    left: 1.5%;
+    top: 1.5%;
 
     width: 100%;
     height: 100%;
@@ -511,23 +559,26 @@ body {
 
 
 /* =========================================================
-   Page 1 - المقدمة
+   الصفحة 1 - المقدمة
    ========================================================= */
 
 .cover-page .content-panels {
-    top: 190px;
+    top: 27%;
+    bottom: 20%;
 }
 
 
+/* المستطيل أطول قليلًا */
+
 .cover-page .cover-intro {
-    width: 92%;
+    width: 94%;
 
     height: 100%;
 
     margin: 0 auto;
 
     padding:
-        20px 22px;
+        5% 6%;
 
     box-sizing: border-box;
 
@@ -542,40 +593,41 @@ body {
 .cover-page .cover-intro h2 {
     color: white;
 
-    font-size: 22px;
+    font-size: clamp(20px, 3.2vw, 27px);
 
     text-align: center;
 
     margin:
-        0 0 18px;
+        0 0 4%;
 }
 
 
 .cover-page .cover-intro p {
     color: white;
 
-    font-size: 14px;
+    font-size: clamp(13px, 2vw, 17px);
 
     line-height: 1.65;
 
     margin:
-        0 0 14px;
+        0 0 3.5%;
 }
 
 
 /* =========================================================
    الاتصال
-   مستطيل رأسي + ظل
    ========================================================= */
 
 .contact-panel {
     position: absolute;
 
-    left: 32px;
-    bottom: 28px;
+    left: 4.8%;
+    bottom: 4%;
 
-    width: 82px;
-    height: 145px;
+    width: 16%;
+    height: 20%;
+
+    min-width: 70px;
 
     box-sizing: border-box;
 
@@ -597,15 +649,15 @@ body {
 
     justify-content: center;
 
-    gap: 13px;
+    gap: 10%;
 
-    padding: 12px 7px;
+    padding: 5% 4%;
 
     direction: ltr;
 }
 
 
-/* خلفية الاتصال للصفحات المعكوسة */
+/* الصفحات المعكوسة */
 
 .page-2 .contact-panel,
 .page-4 .contact-panel,
@@ -629,7 +681,7 @@ body {
 
     color: white;
 
-    font-size: 13px;
+    font-size: clamp(10px, 1.8vw, 14px);
 
     font-weight: bold;
 
@@ -668,8 +720,8 @@ body {
 
 
 .whatsapp-icon svg {
-    width: 18px;
-    height: 18px;
+    width: clamp(16px, 2.5vw, 22px);
+    height: clamp(16px, 2.5vw, 22px);
 
     fill: currentColor;
 }
@@ -691,7 +743,7 @@ body {
 .page-title-circle h1 {
     margin: 0;
 
-    font-size: 16px;
+    font-size: clamp(11px, 2.1vw, 18px);
 
     line-height: 1.25;
 
@@ -718,11 +770,11 @@ body {
     left: 0;
     right: 0;
 
-    top: 143px;
+    top: 19.2%;
 
     z-index: 30;
 
-    font-size: 19px;
+    font-size: clamp(15px, 2.8vw, 22px);
 
     line-height: 1.3;
 
@@ -796,156 +848,90 @@ body {
 
 
 /* =========================================================
-   Page 2
+   GIF واحد - الصفحة 2
    ========================================================= */
 
-.page-2 .userform-card:nth-child(1) {
-    width: 46%;
+.page-2 .single-gif {
+    display: flex;
 
-    top: 6%;
+    align-items: center;
 
-    right: 6%;
+    justify-content: center;
 
-    left: auto;
+    width: 100%;
+    height: 100%;
 }
 
 
-.page-2 .userform-card:nth-child(2) {
-    width: 42%;
+.page-2 .single-gif .userform-card {
+    position: relative;
 
-    bottom: 8%;
+    width: 78%;
 
-    left: 7%;
-
-    right: auto;
+    max-width: 100%;
 
     top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
 }
 
 
 /* =========================================================
-   Page 3
+   GIF واحد - الصفحة 3
    ========================================================= */
 
-.page-3 .userform-card:nth-child(1) {
-    width: 27%;
+.page-3 .single-gif {
+    display: flex;
 
-    top: 5%;
+    align-items: center;
 
-    right: 5%;
+    justify-content: center;
 
-    left: auto;
-
-    transform: rotate(30deg);
-
-    z-index: 6;
+    width: 100%;
+    height: 100%;
 }
 
 
-.page-3 .userform-card:nth-child(2) {
-    width: 27%;
+.page-3 .single-gif .userform-card {
+    position: relative;
 
-    top: 15%;
+    width: 82%;
 
-    left: 6%;
-
-    right: auto;
-
-    transform: rotate(115deg);
-
-    z-index: 8;
-}
-
-
-.page-3 .userform-card:nth-child(3) {
-    width: 46%;
-
-    bottom: 5%;
-
-    left: 50%;
-
-    right: auto;
+    max-width: 100%;
 
     top: auto;
-
-    transform:
-        translateX(-50%)
-        rotate(0deg);
-
-    z-index: 7;
-}
-
-
-/* Page 5 نفس بنية Page 3 */
-
-.page-5 .userform-card:nth-child(1) {
-    width: 27%;
-
-    top: 5%;
-
-    right: 5%;
-
+    right: auto;
+    bottom: auto;
     left: auto;
-
-    transform: rotate(30deg);
-}
-
-
-.page-5 .userform-card:nth-child(2) {
-    width: 27%;
-
-    top: 15%;
-
-    left: 6%;
-
-    right: auto;
-
-    transform: rotate(115deg);
-}
-
-
-.page-5 .userform-card:nth-child(3) {
-    width: 46%;
-
-    bottom: 5%;
-
-    left: 50%;
-
-    right: auto;
-
-    top: auto;
-
-    transform:
-        translateX(-50%)
-        rotate(0deg);
 }
 
 
 /* =========================================================
-   Page 4
+   الصفحة 4
+   جاهزة للصور لاحقًا
    ========================================================= */
 
-.page-4 .userform-card:nth-child(1) {
-    width: 46%;
+.page-4 .userform-images {
+    display: flex;
 
-    top: 7%;
+    align-items: center;
 
-    right: 6%;
-
-    left: auto;
+    justify-content: center;
 }
 
 
-.page-4 .userform-card:nth-child(2) {
-    width: 42%;
+/* =========================================================
+   الصفحة 5
+   جاهزة للصور لاحقًا
+   ========================================================= */
 
-    bottom: 8%;
+.page-5 .userform-images {
+    display: flex;
 
-    left: 7%;
+    align-items: center;
 
-    right: auto;
-
-    top: auto;
+    justify-content: center;
 }
 
 
@@ -959,11 +945,11 @@ body {
     left: 0;
     right: 0;
 
-    bottom: 12px;
+    bottom: 1.6%;
 
     z-index: 40;
 
-    font-size: 16px;
+    font-size: clamp(12px, 2.3vw, 17px);
 
     font-weight: bold;
 
@@ -984,6 +970,54 @@ body {
 
 
 /* =========================================================
+   الصفحة 6 - النص
+   ========================================================= */
+
+.page-6 .cover-intro {
+    width: 94%;
+
+    height: 100%;
+
+    margin: 0 auto;
+
+    padding:
+        5% 6%;
+
+    box-sizing: border-box;
+
+    direction: rtl;
+
+    text-align: right;
+
+    overflow: hidden;
+}
+
+
+.page-6 .cover-intro h2 {
+    color: var(--navy);
+
+    font-size: clamp(19px, 3.2vw, 27px);
+
+    text-align: center;
+
+    margin:
+        0 0 4%;
+}
+
+
+.page-6 .cover-intro p {
+    color: white;
+
+    font-size: clamp(13px, 2vw, 17px);
+
+    line-height: 1.55;
+
+    margin:
+        0 0 3%;
+}
+
+
+/* =========================================================
    إخفاء القديم
    ========================================================= */
 
@@ -995,429 +1029,486 @@ body {
 
 
 /* =========================================================
-   الكمبيوتر
-   +40% تقريبًا عن 380 × 537
+   أزرار التنقل
    ========================================================= */
 
-@media screen and (min-width: 601px) {
+.navigation {
+    width: 100%;
+
+    margin:
+        12px 0 18px;
+
+    display: flex;
+
+    flex-direction: row;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 10px;
+
+    box-sizing: border-box;
+
+    direction: ltr;
+}
+
+
+.navigation > button,
+.contents-dropdown {
+    flex: 0 0 auto;
+}
+
+
+.navigation button {
+    border: none;
+
+    border-radius: 8px;
+
+    background: #d9e2ec;
+
+    color: var(--navy);
+
+    font-family: "Times New Roman", serif;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    padding:
+        9px 18px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 3px 8px rgba(0, 0, 0, 0.16);
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.navigation button:hover {
+    background: #c7d4e0;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 5px 10px rgba(0, 0, 0, 0.18);
+}
+
+
+.navigation button:active {
+    transform: translateY(1px);
+
+    box-shadow:
+        0 2px 5px rgba(0, 0, 0, 0.14);
+}
+
+
+/* Contents */
+
+.contents-dropdown {
+    display: inline-block;
+
+    position: relative;
+}
+
+
+.contents-button {
+    min-width: 100px;
+}
+
+
+/* قائمة المحتويات */
+
+.contents-list {
+    display: none;
+
+    position: absolute;
+
+    left: 50%;
+
+    bottom: calc(100% + 8px);
+
+    transform: translateX(-50%);
+
+    min-width: 120px;
+
+    padding: 6px;
+
+    background: white;
+
+    border-radius: 8px;
+
+    box-shadow:
+        0 7px 18px rgba(0, 0, 0, 0.22);
+
+    z-index: 200;
+}
+
+
+.contents-list button {
+    display: block;
+
+    width: 100%;
+
+    margin: 2px 0;
+
+    padding: 7px 10px;
+
+    background: #edf2f7;
+
+    border-radius: 6px;
+
+    box-shadow: none;
+
+    font-size: 14px;
+}
+
+
+.contents-list button:hover {
+    background: #d9e2ec;
+
+    transform: none;
+}
+
+
+/* =========================================================
+   انعكاس الصفحة 6 للأزرار والعناصر الداخلية
+   ========================================================= */
+
+.page-6-reversed .content-panels {
+    direction: ltr;
+}
+
+
+.page-6-reversed .cover-intro {
+    direction: rtl;
+}
+
+
+/* =========================================================
+   شاشات كبيرة
+   ========================================================= */
+
+@media screen and (min-width: 1200px) {
 
     .a4-page {
-        width: 532px;
-        height: 752px;
-
-        margin: 10px auto;
+        width: min(720px, 78vw);
     }
 
+    .navigation button {
+        font-size: 16px;
 
-    /* الخط الجانبي */
-
-    .a4-page::after {
-        width: 9px;
+        padding:
+            10px 20px;
     }
+}
 
 
-    /* المثلثات */
+/* =========================================================
+   شاشات متوسطة
+   ========================================================= */
 
-    .design-triangle-1 {
-        left: 19px;
-        top: 19px;
+@media screen and (min-width: 601px) and (max-width: 1199px) {
 
-        width: calc(25% - 19px);
-        height: calc(50% - 19px);
-    }
-
-
-    .design-triangle-2 {
-        right: 19px;
-        bottom: 19px;
-
-        width: calc(25% - 19px);
-        height: calc(50% - 19px);
-    }
-
-
-    /* الدوائر */
-
-    .brand-circles {
-        top: 48px;
-        right: 38px;
-
-        width: 195px;
-        height: 145px;
-    }
-
-
-    .brand-circle-back {
-        width: 125px;
-        height: 125px;
-
-        top: 8px;
-        right: 42px;
-    }
-
-
-    .brand-circle-front {
-        width: 130px;
-        height: 130px;
-
-        top: 0;
-        right: 0;
-    }
-
-
-    .logo {
-        font-size: 34px;
-    }
-
-
-    /* المستطيلان */
-
-    .content-panels {
-        left: 56px;
-        right: 50px;
-
-        top: 200px;
-        bottom: 150px;
-    }
-
-
-    .content-panel-back {
-        left: 9px;
-        top: 9px;
-    }
-
-
-    /* الاتصال */
-
-    .contact-panel {
-        left: 36px;
-        bottom: 30px;
-
-        width: 88px;
-        height: 150px;
-    }
-
-
-    /* العنوان الفرعي */
-
-    .page-subtitle {
-        top: 154px;
-
-        font-size: 21px;
-    }
-
-
-    /* الجملة السفلية */
-
-    .page-footer-note {
-        bottom: 14px;
-
-        font-size: 17px;
+    .a4-page {
+        width: min(650px, 84vw);
     }
 }
 
 
 /* =========================================================
    الموبايل
-   الحجم القديم محفوظ
    ========================================================= */
 
 @media screen and (max-width: 600px) {
 
     body {
         width: 100%;
+
         overflow-x: hidden;
+
         touch-action: manipulation;
     }
 
 
     .page-group {
         width: 100%;
+
         overflow: hidden;
     }
 
 
     .a4-page {
-        width: 90vw;
-        height: 85vh;
+        width: 92vw;
+
+        height: auto;
+
+        aspect-ratio: 210 / 297;
 
         margin: 5px auto;
+    }
 
-        flex-shrink: 0;
+
+    /* الخط الجانبي */
+
+    .a4-page::after {
+        width: 6px;
     }
 
 
     /* المثلثات */
 
     .design-triangle-1 {
-        left: 10px;
-        top: 10px;
+        left: 3.5%;
+        top: 2.5%;
 
-        width: calc(25% - 10px);
-        height: calc(50% - 10px);
+        width: 22%;
+
+        height: 48%;
     }
 
 
     .design-triangle-2 {
-        right: 10px;
-        bottom: 10px;
+        right: 3.5%;
+        bottom: 2.5%;
 
-        width: calc(25% - 10px);
-        height: calc(50% - 10px);
+        width: 22%;
+
+        height: 48%;
     }
 
 
     /* الدوائر */
 
     .brand-circles {
-        top: 25px;
-        right: 14px;
+        top: 5%;
 
-        width: 125px;
-        height: 95px;
+        right: 5%;
+
+        width: 25%;
+
+        height: 19%;
     }
 
 
     .brand-circle-back {
-        width: 70px;
-        height: 70px;
+        width: 74%;
 
-        top: 6px;
-        right: 35px;
+        top: 7%;
+
+        right: 20%;
     }
 
 
     .brand-circle-front {
-        width: 76px;
-        height: 76px;
+        width: 77%;
 
-        top: 0;
-        right: 0;
-
-        padding: 7px;
+        padding: 8%;
     }
 
 
     .logo {
-        font-size: 20px;
+        font-size: clamp(17px, 5vw, 24px);
     }
 
 
     .page-title-circle h1 {
-        font-size: 9px;
+        font-size: clamp(8px, 2.6vw, 12px);
     }
 
 
-    /* المستطيلان */
+    /* المستطيلات */
 
     .content-panels {
-        left: 26px;
-        right: 22px;
+        left: 9%;
 
-        top: 118px;
-        bottom: 88px;
+        right: 7%;
+
+        top: 25%;
+
+        bottom: 19%;
     }
 
 
-    .content-panel-back {
-        left: 7px;
-        top: 7px;
+    .cover-page .content-panels {
+        top: 27%;
+
+        bottom: 20%;
+    }
+
+
+    /* المقدمة */
+
+    .cover-page .cover-intro {
+        width: 94%;
+
+        padding:
+            5% 6%;
+    }
+
+
+    .cover-page .cover-intro h2 {
+        font-size: clamp(17px, 5vw, 22px);
+
+        margin-bottom: 4%;
+    }
+
+
+    .cover-page .cover-intro p {
+        font-size: clamp(10px, 3.2vw, 14px);
+
+        line-height: 1.55;
+
+        margin-bottom: 3%;
     }
 
 
     /* الاتصال */
 
     .contact-panel {
-        left: 14px;
-        bottom: 13px;
+        left: 4.5%;
 
-        width: 68px;
-        height: 118px;
+        bottom: 4%;
 
-        gap: 9px;
+        width: 16%;
 
-        padding: 8px 5px;
+        height: 20%;
+
+        min-width: 55px;
+
+        gap: 7%;
+
+        padding:
+            4% 3%;
     }
 
 
     .contact-item {
-        font-size: 9px;
+        font-size: clamp(7px, 2.5vw, 10px);
     }
 
 
-    .contact-bar {
-        display: none !important;
+    .whatsapp-icon svg {
+        width: 15px;
+
+        height: 15px;
     }
 
 
-    /* العنوان الفرعي */
+    /* العنوان */
 
     .page-subtitle {
-        top: 86px;
+        top: 19.2%;
 
-        font-size: 13px;
+        font-size: clamp(11px, 4vw, 15px);
     }
 
 
-    /* الصور */
+    /* GIF الصفحة 2 */
 
-    .page-2 .userform-card:nth-child(1) {
-        width: 44%;
-
-        top: 6%;
-
-        right: 5%;
+    .page-2 .single-gif .userform-card {
+        width: 84%;
     }
 
 
-    .page-2 .userform-card:nth-child(2) {
-        width: 40%;
+    /* GIF الصفحة 3 */
 
-        bottom: 7%;
-
-        left: 7%;
-    }
-
-
-    .page-3 .userform-card:nth-child(1) {
-        width: 24%;
-
-        top: 4%;
-
-        right: 5%;
-
-        transform: rotate(30deg);
-    }
-
-
-    .page-3 .userform-card:nth-child(2) {
-        width: 24%;
-
-        top: 13%;
-
-        left: 5%;
-
-        transform: rotate(115deg);
-    }
-
-
-    .page-3 .userform-card:nth-child(3) {
-        width: 50%;
-
-        bottom: 4%;
-
-        left: 50%;
-
-        transform:
-            translateX(-50%)
-            rotate(0deg);
-    }
-
-
-    .page-4 .userform-card:nth-child(1) {
-        width: 44%;
-
-        top: 6%;
-
-        right: 5%;
-    }
-
-
-    .page-4 .userform-card:nth-child(2) {
-        width: 40%;
-
-        bottom: 7%;
-
-        left: 7%;
-    }
-
-
-    .page-5 .userform-card:nth-child(1) {
-        width: 24%;
-
-        top: 4%;
-
-        right: 5%;
-
-        transform: rotate(30deg);
-    }
-
-
-    .page-5 .userform-card:nth-child(2) {
-        width: 24%;
-
-        top: 13%;
-
-        left: 5%;
-
-        transform: rotate(115deg);
-    }
-
-
-    .page-5 .userform-card:nth-child(3) {
-        width: 50%;
-
-        bottom: 4%;
-
-        left: 50%;
-
-        transform:
-            translateX(-50%)
-            rotate(0deg);
+    .page-3 .single-gif .userform-card {
+        width: 88%;
     }
 
 
     /* الجملة السفلية */
 
     .page-footer-note {
-        bottom: 7px;
+        bottom: 1.5%;
 
-        font-size: 12px;
+        font-size: clamp(9px, 3.2vw, 12px);
     }
 
 
-    /* الأزرار في صف واحد وتحت الصفحة */
+    /* الصفحة 6 المعكوسة */
+
+    .page-6-reversed .brand-circles {
+        left: 5%;
+
+        right: auto;
+    }
+
+
+    .page-6-reversed .contact-panel {
+        left: auto;
+
+        right: 4.5%;
+    }
+
+
+    .page-6-reversed .content-panels {
+        left: 7%;
+
+        right: 9%;
+    }
+
+
+    .page-6-reversed .design-triangle-1 {
+        left: auto;
+
+        right: 3.5%;
+    }
+
+
+    .page-6-reversed .design-triangle-2 {
+        right: auto;
+
+        left: 3.5%;
+    }
+
+
+    /* =====================================================
+       أزرار الموبايل
+       ===================================================== */
 
     .navigation {
-        width: 100%;
-
-        margin: 8px 0;
-
-        display: flex;
-
-        flex-direction: row;
-
-        flex-wrap: nowrap;
-
-        justify-content: center;
-
-        align-items: center;
+        margin:
+            8px 0 12px;
 
         gap: 6px;
-
-        box-sizing: border-box;
-    }
-
-
-    .navigation > button,
-    .contents-dropdown {
-        flex: 0 0 auto;
     }
 
 
     .navigation button {
-        font-size: 14px;
+        font-size: 12px;
 
-        padding: 7px 9px;
+        padding:
+            7px 10px;
 
-        white-space: nowrap;
+        border-radius: 7px;
     }
 
 
-    .contents-dropdown {
-        display: inline-block;
+    .contents-button {
+        min-width: 82px;
+    }
 
-        position: relative;
+
+    .contents-list {
+        min-width: 100px;
+
+        bottom:
+            calc(100% + 6px);
+    }
+
+
+    .contents-list button {
+        font-size: 12px;
+
+        padding:
+            6px 8px;
     }
 }
 
@@ -1431,6 +1522,7 @@ body {
     .page-flip.flip-next,
     .page-flip.flip-previous {
         animation: none !important;
+
         transform: none !important;
     }
 }
