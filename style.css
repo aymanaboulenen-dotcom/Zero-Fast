@@ -11,9 +11,9 @@ body {
 }
 
 
-/* =========================
+/* =========================================================
    الصفحات
-   ========================= */
+   ========================================================= */
 
 .page-group {
     display: none;
@@ -28,9 +28,9 @@ body {
 }
 
 
-/* =========================
+/* =========================================================
    صفحة A4
-   ========================= */
+   ========================================================= */
 
 .a4-page {
     width: 500px;
@@ -56,9 +56,9 @@ body {
 }
 
 
-/* =========================
+/* =========================================================
    Logo
-   ========================= */
+   ========================================================= */
 
 .logo {
     margin-top: 30px;
@@ -77,9 +77,9 @@ body {
 }
 
 
-/* =========================
+/* =========================================================
    المقدمة
-   ========================= */
+   ========================================================= */
 
 .cover-intro {
     width: 82%;
@@ -101,9 +101,9 @@ body {
 }
 
 
-/* =========================
+/* =========================================================
    الاتصال
-   ========================= */
+   ========================================================= */
 
 .cover-contact {
     position: absolute;
@@ -205,11 +205,12 @@ body {
 
 
 /* =========================================================
-PAGE 2
-ORANGE + NAVY TRIANGLE
-========================================================= */
+   الصفحات 2 و 4
+   خلفية برتقالية
+   ========================================================= */
 
-.page-2 {
+.page-2,
+.page-4 {
     position: relative;
     overflow: hidden;
     background: #F4A261;
@@ -219,26 +220,80 @@ ORANGE + NAVY TRIANGLE
     text-align: center;
 }
 
-/* مثلث كحلي كبير */
-
-.page-2::before {
-    content: "";
-    position: absolute;
-    width: 0;
-    height: 0;
-    border-top: 360px solid #102A43;
-    border-right: 500px solid transparent;
-    left: 0;
-    bottom: 0;
-    z-index: 0;
-}
 
 /* =========================================================
-PAGE 3
-NAVY + ORANGE TRIANGLE
-========================================================= */
+   المثلث الرئيسي - أعلى اليسار
+   ========================================================= */
 
-.page-3 {
+.page-2::before,
+.page-4::before {
+    content: "";
+    position: absolute;
+
+    width: 0;
+    height: 0;
+
+    border-top: 245px solid #102A43;
+    border-right: 370px solid transparent;
+
+    left: 0;
+    top: 0;
+
+    z-index: 0;
+
+    filter: drop-shadow(8px 8px 10px rgba(0, 0, 0, 0.25));
+}
+
+
+/* =========================================================
+   المثلث الصغير - أعلى اليمين
+   ========================================================= */
+
+.page-2::after,
+.page-4::after {
+    content: "";
+    position: absolute;
+
+    width: 0;
+    height: 0;
+
+    border-top: 125px solid #102A43;
+    border-left: 125px solid transparent;
+
+    right: 0;
+    top: 0;
+
+    z-index: 0;
+
+    filter: drop-shadow(-5px 6px 8px rgba(0, 0, 0, 0.22));
+}
+
+
+/* =========================================================
+   المثلث السفلي - الصفحة البرتقالية
+   ========================================================= */
+
+.page-2,
+.page-4 {
+    background:
+        linear-gradient(
+            135deg,
+            transparent 0%,
+            transparent 72%,
+            #102A43 72%,
+            #102A43 100%
+        ),
+        #F4A261;
+}
+
+
+/* =========================================================
+   الصفحات 3 و 5
+   خلفية كحلية
+   ========================================================= */
+
+.page-3,
+.page-5 {
     position: relative;
     overflow: hidden;
     background: #102A43;
@@ -248,46 +303,151 @@ NAVY + ORANGE TRIANGLE
     text-align: center;
 }
 
-/* مثلث برتقالي كبير */
 
-.page-3::before {
+/* =========================================================
+   المثلث الرئيسي - أعلى اليسار
+   ========================================================= */
+
+.page-3::before,
+.page-5::before {
     content: "";
     position: absolute;
+
     width: 0;
     height: 0;
-    border-bottom: 340px solid #F4A261;
-    border-left: 500px solid transparent;
-    right: 0;
+
+    border-top: 245px solid #F4A261;
+    border-right: 370px solid transparent;
+
+    left: 0;
     top: 0;
+
     z-index: 0;
+
+    filter: drop-shadow(8px 8px 10px rgba(0, 0, 0, 0.25));
 }
 
 
 /* =========================================================
-   عنوان الصفحات
+   المثلث الصغير - أعلى اليمين
+   ========================================================= */
+
+.page-3::after,
+.page-5::after {
+    content: "";
+    position: absolute;
+
+    width: 0;
+    height: 0;
+
+    border-top: 125px solid #F4A261;
+    border-left: 125px solid transparent;
+
+    right: 0;
+    top: 0;
+
+    z-index: 0;
+
+    filter: drop-shadow(-5px 6px 8px rgba(0, 0, 0, 0.22));
+}
+
+
+/* =========================================================
+   المثلث السفلي - الصفحة الكحلية
+   ========================================================= */
+
+.page-3,
+.page-5 {
+    background:
+        linear-gradient(
+            135deg,
+            transparent 0%,
+            transparent 72%,
+            #F4A261 72%,
+            #F4A261 100%
+        ),
+        #102A43;
+}
+
+
+/* =========================================================
+   عناوين الصفحات
    ========================================================= */
 
 .page-2 h1,
-.page-3 h1 {
+.page-3 h1,
+.page-4 h1,
+.page-5 h1 {
     position: relative;
     z-index: 20;
+
     margin: 0;
     padding-top: 28px;
+
     font-size: 25px;
+
     font-family: "Times New Roman", serif;
+
     letter-spacing: 1px;
 }
 
 
 /* =========================================================
-   حاوية الصور الجديدة
+   شرح الصفحة تحت العنوان
+   ========================================================= */
+
+.page-subtitle {
+    position: relative;
+
+    z-index: 20;
+
+    margin-top: 8px;
+
+    font-size: 14px;
+
+    line-height: 1.4;
+
+    font-family: "Times New Roman", serif;
+
+    font-weight: bold;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   لون شرح الصفحات البرتقالية
+   ========================================================= */
+
+.page-2 .page-subtitle,
+.page-4 .page-subtitle {
+    color: #102A43;
+}
+
+
+/* =========================================================
+   لون شرح الصفحات الكحلية
+   ========================================================= */
+
+.page-3 .page-subtitle,
+.page-5 .page-subtitle {
+    color: white;
+}
+
+
+/* =========================================================
+   حاوية الصور
    ========================================================= */
 
 .userform-images {
     position: relative;
+
     z-index: 10;
+
     width: 100%;
+
     height: calc(100% - 70px);
+
     margin-top: 10px;
 }
 
@@ -298,7 +458,9 @@ NAVY + ORANGE TRIANGLE
 
 .userform-card {
     position: absolute;
+
     text-align: center;
+
     width: 210px;
 }
 
@@ -309,8 +471,10 @@ NAVY + ORANGE TRIANGLE
 
 .userform-card:nth-child(1) {
     width: 210px;
+
     top: 45px;
     left: 35px;
+
     z-index: 3;
 }
 
@@ -321,8 +485,10 @@ NAVY + ORANGE TRIANGLE
 
 .userform-card:nth-child(2) {
     width: 210px;
+
     top: 200px;
     right: 35px;
+
     z-index: 4;
 }
 
@@ -333,8 +499,10 @@ NAVY + ORANGE TRIANGLE
 
 .userform-card:nth-child(3) {
     width: 190px;
+
     bottom: 45px;
     left: 55px;
+
     z-index: 5;
 }
 
@@ -345,13 +513,21 @@ NAVY + ORANGE TRIANGLE
 
 .userform-image-frame {
     position: relative;
+
     width: 100%;
+
     aspect-ratio: 1 / 1;
+
     box-sizing: border-box;
+
     border: none;
+
     border-radius: 0;
+
     overflow: hidden;
+
     background: white;
+
     margin: 0 auto;
 
     box-shadow:
@@ -366,42 +542,78 @@ NAVY + ORANGE TRIANGLE
 .userform-image-frame img {
     width: 100%;
     height: 100%;
+
     object-fit: contain;
+
     display: block;
 }
 
 
 /* =========================================================
-   شرح الصورة
+   الجملة أسفل الصفحة
    ========================================================= */
 
-.userform-description {
-    position: relative;
+.page-footer-note {
+    position: absolute;
+
+    left: 0;
+    right: 0;
+
+    bottom: 18px;
+
     z-index: 20;
-    margin-top: 10px;
+
     font-size: 14px;
-    line-height: 1.5;
+
     font-family: "Times New Roman", serif;
+
     font-weight: bold;
+
+    text-align: center;
 }
 
 
 /* =========================================================
-   شرح الصفحة الزرقاء
+   لون الجملة في الصفحات البرتقالية
    ========================================================= */
 
-.page-3 .userform-description {
+.page-2 .page-footer-note,
+.page-4 .page-footer-note {
+    color: #102A43;
+}
+
+
+/* =========================================================
+   لون الجملة في الصفحات الكحلية
+   ========================================================= */
+
+.page-3 .page-footer-note,
+.page-5 .page-footer-note {
     color: white;
 }
 
 
 /* =========================================================
-   شرح الصفحة البرتقالية
+   دوران الصورة الأولى
+   يمكن تعديله لاحقًا
    ========================================================= */
 
-.page-2 .userform-description {
-    color: #102A43;
+.page-3 .userform-card:nth-child(1),
+.page-5 .userform-card:nth-child(1) {
+    transform: rotate(45deg);
 }
+
+
+/* =========================================================
+   دوران الصورة الثالثة
+   يمكن تعديله لاحقًا
+   ========================================================= */
+
+.page-3 .userform-card:nth-child(3),
+.page-5 .userform-card:nth-child(3) {
+    transform: rotate(120deg);
+}
+
 
 /* =========================================================
    الكمبيوتر
@@ -414,25 +626,63 @@ NAVY + ORANGE TRIANGLE
         height: 537px;
     }
 
-    /* الصورة الأولى */
+
+    /* =====================================================
+       الصور - الكمبيوتر
+       ===================================================== */
+
     .userform-card:nth-child(1) {
         width: 180px;
-        top: 35px;
+
+        top: 45px;
         left: 22px;
     }
 
-    /* الصورة الثانية */
+
     .userform-card:nth-child(2) {
         width: 180px;
-        top: 170px;
+
+        top: 180px;
         right: 22px;
     }
 
-    /* الصورة الثالثة */
+
     .userform-card:nth-child(3) {
         width: 160px;
-        bottom: 35px;
-        left: 40px;
+
+        bottom: 40px;
+        left: 48px;
+    }
+
+
+    /* =====================================================
+       حجم العناوين
+       ===================================================== */
+
+    .page-2 h1,
+    .page-3 h1,
+    .page-4 h1,
+    .page-5 h1 {
+        font-size: 25px;
+    }
+
+
+    /* =====================================================
+       شرح الصفحة
+       ===================================================== */
+
+    .page-subtitle {
+        font-size: 14px;
+    }
+
+
+    /* =====================================================
+       الجملة السفلية
+       ===================================================== */
+
+    .page-footer-note {
+        font-size: 14px;
+        bottom: 18px;
     }
 
 }
@@ -446,105 +696,28 @@ NAVY + ORANGE TRIANGLE
 
     body {
         width: 100%;
+
         overflow-x: hidden;
+
         touch-action: manipulation;
     }
 
+
     .page-group {
         width: 100%;
+
         overflow: hidden;
     }
 
+
     .a4-page {
         width: 90vw;
+
         height: 85vh;
+
         margin: 5px auto;
+
         flex-shrink: 0;
-    }
-
-
-    /* =========================
-       الغلاف
-       ========================= */
-
-    .cover-page {
-        padding: 0;
-    }
-
-
-    /* =========================
-       اللوجو
-       ========================= */
-
-    .logo {
-        margin-top: 25px;
-        font-size: 40px;
-    }
-
-
-    /* =========================
-       المقدمة
-       ========================= */
-
-    .cover-intro {
-        width: 84%;
-        margin-top: 55px;
-    }
-
-    .cover-intro h2 {
-        font-size: 20px;
-        margin-bottom: 22px;
-    }
-
-    .cover-intro p {
-        font-size: 14px;
-        line-height: 1.7;
-        margin-bottom: 17px;
-    }
-
-
-    /* =========================
-       الاتصال
-       ========================= */
-
-    .cover-contact {
-        left: 15px;
-        bottom: 18px;
-        gap: 8px;
-    }
-
-    .contact-item {
-        font-size: 16px;
-    }
-
-
-    /* =========================
-       أزرار التنقل
-       ========================= */
-
-    .navigation {
-        width: 100%;
-        box-sizing: border-box;
-        justify-content: center;
-        gap: 8px;
-        margin: 10px 0;
-    }
-
-    .navigation button {
-        font-size: 16px;
-        padding: 8px 12px;
-    }
-
-
-    /* =========================
-       القائمة
-       ========================= */
-
-    .contents-list {
-        width: 150px;
-        bottom: calc(100% + 8px);
-        left: 50%;
-        transform: translateX(-50%);
     }
 
 
@@ -553,56 +726,120 @@ NAVY + ORANGE TRIANGLE
        ===================================================== */
 
     .page-2,
-    .page-3 {
+    .page-3,
+    .page-4,
+    .page-5 {
         padding: 0;
     }
 
 
+    /* =====================================================
+       العنوان
+       ===================================================== */
+
     .page-2 h1,
-    .page-3 h1 {
+    .page-3 h1,
+    .page-4 h1,
+    .page-5 h1 {
+
         font-size: 20px;
+
         padding-top: 22px;
+
         margin-bottom: 0;
     }
 
 
+    /* =====================================================
+       شرح الصفحة
+       ===================================================== */
+
+    .page-subtitle {
+        font-size: 14px;
+
+        margin-top: 6px;
+    }
+
+
+    /* =====================================================
+       حاوية الصور
+       ===================================================== */
+
     .userform-images {
+
         height: calc(100% - 60px);
+
         margin-top: 5px;
     }
 
 
-    /* =========================
+    /* =====================================================
        الصورة الأولى
-       ========================= */
+       ===================================================== */
 
     .userform-card:nth-child(1) {
+
         width: 62%;
+
         top: 35px;
+
         left: 5%;
     }
 
 
-    /* =========================
+    /* =====================================================
        الصورة الثانية
-       ========================= */
+       ===================================================== */
 
     .userform-card:nth-child(2) {
-        width: 58%;
-        top: 155px;
+
+        width: 62%;
+
+        top: 165px;
+
         right: 4%;
     }
 
 
-    /* =========================
+    /* =====================================================
        الصورة الثالثة
-       ========================= */
+       ===================================================== */
 
     .userform-card:nth-child(3) {
+
         width: 52%;
+
         bottom: 45px;
+
         left: 12%;
     }
 
-    
+
+    /* =====================================================
+       الجملة السفلية
+       ===================================================== */
+
+    .page-footer-note {
+
+        font-size: 14px;
+
+        bottom: 15px;
+    }
+
+
+    /* =====================================================
+       دوران الصور في الموبايل
+       ===================================================== */
+
+    .page-3 .userform-card:nth-child(1),
+    .page-5 .userform-card:nth-child(1) {
+        transform: rotate(45deg);
+    }
+
+
+    .page-3 .userform-card:nth-child(3),
+    .page-5 .userform-card:nth-child(3) {
+        transform: rotate(120deg);
+    }
+
 }
