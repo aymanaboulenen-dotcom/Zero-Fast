@@ -10,22 +10,15 @@ body {
     max-width: 100%;
     overflow-x: hidden;
     overscroll-behavior-x: none;
-
     background: #cfcfcf;
-
     font-family: "Times New Roman", serif;
+    box-sizing: border-box;
 }
 
-
-/* =========================================================
-   الألوان
-   ========================================================= */
-
-:root {
-    --navy: #102A43;
-    --orange: #F4A261;
-    --white: #ffffff;
-    --shadow: rgba(0, 0, 0, 0.25);
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
 }
 
 
@@ -41,7 +34,7 @@ body {
 .page-group.active {
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    width: 100%;
 }
 
 
@@ -51,1139 +44,505 @@ body {
 
 .a4-page {
     position: relative;
-
-    width: min(820px, 94vw);
-
-    aspect-ratio: 210 / 297;
-
+    width: 500px;
+    height: 707px;
+    flex: 0 0 500px;
     margin: 10px auto;
-
-    box-sizing: border-box;
-
-    flex-shrink: 0;
-
     overflow: hidden;
-
-    box-shadow:
-        0 8px 22px rgba(0, 0, 0, 0.22);
+    background: white;
 }
 
 
 /* =========================================================
-   العمود الجانبي الرئيسي
+   الصفحة الأولى
    ========================================================= */
 
-.a4-page::after {
-    content: "";
-
-    position: absolute;
-
-    left: 0;
-    top: 0;
-
-    width: 8.5%;
-    height: 100%;
-
-    background: var(--navy);
-
-    box-shadow:
-        4px 0 10px rgba(0, 0, 0, 0.20);
-
-    z-index: 15;
-
-    pointer-events: none;
+.cover-page {
+    background: #102A43;
+    color: white;
 }
 
 
 /* =========================================================
-   حركة تقليب الصفحات
-   ========================================================= */
-
-.page-flip {
-    position: relative;
-
-    transform-style: preserve-3d;
-
-    backface-visibility: hidden;
-
-    will-change: transform, opacity;
-}
-
-.page-flip.flip-next {
-    animation: pageFlipNext 0.70s ease-out both;
-    transform-origin: left center;
-}
-
-.page-flip.flip-previous {
-    animation: pageFlipPrevious 0.70s ease-out both;
-    transform-origin: right center;
-}
-
-
-@keyframes pageFlipNext {
-
-    0% {
-        transform:
-            perspective(1400px)
-            rotateY(65deg)
-            translateX(7%);
-
-        opacity: 0.30;
-
-        filter: brightness(0.80);
-    }
-
-    40% {
-        transform:
-            perspective(1400px)
-            rotateY(26deg)
-            translateX(3%);
-
-        opacity: 0.78;
-
-        filter: brightness(0.91);
-    }
-
-    100% {
-        transform:
-            perspective(1400px)
-            rotateY(0deg)
-            translateX(0);
-
-        opacity: 1;
-
-        filter: brightness(1);
-    }
-}
-
-
-@keyframes pageFlipPrevious {
-
-    0% {
-        transform:
-            perspective(1400px)
-            rotateY(-65deg)
-            translateX(-7%);
-
-        opacity: 0.30;
-
-        filter: brightness(0.80);
-    }
-
-    40% {
-        transform:
-            perspective(1400px)
-            rotateY(-26deg)
-            translateX(-3%);
-
-        opacity: 0.78;
-
-        filter: brightness(0.91);
-    }
-
-    100% {
-        transform:
-            perspective(1400px)
-            rotateY(0deg)
-            translateX(0);
-
-        opacity: 1;
-
-        filter: brightness(1);
-    }
-}
-
-
-/* =========================================================
-   المثلثات
+   الأشكال الهندسية
    ========================================================= */
 
 .design-triangle {
     position: absolute;
-
-    z-index: 4;
-
     pointer-events: none;
-
-    filter:
-        drop-shadow(
-            5px 6px 8px rgba(0, 0, 0, 0.25)
-        );
+    z-index: 1;
 }
-
-
-/* =========================================================
-   المثلث العلوي
-   يلتصق بالعمود
-   ========================================================= */
 
 .design-triangle-1 {
-    left: 8.5%;
-    top: 2.5%;
-
-    width: 21%;
-    height: 48%;
-
-    background: var(--navy);
-
-    clip-path: polygon(
-        0 0,
-        100% 0,
-        0 100%
-    );
+    width: 150px;
+    height: 150px;
+    left: -75px;
+    bottom: -75px;
+    background: #F4A261;
+    transform: rotate(45deg);
 }
-
-
-/* =========================================================
-   المثلث السفلي
-   يلتصق بالعمود
-   ========================================================= */
 
 .design-triangle-2 {
-    left: 8.5%;
-    bottom: 2.5%;
-
-    width: 21%;
-    height: 48%;
-
-    background: var(--navy);
-
-    clip-path: polygon(
-        0 0,
-        100% 100%,
-        0 100%
-    );
+    width: 120px;
+    height: 120px;
+    right: -60px;
+    top: -60px;
+    background: #102A43;
+    transform: rotate(45deg);
 }
 
 
 /* =========================================================
-   الصفحات البرتقالية
-   ========================================================= */
-
-#page1,
-.page-3,
-.page-5 {
-    background: var(--orange);
-    color: var(--navy);
-}
-
-
-#page1 .design-triangle-1,
-#page1 .design-triangle-2,
-.page-3 .design-triangle-1,
-.page-3 .design-triangle-2,
-.page-5 .design-triangle-1,
-.page-5 .design-triangle-2 {
-    background: var(--navy);
-}
-
-
-/* =========================================================
-   الصفحات الكحلية
-   ========================================================= */
-
-.page-2,
-.page-4,
-.page-6 {
-    background: var(--navy);
-    color: white;
-}
-
-
-.page-2 .design-triangle-1,
-.page-2 .design-triangle-2,
-.page-4 .design-triangle-1,
-.page-4 .design-triangle-2,
-.page-6 .design-triangle-1,
-.page-6 .design-triangle-2 {
-    background: var(--orange);
-}
-
-
-/* =========================================================
-   الصفحة 6 معكوسة
-   ========================================================= */
-
-.page-6-reversed {
-    direction: rtl;
-}
-
-
-/* العمود ينتقل لليمين */
-
-.page-6-reversed::after {
-    left: auto;
-    right: 0;
-
-    box-shadow:
-        -4px 0 10px rgba(0, 0, 0, 0.20);
-}
-
-
-/* المثلثات */
-
-.page-6-reversed .design-triangle-1 {
-    left: auto;
-    right: 8.5%;
-
-    clip-path: polygon(
-        100% 0,
-        0 0,
-        100% 100%
-    );
-}
-
-
-.page-6-reversed .design-triangle-2 {
-    left: auto;
-    right: 8.5%;
-
-    clip-path: polygon(
-        100% 0,
-        0 100%,
-        100% 100%
-    );
-}
-
-
-/* =========================================================
-   الدوائر
+   دوائر الشعار
    ========================================================= */
 
 .brand-circles {
     position: absolute;
-
-    top: 5.5%;
-
-    left: 8.5%;
-
-    width: 25%;
-    height: 19%;
-
-    z-index: 25;
-}
-
-
-/* =========================================================
-   الدائرة الخلفية
-   ========================================================= */
-
-.brand-circle-back {
-    position: absolute;
-
-    width: 74%;
-
-    aspect-ratio: 1 / 1;
-
-    top: 7%;
-
-    left: 20%;
-
-    border-radius: 50%;
-
-    background:
-        rgba(244, 162, 97, 0.38);
-
-    box-shadow:
-        6px 7px 13px var(--shadow);
-}
-
-
-/* =========================================================
-   الدائرة الأمامية
-   ========================================================= */
-
-.brand-circle-front {
-    position: absolute;
-
-    width: 77%;
-
-    aspect-ratio: 1 / 1;
-
-    top: 0;
-
-    left: 0;
-
-    border-radius: 50%;
-
-    background: var(--navy);
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    box-shadow:
-        7px 9px 16px var(--shadow);
-
-    box-sizing: border-box;
-
-    padding: 10%;
-}
-
-
-/* =========================================================
-   دوائر الصفحات الكحلية
-   ========================================================= */
-
-.page-2 .brand-circle-front,
-.page-4 .brand-circle-front,
-.page-6 .brand-circle-front {
-    background: var(--orange);
-}
-
-
-.page-2 .brand-circle-back,
-.page-4 .brand-circle-back,
-.page-6 .brand-circle-back {
-    background:
-        rgba(16, 42, 67, 0.42);
-}
-
-
-/* =========================================================
-   الصفحة 6 - الدوائر يمين
-   ========================================================= */
-
-.page-6-reversed .brand-circles {
-    left: auto;
-    right: 8.5%;
-}
-
-
-.page-6-reversed .brand-circle-back {
-    left: auto;
-    right: 20%;
-}
-
-
-.page-6-reversed .brand-circle-front {
-    left: auto;
-    right: 0;
-}
-
-
-/* =========================================================
-   شعار Zero Fast
-   ========================================================= */
-
-.logo {
-    width: 100%;
-
-    text-align: center;
-
-    font-size: clamp(24px, 4vw, 38px);
-
-    font-weight: bold;
-
-    line-height: 1.05;
-}
-
-
-.logo-zero {
-    color: white;
-}
-
-
-.logo-fast {
-    color: var(--orange);
-}
-
-
-/* الصفحات البرتقالية */
-
-#page1 .logo-zero,
-.page-3 .logo-zero,
-.page-5 .logo-zero {
-    color: var(--navy);
-}
-
-
-#page1 .logo-fast,
-.page-3 .logo-fast,
-.page-5 .logo-fast {
-    color: white;
-}
-
-
-/* =========================================================
-   مستطيلات المحتوى
-   ========================================================= */
-
-.content-panels {
-    position: absolute;
-
-    left: 13%;
-    right: 8%;
-
-    top: 25%;
-    bottom: 19%;
-
+    top: 28px;
+    left: 28px;
+    width: 125px;
+    height: 125px;
     z-index: 10;
 }
 
-
-/* =========================================================
-   المستطيل الخلفي
-   ========================================================= */
-
-.content-panel-back {
+.brand-circle {
     position: absolute;
-
-    left: 1.5%;
-    top: 1.5%;
-
-    width: 100%;
-    height: 100%;
-
-    background: var(--navy);
-
-    box-shadow:
-        6px 8px 14px var(--shadow);
+    width: 105px;
+    height: 105px;
+    border-radius: 50%;
 }
 
+.brand-circle-back {
+    top: 10px;
+    left: 10px;
+    background: #F4A261;
+}
 
-/* =========================================================
-   المستطيل الأمامي
-   ========================================================= */
-
-.content-panel-front {
-    position: absolute;
-
-    left: 0;
+.brand-circle-front {
     top: 0;
-
-    width: 100%;
-    height: 100%;
-
-    background: var(--orange);
-
-    border:
-        2px solid rgba(16, 42, 67, 0.25);
-
-    box-shadow:
-        0 8px 18px var(--shadow);
-
-    overflow: hidden;
-}
-
-
-/* =========================================================
-   الصفحات الكحلية
-   ========================================================= */
-
-.page-2 .content-panel-back,
-.page-4 .content-panel-back,
-.page-6 .content-panel-back {
-    background: var(--orange);
-}
-
-
-.page-2 .content-panel-front,
-.page-4 .content-panel-front,
-.page-6 .content-panel-front {
-    background: var(--navy);
-
-    border-color:
-        rgba(244, 162, 97, 0.40);
-}
-
-
-/* =========================================================
-   الصفحة 6 - المحتوى إلى اليمين
-   ========================================================= */
-
-.page-6-reversed .content-panels {
-    left: 8%;
-    right: 13%;
-
-    direction: ltr;
-}
-
-
-/* =========================================================
-   الصفحة 1 - المقدمة
-   ========================================================= */
-
-.cover-page .content-panels {
-    top: 27%;
-    bottom: 20%;
-}
-
-
-.cover-page .cover-intro {
-    width: 94%;
-
-    height: 100%;
-
-    margin: 0 auto;
-
-    padding:
-        5% 6%;
-
-    box-sizing: border-box;
-
-    direction: rtl;
-
-    text-align: right;
-
-    overflow: hidden;
-}
-
-
-.cover-page .cover-intro h2 {
-    color: white;
-
-    font-size:
-        clamp(20px, 3.2vw, 27px);
-
-    text-align: center;
-
-    margin:
-        0 0 4%;
-}
-
-
-.cover-page .cover-intro p {
-    color: white;
-
-    font-size:
-        clamp(13px, 2vw, 17px);
-
-    line-height: 1.65;
-
-    margin:
-        0 0 3.5%;
-}
-
-
-/* =========================================================
-   مستطيل الاتصال
-   نصفه داخل العمود
-   ونصفه داخل الصفحة
-   ========================================================= */
-
-.contact-panel {
-    position: absolute;
-
-    left: 2.8%;
-
-    bottom: 4%;
-
-    width: 13%;
-
-    height: 20%;
-
-    min-width: 90px;
-
-    box-sizing: border-box;
-
-    background: var(--navy);
-
-    border:
-        2px solid var(--orange);
-
-    box-shadow:
-        7px 9px 16px var(--shadow);
-
-    z-index: 40;
-
+    left: 0;
+    background: #102A43;
+    border: 2px solid #F4A261;
     display: flex;
-
-    flex-direction: column;
-
     align-items: center;
-
     justify-content: center;
+}
 
-    gap: 10%;
 
-    padding: 5% 4%;
+/* =========================================================
+   الشعار
+   ========================================================= */
 
+.logo {
     direction: ltr;
-}
-
-
-/* =========================================================
-   اتصال الصفحة 6
-   ========================================================= */
-
-.page-6-reversed .contact-panel {
-    left: auto;
-
-    right: 2.8%;
-}
-
-
-/* =========================================================
-   الصفحات الكحلية
-   ========================================================= */
-
-.page-2 .contact-panel,
-.page-4 .contact-panel,
-.page-6 .contact-panel {
-    background: var(--orange);
-
-    border-color: var(--navy);
-}
-
-
-/* =========================================================
-   عناصر الاتصال
-   ========================================================= */
-
-.contact-item {
     display: flex;
-
     flex-direction: column;
-
     align-items: center;
-
-    justify-content: center;
-
-    gap: 4px;
-
-    color: white;
-
-    font-size:
-        clamp(10px, 1.8vw, 14px);
-
+    line-height: 0.82;
     font-weight: bold;
-
-    text-align: center;
+    letter-spacing: -1px;
 }
 
-
-.page-2 .contact-item,
-.page-4 .contact-item,
-.page-6 .contact-item {
-    color: var(--navy);
+.logo-zero {
+    color: white;
+    font-size: 27px;
 }
 
-
-.contact-icon,
-.whatsapp-icon {
-    color: var(--orange);
-}
-
-
-.page-2 .contact-icon,
-.page-2 .whatsapp-icon,
-.page-4 .contact-icon,
-.page-4 .whatsapp-icon,
-.page-6 .contact-icon,
-.page-6 .whatsapp-icon {
-    color: var(--navy);
-}
-
-
-.whatsapp-icon {
-    display: flex;
-
-    align-items: center;
-}
-
-
-.whatsapp-icon svg {
-    width:
-        clamp(16px, 2.5vw, 22px);
-
-    height:
-        clamp(16px, 2.5vw, 22px);
-
-    fill: currentColor;
+.logo-fast {
+    color: #F4A261;
+    font-size: 27px;
 }
 
 
 /* =========================================================
-   العنوان داخل الدائرة
+   عنوان الصفحة داخل الدائرة
    ========================================================= */
 
 .page-title-circle {
     width: 100%;
-
-    direction: rtl;
-
     text-align: center;
 }
-
 
 .page-title-circle h1 {
     margin: 0;
-
-    font-size:
-        clamp(11px, 2.1vw, 18px);
-
-    line-height: 1.25;
-
-    font-weight: bold;
-
+    padding: 0 5px;
     color: white;
-}
-
-
-.page-2 .page-title-circle h1,
-.page-4 .page-title-circle h1,
-.page-6 .page-title-circle h1 {
-    color: var(--navy);
+    font-size: 20px;
+    line-height: 1.2;
+    font-weight: bold;
 }
 
 
 /* =========================================================
-   العنوان الفرعي
+   لوحات المحتوى
    ========================================================= */
 
-.page-subtitle {
+.content-panels {
     position: absolute;
+    top: 115px;
+    right: 25px;
+    left: 25px;
+    bottom: 55px;
+    z-index: 3;
+}
 
-    left: 0;
+.content-panel {
+    position: absolute;
+    border-radius: 0;
+}
+
+.content-panel-back {
+    top: 8px;
+    right: 8px;
+    width: 100%;
+    height: 100%;
+    background: #F4A261;
+}
+
+.content-panel-front {
+    top: 0;
     right: 0;
-
-    top: 19.2%;
-
-    z-index: 30;
-
-    font-size:
-        clamp(15px, 2.8vw, 22px);
-
-    line-height: 1.3;
-
-    font-weight: bold;
-
-    text-align: center;
-}
-
-
-#page2 .page-subtitle,
-#page4 .page-subtitle {
-    color: white;
-}
-
-
-.page-3 .page-subtitle,
-.page-5 .page-subtitle {
-    color: var(--navy);
+    width: 100%;
+    height: 100%;
+    background: white;
+    border: 1px solid #102A43;
+    overflow: hidden;
 }
 
 
 /* =========================================================
-   الصور
+   الصفحة الأولى - GIF
+   ========================================================= */
+
+.page1-gif {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+}
+
+.page1-gif .userform-card {
+    width: 100%;
+    height: 100%;
+}
+
+
+/* =========================================================
+   الصور العامة
    ========================================================= */
 
 .userform-images {
     position: relative;
-
     width: 100%;
     height: 100%;
-
-    margin: 0;
 }
-
 
 .userform-card {
     position: absolute;
-
-    z-index: 10;
-
-    text-align: center;
 }
-
 
 .userform-image-frame {
-    position: relative;
-
     width: 100%;
-
-    aspect-ratio: 1 / 1;
-
-    box-sizing: border-box;
-
+    height: 100%;
     overflow: hidden;
-
     background: white;
-
-    box-shadow:
-        0 7px 15px rgba(0, 0, 0, 0.22);
 }
-
 
 .userform-image-frame img {
     display: block;
-
     width: 100%;
     height: 100%;
-
     object-fit: contain;
 }
 
 
 /* =========================================================
-   GIF الصفحة 2
+   المقدمة
    ========================================================= */
 
-.page-2 .single-gif {
-    display: flex;
+.cover-intro {
+    width: 100%;
+    height: 100%;
+    padding: 38px 35px;
+    color: #102A43;
+    direction: rtl;
+    text-align: right;
+}
 
-    align-items: center;
+.cover-intro p {
+    margin: 0 0 24px;
+    font-size: 17px;
+    line-height: 1.9;
+}
 
-    justify-content: center;
+.cover-intro strong {
+    color: #102A43;
+}
 
+
+/* =========================================================
+   صفحة 3
+   ========================================================= */
+
+.page3-gifs {
     width: 100%;
     height: 100%;
 }
 
+.page3-gif-1 {
+    top: 30px;
+    right: 35px;
+    width: 180px;
+    height: 180px;
+}
 
-.page-2 .single-gif .userform-card {
-    position: relative;
-
-    width: 82%;
-
-    max-width: 100%;
-
-    top: auto;
-    right: auto;
-    bottom: auto;
-    left: auto;
+.page3-gif-2 {
+    bottom: 35px;
+    left: 35px;
+    width: 180px;
+    height: 180px;
 }
 
 
 /* =========================================================
-   GIF الصفحة 3
+   النصوص السفلية
    ========================================================= */
 
-.page-3 .single-gif {
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
+.page-subtitle {
+    position: absolute;
+    bottom: 29px;
+    left: 0;
     width: 100%;
-    height: 100%;
+    text-align: center;
+    color: #102A43;
+    font-size: 16px;
+    font-weight: bold;
+    z-index: 8;
 }
-
-
-.page-3 .single-gif .userform-card {
-    position: relative;
-
-    width: 86%;
-
-    max-width: 100%;
-
-    top: auto;
-    right: auto;
-    bottom: auto;
-    left: auto;
-}
-
-
-/* =========================================================
-   الصفحة 4
-   ========================================================= */
-
-.page-4 .userform-images {
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-}
-
-
-/* =========================================================
-   الصفحة 5
-   ========================================================= */
-
-.page-5 .userform-images {
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-}
-
-
-/* =========================================================
-   الجملة السفلية
-   ========================================================= */
 
 .page-footer-note {
     position: absolute;
-
+    bottom: 10px;
     left: 0;
-    right: 0;
-
-    bottom: 1.6%;
-
-    z-index: 40;
-
-    font-size:
-        clamp(12px, 2.3vw, 17px);
-
-    font-weight: bold;
-
+    width: 100%;
     text-align: center;
-}
-
-
-#page2 .page-footer-note,
-#page4 .page-footer-note {
-    color: white;
-}
-
-
-.page-3 .page-footer-note,
-.page-5 .page-footer-note {
-    color: var(--navy);
+    color: #102A43;
+    font-size: 11px;
+    z-index: 8;
 }
 
 
 /* =========================================================
-   الصفحة 6 - النص
+   صفحة 4
    ========================================================= */
 
-.page-6 .cover-intro {
-    width: 94%;
-
+.page4-images {
+    width: 100%;
     height: 100%;
+}
 
-    margin: 0 auto;
+.page4-main-gif {
+    top: 20px;
+    right: 30px;
+    width: 440px;
+    height: 245px;
+}
 
-    padding:
-        5% 6%;
+.page4-static-image {
+    bottom: 75px;
+    right: 145px;
+    width: 210px;
+    height: 145px;
+}
 
-    box-sizing: border-box;
-
+.page4-description {
+    position: absolute;
+    bottom: 10px;
+    right: 25px;
+    left: 25px;
+    text-align: center;
     direction: rtl;
+}
 
-    text-align: right;
+.page4-description p {
+    margin: 0;
+    color: #102A43;
+    font-size: 13px;
+    line-height: 1.5;
+}
 
+
+/* =========================================================
+   صفحة 5
+   ========================================================= */
+
+.page5-images {
+    width: 100%;
+    height: 100%;
+}
+
+.page5-image-1 {
+    top: 25px;
+    right: 25px;
+    width: 185px;
+    height: 185px;
+}
+
+.page5-image-2 {
+    top: 25px;
+    left: 25px;
+    width: 185px;
+    height: 185px;
+}
+
+.page5-image-3 {
+    top: 235px;
+    right: 145px;
+    width: 185px;
+    height: 185px;
+}
+
+.page5-description {
+    position: absolute;
+    right: 25px;
+    left: 25px;
+    bottom: 20px;
+    text-align: center;
+    direction: rtl;
+}
+
+.page5-description p {
+    margin: 0;
+    color: #102A43;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   صفحة 6
+   ========================================================= */
+
+.page-6 {
+    background: white;
+    color: #102A43;
+}
+
+.page-6 .brand-circle-front {
+    background: #102A43;
+}
+
+.page-6 .content-panel-front {
+    background: white;
+}
+
+.page-6 .cover-intro {
+    padding-top: 25px;
+}
+
+.page-6 .cover-intro h2 {
+    margin: 0 0 18px;
+    text-align: center;
+    color: #102A43;
+    font-size: 22px;
+}
+
+.page6-gif {
+    width: 190px;
+    height: 150px;
+    margin: 0 auto 20px;
     overflow: hidden;
 }
 
-
-.page-6 .cover-intro h2 {
-    color: var(--navy);
-
-    font-size:
-        clamp(19px, 3.2vw, 27px);
-
-    text-align: center;
-
-    margin:
-        0 0 4%;
+.page6-gif img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
 }
-
 
 .page-6 .cover-intro p {
-    color: white;
-
-    font-size:
-        clamp(13px, 2vw, 17px);
-
-    line-height: 1.55;
-
-    margin:
-        0 0 3%;
+    margin: 0 0 10px;
+    font-size: 16px;
+    line-height: 1.45;
+    font-weight: bold;
 }
 
 
 /* =========================================================
-   إخفاء القديم
+   الاتصال
    ========================================================= */
 
-.userform-description,
-.cover-contact,
-.contact-bar {
-    display: none !important;
+.contact-panel {
+    position: absolute;
+    bottom: 15px;
+    left: 20px;
+    z-index: 20;
+    direction: ltr;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: 5px;
+    color: #102A43;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.cover-page .contact-item,
+.page-6 .contact-item {
+    color: white;
+}
+
+.contact-icon {
+    font-size: 15px;
+}
+
+.whatsapp-icon {
+    width: 15px;
+    height: 15px;
+    display: inline-flex;
+}
+
+.whatsapp-icon svg {
+    width: 100%;
+    height: 100%;
+    fill: currentColor;
 }
 
 
 /* =========================================================
-   أزرار التنقل
+   Navigation
    ========================================================= */
 
 .navigation {
     width: 100%;
-
-    margin:
-        12px 0 18px;
-
     display: flex;
-
-    flex-direction: row;
-
     justify-content: center;
-
     align-items: center;
-
     gap: 10px;
-
-    box-sizing: border-box;
-
+    padding: 10px 0 20px;
     direction: ltr;
 }
 
-
-.navigation > button,
-.contents-dropdown {
-    flex: 0 0 auto;
-}
-
-
 .navigation button {
-    border: 2px solid var(--navy);
-
-    border-radius: 8px;
-
-    background: var(--orange);
-
-    color: var(--navy);
-
-    font-family:
-        "Times New Roman",
-        serif;
-
-    font-size: 15px;
-
-    font-weight: bold;
-
-    padding:
-        9px 18px;
-
+    border: none;
+    background: #102A43;
+    color: white;
+    padding: 8px 18px;
+    font-family: "Times New Roman", serif;
+    font-size: 14px;
     cursor: pointer;
-
-    box-shadow:
-        0 3px 8px rgba(0, 0, 0, 0.20);
-
-    transition:
-        transform 0.2s ease,
-        background 0.2s ease,
-        color 0.2s ease,
-        box-shadow 0.2s ease;
+    border-radius: 3px;
 }
-
 
 .navigation button:hover {
-    background: var(--navy);
-
-    color: white;
-
-    transform:
-        translateY(-1px);
-
-    box-shadow:
-        0 5px 10px rgba(0, 0, 0, 0.22);
-}
-
-
-.navigation button:active {
-    transform:
-        translateY(1px);
-
-    box-shadow:
-        0 2px 5px rgba(0, 0, 0, 0.14);
+    background: #F4A261;
+    color: #102A43;
 }
 
 
@@ -1192,464 +551,159 @@ body {
    ========================================================= */
 
 .contents-dropdown {
-    display: inline-block;
-
     position: relative;
 }
 
-
 .contents-button {
-    min-width: 110px;
+    min-width: 90px;
 }
-
-
-/* =========================================================
-   قائمة المحتويات
-   ========================================================= */
 
 .contents-list {
     display: none;
-
     position: absolute;
-
+    bottom: 100%;
     left: 50%;
-
-    bottom:
-        calc(100% + 8px);
-
-    transform:
-        translateX(-50%);
-
-    min-width: 130px;
-
-    padding: 6px;
-
+    transform: translateX(-50%);
+    min-width: 110px;
     background: white;
-
-    border:
-        2px solid var(--navy);
-
-    border-radius: 8px;
-
-    box-shadow:
-        0 7px 18px rgba(0, 0, 0, 0.22);
-
-    z-index: 200;
+    border: 1px solid #102A43;
+    z-index: 1000;
+    direction: ltr;
 }
-
 
 .contents-list button {
     display: block;
-
     width: 100%;
-
-    margin: 2px 0;
-
-    padding:
-        7px 10px;
-
-    background: var(--orange);
-
-    color: var(--navy);
-
-    border:
-        1px solid var(--navy);
-
-    border-radius: 6px;
-
-    box-shadow: none;
-
-    font-size: 14px;
+    background: white;
+    color: #102A43;
+    border-radius: 0;
+    border-bottom: 1px solid #ddd;
+    padding: 7px 10px;
 }
 
-
-.contents-list button:hover {
-    background: var(--navy);
-
-    color: white;
-
-    transform: none;
+.contents-list button:last-child {
+    border-bottom: none;
 }
 
 
 /* =========================================================
-   شاشات كبيرة
+   حركة تقليب الصفحات
    ========================================================= */
 
-@media screen and (min-width: 1200px) {
+.page-flip {
+    transform-origin: center center;
+    backface-visibility: hidden;
+}
 
-    .a4-page {
-        width: min(900px, 94vw);
+.flip-next {
+    animation: pageFlipNext 0.45s ease;
+}
+
+.flip-previous {
+    animation: pageFlipPrevious 0.45s ease;
+}
+
+@keyframes pageFlipNext {
+
+    0% {
+        opacity: 0;
+        transform: perspective(900px)
+                   rotateY(-12deg)
+                   scale(0.98);
     }
 
-    .navigation button {
-        font-size: 16px;
-
-        padding:
-            10px 22px;
+    100% {
+        opacity: 1;
+        transform: perspective(900px)
+                   rotateY(0)
+                   scale(1);
     }
+
+}
+
+@keyframes pageFlipPrevious {
+
+    0% {
+        opacity: 0;
+        transform: perspective(900px)
+                   rotateY(12deg)
+                   scale(0.98);
+    }
+
+    100% {
+        opacity: 1;
+        transform: perspective(900px)
+                   rotateY(0)
+                   scale(1);
+    }
+
 }
 
 
 /* =========================================================
-   شاشات متوسطة
+   Mobile
    ========================================================= */
 
-@media screen and (min-width: 601px) and (max-width: 1199px) {
-
-    .a4-page {
-        width: min(780px, 94vw);
-    }
-}
-
-
-/* =========================================================
-   الموبايل
-   تكبير الصفحة
-   ========================================================= */
-
-@media screen and (max-width: 600px) {
+@media (max-width: 600px) {
 
     body {
-        width: 100%;
-
-        overflow-x: hidden;
-
-        touch-action: manipulation;
+        background: #cfcfcf;
     }
-
 
     .page-group {
         width: 100%;
-
-        overflow: hidden;
     }
 
-
-    /* =====================================================
-       صفحة A4
-       ===================================================== */
+    .page-group.active {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
 
     .a4-page {
-        width: 100vw;
-
-        height: auto;
-
-        aspect-ratio: 210 / 297;
-
-        margin:
-            3px auto;
-
-        box-sizing: border-box;
+        width: min(575px, calc(100vw - 10px));
+        height: calc(min(575px, calc(100vw - 10px)) * 1.414);
+        max-height: none;
+        flex: 0 0 auto;
+        margin: 5px auto;
     }
-
-
-    /* =====================================================
-       العمود
-       ===================================================== */
-
-    .a4-page::after {
-        width: 8.5%;
-    }
-
-
-    /* =====================================================
-       المثلثات
-       ===================================================== */
-
-    .design-triangle-1 {
-        left: 8.5%;
-
-        top: 2.5%;
-
-        width: 22%;
-
-        height: 48%;
-    }
-
-
-    .design-triangle-2 {
-        left: 8.5%;
-
-        right: auto;
-
-        bottom: 2.5%;
-
-        width: 22%;
-
-        height: 48%;
-    }
-
-
-    /* =====================================================
-       الدوائر
-       ===================================================== */
 
     .brand-circles {
-        top: 5%;
-
-        left: 8.5%;
-
-        width: 25%;
-
-        height: 19%;
+        transform: scale(1.08);
+        transform-origin: top left;
     }
-
-
-    .brand-circle-back {
-        width: 74%;
-
-        top: 7%;
-
-        left: 20%;
-    }
-
-
-    .brand-circle-front {
-        width: 77%;
-
-        padding: 8%;
-    }
-
-
-    /* =====================================================
-       الشعار
-       ===================================================== */
-
-    .logo {
-        font-size:
-            clamp(18px, 5vw, 28px);
-    }
-
-
-    .page-title-circle h1 {
-        font-size:
-            clamp(9px, 2.6vw, 13px);
-    }
-
-
-    /* =====================================================
-       المحتوى
-       ===================================================== */
 
     .content-panels {
-        left: 13%;
-
-        right: 7%;
-
-        top: 25%;
-
-        bottom: 19%;
+        top: 125px;
+        right: 25px;
+        left: 25px;
+        bottom: 60px;
     }
 
-
-    .cover-page .content-panels {
-        top: 27%;
-
-        bottom: 20%;
+    .cover-intro {
+        padding: 35px 30px;
     }
 
-
-    /* =====================================================
-       المقدمة
-       ===================================================== */
-
-    .cover-page .cover-intro {
-        width: 94%;
-
-        padding:
-            5% 6%;
+    .cover-intro p {
+        font-size: 17px;
+        line-height: 1.85;
     }
-
-
-    .cover-page .cover-intro h2 {
-        font-size:
-            clamp(18px, 5vw, 23px);
-
-        margin-bottom: 4%;
-    }
-
-
-    .cover-page .cover-intro p {
-        font-size:
-            clamp(11px, 3.2vw, 15px);
-
-        line-height: 1.55;
-
-        margin-bottom: 3%;
-    }
-
-
-    /* =====================================================
-       الاتصال
-       ===================================================== */
-
-    .contact-panel {
-        left: 2.8%;
-
-        bottom: 4%;
-
-        width: 14%;
-
-        height: 20%;
-
-        min-width: 68px;
-
-        gap: 7%;
-
-        padding:
-            4% 3%;
-    }
-
-
-    .contact-item {
-        font-size:
-            clamp(8px, 2.5vw, 11px);
-    }
-
-
-    .whatsapp-icon svg {
-        width: 16px;
-
-        height: 16px;
-    }
-
-
-    /* =====================================================
-       العنوان
-       ===================================================== */
 
     .page-subtitle {
-        top: 19.2%;
-
-        font-size:
-            clamp(12px, 4vw, 16px);
+        font-size: 16px;
     }
-
-
-    /* =====================================================
-       GIF الصفحة 2
-       ===================================================== */
-
-    .page-2 .single-gif .userform-card {
-        width: 86%;
-    }
-
-
-    /* =====================================================
-       GIF الصفحة 3
-       ===================================================== */
-
-    .page-3 .single-gif .userform-card {
-        width: 90%;
-    }
-
-
-    /* =====================================================
-       الجملة السفلية
-       ===================================================== */
 
     .page-footer-note {
-        bottom: 1.5%;
-
-        font-size:
-            clamp(10px, 3.2vw, 13px);
+        font-size: 11px;
     }
-
-
-    /* =====================================================
-       الصفحة 6
-       ===================================================== */
-
-    .page-6-reversed .brand-circles {
-        left: auto;
-
-        right: 8.5%;
-    }
-
-
-    .page-6-reversed .contact-panel {
-        left: auto;
-
-        right: 2.8%;
-    }
-
-
-    .page-6-reversed .content-panels {
-        left: 7%;
-
-        right: 13%;
-    }
-
-
-    .page-6-reversed .design-triangle-1 {
-        left: auto;
-
-        right: 8.5%;
-    }
-
-
-    .page-6-reversed .design-triangle-2 {
-        left: auto;
-
-        right: 8.5%;
-    }
-
-
-    /* =====================================================
-       أزرار الموبايل
-       ===================================================== */
 
     .navigation {
-        margin:
-            7px 0 10px;
-
-        gap: 6px;
+        padding-bottom: 15px;
     }
-
 
     .navigation button {
-        font-size: 12px;
-
-        padding:
-            7px 11px;
-
-        border-radius: 7px;
+        padding: 8px 15px;
+        font-size: 13px;
     }
 
-
-    .contents-button {
-        min-width: 86px;
-    }
-
-
-    .contents-list {
-        min-width: 105px;
-
-        bottom:
-            calc(100% + 6px);
-    }
-
-
-    .contents-list button {
-        font-size: 12px;
-
-        padding:
-            6px 8px;
-    }
-}
-
-
-/* =========================================================
-   تقليل الحركة
-   ========================================================= */
-
-@media (prefers-reduced-motion: reduce) {
-
-    .page-flip.flip-next,
-    .page-flip.flip-previous {
-        animation: none !important;
-
-        transform: none !important;
-    }
 }
