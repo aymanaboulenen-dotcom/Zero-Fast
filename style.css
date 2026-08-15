@@ -1,8 +1,14 @@
 :root {
     --navy: #082742;
     --orange: #F4A83A;
+    --light-gray: #bdbdbd;
     --page-ratio: 0.716;
 }
+
+
+/* =========================================================
+   BASIC
+   ========================================================= */
 
 * {
     box-sizing: border-box;
@@ -17,9 +23,10 @@ body {
 }
 
 body {
-    background: #bdbdbd;
+    background: var(--light-gray);
     font-family: "Times New Roman", serif;
     overflow-x: hidden;
+    perspective: 1800px;
 }
 
 
@@ -28,12 +35,20 @@ body {
    ========================================================= */
 
 .page-group {
+
     display: none;
+
     width: 100%;
-    min-height: calc(100vh - 65px);
+
+    min-height:
+        calc(100vh - 65px);
+
     justify-content: center;
+
     align-items: center;
-    padding: 16px 22px 10px;
+
+    padding:
+        16px 22px 10px;
 }
 
 .page-group.active {
@@ -41,15 +56,16 @@ body {
 }
 
 .spread.active {
-    gap: 12px;
+    gap: 18px;
 }
 
 
 /* =========================================================
-   PAGE
+   BOOK PAGE
    ========================================================= */
 
 .book-page {
+
     position: relative;
 
     width: min(
@@ -57,7 +73,8 @@ body {
         calc((100vh - 92px) * var(--page-ratio))
     );
 
-    aspect-ratio: 623.622 / 870.236;
+    aspect-ratio:
+        623.622 / 870.236;
 
     flex: 0 0 auto;
 
@@ -69,17 +86,80 @@ body {
 
     border-radius: 1px;
 
-    /* إحساس الورق والكتاب */
     box-shadow:
-        0 14px 28px rgba(0,0,0,.32),
-        0 4px 9px rgba(0,0,0,.20),
-        inset 0 0 0 1px rgba(0,0,0,.08);
+        0 16px 30px rgba(0,0,0,.30),
+        0 4px 9px rgba(0,0,0,.18),
+        inset 0 0 0 1px rgba(0,0,0,.10);
+}
+
+
+/* إحساس الكتاب */
+
+.spread .book-page:first-child {
+
+    box-shadow:
+        -8px 16px 30px rgba(0,0,0,.28),
+        inset -8px 0 12px rgba(0,0,0,.10),
+        inset 0 0 0 1px rgba(0,0,0,.10);
+}
+
+.spread .book-page:last-child {
+
+    box-shadow:
+        8px 16px 30px rgba(0,0,0,.28),
+        inset 8px 0 12px rgba(0,0,0,.10),
+        inset 0 0 0 1px rgba(0,0,0,.10);
+}
+
+
+/* هامش التجليد */
+
+.spread .book-page:first-child::after,
+.spread .book-page:last-child::after {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    bottom: 0;
+
+    width: 9px;
+
+    z-index: 30;
+
+    pointer-events: none;
+}
+
+.spread .book-page:first-child::after {
+
+    right: 0;
+
+    background:
+        linear-gradient(
+            to left,
+            rgba(0,0,0,.13),
+            transparent
+        );
+}
+
+.spread .book-page:last-child::after {
+
+    left: 0;
+
+    background:
+        linear-gradient(
+            to right,
+            rgba(0,0,0,.13),
+            transparent
+        );
 }
 
 
 /* الصفحة المفردة */
 
 .page-group:not(.spread) .book-page {
+
     width: min(
         calc((100vw - 72px) * .97),
         calc((100vh - 92px) * var(--page-ratio))
@@ -92,14 +172,18 @@ body {
    ========================================================= */
 
 .design-bg {
+
     position: absolute;
+
     inset: 0;
+
     z-index: -5;
+
     background: #fff;
 }
 
 
-/* الجانب الرمادي */
+/* الرمادي */
 
 .design-bg::before {
 
@@ -127,7 +211,7 @@ body {
 }
 
 
-/* الجزء البرتقالي */
+/* البرتقالي */
 
 .design-bg::after {
 
@@ -154,7 +238,7 @@ body {
 }
 
 
-/* الشكل الكحلي */
+/* الكحلي */
 
 .page1::before,
 .page3::before,
@@ -176,13 +260,63 @@ body {
 
     background: var(--navy);
 
-    clip-path: polygon(
-        100% 0,
-        100% 100%,
-        0 100%
-    );
+    clip-path:
+        polygon(
+            100% 0,
+            100% 100%,
+            0 100%
+        );
 
     opacity: .98;
+}
+
+
+/* =========================================================
+   PAGE 1 TITLE
+   ========================================================= */
+
+.page1-program-title {
+
+    position: absolute;
+
+    z-index: 20;
+
+    top: 35%;
+
+    left: 19%;
+
+    width: 62%;
+
+    min-height: 7%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding:
+        5px 12px;
+
+    background:
+        rgba(255,255,255,.94);
+
+    color: var(--navy);
+
+    border:
+        2px solid var(--navy);
+
+    border-radius: 14px;
+
+    font-size:
+        clamp(18px, 2.6vw, 32px);
+
+    font-weight: bold;
+
+    text-align: center;
+
+    box-shadow:
+        0 6px 12px rgba(0,0,0,.25);
 }
 
 
@@ -208,11 +342,14 @@ body {
 
     background: var(--navy);
 
-    border: clamp(3px, .5vw, 6px) solid var(--orange);
+    border:
+        clamp(3px, .5vw, 6px)
+        solid var(--orange);
 
     display: flex;
 
     align-items: center;
+
     justify-content: center;
 
     direction: ltr;
@@ -225,7 +362,8 @@ body {
 .logo-zero,
 .logo-fast {
 
-    font-size: clamp(20px, 3.5vw, 50px);
+    font-size:
+        clamp(20px, 3.5vw, 50px);
 
     font-weight: bold;
 }
@@ -235,7 +373,9 @@ body {
 }
 
 .logo-fast {
+
     color: white;
+
     margin-left: 6px;
 }
 
@@ -250,7 +390,8 @@ body {
 
     background: var(--orange);
 
-    border: 3px solid var(--navy);
+    border:
+        3px solid var(--navy);
 
     padding: 6px;
 
@@ -302,6 +443,7 @@ body {
     display: flex;
 
     align-items: center;
+
     justify-content: center;
 
     line-height: 1.1;
@@ -324,7 +466,8 @@ body {
 
     height: 11%;
 
-    font-size: clamp(18px, 2.4vw, 32px);
+    font-size:
+        clamp(18px, 2.4vw, 32px);
 }
 
 
@@ -340,7 +483,8 @@ body {
 
     height: 12%;
 
-    font-size: clamp(18px, 2.4vw, 32px);
+    font-size:
+        clamp(18px, 2.4vw, 32px);
 }
 
 
@@ -356,7 +500,8 @@ body {
 
     height: 12%;
 
-    font-size: clamp(18px, 2.4vw, 32px);
+    font-size:
+        clamp(18px, 2.4vw, 32px);
 }
 
 
@@ -372,7 +517,8 @@ body {
 
     height: 12%;
 
-    font-size: clamp(17px, 2.2vw, 30px);
+    font-size:
+        clamp(17px, 2.2vw, 30px);
 }
 
 
@@ -402,15 +548,16 @@ body {
 
     z-index: 25;
 
-    left: 7%;
+    left: 5%;
 
-    bottom: 7%;
+    bottom: 6%;
 
-    width: 29%;
+    width: 36%;
 
-    min-height: 17%;
+    min-height: 19%;
 
-    padding: 9px 7px;
+    padding:
+        10px 8px;
 
     background: var(--navy);
 
@@ -420,7 +567,8 @@ body {
 
     text-align: center;
 
-    font-size: clamp(13px, 1.7vw, 21px);
+    font-size:
+        clamp(15px, 2vw, 25px);
 
     line-height: 1.4;
 
@@ -444,11 +592,14 @@ body {
 }
 
 .contact-item + .contact-item {
-    margin-top: 8px;
+
+    margin-top: 9px;
 }
 
 .phone-icon {
-    font-size: 1.1em;
+
+    font-size: 1.15em;
+
     color: var(--orange);
 }
 
@@ -460,6 +611,7 @@ body {
     display: inline-flex;
 
     align-items: center;
+
     justify-content: center;
 }
 
@@ -473,11 +625,12 @@ body {
 
 .small-contact {
 
-    width: 30%;
+    width: 36%;
 
-    min-height: 16%;
+    min-height: 18%;
 
-    font-size: clamp(11px, 1.45vw, 18px);
+    font-size:
+        clamp(13px, 1.7vw, 21px);
 }
 
 
@@ -498,17 +651,20 @@ body {
 
     height: 68%;
 
-    padding: 7% 7% 5%;
+    padding:
+        5% 7% 4%;
 
     color: #222;
 
-    font-size: clamp(12px, 1.5vw, 20px);
+    font-size:
+        clamp(15px, 1.9vw, 24px);
 
     line-height: 1.8;
 
     text-align: right;
 
-    background: rgba(255,255,255,.92);
+    background:
+        rgba(255,255,255,.92);
 
     border-radius: 18px;
 
@@ -518,7 +674,9 @@ body {
 }
 
 .intro-text p {
-    margin: 0 0 16px;
+
+    margin:
+        0 0 16px;
 }
 
 
@@ -549,6 +707,7 @@ body {
 }
 
 .page3 .image-frame {
+
     background: var(--orange);
 }
 
@@ -562,7 +721,8 @@ body {
 
     height: 8.5%;
 
-    font-size: clamp(12px, 1.55vw, 20px);
+    font-size:
+        clamp(14px, 1.8vw, 23px);
 }
 
 
@@ -590,23 +750,17 @@ body {
     width: 32%;
 
     height: 24%;
-
-    transform: rotate(0deg);
 }
 
-.page4-description {
+
+/* النص داخل مربع كحلي */
+
+.page4-description,
+.page5-description {
 
     position: absolute;
 
     z-index: 8;
-
-    top: 62%;
-
-    left: 8%;
-
-    width: 39%;
-
-    height: 19%;
 
     display: flex;
 
@@ -618,14 +772,37 @@ body {
 
     color: white;
 
-    font-size: clamp(13px, 1.55vw, 20px);
+    background: var(--navy);
+
+    border:
+        2px solid var(--orange);
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 7px 14px rgba(0,0,0,.35);
+
+    font-size:
+        clamp(14px, 1.7vw, 22px);
 
     line-height: 1.5;
 
     font-weight: bold;
 
-    text-shadow:
-        0 2px 4px rgba(0,0,0,.35);
+    text-shadow: none;
+}
+
+.page4-description {
+
+    top: 62%;
+
+    left: 8%;
+
+    width: 39%;
+
+    height: 19%;
+
+    padding: 8px;
 }
 
 
@@ -658,10 +835,6 @@ body {
 
 .page5-description {
 
-    position: absolute;
-
-    z-index: 8;
-
     top: 62%;
 
     left: 10%;
@@ -670,26 +843,8 @@ body {
 
     height: 17%;
 
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    text-align: center;
-
-    color: white;
-
-    font-size: clamp(13px, 1.55vw, 20px);
-
-    line-height: 1.5;
-
-    font-weight: bold;
-
-    padding: 5px;
-
-    text-shadow:
-        0 2px 4px rgba(0,0,0,.35);
+    padding:
+        8px 14px;
 }
 
 
@@ -707,7 +862,8 @@ body {
 
     height: 12%;
 
-    font-size: clamp(19px, 2.6vw, 34px);
+    font-size:
+        clamp(19px, 2.6vw, 34px);
 }
 
 .frame-page6 {
@@ -721,6 +877,9 @@ body {
     height: 28%;
 }
 
+
+/* الكلام داخل مربع كحلي */
+
 .page6-benefits {
 
     position: absolute;
@@ -733,9 +892,10 @@ body {
 
     width: 50%;
 
-    height: 37%;
+    min-height: 37%;
 
-    padding: 3px;
+    padding:
+        10px 12px;
 
     direction: rtl;
 
@@ -743,18 +903,30 @@ body {
 
     color: white;
 
-    font-size: clamp(12px, 1.55vw, 20px);
+    background: var(--navy);
+
+    border:
+        2px solid var(--orange);
+
+    border-radius: 15px;
+
+    font-size:
+        clamp(14px, 1.7vw, 22px);
 
     font-weight: bold;
 
     line-height: 1.55;
 
-    text-shadow:
-        0 2px 4px rgba(0,0,0,.45);
+    text-shadow: none;
+
+    box-shadow:
+        0 7px 14px rgba(0,0,0,.35);
 }
 
 .page6-benefits p {
-    margin: 0 0 7px;
+
+    margin:
+        0 0 7px;
 }
 
 
@@ -789,13 +961,16 @@ body {
 
     color: white;
 
-    padding: 10px 21px;
+    padding:
+        10px 21px;
 
     border-radius: 7px;
 
     cursor: pointer;
 
-    font-family: "Times New Roman", serif;
+    font-family:
+        "Times New Roman",
+        serif;
 
     font-size: 15px;
 
@@ -811,6 +986,7 @@ body {
 }
 
 .contents-dropdown {
+
     position: relative;
 }
 
@@ -824,19 +1000,22 @@ body {
 
     left: 50%;
 
-    transform: translateX(-50%);
+    transform:
+        translateX(-50%);
 
     width: 115px;
 
     background: white;
 
-    border: 1px solid var(--navy);
+    border:
+        1px solid var(--navy);
 
     box-shadow:
         0 7px 14px rgba(0,0,0,.30);
 }
 
 .contents-list.show {
+
     display: block;
 }
 
@@ -850,7 +1029,8 @@ body {
 
     color: var(--navy);
 
-    border-bottom: 1px solid #ddd;
+    border-bottom:
+        1px solid #ddd;
 
     box-shadow: none;
 
@@ -862,31 +1042,47 @@ body {
    PAGE TURN
    ========================================================= */
 
+.page-group {
+
+    transform-style:
+        preserve-3d;
+}
+
 .turn-next {
 
     animation:
-        pageNext .65s cubic-bezier(.22,.61,.36,1) both;
+        pageNext .62s
+        cubic-bezier(.22,.61,.36,1)
+        both;
+
+    backface-visibility: hidden;
 }
 
 .turn-prev {
 
     animation:
-        pagePrev .65s cubic-bezier(.22,.61,.36,1) both;
+        pagePrev .62s
+        cubic-bezier(.22,.61,.36,1)
+        both;
+
+    backface-visibility: hidden;
 }
+
 
 @keyframes pageNext {
 
     from {
 
-        opacity: .25;
+        opacity: .55;
 
         transform:
             perspective(1400px)
-            rotateY(-14deg)
-            translateX(28px)
+            rotateY(-18deg)
+            translateX(22px)
             scale(.985);
 
-        transform-origin: right center;
+        transform-origin:
+            right center;
     }
 
     to {
@@ -899,23 +1095,26 @@ body {
             translateX(0)
             scale(1);
 
-        transform-origin: right center;
+        transform-origin:
+            right center;
     }
 }
+
 
 @keyframes pagePrev {
 
     from {
 
-        opacity: .25;
+        opacity: .55;
 
         transform:
             perspective(1400px)
-            rotateY(14deg)
-            translateX(-28px)
+            rotateY(18deg)
+            translateX(-22px)
             scale(.985);
 
-        transform-origin: left center;
+        transform-origin:
+            left center;
     }
 
     to {
@@ -928,7 +1127,8 @@ body {
             translateX(0)
             scale(1);
 
-        transform-origin: left center;
+        transform-origin:
+            left center;
     }
 }
 
@@ -940,11 +1140,17 @@ body {
 @media (max-width: 700px) {
 
     body {
-        background: #bdbdbd;
-        overflow-x: hidden;
+
+        background:
+            var(--light-gray);
+
+        overflow-x:
+            hidden;
     }
 
+
     .page-group {
+
         display: none !important;
 
         width: 100%;
@@ -956,22 +1162,29 @@ body {
             8px 8px 6px;
 
         align-items: center;
+
         justify-content: center;
     }
 
+
     .page-group.active {
+
         display: flex !important;
     }
 
+
     .spread.active {
+
         display: flex !important;
     }
+
 
     .book-page {
 
         display: none;
 
-        width: min(94vw, 520px) !important;
+        width:
+            min(94vw, 520px) !important;
 
         height: auto;
 
@@ -982,23 +1195,30 @@ body {
             0 12px 25px rgba(0,0,0,.38);
     }
 
-    .page-group.active .book-page.mobile-visible {
+
+    .page-group.active
+    .book-page.mobile-visible {
 
         display: block;
-
-        animation-fill-mode: both;
-    }
-
-    .page-group.spread .book-page {
-        display: none;
-    }
-
-    .page-group.spread .book-page.mobile-visible {
-        display: block;
     }
 
 
-    /* الشعار */
+    /* الصفحة الأولى */
+
+    .page1-program-title {
+
+        top: 34%;
+
+        left: 10%;
+
+        width: 80%;
+
+        min-height: 8%;
+
+        font-size:
+            clamp(17px, 5vw, 25px);
+    }
+
 
     .page1 .logo-circle,
     .page6 .logo-circle {
@@ -1010,8 +1230,6 @@ body {
         top: 5%;
     }
 
-
-    /* الصور */
 
     .frame-page1 {
 
@@ -1025,21 +1243,24 @@ body {
     }
 
 
-    /* الاتصال */
+    /* الهاتف */
 
     .contact-card {
 
-        width: 31%;
+        width: 38%;
 
-        min-height: 17%;
+        min-height: 19%;
 
-        font-size: 12px;
+        font-size:
+            clamp(14px, 4vw, 20px);
 
-        padding: 8px 5px;
+        padding:
+            8px 5px;
     }
 
     .small-contact {
-        width: 31%;
+
+        width: 38%;
     }
 
 
@@ -1055,52 +1276,69 @@ body {
 
         height: 68%;
 
-        padding: 7% 6%;
+        padding:
+            6% 6%;
 
-        font-size: 11px;
+        font-size:
+            clamp(13px, 3.8vw, 18px);
 
-        line-height: 1.65;
+        line-height:
+            1.65;
     }
 
     .intro-text p {
-        margin-bottom: 11px;
+
+        margin-bottom:
+            11px;
     }
 
 
     /* العناوين */
 
-    .title-pill {
-
-        box-shadow:
-            0 8px 15px rgba(0,0,0,.45);
-    }
-
     .page2-title {
-        font-size: 21px;
+
+        font-size:
+            21px;
     }
 
     .page3-title,
     .page4-title,
     .page5-title {
-        font-size: 20px;
+
+        font-size:
+            20px;
     }
 
     .page6-title {
-        font-size: 22px;
+
+        font-size:
+            22px;
     }
 
 
-    /* الصفحة السادسة */
+    /* النصوص داخل المربعات */
+
+    .page4-description,
+    .page5-description {
+
+        font-size:
+            clamp(13px, 3.6vw, 18px);
+
+        padding:
+            7px;
+    }
+
 
     .page6-benefits {
 
-        font-size: 11px;
+        font-size:
+            clamp(13px, 3.5vw, 18px);
 
-        line-height: 1.55;
-    }
+        line-height:
+            1.55;
 
-    .page6-benefits p {
-        margin-bottom: 5px;
+        padding:
+            8px;
     }
 
 
@@ -1115,9 +1353,11 @@ body {
 
     .navigation button {
 
-        padding: 9px 14px;
+        padding:
+            9px 14px;
 
-        font-size: 13px;
+        font-size:
+            13px;
     }
 
 
@@ -1126,28 +1366,34 @@ body {
     .turn-next {
 
         animation:
-            mobileNext .55s cubic-bezier(.22,.61,.36,1) both;
+            mobileNext .55s
+            cubic-bezier(.22,.61,.36,1)
+            both;
     }
 
     .turn-prev {
 
         animation:
-            mobilePrev .55s cubic-bezier(.22,.61,.36,1) both;
+            mobilePrev .55s
+            cubic-bezier(.22,.61,.36,1)
+            both;
     }
+
 
     @keyframes mobileNext {
 
         from {
 
-            opacity: .1;
+            opacity: .45;
 
             transform:
                 perspective(1000px)
-                rotateY(-18deg)
-                translateX(24px)
-                scale(.98);
+                rotateY(-16deg)
+                translateX(18px)
+                scale(.985);
 
-            transform-origin: right center;
+            transform-origin:
+                right center;
         }
 
         to {
@@ -1160,23 +1406,26 @@ body {
                 translateX(0)
                 scale(1);
 
-            transform-origin: right center;
+            transform-origin:
+                right center;
         }
     }
+
 
     @keyframes mobilePrev {
 
         from {
 
-            opacity: .1;
+            opacity: .45;
 
             transform:
                 perspective(1000px)
-                rotateY(18deg)
-                translateX(-24px)
-                scale(.98);
+                rotateY(16deg)
+                translateX(-18px)
+                scale(.985);
 
-            transform-origin: left center;
+            transform-origin:
+                left center;
         }
 
         to {
@@ -1189,7 +1438,8 @@ body {
                 translateX(0)
                 scale(1);
 
-            transform-origin: left center;
+            transform-origin:
+                left center;
         }
     }
 }
@@ -1202,20 +1452,29 @@ body {
 @media (max-width: 390px) {
 
     .page-group {
+
         padding-left: 5px;
         padding-right: 5px;
     }
 
     .book-page {
-        width: 95vw !important;
+
+        width:
+            95vw !important;
     }
 
     .navigation button {
-        padding: 8px 11px;
-        font-size: 12px;
+
+        padding:
+            8px 11px;
+
+        font-size:
+            12px;
     }
 
     .page6-benefits {
-        font-size: 10px;
+
+        font-size:
+            10px;
     }
 }
