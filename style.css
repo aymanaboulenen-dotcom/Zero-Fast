@@ -97,6 +97,7 @@ body {
             inset 0 0 0 1px rgba(0,0,0,.08);
     }
 
+
     /* الهامش الداخلي فقط */
 
     .spread .book-page:first-child::after,
@@ -999,12 +1000,14 @@ body {
 
 
 /* =========================================================
-   DESKTOP PAGE TURN
+   DESKTOP
    ========================================================= */
 
 @media (min-width: 701px) {
 
-    /* PAGE 1 */
+    /* -----------------------------------------------------
+       PAGE 1
+       ----------------------------------------------------- */
 
     .page1 .logo-circle {
 
@@ -1043,18 +1046,20 @@ body {
 
         bottom: 5%;
 
-        width: 29%;
+        width: 27%;
 
-        min-height: 15%;
+        min-height: 14%;
 
-        padding: 7px 6px;
+        padding: 6px 5px;
 
         font-size:
-            clamp(19px,1.9vw,25px);
+            clamp(21px,2vw,27px);
     }
 
 
-    /* PAGE 2 */
+    /* -----------------------------------------------------
+       PAGE 2
+       ----------------------------------------------------- */
 
     .page2 .program-title {
 
@@ -1089,18 +1094,20 @@ body {
 
         bottom: 2%;
 
-        width: 29%;
+        width: 27%;
 
-        min-height: 15%;
+        min-height: 14%;
 
-        padding: 7px 6px;
+        padding: 6px 5px;
 
         font-size:
-            clamp(18px,1.8vw,24px);
+            clamp(20px,1.9vw,26px);
     }
 
 
-    /* PAGE 3 */
+    /* -----------------------------------------------------
+       PAGE 3
+       ----------------------------------------------------- */
 
     .page3 .program-title {
 
@@ -1157,7 +1164,9 @@ body {
     }
 
 
-    /* PAGE 4 */
+    /* -----------------------------------------------------
+       PAGE 4
+       ----------------------------------------------------- */
 
     .page4 .program-title {
 
@@ -1220,7 +1229,9 @@ body {
     }
 
 
-    /* PAGE 5 */
+    /* -----------------------------------------------------
+       PAGE 5
+       ----------------------------------------------------- */
 
     .page5 .program-title {
 
@@ -1282,7 +1293,9 @@ body {
     }
 
 
-    /* PAGE 6 */
+    /* -----------------------------------------------------
+       PAGE 6
+       ----------------------------------------------------- */
 
     .page6 .logo-circle {
 
@@ -1342,16 +1355,24 @@ body {
         min-height: 31%;
 
         padding:
-            8px 11px;
+            9px 11px;
 
         font-size:
-            clamp(15px,1.6vw,21px);
+            clamp(16px,1.7vw,23px);
 
-        line-height: 1.45;
+        line-height: 1.5;
+    }
+
+    .page6-benefits p {
+
+        margin:
+            0 0 12px;
     }
 
 
-    /* BUTTONS */
+    /* -----------------------------------------------------
+       BUTTONS
+       ----------------------------------------------------- */
 
     .navigation {
 
@@ -1374,8 +1395,9 @@ body {
 
 
     /* =====================================================
-       PAGE 3 OVER PAGE 2
-       PAGE 5 OVER PAGE 4
+       REALISTIC PAGE TURN
+       الصفحة تتحرك في الاتجاه المعاكس السابق
+       مع ميل بسيط وانحناء بصري
        ===================================================== */
 
     .desktop-flip-next,
@@ -1391,29 +1413,23 @@ body {
 
         will-change:
             transform,
-            box-shadow;
+            box-shadow,
+            filter;
     }
 
+
+    /* -----------------------------------------------------
+       NEXT
+       3 فوق 2
+       5 فوق 4
+       ----------------------------------------------------- */
 
     .desktop-flip-next {
 
         animation:
             pageFlipNext
             900ms
-            cubic-bezier(.22,.61,.36,1)
-            both;
-
-        transform-origin:
-            right center;
-    }
-
-
-    .desktop-flip-prev {
-
-        animation:
-            pageFlipPrev
-            900ms
-            cubic-bezier(.22,.61,.36,1)
+            cubic-bezier(.18,.72,.25,1)
             both;
 
         transform-origin:
@@ -1428,44 +1444,106 @@ body {
             transform:
                 perspective(1800px)
                 rotateY(0deg)
+                rotateZ(0deg)
+                skewY(0deg)
+                scaleX(1)
                 translateX(0);
 
             box-shadow:
                 0 8px 15px rgba(0,0,0,.18);
+
+            filter:
+                brightness(1);
         }
 
-        35% {
+
+        25% {
 
             transform:
                 perspective(1800px)
-                rotateY(-55deg)
-                translateX(-10px);
+                rotateY(42deg)
+                rotateZ(1.5deg)
+                skewY(1.5deg)
+                scaleX(.97)
+                translateX(7px);
 
             box-shadow:
-                -18px 10px 25px rgba(0,0,0,.30);
+                14px 12px 25px rgba(0,0,0,.27);
+
+            filter:
+                brightness(.96);
         }
 
-        70% {
+
+        50% {
 
             transform:
                 perspective(1800px)
-                rotateY(-115deg)
-                translateX(-15px);
+                rotateY(95deg)
+                rotateZ(3deg)
+                skewY(3deg)
+                scaleX(.89)
+                translateX(13px);
 
             box-shadow:
-                -12px 8px 20px rgba(0,0,0,.25);
+                22px 12px 30px rgba(0,0,0,.34);
+
+            filter:
+                brightness(.91);
         }
+
+
+        75% {
+
+            transform:
+                perspective(1800px)
+                rotateY(140deg)
+                rotateZ(1.8deg)
+                skewY(1.5deg)
+                scaleX(.93)
+                translateX(8px);
+
+            box-shadow:
+                15px 10px 24px rgba(0,0,0,.27);
+
+            filter:
+                brightness(.95);
+        }
+
 
         100% {
 
             transform:
                 perspective(1800px)
-                rotateY(-180deg)
-                translateX(-5px);
+                rotateY(180deg)
+                rotateZ(0deg)
+                skewY(0deg)
+                scaleX(.96)
+                translateX(0);
 
             box-shadow:
                 0 5px 10px rgba(0,0,0,.12);
+
+            filter:
+                brightness(1);
         }
+    }
+
+
+    /* -----------------------------------------------------
+       PREVIOUS
+       ----------------------------------------------------- */
+
+    .desktop-flip-prev {
+
+        animation:
+            pageFlipPrev
+            900ms
+            cubic-bezier(.18,.72,.25,1)
+            both;
+
+        transform-origin:
+            right center;
     }
 
 
@@ -1475,44 +1553,89 @@ body {
 
             transform:
                 perspective(1800px)
-                rotateY(-180deg)
-                translateX(-5px);
+                rotateY(180deg)
+                rotateZ(0deg)
+                skewY(0deg)
+                scaleX(.96)
+                translateX(0);
 
             box-shadow:
                 0 5px 10px rgba(0,0,0,.12);
+
+            filter:
+                brightness(1);
         }
 
-        35% {
+
+        25% {
 
             transform:
                 perspective(1800px)
-                rotateY(-115deg)
-                translateX(-15px);
+                rotateY(140deg)
+                rotateZ(1.8deg)
+                skewY(1.5deg)
+                scaleX(.93)
+                translateX(8px);
 
             box-shadow:
-                -12px 8px 20px rgba(0,0,0,.25);
+                15px 10px 24px rgba(0,0,0,.27);
+
+            filter:
+                brightness(.95);
         }
 
-        70% {
+
+        50% {
 
             transform:
                 perspective(1800px)
-                rotateY(-55deg)
-                translateX(-10px);
+                rotateY(95deg)
+                rotateZ(3deg)
+                skewY(3deg)
+                scaleX(.89)
+                translateX(13px);
 
             box-shadow:
-                -18px 10px 25px rgba(0,0,0,.30);
+                22px 12px 30px rgba(0,0,0,.34);
+
+            filter:
+                brightness(.91);
         }
+
+
+        75% {
+
+            transform:
+                perspective(1800px)
+                rotateY(42deg)
+                rotateZ(1.5deg)
+                skewY(1.5deg)
+                scaleX(.97)
+                translateX(7px);
+
+            box-shadow:
+                14px 12px 25px rgba(0,0,0,.27);
+
+            filter:
+                brightness(.96);
+        }
+
 
         100% {
 
             transform:
                 perspective(1800px)
                 rotateY(0deg)
+                rotateZ(0deg)
+                skewY(0deg)
+                scaleX(1)
                 translateX(0);
 
             box-shadow:
                 0 8px 15px rgba(0,0,0,.18);
+
+            filter:
+                brightness(1);
         }
     }
 
