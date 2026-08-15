@@ -81,8 +81,6 @@ body {
             preserve-3d;
     }
 
-    /* الهامش داخلي فقط */
-
     .spread .book-page:first-child {
 
         box-shadow:
@@ -98,6 +96,8 @@ body {
             inset 5px 0 10px rgba(0,0,0,.10),
             inset 0 0 0 1px rgba(0,0,0,.08);
     }
+
+    /* الهامش الداخلي فقط */
 
     .spread .book-page:first-child::after,
     .spread .book-page:last-child::after {
@@ -754,7 +754,7 @@ body {
 
 
 /* =========================================================
-   PAGE 4 + 5
+   PAGE 4 + 5 TEXT
    ========================================================= */
 
 .page4-description,
@@ -882,7 +882,7 @@ body {
 
 .page6-benefits p {
     margin:
-        0 0 7px;
+        0 0 11px;
 }
 
 
@@ -999,7 +999,7 @@ body {
 
 
 /* =========================================================
-   DESKTOP FINAL FIXES
+   DESKTOP PAGE TURN
    ========================================================= */
 
 @media (min-width: 701px) {
@@ -1017,7 +1017,7 @@ body {
 
     .page1 .program-title {
 
-        top: 36%;
+        top: 35%;
 
         left: 17%;
 
@@ -1122,9 +1122,7 @@ body {
 
         width: 39%;
 
-        height: auto;
-
-        aspect-ratio: 1 / 1;
+        height: 26%;
     }
 
     .frame-page3-2 {
@@ -1135,9 +1133,7 @@ body {
 
         width: 39%;
 
-        height: auto;
-
-        aspect-ratio: 1 / 1;
+        height: 26%;
     }
 
     .frame-page3-1 img,
@@ -1244,9 +1240,21 @@ body {
 
         top: 29%;
 
-        width: 27%;
+        width: 26%;
 
         height: 27%;
+    }
+
+    .frame-page5-1 {
+        right: 6%;
+    }
+
+    .frame-page5-2 {
+        left: 37%;
+    }
+
+    .frame-page5-3 {
+        left: 6%;
     }
 
     .page5-description {
@@ -1331,7 +1339,7 @@ body {
 
         width: 50%;
 
-        min-height: 30%;
+        min-height: 31%;
 
         padding:
             8px 11px;
@@ -1366,166 +1374,145 @@ body {
 
 
     /* =====================================================
-       REALISTIC DESKTOP PAGE TURN
+       PAGE 3 OVER PAGE 2
+       PAGE 5 OVER PAGE 4
        ===================================================== */
 
-    .page-turn-next {
+    .desktop-flip-next,
+    .desktop-flip-prev {
 
-        animation:
-            realisticPageNext
-            .9s
-            cubic-bezier(.18,.74,.25,1)
-            both;
+        z-index: 100;
 
-        transform-origin:
-            left center;
+        transform-style:
+            preserve-3d;
 
         backface-visibility:
             hidden;
 
         will-change:
             transform,
-            opacity,
-            filter;
+            box-shadow;
     }
 
-    .page-turn-prev {
+
+    .desktop-flip-next {
 
         animation:
-            realisticPagePrev
-            .9s
-            cubic-bezier(.18,.74,.25,1)
+            pageFlipNext
+            900ms
+            cubic-bezier(.22,.61,.36,1)
             both;
 
         transform-origin:
             right center;
-
-        backface-visibility:
-            hidden;
-
-        will-change:
-            transform,
-            opacity,
-            filter;
     }
 
 
-    @keyframes realisticPageNext {
+    .desktop-flip-prev {
+
+        animation:
+            pageFlipPrev
+            900ms
+            cubic-bezier(.22,.61,.36,1)
+            both;
+
+        transform-origin:
+            right center;
+    }
+
+
+    @keyframes pageFlipNext {
 
         0% {
 
-            opacity: .15;
-
-            filter:
-                brightness(.82);
-
             transform:
                 perspective(1800px)
-                rotateY(-72deg)
-                translateX(60px)
-                scale(.94);
+                rotateY(0deg)
+                translateX(0);
+
+            box-shadow:
+                0 8px 15px rgba(0,0,0,.18);
         }
 
         35% {
 
-            opacity: .75;
-
-            filter:
-                brightness(.92);
-
             transform:
                 perspective(1800px)
-                rotateY(-35deg)
-                translateX(28px)
-                scale(.975);
+                rotateY(-55deg)
+                translateX(-10px);
+
+            box-shadow:
+                -18px 10px 25px rgba(0,0,0,.30);
         }
 
         70% {
 
-            opacity: .96;
-
-            filter:
-                brightness(.98);
-
             transform:
                 perspective(1800px)
-                rotateY(-10deg)
-                translateX(7px)
-                scale(.992);
+                rotateY(-115deg)
+                translateX(-15px);
+
+            box-shadow:
+                -12px 8px 20px rgba(0,0,0,.25);
         }
 
         100% {
 
-            opacity: 1;
-
-            filter:
-                brightness(1);
-
             transform:
                 perspective(1800px)
-                rotateY(0)
-                translateX(0)
-                scale(1);
+                rotateY(-180deg)
+                translateX(-5px);
+
+            box-shadow:
+                0 5px 10px rgba(0,0,0,.12);
         }
     }
 
 
-    @keyframes realisticPagePrev {
+    @keyframes pageFlipPrev {
 
         0% {
 
-            opacity: .15;
-
-            filter:
-                brightness(.82);
-
             transform:
                 perspective(1800px)
-                rotateY(72deg)
-                translateX(-60px)
-                scale(.94);
+                rotateY(-180deg)
+                translateX(-5px);
+
+            box-shadow:
+                0 5px 10px rgba(0,0,0,.12);
         }
 
         35% {
 
-            opacity: .75;
-
-            filter:
-                brightness(.92);
-
             transform:
                 perspective(1800px)
-                rotateY(35deg)
-                translateX(-28px)
-                scale(.975);
+                rotateY(-115deg)
+                translateX(-15px);
+
+            box-shadow:
+                -12px 8px 20px rgba(0,0,0,.25);
         }
 
         70% {
 
-            opacity: .96;
-
-            filter:
-                brightness(.98);
-
             transform:
                 perspective(1800px)
-                rotateY(10deg)
-                translateX(-7px)
-                scale(.992);
+                rotateY(-55deg)
+                translateX(-10px);
+
+            box-shadow:
+                -18px 10px 25px rgba(0,0,0,.30);
         }
 
         100% {
 
-            opacity: 1;
-
-            filter:
-                brightness(1);
-
             transform:
                 perspective(1800px)
-                rotateY(0)
-                translateX(0)
-                scale(1);
+                rotateY(0deg)
+                translateX(0);
+
+            box-shadow:
+                0 8px 15px rgba(0,0,0,.18);
         }
     }
 
