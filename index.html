@@ -19,7 +19,7 @@
      PAGE 1
      ========================================================= -->
 
-<div class="page-group active" data-page="0">
+<div class="page-group active" data-group="0">
 
     <section class="book-page page1">
 
@@ -30,8 +30,7 @@
             <span class="logo-fast">Fast</span>
         </div>
 
-        <!-- العنوان الجديد -->
-        <div class="page1-program-title">
+        <div class="program-title">
             برنامج إدارة شركات التوصيل
         </div>
 
@@ -57,7 +56,6 @@
                 </span>
 
                 <span>98926486</span>
-
             </div>
 
         </div>
@@ -68,16 +66,20 @@
 
 
 <!-- =========================================================
-     PAGE 2 + PAGE 3
+     PAGE 2 + 3
      ========================================================= -->
 
-<div class="page-group spread" data-page="1">
+<div class="page-group spread" data-group="1">
 
     <!-- PAGE 2 -->
 
     <section class="book-page page2">
 
         <div class="design-bg"></div>
+
+        <div class="program-title">
+            برنامج إدارة شركات التوصيل
+        </div>
 
         <div class="title-pill page2-title">
             مقدمة
@@ -120,7 +122,6 @@
                 </span>
 
                 <span>98926486</span>
-
             </div>
 
         </div>
@@ -133,6 +134,10 @@
     <section class="book-page page3">
 
         <div class="design-bg"></div>
+
+        <div class="program-title">
+            برنامج إدارة شركات التوصيل
+        </div>
 
         <div class="title-pill page3-title">
             قائمة الدخول
@@ -160,16 +165,20 @@
 
 
 <!-- =========================================================
-     PAGE 4 + PAGE 5
+     PAGE 4 + 5
      ========================================================= -->
 
-<div class="page-group spread" data-page="2">
+<div class="page-group spread" data-group="2">
 
     <!-- PAGE 4 -->
 
     <section class="book-page page4">
 
         <div class="design-bg"></div>
+
+        <div class="program-title">
+            برنامج إدارة شركات التوصيل
+        </div>
 
         <div class="title-pill page4-title">
             الواجهة الرئيسية
@@ -204,6 +213,10 @@
     <section class="book-page page5">
 
         <div class="design-bg"></div>
+
+        <div class="program-title">
+            برنامج إدارة شركات التوصيل
+        </div>
 
         <div class="title-pill page5-title">
             مميزات الواجهة الرئيسية
@@ -245,7 +258,7 @@
      PAGE 6
      ========================================================= -->
 
-<div class="page-group" data-page="3">
+<div class="page-group" data-group="3">
 
     <section class="book-page page6">
 
@@ -254,6 +267,10 @@
         <div class="logo-circle">
             <span class="logo-zero">Zero</span>
             <span class="logo-fast">Fast</span>
+        </div>
+
+        <div class="program-title">
+            برنامج إدارة شركات التوصيل
         </div>
 
         <div class="title-pill page6-title">
@@ -321,19 +338,19 @@ const pages = [...document.querySelectorAll(".book-page")];
 const sound = document.getElementById("pageFlipSound");
 
 let currentPage = 0;
-let busy = false;
+let locked = false;
 
-const TURN_TIME = 680;
-
-
-/* =========================================================
-   MOBILE
-   ========================================================= */
+const pageToGroup = [
+    0,
+    1,
+    1,
+    2,
+    2,
+    3
+];
 
 function isMobile() {
-
     return window.innerWidth <= 700;
-
 }
 
 
@@ -348,74 +365,58 @@ function playSound() {
     sound.pause();
     sound.currentTime = 0;
 
-    const promise = sound.play();
+    const p = sound.play();
 
-    if (promise) {
-        promise.catch(() => {});
+    if (p) {
+        p.catch(() => {});
     }
-
 }
 
 
 /* =========================================================
-   PAGE GROUP
+   CLEAR
    ========================================================= */
 
-function getGroupIndex(page) {
-
-    if (page === 0) return 0;
-
-    if (page <= 2) return 1;
-
-    if (page <= 4) return 2;
-
-    return 3;
-
-}
-
-
-/* =========================================================
-   RESET
-   ========================================================= */
-
-function resetPages() {
+function clearView() {
 
     groups.forEach(group => {
 
-        group.classList.remove("active");
+        group.classList.remove(
+            "active",
+            "page-turn-next",
+            "page-turn-prev"
+        );
 
     });
-
 
     pages.forEach(page => {
 
         page.classList.remove(
             "mobile-visible",
-            "turn-next",
-            "turn-prev"
+            "mobile-turn-next",
+            "mobile-turn-prev"
         );
 
     });
-
 }
 
 
 /* =========================================================
-   SHOW PAGE
+   SHOW
    ========================================================= */
 
 function showPage(direction = "next", animate = true) {
 
-    resetPages();
+    clearView();
+
+    const groupIndex =
+        pageToGroup[currentPage];
 
     const group =
-        groups[getGroupIndex(currentPage)];
-
+        groups[groupIndex];
 
     group.classList.add("active");
 
-
-    /* MOBILE */
 
     if (isMobile()) {
 
@@ -426,160 +427,77 @@ function showPage(direction = "next", animate = true) {
             "mobile-visible"
         );
 
-
         if (animate) {
 
             void page.offsetWidth;
 
             page.classList.add(
                 direction === "next"
-                    ? "turn-next"
-                    : "turn-prev"
+                    ? "mobile-turn-next"
+                    : "mobile-turn-prev"
             );
 
         }
 
         return;
-
     }
 
-
-    /* DESKTOP */
 
     if (animate) {
 
-        group
-            .querySelectorAll(".book-page")
-            .forEach(page => {
+        void group.offsetWidth;
 
-                page.classList.add(
-                    direction === "next"
-                        ? "turn-next"
-                        : "turn-prev"
-                );
-
-            });
-
+        group.classList.add(
+            direction === "next"
+                ? "page-turn-next"
+                : "page-turn-prev"
+        );
     }
-
 }
 
 
 /* =========================================================
-   FINISH TURN
+   MOVE
    ========================================================= */
 
-function finishTurn() {
+function moveTo(target) {
 
-    setTimeout(() => {
+    if (locked) return;
 
-        busy = false;
+    if (target < 0 || target > 5) return;
 
-    }, TURN_TIME);
-
-}
-
-
-/* =========================================================
-   NEXT
-   ========================================================= */
-
-function nextPage() {
-
-    if (busy) return;
-
-    if (currentPage >= 5) return;
-
-    busy = true;
-
-    currentPage++;
-
-    playSound();
-
-    showPage("next");
-
-    finishTurn();
-
-}
-
-
-/* =========================================================
-   PREVIOUS
-   ========================================================= */
-
-function previousPage() {
-
-    if (busy) return;
-
-    if (currentPage <= 0) return;
-
-    busy = true;
-
-    currentPage--;
-
-    playSound();
-
-    showPage("prev");
-
-    finishTurn();
-
-}
-
-
-/* =========================================================
-   GO TO PAGE
-   ========================================================= */
-
-function goToPage(target) {
-
-    if (busy) {
-
-        closeContents();
-
-        return;
-
-    }
-
-
-    if (
-        target < 0 ||
-        target > 5
-    ) {
-
-        closeContents();
-
-        return;
-
-    }
-
-
-    if (target === currentPage) {
-
-        closeContents();
-
-        return;
-
-    }
-
+    if (target === currentPage) return;
 
     const direction =
         target > currentPage
             ? "next"
             : "prev";
 
-
-    busy = true;
-
     currentPage = target;
 
     playSound();
 
-    showPage(direction);
+    showPage(direction, true);
+}
 
-    closeContents();
 
-    finishTurn();
+/* =========================================================
+   NEXT / PREVIOUS
+   ========================================================= */
 
+function nextPage() {
+
+    if (currentPage >= 5) return;
+
+    moveTo(currentPage + 1);
+}
+
+
+function previousPage() {
+
+    if (currentPage <= 0) return;
+
+    moveTo(currentPage - 1);
 }
 
 
@@ -594,14 +512,15 @@ function closeContents() {
             "contentsMenu"
         );
 
-    if (menu) {
+    menu.classList.remove("show");
+}
 
-        menu.classList.remove(
-            "show"
-        );
 
-    }
+function goToPage(target) {
 
+    closeContents();
+
+    moveTo(target);
 }
 
 
@@ -616,14 +535,12 @@ document
         nextPage
     );
 
-
 document
     .getElementById("prevBtn")
     .addEventListener(
         "click",
         previousPage
     );
-
 
 document
     .getElementById("contentsBtn")
@@ -637,15 +554,15 @@ document
                 .getElementById(
                     "contentsMenu"
                 )
-                .classList
-                .toggle("show");
+                .classList.toggle("show");
 
         }
     );
 
-
 document
-    .querySelectorAll("[data-target]")
+    .querySelectorAll(
+        "#contentsMenu [data-target]"
+    )
     .forEach(button => {
 
         button.addEventListener(
@@ -663,7 +580,6 @@ document
 
     });
 
-
 document.addEventListener(
     "click",
     function(e) {
@@ -673,9 +589,7 @@ document.addEventListener(
                 ".contents-dropdown"
             )
         ) {
-
             closeContents();
-
         }
 
     }
@@ -683,12 +597,11 @@ document.addEventListener(
 
 
 /* =========================================================
-   TOUCH SWIPE
+   SWIPE
    ========================================================= */
 
-let touchStartX = 0;
-let touchStartY = 0;
-
+let startX = 0;
+let startY = 0;
 
 document.addEventListener(
     "touchstart",
@@ -696,15 +609,12 @@ document.addEventListener(
 
         if (!isMobile()) return;
 
-        if (e.touches.length !== 1) {
-            return;
-        }
+        if (e.touches.length !== 1) return;
 
-
-        touchStartX =
+        startX =
             e.touches[0].clientX;
 
-        touchStartY =
+        startY =
             e.touches[0].clientY;
 
     },
@@ -720,20 +630,15 @@ document.addEventListener(
 
         if (
             e.changedTouches.length !== 1
-        ) {
-            return;
-        }
-
+        ) return;
 
         const dx =
             e.changedTouches[0].clientX -
-            touchStartX;
-
+            startX;
 
         const dy =
             e.changedTouches[0].clientY -
-            touchStartY;
-
+            startY;
 
         if (
             Math.abs(dy) >
@@ -742,22 +647,16 @@ document.addEventListener(
             return;
         }
 
-
         if (
             Math.abs(dx) < 45
         ) {
             return;
         }
 
-
         if (dx < 0) {
-
             nextPage();
-
         } else {
-
             previousPage();
-
         }
 
     },
@@ -771,15 +670,11 @@ document.addEventListener(
 
 let resizeTimer;
 
-
 window.addEventListener(
     "resize",
     function() {
 
-        clearTimeout(
-            resizeTimer
-        );
-
+        clearTimeout(resizeTimer);
 
         resizeTimer =
             setTimeout(
@@ -791,7 +686,7 @@ window.addEventListener(
                     );
 
                 },
-                150
+                120
             );
 
     }
@@ -802,10 +697,7 @@ window.addEventListener(
    START
    ========================================================= */
 
-showPage(
-    "next",
-    false
-);
+showPage("next", false);
 
 </script>
 
