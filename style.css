@@ -1,14 +1,8 @@
 :root {
     --navy: #082742;
     --orange: #F4A83A;
-    --gray: #686868;
     --page-ratio: 0.716;
 }
-
-
-/* =========================================================
-   BASIC
-   ========================================================= */
 
 * {
     box-sizing: border-box;
@@ -36,12 +30,10 @@ body {
 .page-group {
     display: none;
     width: 100%;
-    min-height: calc(100vh - 55px);
-
+    min-height: calc(100vh - 65px);
     justify-content: center;
     align-items: center;
-
-    padding: 22px 28px 12px;
+    padding: 16px 22px 10px;
 }
 
 .page-group.active {
@@ -49,65 +41,68 @@ body {
 }
 
 .spread.active {
-    gap: 5px;
+    gap: 12px;
 }
 
 
 /* =========================================================
-   PAGE SIZE
+   PAGE
    ========================================================= */
 
 .book-page {
     position: relative;
 
     width: min(
-        calc((100vw - 90px) / 2),
-        calc((100vh - 70px) * var(--page-ratio))
+        calc((100vw - 72px) / 2),
+        calc((100vh - 92px) * var(--page-ratio))
     );
 
-    height: auto;
     aspect-ratio: 623.622 / 870.236;
 
     flex: 0 0 auto;
 
-    background: white;
+    background: #fff;
 
     overflow: hidden;
 
-    box-shadow:
-        0 10px 24px rgba(0,0,0,.30),
-        0 2px 5px rgba(0,0,0,.18);
-
     isolation: isolate;
+
+    border-radius: 1px;
+
+    /* إحساس الورق والكتاب */
+    box-shadow:
+        0 14px 28px rgba(0,0,0,.32),
+        0 4px 9px rgba(0,0,0,.20),
+        inset 0 0 0 1px rgba(0,0,0,.08);
 }
 
 
-/* single pages larger */
+/* الصفحة المفردة */
 
 .page-group:not(.spread) .book-page {
     width: min(
-        calc(100vw - 100px),
-        calc((100vh - 70px) * var(--page-ratio))
+        calc((100vw - 72px) * .97),
+        calc((100vh - 92px) * var(--page-ratio))
     );
 }
 
 
 /* =========================================================
-   AI BACKGROUND
+   BACKGROUND
    ========================================================= */
 
 .design-bg {
     position: absolute;
     inset: 0;
     z-index: -5;
-
-    background: white;
+    background: #fff;
 }
 
 
-/* grey patterned side */
+/* الجانب الرمادي */
 
 .design-bg::before {
+
     content: "";
 
     position: absolute;
@@ -116,25 +111,26 @@ body {
     bottom: 0;
     left: 0;
 
-    width: 25%;
+    width: 24%;
 
     background:
         repeating-linear-gradient(
             110deg,
-            rgba(80,80,80,.42) 0px,
-            rgba(80,80,80,.42) 1px,
-            rgba(180,180,180,.18) 1px,
-            rgba(180,180,180,.18) 4px
+            rgba(80,80,80,.20) 0px,
+            rgba(80,80,80,.20) 1px,
+            rgba(180,180,180,.08) 1px,
+            rgba(180,180,180,.08) 5px
         );
 
     box-shadow:
-        inset -45px 0 45px rgba(255,255,255,.75);
+        inset -32px 0 38px rgba(255,255,255,.78);
 }
 
 
-/* orange lower wave */
+/* الجزء البرتقالي */
 
 .design-bg::after {
+
     content: "";
 
     position: absolute;
@@ -147,7 +143,9 @@ body {
 
     background: var(--orange);
 
-    border-radius: 52% 48% 0 0 / 28% 32% 0 0;
+    border-radius:
+        52% 48% 0 0 /
+        28% 32% 0 0;
 
     transform: rotate(3deg);
 
@@ -156,7 +154,7 @@ body {
 }
 
 
-/* navy diagonal */
+/* الشكل الكحلي */
 
 .page1::before,
 .page3::before,
@@ -198,31 +196,37 @@ body {
 
     z-index: 10;
 
-    top: 4.8%;
-    left: 25%;
+    top: 5%;
 
-    width: 50%;
+    left: 29%;
+
+    width: 42%;
+
     aspect-ratio: 1;
 
     border-radius: 50%;
 
     background: var(--navy);
 
-    border: clamp(3px, .55vw, 7px) solid var(--orange);
+    border: clamp(3px, .5vw, 6px) solid var(--orange);
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
     direction: ltr;
 
     box-shadow:
-        0 7px 13px rgba(0,0,0,.28);
+        0 9px 17px rgba(0,0,0,.35),
+        0 2px 4px rgba(0,0,0,.20);
 }
 
 .logo-zero,
 .logo-fast {
-    font-size: clamp(20px, 4vw, 54px);
+
+    font-size: clamp(20px, 3.5vw, 50px);
+
     font-weight: bold;
 }
 
@@ -232,7 +236,7 @@ body {
 
 .logo-fast {
     color: white;
-    margin-left: 7px;
+    margin-left: 6px;
 }
 
 
@@ -244,18 +248,19 @@ body {
 
     position: absolute;
 
-    background: white;
+    background: var(--orange);
 
-    border: 2px solid var(--navy);
+    border: 3px solid var(--navy);
 
-    padding: 5px;
+    padding: 6px;
 
     overflow: hidden;
 
     z-index: 6;
 
     box-shadow:
-        0 4px 9px rgba(0,0,0,.20);
+        0 9px 16px rgba(0,0,0,.35),
+        0 2px 5px rgba(0,0,0,.18);
 }
 
 .image-frame img {
@@ -267,7 +272,7 @@ body {
 
     object-fit: contain;
 
-    background: white;
+    background: #fff;
 }
 
 
@@ -291,47 +296,83 @@ body {
     text-align: center;
 
     box-shadow:
-        0 7px 12px rgba(0,0,0,.38);
+        0 8px 15px rgba(0,0,0,.42),
+        0 2px 4px rgba(0,0,0,.20);
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
-    line-height: 1.15;
+    line-height: 1.1;
 
     white-space: nowrap;
+
+    font-weight: bold;
 }
+
+
+/* الصفحة 2 */
 
 .page2-title {
-    top: 5.8%;
-    left: 32%;
-    width: 40%;
+
+    top: 6%;
+
+    left: 31%;
+
+    width: 38%;
+
     height: 11%;
-    font-size: clamp(16px, 2.2vw, 31px);
+
+    font-size: clamp(18px, 2.4vw, 32px);
 }
 
-.page-main-title {
-    top: 5.8%;
-    left: 12%;
-    width: 76%;
-    height: 11%;
-    font-size: clamp(14px, 2vw, 28px);
+
+/* الصفحة 3 */
+
+.page3-title {
+
+    top: 7%;
+
+    left: 25%;
+
+    width: 50%;
+
+    height: 12%;
+
+    font-size: clamp(18px, 2.4vw, 32px);
 }
 
-.page-sub-title {
-    top: 16.5%;
+
+/* الصفحة 4 */
+
+.page4-title {
+
+    top: 7%;
+
     left: 27%;
+
     width: 46%;
-    height: 9%;
-    font-size: clamp(13px, 1.8vw, 25px);
+
+    height: 12%;
+
+    font-size: clamp(18px, 2.4vw, 32px);
 }
 
-.page6-title {
-    top: 42%;
-    left: 27%;
-    width: 46%;
-    height: 9%;
-    font-size: clamp(14px, 2vw, 28px);
+
+/* الصفحة 5 */
+
+.page5-title {
+
+    top: 7%;
+
+    left: 22%;
+
+    width: 56%;
+
+    height: 12%;
+
+    font-size: clamp(17px, 2.2vw, 30px);
 }
 
 
@@ -342,10 +383,12 @@ body {
 .frame-page1 {
 
     top: 46%;
-    left: 32%;
 
-    width: 42%;
-    height: 31%;
+    left: 33%;
+
+    width: 40%;
+
+    height: 29%;
 }
 
 
@@ -359,37 +402,82 @@ body {
 
     z-index: 25;
 
-    left: 8%;
+    left: 7%;
+
     bottom: 7%;
 
-    width: 25%;
-    min-height: 19%;
+    width: 29%;
 
-    padding: 10px;
+    min-height: 17%;
+
+    padding: 9px 7px;
 
     background: var(--navy);
 
     color: white;
 
-    border-radius: 22px;
+    border-radius: 20px;
 
     text-align: center;
 
-    font-size: clamp(10px, 1.55vw, 19px);
+    font-size: clamp(13px, 1.7vw, 21px);
 
-    line-height: 1.55;
+    line-height: 1.4;
 
     box-shadow:
-        7px 9px 14px rgba(0,0,0,.40);
+        7px 10px 17px rgba(0,0,0,.42);
 }
 
-.contact-gap {
-    margin-top: 7px;
+.contact-item {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    direction: ltr;
+
+    white-space: nowrap;
+}
+
+.contact-item + .contact-item {
+    margin-top: 8px;
+}
+
+.phone-icon {
+    font-size: 1.1em;
+    color: var(--orange);
+}
+
+.whatsapp-icon {
+
+    width: 1.25em;
+    height: 1.25em;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.whatsapp-icon svg {
+
+    width: 100%;
+    height: 100%;
+
+    fill: #fff;
 }
 
 .small-contact {
-    width: 25%;
-    min-height: 18%;
+
+    width: 30%;
+
+    min-height: 16%;
+
+    font-size: clamp(11px, 1.45vw, 18px);
 }
 
 
@@ -397,36 +485,40 @@ body {
    PAGE 2
    ========================================================= */
 
-.frame-page2 {
-
-    top: 25%;
-    left: 10%;
-
-    width: 80%;
-    height: 42%;
-}
-
 .intro-text {
 
     position: absolute;
 
     z-index: 7;
 
-    top: 69%;
+    top: 23%;
+
     left: 10%;
     right: 10%;
 
-    font-size: clamp(8px, 1.25vw, 16px);
+    height: 68%;
 
-    line-height: 1.55;
+    padding: 7% 7% 5%;
+
+    color: #222;
+
+    font-size: clamp(12px, 1.5vw, 20px);
+
+    line-height: 1.8;
 
     text-align: right;
 
-    color: #222;
+    background: rgba(255,255,255,.92);
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 9px 17px rgba(0,0,0,.24),
+        inset 0 0 0 2px rgba(8,39,66,.10);
 }
 
 .intro-text p {
-    margin: 0 0 5px;
+    margin: 0 0 16px;
 }
 
 
@@ -436,30 +528,41 @@ body {
 
 .frame-page3-1 {
 
-    top: 25%;
+    top: 26%;
+
     right: 8%;
 
-    width: 40%;
-    height: 30%;
+    width: 39%;
+
+    height: 29%;
 }
 
 .frame-page3-2 {
 
-    top: 54%;
-    left: 17%;
+    top: 56%;
 
-    width: 40%;
-    height: 30%;
+    left: 14%;
+
+    width: 39%;
+
+    height: 29%;
+}
+
+.page3 .image-frame {
+    background: var(--orange);
 }
 
 .bottom-pill {
 
-    bottom: 5.5%;
-    left: 30%;
-    width: 58%;
-    height: 9%;
+    bottom: 5%;
 
-    font-size: clamp(9px, 1.4vw, 18px);
+    left: 20%;
+
+    width: 60%;
+
+    height: 8.5%;
+
+    font-size: clamp(12px, 1.55vw, 20px);
 }
 
 
@@ -469,57 +572,60 @@ body {
 
 .frame-page4-main {
 
-    top: 27%;
-    left: 10%;
+    top: 25%;
 
-    width: 80%;
-    height: 31%;
+    left: 9%;
+
+    width: 82%;
+
+    height: 33%;
 }
 
 .frame-page4-small {
 
-    top: 57%;
+    top: 59%;
+
     right: 8%;
 
-    width: 34%;
-    height: 27%;
+    width: 32%;
 
-    transform: rotate(25deg);
+    height: 24%;
+
+    transform: rotate(0deg);
 }
 
-.text-frame {
+.page4-description {
 
     position: absolute;
 
     z-index: 8;
 
-    background: white;
+    top: 62%;
 
-    border: 2px solid var(--navy);
+    left: 8%;
+
+    width: 39%;
+
+    height: 19%;
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
     text-align: center;
 
-    box-shadow:
-        0 4px 8px rgba(0,0,0,.18);
+    color: white;
 
-    color: #222;
-}
+    font-size: clamp(13px, 1.55vw, 20px);
 
-.page4-text {
+    line-height: 1.5;
 
-    top: 58%;
-    left: 8%;
+    font-weight: bold;
 
-    width: 39%;
-    height: 25%;
-
-    font-size: clamp(10px, 1.5vw, 19px);
-
-    line-height: 1.55;
+    text-shadow:
+        0 2px 4px rgba(0,0,0,.35);
 }
 
 
@@ -531,14 +637,15 @@ body {
 .frame-page5-2,
 .frame-page5-3 {
 
-    top: 29%;
+    top: 27%;
 
     width: 27%;
+
     height: 29%;
 }
 
 .frame-page5-1 {
-    right: 6%;
+    right: 5%;
 }
 
 .frame-page5-2 {
@@ -546,18 +653,43 @@ body {
 }
 
 .frame-page5-3 {
-    left: 6%;
+    left: 5%;
 }
 
-.page5-text {
+.page5-description {
 
-    top: 63%;
-    left: 15%;
+    position: absolute;
 
-    width: 70%;
-    height: 18%;
+    z-index: 8;
 
-    font-size: clamp(13px, 2vw, 25px);
+    top: 62%;
+
+    left: 10%;
+
+    width: 80%;
+
+    height: 17%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    color: white;
+
+    font-size: clamp(13px, 1.55vw, 20px);
+
+    line-height: 1.5;
+
+    font-weight: bold;
+
+    padding: 5px;
+
+    text-shadow:
+        0 2px 4px rgba(0,0,0,.35);
 }
 
 
@@ -565,31 +697,64 @@ body {
    PAGE 6
    ========================================================= */
 
-.frame-page6 {
+.page6-title {
 
-    top: 62%;
-    left: 8%;
+    top: 36%;
 
-    width: 39%;
-    height: 27%;
+    left: 25%;
+
+    width: 50%;
+
+    height: 12%;
+
+    font-size: clamp(19px, 2.6vw, 34px);
 }
 
-.page6-text {
+.frame-page6 {
 
-    top: 61%;
-    right: 8%;
+    top: 52%;
 
-    width: 46%;
-    height: 29%;
+    left: 8%;
 
-    padding: 10px;
+    width: 34%;
+
+    height: 28%;
+}
+
+.page6-benefits {
+
+    position: absolute;
+
+    z-index: 10;
+
+    top: 51%;
+
+    right: 7%;
+
+    width: 50%;
+
+    height: 37%;
+
+    padding: 3px;
 
     direction: rtl;
+
     text-align: right;
 
-    font-size: clamp(9px, 1.35vw, 17px);
+    color: white;
+
+    font-size: clamp(12px, 1.55vw, 20px);
+
+    font-weight: bold;
 
     line-height: 1.55;
+
+    text-shadow:
+        0 2px 4px rgba(0,0,0,.45);
+}
+
+.page6-benefits p {
+    margin: 0 0 7px;
 }
 
 
@@ -599,14 +764,15 @@ body {
 
 .navigation {
 
-    height: 55px;
+    height: 65px;
 
     display: flex;
 
     align-items: center;
+
     justify-content: center;
 
-    gap: 9px;
+    gap: 12px;
 
     direction: ltr;
 
@@ -620,19 +786,27 @@ body {
     border: 0;
 
     background: var(--navy);
+
     color: white;
 
-    padding: 7px 17px;
+    padding: 10px 21px;
 
-    border-radius: 5px;
+    border-radius: 7px;
 
     cursor: pointer;
 
     font-family: "Times New Roman", serif;
+
+    font-size: 15px;
+
+    box-shadow:
+        0 4px 8px rgba(0,0,0,.28);
 }
 
 .navigation button:hover {
+
     background: var(--orange);
+
     color: var(--navy);
 }
 
@@ -646,19 +820,20 @@ body {
 
     display: none;
 
-    bottom: 42px;
+    bottom: 49px;
+
     left: 50%;
 
     transform: translateX(-50%);
 
-    width: 105px;
+    width: 115px;
 
     background: white;
 
     border: 1px solid var(--navy);
 
     box-shadow:
-        0 5px 12px rgba(0,0,0,.25);
+        0 7px 14px rgba(0,0,0,.30);
 }
 
 .contents-list.show {
@@ -672,9 +847,14 @@ body {
     border-radius: 0;
 
     background: white;
+
     color: var(--navy);
 
     border-bottom: 1px solid #ddd;
+
+    box-shadow: none;
+
+    font-size: 14px;
 }
 
 
@@ -683,48 +863,72 @@ body {
    ========================================================= */
 
 .turn-next {
-    animation: pageNext .55s ease both;
+
+    animation:
+        pageNext .65s cubic-bezier(.22,.61,.36,1) both;
 }
 
 .turn-prev {
-    animation: pagePrev .55s ease both;
+
+    animation:
+        pagePrev .65s cubic-bezier(.22,.61,.36,1) both;
 }
 
 @keyframes pageNext {
 
     from {
-        opacity: .2;
+
+        opacity: .25;
+
         transform:
-            perspective(1100px)
-            rotateY(-16deg)
-            translateX(18px);
+            perspective(1400px)
+            rotateY(-14deg)
+            translateX(28px)
+            scale(.985);
+
+        transform-origin: right center;
     }
 
     to {
+
         opacity: 1;
+
         transform:
-            perspective(1100px)
+            perspective(1400px)
             rotateY(0)
-            translateX(0);
+            translateX(0)
+            scale(1);
+
+        transform-origin: right center;
     }
 }
 
 @keyframes pagePrev {
 
     from {
-        opacity: .2;
+
+        opacity: .25;
+
         transform:
-            perspective(1100px)
-            rotateY(16deg)
-            translateX(-18px);
+            perspective(1400px)
+            rotateY(14deg)
+            translateX(-28px)
+            scale(.985);
+
+        transform-origin: left center;
     }
 
     to {
+
         opacity: 1;
+
         transform:
-            perspective(1100px)
+            perspective(1400px)
             rotateY(0)
-            translateX(0);
+            translateX(0)
+            scale(1);
+
+        transform-origin: left center;
     }
 }
 
@@ -737,110 +941,281 @@ body {
 
     body {
         background: #bdbdbd;
+        overflow-x: hidden;
     }
 
     .page-group {
-        min-height: calc(100vh - 52px);
+        display: none !important;
 
-        padding: 12px 10px 8px;
+        width: 100%;
+
+        min-height:
+            calc(100vh - 60px);
+
+        padding:
+            8px 8px 6px;
 
         align-items: center;
         justify-content: center;
     }
 
-    .page-group.spread {
+    .page-group.active {
+        display: flex !important;
+    }
+
+    .spread.active {
+        display: flex !important;
+    }
+
+    .book-page {
+
         display: none;
+
+        width: min(94vw, 520px) !important;
+
+        height: auto;
+
+        aspect-ratio:
+            623.622 / 870.236;
+
+        box-shadow:
+            0 12px 25px rgba(0,0,0,.38);
+    }
+
+    .page-group.active .book-page.mobile-visible {
+
+        display: block;
+
+        animation-fill-mode: both;
     }
 
     .page-group.spread .book-page {
         display: none;
     }
 
-    .book-page {
-
-        width: min(92vw, 520px) !important;
-
-        height: auto;
-
-        aspect-ratio: 623.622 / 870.236;
-
-        box-shadow:
-            0 9px 22px rgba(0,0,0,.35);
-    }
-
-    .page-group:not(.spread) {
-        display: none;
-    }
-
-    .page-group.active {
-        display: flex;
-    }
-
-    .page-group.active .book-page {
+    .page-group.spread .book-page.mobile-visible {
         display: block;
     }
 
+
+    /* الشعار */
+
     .page1 .logo-circle,
     .page6 .logo-circle {
-        width: 49%;
-        left: 25.5%;
+
+        width: 42%;
+
+        left: 29%;
+
+        top: 5%;
     }
+
+
+    /* الصور */
+
+    .frame-page1 {
+
+        top: 46%;
+
+        left: 33%;
+
+        width: 40%;
+
+        height: 29%;
+    }
+
+
+    /* الاتصال */
+
+    .contact-card {
+
+        width: 31%;
+
+        min-height: 17%;
+
+        font-size: 12px;
+
+        padding: 8px 5px;
+    }
+
+    .small-contact {
+        width: 31%;
+    }
+
+
+    /* المقدمة */
+
+    .intro-text {
+
+        top: 23%;
+
+        left: 7%;
+
+        right: 7%;
+
+        height: 68%;
+
+        padding: 7% 6%;
+
+        font-size: 11px;
+
+        line-height: 1.65;
+    }
+
+    .intro-text p {
+        margin-bottom: 11px;
+    }
+
+
+    /* العناوين */
 
     .title-pill {
+
         box-shadow:
-            0 6px 11px rgba(0,0,0,.42);
+            0 8px 15px rgba(0,0,0,.45);
     }
 
+    .page2-title {
+        font-size: 21px;
+    }
+
+    .page3-title,
+    .page4-title,
+    .page5-title {
+        font-size: 20px;
+    }
+
+    .page6-title {
+        font-size: 22px;
+    }
+
+
+    /* الصفحة السادسة */
+
+    .page6-benefits {
+
+        font-size: 11px;
+
+        line-height: 1.55;
+    }
+
+    .page6-benefits p {
+        margin-bottom: 5px;
+    }
+
+
+    /* التنقل */
+
     .navigation {
-        height: 52px;
+
+        height: 60px;
+
+        gap: 7px;
     }
 
     .navigation button {
-        padding: 7px 12px;
-        font-size: 12px;
+
+        padding: 9px 14px;
+
+        font-size: 13px;
     }
 
-    .frame-page1 {
-        top: 46%;
-        width: 43%;
-        height: 31%;
+
+    /* حركة الموبايل */
+
+    .turn-next {
+
+        animation:
+            mobileNext .55s cubic-bezier(.22,.61,.36,1) both;
     }
 
-    .contact-card {
-        font-size: 11px;
-    }
-
-    .intro-text {
-        font-size: 9px;
-    }
-
-    .page6-text {
-        font-size: 9px;
-    }
-
-    .turn-next,
     .turn-prev {
-        animation-duration: .48s;
+
+        animation:
+            mobilePrev .55s cubic-bezier(.22,.61,.36,1) both;
+    }
+
+    @keyframes mobileNext {
+
+        from {
+
+            opacity: .1;
+
+            transform:
+                perspective(1000px)
+                rotateY(-18deg)
+                translateX(24px)
+                scale(.98);
+
+            transform-origin: right center;
+        }
+
+        to {
+
+            opacity: 1;
+
+            transform:
+                perspective(1000px)
+                rotateY(0)
+                translateX(0)
+                scale(1);
+
+            transform-origin: right center;
+        }
+    }
+
+    @keyframes mobilePrev {
+
+        from {
+
+            opacity: .1;
+
+            transform:
+                perspective(1000px)
+                rotateY(18deg)
+                translateX(-24px)
+                scale(.98);
+
+            transform-origin: left center;
+        }
+
+        to {
+
+            opacity: 1;
+
+            transform:
+                perspective(1000px)
+                rotateY(0)
+                translateX(0)
+                scale(1);
+
+            transform-origin: left center;
+        }
     }
 }
 
 
 /* =========================================================
-   VERY SMALL MOBILE
+   SMALL MOBILE
    ========================================================= */
 
 @media (max-width: 390px) {
 
     .page-group {
-        padding-left: 7px;
-        padding-right: 7px;
+        padding-left: 5px;
+        padding-right: 5px;
     }
 
     .book-page {
-        width: 94vw !important;
+        width: 95vw !important;
     }
 
     .navigation button {
-        padding: 6px 10px;
+        padding: 8px 11px;
+        font-size: 12px;
+    }
+
+    .page6-benefits {
+        font-size: 10px;
     }
 }
