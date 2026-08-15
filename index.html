@@ -351,23 +351,10 @@ function playSound() {
     sound.currentTime = 0;
     sound.volume = 0.85;
 
-    /*
-       الضغط على الزر نفسه يسمح للمتصفح بتشغيل الصوت.
-    */
-
     const promise = sound.play();
 
     if (promise) {
-
-        promise.catch(() => {
-
-            /*
-               لا نولد صوتًا بديلًا هنا.
-               نترك ملف page-flip.mp3 هو المصدر.
-            */
-
-        });
-
+        promise.catch(() => {});
     }
 }
 
@@ -450,23 +437,62 @@ function nextPage() {
     playSound();
 
 
-    /* 1 -> 2+3 */
+    /* =====================================================
+       PAGE 1 -> PAGE 2 + PAGE 3
+       ===================================================== */
 
     if (currentState === 0) {
 
-        currentState = 1;
+        if (isMobile()) {
 
-        showState(1);
+            const page1 = pages[0];
 
-        setTimeout(() => {
-            isTurning = false;
-        }, 450);
+            page1.classList.add(
+                "mobile-visible",
+                "mobile-turn-prev"
+            );
+
+            setTimeout(() => {
+
+                clearAll();
+
+                currentState = 1;
+
+                showState(1);
+
+                isTurning = false;
+
+            }, 650);
+
+        } else {
+
+            const page1 = pages[0];
+
+            page1.classList.add(
+                "desktop-flip-next"
+            );
+
+            setTimeout(() => {
+
+                clearAll();
+
+                currentState = 1;
+
+                showState(1);
+
+                isTurning = false;
+
+            }, TURN_TIME);
+
+        }
 
         return;
     }
 
 
-    /* 2+3 -> 4+5 */
+    /* =====================================================
+       PAGE 2 + 3 -> PAGE 4 + 5
+       ===================================================== */
 
     if (currentState === 1) {
 
@@ -498,33 +524,87 @@ function nextPage() {
     }
 
 
-    /* 4+5 -> 6 */
+    /* =====================================================
+       PAGE 4 + 5 -> PAGE 6
+       ===================================================== */
 
     if (currentState === 2) {
 
-        clearAll();
-
-        groups[2].classList.add("active");
-
-        const page5 = pages[4];
-
-        void page5.offsetWidth;
-
-        page5.classList.add(
-            "desktop-flip-next"
-        );
-
-        setTimeout(() => {
+        if (isMobile()) {
 
             clearAll();
 
-            currentState = 3;
+            groups[2].classList.add("active");
 
-            groups[3].classList.add("active");
+            const page5 = pages[4];
 
-            isTurning = false;
+            page5.classList.add(
+                "mobile-visible",
+                "mobile-turn-next"
+            );
 
-        }, TURN_TIME);
+            setTimeout(() => {
+
+                clearAll();
+
+                currentState = 3;
+
+                showState(3);
+
+                const page6 = pages[5];
+
+                page6.classList.add(
+                    "mobile-visible",
+                    "mobile-turn-next"
+                );
+
+                isTurning = false;
+
+            }, 650);
+
+        } else {
+
+            clearAll();
+
+            groups[2].classList.add("active");
+
+            const page5 = pages[4];
+
+            void page5.offsetWidth;
+
+            page5.classList.add(
+                "desktop-flip-next"
+            );
+
+            setTimeout(() => {
+
+                clearAll();
+
+                currentState = 3;
+
+                groups[3].classList.add("active");
+
+                const page6 = pages[5];
+
+                void page6.offsetWidth;
+
+                page6.classList.add(
+                    "desktop-flip-prev"
+                );
+
+                setTimeout(() => {
+
+                    page6.classList.remove(
+                        "desktop-flip-prev"
+                    );
+
+                    isTurning = false;
+
+                }, TURN_TIME);
+
+            }, TURN_TIME);
+
+        }
 
         return;
     }
@@ -546,33 +626,68 @@ function previousPage() {
     playSound();
 
 
-    /* 6 -> 4+5 */
+    /* =====================================================
+       PAGE 6 -> PAGE 4 + 5
+       ===================================================== */
 
     if (currentState === 3) {
 
-        clearAll();
+        if (isMobile()) {
 
-        groups[2].classList.add("active");
+            const page6 = pages[5];
 
-        const page5 = pages[4];
+            page6.classList.add(
+                "mobile-visible",
+                "mobile-turn-prev"
+            );
 
-        void page5.offsetWidth;
+            setTimeout(() => {
 
-        page5.classList.add(
-            "desktop-flip-prev"
-        );
+                clearAll();
 
-        currentState = 2;
+                currentState = 2;
 
-        setTimeout(() => {
-            isTurning = false;
-        }, TURN_TIME);
+                showState(2);
+
+                isTurning = false;
+
+            }, 650);
+
+        } else {
+
+            clearAll();
+
+            groups[3].classList.add("active");
+
+            const page6 = pages[5];
+
+            void page6.offsetWidth;
+
+            page6.classList.add(
+                "desktop-flip-next"
+            );
+
+            setTimeout(() => {
+
+                clearAll();
+
+                currentState = 2;
+
+                groups[2].classList.add("active");
+
+                isTurning = false;
+
+            }, TURN_TIME);
+
+        }
 
         return;
     }
 
 
-    /* 4+5 -> 2+3 */
+    /* =====================================================
+       PAGE 4 + 5 -> PAGE 2 + 3
+       ===================================================== */
 
     if (currentState === 2) {
 
@@ -598,17 +713,70 @@ function previousPage() {
     }
 
 
-    /* 2+3 -> 1 */
+    /* =====================================================
+       PAGE 2 + 3 -> PAGE 1
+       ===================================================== */
 
     if (currentState === 1) {
 
-        currentState = 0;
+        if (isMobile()) {
 
-        showState(0);
+            clearAll();
 
-        setTimeout(() => {
-            isTurning = false;
-        }, 450);
+            groups[1].classList.add("active");
+
+            pages[1].classList.add(
+                "mobile-visible"
+            );
+
+            pages[2].classList.add(
+                "mobile-visible"
+            );
+
+            setTimeout(() => {
+
+                clearAll();
+
+                currentState = 0;
+
+                showState(0);
+
+                pages[0].classList.add(
+                    "mobile-visible",
+                    "mobile-turn-prev"
+                );
+
+                isTurning = false;
+
+            }, 100);
+
+        } else {
+
+            clearAll();
+
+            groups[0].classList.add("active");
+
+            const page1 = pages[0];
+
+            void page1.offsetWidth;
+
+            page1.classList.add(
+                "desktop-flip-prev"
+            );
+
+            currentState = 0;
+
+            setTimeout(() => {
+
+                page1.classList.remove(
+                    "desktop-flip-prev"
+                );
+
+                isTurning = false;
+
+            }, TURN_TIME);
+
+        }
 
     }
 
@@ -639,25 +807,21 @@ function goToPage(pageNumber) {
     let targetState = 0;
 
     if (pageNumber === 0) {
-
         targetState = 0;
 
     } else if (
         pageNumber === 1 ||
         pageNumber === 2
     ) {
-
         targetState = 1;
 
     } else if (
         pageNumber === 3 ||
         pageNumber === 4
     ) {
-
         targetState = 2;
 
     } else {
-
         targetState = 3;
     }
 
@@ -744,9 +908,7 @@ document.addEventListener(
                 ".contents-dropdown"
             )
         ) {
-
             closeContents();
-
         }
 
     }
