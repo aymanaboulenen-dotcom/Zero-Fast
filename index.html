@@ -66,7 +66,7 @@
 
 
 <!-- =========================================================
-     PAGE 2 + 3
+     PAGE 2 + PAGE 3
      ========================================================= -->
 
 <div class="page-group spread" data-group="1">
@@ -151,7 +151,7 @@
 
         <div class="image-frame frame-page3-2">
             <img
-                src="images/Untitled%20%E2%80%91%20Made%20with%20FlexClip.gif"
+                src="images/Untitled%20%E2%80%91%20Made%20with%20FlexClip%20%281%29.gif"
                 alt="قائمة الدخول">
         </div>
 
@@ -165,7 +165,7 @@
 
 
 <!-- =========================================================
-     PAGE 4 + 5
+     PAGE 4 + PAGE 5
      ========================================================= -->
 
 <div class="page-group spread" data-group="2">
@@ -338,7 +338,7 @@ const pages = [...document.querySelectorAll(".book-page")];
 const sound = document.getElementById("pageFlipSound");
 
 let currentPage = 0;
-let locked = false;
+let isTurning = false;
 
 const pageToGroup = [
     0,
@@ -348,6 +348,8 @@ const pageToGroup = [
     2,
     3
 ];
+
+const TURN_DURATION = 760;
 
 function isMobile() {
     return window.innerWidth <= 700;
@@ -365,10 +367,10 @@ function playSound() {
     sound.pause();
     sound.currentTime = 0;
 
-    const p = sound.play();
+    const promise = sound.play();
 
-    if (p) {
-        p.catch(() => {});
+    if (promise) {
+        promise.catch(() => {});
     }
 }
 
@@ -409,11 +411,8 @@ function showPage(direction = "next", animate = true) {
 
     clearView();
 
-    const groupIndex =
-        pageToGroup[currentPage];
-
     const group =
-        groups[groupIndex];
+        groups[pageToGroup[currentPage]];
 
     group.classList.add("active");
 
@@ -436,7 +435,6 @@ function showPage(direction = "next", animate = true) {
                     ? "mobile-turn-next"
                     : "mobile-turn-prev"
             );
-
         }
 
         return;
@@ -452,6 +450,15 @@ function showPage(direction = "next", animate = true) {
                 ? "page-turn-next"
                 : "page-turn-prev"
         );
+
+        setTimeout(() => {
+
+            group.classList.remove(
+                "page-turn-next",
+                "page-turn-prev"
+            );
+
+        }, TURN_DURATION);
     }
 }
 
@@ -462,7 +469,7 @@ function showPage(direction = "next", animate = true) {
 
 function moveTo(target) {
 
-    if (locked) return;
+    if (isTurning) return;
 
     if (target < 0 || target > 5) return;
 
@@ -473,11 +480,19 @@ function moveTo(target) {
             ? "next"
             : "prev";
 
+    isTurning = true;
+
     currentPage = target;
 
     playSound();
 
     showPage(direction, true);
+
+    setTimeout(() => {
+
+        isTurning = false;
+
+    }, TURN_DURATION);
 }
 
 
@@ -512,7 +527,9 @@ function closeContents() {
             "contentsMenu"
         );
 
-    menu.classList.remove("show");
+    if (menu) {
+        menu.classList.remove("show");
+    }
 }
 
 
@@ -530,34 +547,26 @@ function goToPage(target) {
 
 document
     .getElementById("nextBtn")
-    .addEventListener(
-        "click",
-        nextPage
-    );
+    .onclick = nextPage;
+
 
 document
     .getElementById("prevBtn")
-    .addEventListener(
-        "click",
-        previousPage
-    );
+    .onclick = previousPage;
+
 
 document
     .getElementById("contentsBtn")
-    .addEventListener(
-        "click",
-        function(e) {
+    .onclick = function(e) {
 
-            e.stopPropagation();
+        e.stopPropagation();
 
-            document
-                .getElementById(
-                    "contentsMenu"
-                )
-                .classList.toggle("show");
+        document
+            .getElementById("contentsMenu")
+            .classList.toggle("show");
 
-        }
-    );
+    };
+
 
 document
     .querySelectorAll(
@@ -565,20 +574,18 @@ document
     )
     .forEach(button => {
 
-        button.addEventListener(
-            "click",
-            function() {
+        button.onclick = function() {
 
-                goToPage(
-                    Number(
-                        this.dataset.target
-                    )
-                );
+            goToPage(
+                Number(
+                    this.dataset.target
+                )
+            );
 
-            }
-        );
+        };
 
     });
+
 
 document.addEventListener(
     "click",
@@ -589,7 +596,9 @@ document.addEventListener(
                 ".contents-dropdown"
             )
         ) {
+
             closeContents();
+
         }
 
     }
@@ -597,11 +606,12 @@ document.addEventListener(
 
 
 /* =========================================================
-   SWIPE
+   TOUCH SWIPE
    ========================================================= */
 
 let startX = 0;
 let startY = 0;
+
 
 document.addEventListener(
     "touchstart",
@@ -680,10 +690,14 @@ window.addEventListener(
             setTimeout(
                 function() {
 
-                    showPage(
-                        "next",
-                        false
-                    );
+                    if (!isTurning) {
+
+                        showPage(
+                            "next",
+                            false
+                        );
+
+                    }
 
                 },
                 120
