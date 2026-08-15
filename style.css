@@ -1,23 +1,13 @@
-/* =========================================================
-   ZERO FAST
-   التصميم مبني على شكل ملف AI
-   ========================================================= */
-
 :root {
     --navy: #082742;
     --orange: #F4A83A;
-    --gray: #dedede;
-
-    /* ليس A4 */
-    --page-height: min(82vh, 760px);
-    --page-width: calc(var(--page-height) * .707);
-
-    --book-gap: 3px;
+    --gray: #686868;
+    --page-ratio: 0.716;
 }
 
 
 /* =========================================================
-   الأساس
+   BASIC
    ========================================================= */
 
 * {
@@ -33,77 +23,91 @@ body {
 }
 
 body {
-    background: #bfc0c0;
+    background: #bdbdbd;
     font-family: "Times New Roman", serif;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
     overflow-x: hidden;
 }
 
 
 /* =========================================================
-   مجموعة الصفحات
+   PAGE GROUP
    ========================================================= */
 
 .page-group {
     display: none;
     width: 100%;
+    min-height: calc(100vh - 55px);
+
     justify-content: center;
     align-items: center;
+
+    padding: 22px 28px 12px;
 }
 
 .page-group.active {
     display: flex;
 }
 
-.book-spread.active {
-    gap: var(--book-gap);
+.spread.active {
+    gap: 5px;
 }
 
 
 /* =========================================================
-   الصفحة
+   PAGE SIZE
    ========================================================= */
 
 .book-page {
     position: relative;
 
-    width: var(--page-width);
-    height: var(--page-height);
+    width: min(
+        calc((100vw - 90px) / 2),
+        calc((100vh - 70px) * var(--page-ratio))
+    );
 
-    flex: 0 0 var(--page-width);
+    height: auto;
+    aspect-ratio: 623.622 / 870.236;
+
+    flex: 0 0 auto;
+
+    background: white;
 
     overflow: hidden;
 
-    background: #fff;
-
     box-shadow:
-        0 8px 22px rgba(0, 0, 0, .28);
+        0 10px 24px rgba(0,0,0,.30),
+        0 2px 5px rgba(0,0,0,.18);
 
     isolation: isolate;
 }
 
 
-/* =========================================================
-   خلفية التصميم
-   ========================================================= */
+/* single pages larger */
 
-.page-background {
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    overflow: hidden;
-
-    background: #fff;
+.page-group:not(.spread) .book-page {
+    width: min(
+        calc(100vw - 100px),
+        calc((100vh - 70px) * var(--page-ratio))
+    );
 }
 
 
-/* الخطوط الرمادية على الجانب */
+/* =========================================================
+   AI BACKGROUND
+   ========================================================= */
 
-.page-background::before {
+.design-bg {
+    position: absolute;
+    inset: 0;
+    z-index: -5;
+
+    background: white;
+}
+
+
+/* grey patterned side */
+
+.design-bg::before {
     content: "";
 
     position: absolute;
@@ -112,64 +116,65 @@ body {
     bottom: 0;
     left: 0;
 
-    width: 27%;
+    width: 25%;
 
     background:
         repeating-linear-gradient(
-            82deg,
-            rgba(80,80,80,.40) 0px,
-            rgba(80,80,80,.40) 2px,
-            rgba(220,220,220,.12) 2px,
-            rgba(220,220,220,.12) 6px
+            110deg,
+            rgba(80,80,80,.42) 0px,
+            rgba(80,80,80,.42) 1px,
+            rgba(180,180,180,.18) 1px,
+            rgba(180,180,180,.18) 4px
         );
 
-    opacity: .75;
+    box-shadow:
+        inset -45px 0 45px rgba(255,255,255,.75);
 }
 
 
-/* الموجة البرتقالية السفلية */
+/* orange lower wave */
 
-.page-background::after {
+.design-bg::after {
     content: "";
 
     position: absolute;
 
     left: -18%;
-    right: -18%;
-    bottom: -10%;
+    bottom: -23%;
 
-    height: 42%;
+    width: 130%;
+    height: 54%;
 
     background: var(--orange);
 
-    border-radius: 55% 55% 0 0 / 35% 35% 0 0;
+    border-radius: 52% 48% 0 0 / 28% 32% 0 0;
 
-    transform: rotate(4deg);
+    transform: rotate(3deg);
+
+    box-shadow:
+        inset 0 18px 20px rgba(255,255,255,.12);
 }
 
 
-/* =========================================================
-   شريط كحلي سفلي
-   ========================================================= */
+/* navy diagonal */
 
-.page1::after,
-.page2::after,
-.page3::after,
-.page4::after,
-.page5::after,
-.page6::after {
+.page1::before,
+.page3::before,
+.page4::before,
+.page5::before,
+.page6::before {
 
     content: "";
 
     position: absolute;
 
-    z-index: -1;
+    z-index: -2;
 
-    bottom: -18%;
     right: -12%;
+    bottom: -5%;
 
     width: 42%;
-    height: 55%;
+    height: 50%;
 
     background: var(--navy);
 
@@ -184,93 +189,183 @@ body {
 
 
 /* =========================================================
-   الشعار
+   LOGO
    ========================================================= */
 
-.brand-logo {
+.logo-circle {
 
     position: absolute;
 
-    top: 5.5%;
-    left: 24%;
+    z-index: 10;
 
-    width: 49%;
+    top: 4.8%;
+    left: 25%;
+
+    width: 50%;
     aspect-ratio: 1;
 
     border-radius: 50%;
 
     background: var(--navy);
 
-    border: 6px solid var(--orange);
+    border: clamp(3px, .55vw, 7px) solid var(--orange);
 
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 
     direction: ltr;
 
-    z-index: 10;
-
     box-shadow:
-        0 3px 7px rgba(0,0,0,.15);
+        0 7px 13px rgba(0,0,0,.28);
 }
 
-.brand-logo .zero {
+.logo-zero,
+.logo-fast {
+    font-size: clamp(20px, 4vw, 54px);
+    font-weight: bold;
+}
+
+.logo-zero {
     color: var(--orange);
-    font-size: clamp(24px, 4vw, 48px);
-    font-weight: bold;
 }
 
-.brand-logo .fast {
+.logo-fast {
     color: white;
-    font-size: clamp(24px, 4vw, 48px);
-    font-weight: bold;
-    margin-left: 8px;
+    margin-left: 7px;
 }
 
 
 /* =========================================================
-   الصفحة 1
+   IMAGE FRAME
    ========================================================= */
 
-.page1-image {
+.image-frame {
 
     position: absolute;
-
-    top: 43%;
-    left: 29%;
-
-    width: 43%;
-    aspect-ratio: 1;
 
     background: white;
 
-    border: 1px solid var(--navy);
+    border: 2px solid var(--navy);
 
-    z-index: 5;
+    padding: 5px;
+
+    overflow: hidden;
+
+    z-index: 6;
+
+    box-shadow:
+        0 4px 9px rgba(0,0,0,.20);
 }
 
-.page1-image img {
+.image-frame img {
+
+    display: block;
+
     width: 100%;
     height: 100%;
+
     object-fit: contain;
+
+    background: white;
 }
 
 
 /* =========================================================
-   الاتصال
+   TITLES
    ========================================================= */
 
-.contact-box {
+.title-pill,
+.bottom-pill {
 
     position: absolute;
 
+    z-index: 20;
+
+    background: var(--navy);
+
+    color: white;
+
+    border-radius: 28px;
+
+    text-align: center;
+
+    box-shadow:
+        0 7px 12px rgba(0,0,0,.38);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    line-height: 1.15;
+
+    white-space: nowrap;
+}
+
+.page2-title {
+    top: 5.8%;
+    left: 32%;
+    width: 40%;
+    height: 11%;
+    font-size: clamp(16px, 2.2vw, 31px);
+}
+
+.page-main-title {
+    top: 5.8%;
+    left: 12%;
+    width: 76%;
+    height: 11%;
+    font-size: clamp(14px, 2vw, 28px);
+}
+
+.page-sub-title {
+    top: 16.5%;
+    left: 27%;
+    width: 46%;
+    height: 9%;
+    font-size: clamp(13px, 1.8vw, 25px);
+}
+
+.page6-title {
+    top: 42%;
+    left: 27%;
+    width: 46%;
+    height: 9%;
+    font-size: clamp(14px, 2vw, 28px);
+}
+
+
+/* =========================================================
+   PAGE 1
+   ========================================================= */
+
+.frame-page1 {
+
+    top: 46%;
+    left: 32%;
+
+    width: 42%;
+    height: 31%;
+}
+
+
+/* =========================================================
+   CONTACT
+   ========================================================= */
+
+.contact-card {
+
+    position: absolute;
+
+    z-index: 25;
+
     left: 8%;
-    bottom: 8%;
+    bottom: 7%;
 
     width: 25%;
+    min-height: 19%;
 
-    padding: 14px 8px;
+    padding: 10px;
 
     background: var(--navy);
 
@@ -280,124 +375,21 @@ body {
 
     text-align: center;
 
-    font-size: clamp(10px, 1.5vw, 18px);
+    font-size: clamp(10px, 1.55vw, 19px);
 
-    line-height: 1.65;
+    line-height: 1.55;
 
     box-shadow:
-        5px 7px 12px rgba(0,0,0,.28);
-
-    z-index: 20;
+        7px 9px 14px rgba(0,0,0,.40);
 }
 
-.contact-space {
-    margin-top: 5px;
+.contact-gap {
+    margin-top: 7px;
 }
 
 .small-contact {
-    bottom: 8%;
-}
-
-
-/* =========================================================
-   عناوين الصفحات
-   ========================================================= */
-
-.title-box {
-
-    position: absolute;
-
-    z-index: 15;
-
-    background: var(--navy);
-
-    color: white;
-
-    border-radius: 18px;
-
-    box-shadow:
-        0 5px 8px rgba(0,0,0,.30);
-
-    text-align: center;
-
-    font-weight: bold;
-
-    white-space: nowrap;
-}
-
-.page2-title {
-    top: 4%;
-    right: 11%;
-    width: 36%;
-    padding: 10px 5px;
-    font-size: clamp(15px, 2vw, 25px);
-}
-
-.page3-title {
-    top: 4%;
-    left: 7%;
-    width: 75%;
-    padding: 9px 5px;
-    font-size: clamp(13px, 1.8vw, 23px);
-}
-
-.page4-title,
-.page5-title {
-    top: 4%;
-    left: 7%;
-    width: 75%;
-    padding: 9px 5px;
-    font-size: clamp(13px, 1.8vw, 23px);
-}
-
-.page6-title {
-    top: 23%;
-    left: 25%;
-    width: 50%;
-    padding: 8px;
-    font-size: clamp(14px, 2vw, 23px);
-}
-
-
-/* =========================================================
-   العناوين الصغيرة
-   ========================================================= */
-
-.subtitle-box {
-
-    position: absolute;
-
-    z-index: 15;
-
-    background: var(--navy);
-
-    color: white;
-
-    border-radius: 18px;
-
-    box-shadow:
-        0 5px 8px rgba(0,0,0,.30);
-
-    text-align: center;
-
-    font-weight: bold;
-}
-
-.page3-subtitle {
-    top: 12%;
-    left: 8%;
-    width: 43%;
-    padding: 6px;
-    font-size: clamp(11px, 1.5vw, 18px);
-}
-
-.page4-subtitle,
-.page5-subtitle {
-    top: 12%;
-    left: 22%;
-    width: 52%;
-    padding: 6px;
-    font-size: clamp(11px, 1.5vw, 18px);
+    width: 25%;
+    min-height: 18%;
 }
 
 
@@ -405,49 +397,36 @@ body {
    PAGE 2
    ========================================================= */
 
-.page2-image {
+.frame-page2 {
 
-    position: absolute;
+    top: 25%;
+    left: 10%;
 
-    top: 22%;
-    right: 9%;
-
-    width: 72%;
-    height: 34%;
-
-    background: white;
-
-    border: 1px solid #222;
-
-    z-index: 5;
-}
-
-.page2-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+    width: 80%;
+    height: 42%;
 }
 
 .intro-text {
 
     position: absolute;
 
-    top: 59%;
-    right: 10%;
-    left: 10%;
+    z-index: 7;
 
-    color: #222;
+    top: 69%;
+    left: 10%;
+    right: 10%;
+
+    font-size: clamp(8px, 1.25vw, 16px);
+
+    line-height: 1.55;
 
     text-align: right;
-    direction: rtl;
 
-    font-size: clamp(9px, 1.35vw, 16px);
-
-    line-height: 1.65;
+    color: #222;
 }
 
 .intro-text p {
-    margin: 0 0 8px;
+    margin: 0 0 5px;
 }
 
 
@@ -455,60 +434,32 @@ body {
    PAGE 3
    ========================================================= */
 
-.page3-image {
+.frame-page3-1 {
 
-    position: absolute;
+    top: 25%;
+    right: 8%;
 
-    width: 34%;
-    aspect-ratio: 1;
-
-    background: white;
-
-    border: 1px solid #222;
-
-    z-index: 5;
+    width: 40%;
+    height: 30%;
 }
 
-.page3-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
+.frame-page3-2 {
 
-.page3-image-1 {
-    top: 21%;
-    right: 9%;
-}
-
-.page3-image-2 {
-    top: 48%;
+    top: 54%;
     left: 17%;
+
+    width: 40%;
+    height: 30%;
 }
 
-.bottom-note {
+.bottom-pill {
 
-    position: absolute;
+    bottom: 5.5%;
+    left: 30%;
+    width: 58%;
+    height: 9%;
 
-    bottom: 6%;
-    left: 10%;
-    right: 10%;
-
-    z-index: 15;
-
-    background: var(--navy);
-
-    color: white;
-
-    border-radius: 17px;
-
-    padding: 6px;
-
-    text-align: center;
-
-    font-size: clamp(9px, 1.3vw, 15px);
-
-    box-shadow:
-        0 4px 7px rgba(0,0,0,.25);
+    font-size: clamp(9px, 1.4vw, 18px);
 }
 
 
@@ -516,74 +467,59 @@ body {
    PAGE 4
    ========================================================= */
 
-.page4-main-image {
+.frame-page4-main {
 
-    position: absolute;
+    top: 27%;
+    left: 10%;
 
-    top: 21%;
-    left: 7%;
-
-    width: 86%;
+    width: 80%;
     height: 31%;
-
-    background: white;
-
-    border: 1px solid #222;
-
-    z-index: 5;
 }
 
-.page4-main-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+.frame-page4-small {
+
+    top: 57%;
+    right: 8%;
+
+    width: 34%;
+    height: 27%;
+
+    transform: rotate(25deg);
 }
 
-.page4-small-image {
+.text-frame {
 
     position: absolute;
 
-    top: 54%;
-    left: 49%;
-
-    width: 28%;
-    height: 18%;
+    z-index: 8;
 
     background: white;
 
-    border: 1px solid #222;
+    border: 2px solid var(--navy);
 
-    transform: rotate(18deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    z-index: 7;
-}
+    text-align: center;
 
-.page4-small-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+    box-shadow:
+        0 4px 8px rgba(0,0,0,.18);
+
+    color: #222;
 }
 
 .page4-text {
 
-    position: absolute;
+    top: 58%;
+    left: 8%;
 
-    top: 57%;
-    left: 10%;
+    width: 39%;
+    height: 25%;
 
-    width: 35%;
+    font-size: clamp(10px, 1.5vw, 19px);
 
-    padding: 15px;
-
-    background: white;
-
-    border: 1px solid #aaa;
-
-    text-align: center;
-
-    font-size: clamp(10px, 1.4vw, 17px);
-
-    line-height: 1.7;
+    line-height: 1.55;
 }
 
 
@@ -591,59 +527,37 @@ body {
    PAGE 5
    ========================================================= */
 
-.page5-image {
+.frame-page5-1,
+.frame-page5-2,
+.frame-page5-3 {
 
-    position: absolute;
+    top: 29%;
 
-    top: 22%;
-
-    width: 25%;
-    height: 21%;
-
-    background: white;
-
-    border: 1px solid #222;
-
-    z-index: 5;
+    width: 27%;
+    height: 29%;
 }
 
-.page5-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+.frame-page5-1 {
+    right: 6%;
 }
 
-.page5-image-1 {
-    right: 7%;
+.frame-page5-2 {
+    left: 36.5%;
 }
 
-.page5-image-2 {
-    left: 37.5%;
-}
-
-.page5-image-3 {
-    left: 7%;
+.frame-page5-3 {
+    left: 6%;
 }
 
 .page5-text {
 
-    position: absolute;
-
-    top: 49%;
+    top: 63%;
     left: 15%;
 
     width: 70%;
-    height: 16%;
+    height: 18%;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background: white;
-
-    border: 1px solid #aaa;
-
-    font-size: clamp(12px, 1.7vw, 20px);
+    font-size: clamp(13px, 2vw, 25px);
 }
 
 
@@ -651,88 +565,48 @@ body {
    PAGE 6
    ========================================================= */
 
-.page6-logo {
-    top: 5%;
-    left: 27%;
-    width: 46%;
-}
+.frame-page6 {
 
-.page6-image {
+    top: 62%;
+    left: 8%;
 
-    position: absolute;
-
-    top: 39%;
-    left: 10%;
-
-    width: 35%;
-    aspect-ratio: 1;
-
-    background: white;
-
-    border: 1px solid #222;
-
-    z-index: 5;
-}
-
-.page6-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+    width: 39%;
+    height: 27%;
 }
 
 .page6-text {
 
-    position: absolute;
-
-    top: 39%;
+    top: 61%;
     right: 8%;
 
-    width: 48%;
+    width: 46%;
+    height: 29%;
 
-    padding: 10px 12px;
+    padding: 10px;
 
     direction: rtl;
     text-align: right;
 
-    background: rgba(255,255,255,.72);
-
-    color: #222;
-
-    font-size: clamp(10px, 1.45vw, 17px);
+    font-size: clamp(9px, 1.35vw, 17px);
 
     line-height: 1.55;
-
-    z-index: 6;
-}
-
-.page6-text p {
-    margin: 0 0 5px;
 }
 
 
 /* =========================================================
-   الكتاب - هامش خارجي
-   ========================================================= */
-
-.page-group {
-    padding: 18px 20px 12px;
-}
-
-
-/* =========================================================
-   الملاحة
+   NAVIGATION
    ========================================================= */
 
 .navigation {
+
+    height: 55px;
 
     display: flex;
 
     align-items: center;
     justify-content: center;
 
-    gap: 10px;
-
-    padding: 7px 0 14px;
+    gap: 9px;
 
     direction: ltr;
 
@@ -743,20 +617,18 @@ body {
 
 .navigation button {
 
-    border: none;
+    border: 0;
 
     background: var(--navy);
     color: white;
 
     padding: 7px 17px;
 
-    font-family: "Times New Roman", serif;
-
-    font-size: 13px;
-
-    border-radius: 4px;
+    border-radius: 5px;
 
     cursor: pointer;
+
+    font-family: "Times New Roman", serif;
 }
 
 .navigation button:hover {
@@ -770,12 +642,11 @@ body {
 
 .contents-list {
 
-    display: none;
-
     position: absolute;
 
-    bottom: calc(100% + 5px);
+    display: none;
 
+    bottom: 42px;
     left: 50%;
 
     transform: translateX(-50%);
@@ -787,9 +658,7 @@ body {
     border: 1px solid var(--navy);
 
     box-shadow:
-        0 4px 10px rgba(0,0,0,.25);
-
-    z-index: 200;
+        0 5px 12px rgba(0,0,0,.25);
 }
 
 .contents-list.show {
@@ -800,70 +669,62 @@ body {
 
     width: 100%;
 
-    display: block;
-
-    background: white;
-
-    color: var(--navy);
-
     border-radius: 0;
 
+    background: white;
+    color: var(--navy);
+
     border-bottom: 1px solid #ddd;
-
-    padding: 6px;
-
-    font-size: 12px;
 }
 
 
 /* =========================================================
-   حركة التقليب
+   PAGE TURN
    ========================================================= */
 
-.page-flip {
-    transform-origin: center;
-    backface-visibility: hidden;
+.turn-next {
+    animation: pageNext .55s ease both;
 }
 
-.flip-next {
-    animation: flipNext .42s ease;
+.turn-prev {
+    animation: pagePrev .55s ease both;
 }
 
-.flip-previous {
-    animation: flipPrevious .42s ease;
-}
-
-@keyframes flipNext {
+@keyframes pageNext {
 
     from {
-        opacity: 0;
-        transform: perspective(900px)
-                   rotateY(-8deg)
-                   translateX(10px);
+        opacity: .2;
+        transform:
+            perspective(1100px)
+            rotateY(-16deg)
+            translateX(18px);
     }
 
     to {
         opacity: 1;
-        transform: perspective(900px)
-                   rotateY(0)
-                   translateX(0);
+        transform:
+            perspective(1100px)
+            rotateY(0)
+            translateX(0);
     }
 }
 
-@keyframes flipPrevious {
+@keyframes pagePrev {
 
     from {
-        opacity: 0;
-        transform: perspective(900px)
-                   rotateY(8deg)
-                   translateX(-10px);
+        opacity: .2;
+        transform:
+            perspective(1100px)
+            rotateY(16deg)
+            translateX(-18px);
     }
 
     to {
         opacity: 1;
-        transform: perspective(900px)
-                   rotateY(0)
-                   translateX(0);
+        transform:
+            perspective(1100px)
+            rotateY(0)
+            translateX(0);
     }
 }
 
@@ -874,61 +735,112 @@ body {
 
 @media (max-width: 700px) {
 
-    :root {
-        --page-height: min(78vh, 760px);
-        --page-width: calc(var(--page-height) * .707);
-    }
-
     body {
-        background: #bfc0c0;
+        background: #bdbdbd;
     }
 
     .page-group {
-        padding: 10px 8px 7px;
+        min-height: calc(100vh - 52px);
+
+        padding: 12px 10px 8px;
+
+        align-items: center;
+        justify-content: center;
     }
 
-    .book-spread {
-        display: block !important;
-    }
-
-    .book-spread .book-page {
+    .page-group.spread {
         display: none;
     }
 
-    .book-spread .book-page:nth-child(1) {
+    .page-group.spread .book-page {
+        display: none;
+    }
+
+    .book-page {
+
+        width: min(92vw, 520px) !important;
+
+        height: auto;
+
+        aspect-ratio: 623.622 / 870.236;
+
+        box-shadow:
+            0 9px 22px rgba(0,0,0,.35);
+    }
+
+    .page-group:not(.spread) {
+        display: none;
+    }
+
+    .page-group.active {
+        display: flex;
+    }
+
+    .page-group.active .book-page {
         display: block;
     }
 
+    .page1 .logo-circle,
+    .page6 .logo-circle {
+        width: 49%;
+        left: 25.5%;
+    }
+
+    .title-pill {
+        box-shadow:
+            0 6px 11px rgba(0,0,0,.42);
+    }
+
     .navigation {
-        padding-bottom: 10px;
+        height: 52px;
     }
 
     .navigation button {
-        padding: 7px 13px;
+        padding: 7px 12px;
         font-size: 12px;
     }
 
-    .contact-box {
+    .frame-page1 {
+        top: 46%;
+        width: 43%;
+        height: 31%;
+    }
+
+    .contact-card {
         font-size: 11px;
     }
 
+    .intro-text {
+        font-size: 9px;
+    }
+
+    .page6-text {
+        font-size: 9px;
+    }
+
+    .turn-next,
+    .turn-prev {
+        animation-duration: .48s;
+    }
 }
 
 
 /* =========================================================
-   شاشة صغيرة جدًا
+   VERY SMALL MOBILE
    ========================================================= */
 
-@media (max-width: 430px) {
-
-    :root {
-        --page-height: min(76vh, 650px);
-        --page-width: calc(var(--page-height) * .707);
-    }
+@media (max-width: 390px) {
 
     .page-group {
-        padding-left: 5px;
-        padding-right: 5px;
+        padding-left: 7px;
+        padding-right: 7px;
     }
 
+    .book-page {
+        width: 94vw !important;
+    }
+
+    .navigation button {
+        padding: 6px 10px;
+    }
 }
