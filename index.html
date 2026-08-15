@@ -56,7 +56,6 @@
                 </span>
 
                 <span>98926486</span>
-
             </div>
 
         </div>
@@ -123,7 +122,6 @@
                 </span>
 
                 <span>98926486</span>
-
             </div>
 
         </div>
@@ -339,20 +337,20 @@ const groups = [...document.querySelectorAll(".page-group")];
 const pages = [...document.querySelectorAll(".book-page")];
 const sound = document.getElementById("pageFlipSound");
 
-let currentPage = 0;
+let currentState = 0;
 let isTurning = false;
 
-const pageToGroup = [
-    0,
-    1,
-    1,
-    2,
-    2,
-    3
-];
+const TURN_TIME = 900;
 
-const TURN_DURATION = 900;
 
+/* =========================================================
+   STATES
+
+   0 = PAGE 1
+   1 = PAGE 2 + 3
+   2 = PAGE 4 + 5
+   3 = PAGE 6
+   ========================================================= */
 
 function isMobile() {
     return window.innerWidth <= 700;
@@ -367,11 +365,9 @@ function playSound() {
 
     if (!sound) return;
 
-    sound.volume = 0.85;
-
     sound.pause();
-
     sound.currentTime = 0;
+    sound.volume = 0.85;
 
     const promise = sound.play();
 
@@ -385,14 +381,14 @@ function playSound() {
    CLEAR
    ========================================================= */
 
-function clearView() {
+function clearAll() {
 
     groups.forEach(group => {
 
         group.classList.remove(
             "active",
-            "page-turn-next",
-            "page-turn-prev"
+            "desktop-flip-next",
+            "desktop-flip-prev"
         );
 
     });
@@ -402,7 +398,9 @@ function clearView() {
         page.classList.remove(
             "mobile-visible",
             "mobile-turn-next",
-            "mobile-turn-prev"
+            "mobile-turn-prev",
+            "desktop-flip-next",
+            "desktop-flip-prev"
         );
 
     });
@@ -410,104 +408,46 @@ function clearView() {
 
 
 /* =========================================================
-   SHOW
+   SHOW STATE
    ========================================================= */
 
-function showPage(
-    direction = "next",
-    animate = true
-) {
+function showState(state) {
 
-    clearView();
+    clearAll();
 
-    const group =
-        groups[pageToGroup[currentPage]];
+    const group = groups[state];
+
+    if (!group) return;
 
     group.classList.add("active");
 
 
+    if (!isMobile()) return;
+
+
     /* MOBILE */
 
-    if (isMobile()) {
+    const statePages = [
+        [0],
+        [1, 2],
+        [3, 4],
+        [5]
+    ];
 
-        const page =
-            pages[currentPage];
+    const visiblePages =
+        statePages[state] || [];
 
-        page.classList.add(
-            "mobile-visible"
-        );
+    visiblePages.forEach(index => {
 
-        if (animate) {
+        if (pages[index]) {
 
-            void page.offsetWidth;
-
-            page.classList.add(
-                direction === "next"
-                    ? "mobile-turn-next"
-                    : "mobile-turn-prev"
+            pages[index].classList.add(
+                "mobile-visible"
             );
 
         }
 
-        return;
-    }
-
-
-    /* DESKTOP */
-
-    if (!animate) return;
-
-    void group.offsetWidth;
-
-    group.classList.add(
-        direction === "next"
-            ? "page-turn-next"
-            : "page-turn-prev"
-    );
-}
-
-
-/* =========================================================
-   MOVE
-   ========================================================= */
-
-function moveTo(target) {
-
-    if (isTurning) return;
-
-    if (
-        target < 0 ||
-        target > 5
-    ) {
-        return;
-    }
-
-    if (target === currentPage) {
-        return;
-    }
-
-    const direction =
-        target > currentPage
-            ? "next"
-            : "prev";
-
-    isTurning = true;
-
-    playSound();
-
-    currentPage = target;
-
-    showPage(
-        direction,
-        true
-    );
-
-    setTimeout(
-        () => {
-            isTurning = false;
-        },
-        TURN_DURATION
-    );
+    });
 }
 
 
@@ -517,11 +457,104 @@ function moveTo(target) {
 
 function nextPage() {
 
-    if (currentPage >= 5) return;
+    if (isTurning) return;
 
-    moveTo(
-        currentPage + 1
-    );
+    if (currentState >= 3) return;
+
+    isTurning = true;
+
+    playSound();
+
+
+    /*
+       PAGE 1 → PAGE 2+3
+    */
+
+    if (currentState === 0) {
+
+        currentState = 1;
+
+        showState(1);
+
+        setTimeout(() => {
+
+            isTurning = false;
+
+        }, 450);
+
+        return;
+    }
+
+
+    /*
+       PAGE 2+3 → PAGE 4+5
+
+       PAGE 3 turns.
+       PAGE 2 stays still.
+    */
+
+    if (currentState === 1) {
+
+        const page3 = pages[2];
+
+        clearAll();
+
+        groups[1].classList.add("active");
+
+        void page3.offsetWidth;
+
+        page3.classList.add(
+            "desktop-flip-next"
+        );
+
+        setTimeout(() => {
+
+            currentState = 2;
+
+            showState(2);
+
+            isTurning = false;
+
+        }, TURN_TIME);
+
+        return;
+    }
+
+
+    /*
+       PAGE 4+5 → PAGE 6
+
+       PAGE 5 turns.
+       PAGE 4 stays still.
+    */
+
+    if (currentState === 2) {
+
+        const page5 = pages[4];
+
+        clearAll();
+
+        groups[2].classList.add("active");
+
+        void page5.offsetWidth;
+
+        page5.classList.add(
+            "desktop-flip-next"
+        );
+
+        setTimeout(() => {
+
+            currentState = 3;
+
+            showState(3);
+
+            isTurning = false;
+
+        }, TURN_TIME);
+
+        return;
+    }
+
 }
 
 
@@ -531,11 +564,98 @@ function nextPage() {
 
 function previousPage() {
 
-    if (currentPage <= 0) return;
+    if (isTurning) return;
 
-    moveTo(
-        currentPage - 1
-    );
+    if (currentState <= 0) return;
+
+    isTurning = true;
+
+    playSound();
+
+
+    /*
+       PAGE 6 → PAGE 4+5
+
+       PAGE 5 returns.
+    */
+
+    if (currentState === 3) {
+
+        currentState = 2;
+
+        clearAll();
+
+        groups[2].classList.add("active");
+
+        const page5 = pages[4];
+
+        void page5.offsetWidth;
+
+        page5.classList.add(
+            "desktop-flip-prev"
+        );
+
+        setTimeout(() => {
+
+            isTurning = false;
+
+        }, TURN_TIME);
+
+        return;
+    }
+
+
+    /*
+       PAGE 4+5 → PAGE 2+3
+
+       PAGE 3 returns.
+    */
+
+    if (currentState === 2) {
+
+        currentState = 1;
+
+        clearAll();
+
+        groups[1].classList.add("active");
+
+        const page3 = pages[2];
+
+        void page3.offsetWidth;
+
+        page3.classList.add(
+            "desktop-flip-prev"
+        );
+
+        setTimeout(() => {
+
+            isTurning = false;
+
+        }, TURN_TIME);
+
+        return;
+    }
+
+
+    /*
+       PAGE 2+3 → PAGE 1
+    */
+
+    if (currentState === 1) {
+
+        currentState = 0;
+
+        showState(0);
+
+        setTimeout(() => {
+
+            isTurning = false;
+
+        }, 450);
+
+        return;
+    }
+
 }
 
 
@@ -560,11 +680,55 @@ function closeContents() {
 }
 
 
-function goToPage(target) {
+function goToPage(pageNumber) {
 
     closeContents();
 
-    moveTo(target);
+    let targetState = 0;
+
+
+    if (pageNumber === 0) {
+
+        targetState = 0;
+
+    }
+
+    else if (
+        pageNumber === 1 ||
+        pageNumber === 2
+    ) {
+
+        targetState = 1;
+
+    }
+
+    else if (
+        pageNumber === 3 ||
+        pageNumber === 4
+    ) {
+
+        targetState = 2;
+
+    }
+
+    else if (pageNumber === 5) {
+
+        targetState = 3;
+
+    }
+
+
+    if (targetState === currentState) {
+        return;
+    }
+
+    if (isTurning) {
+        return;
+    }
+
+    currentState = targetState;
+
+    showState(currentState);
 }
 
 
@@ -579,6 +743,7 @@ document
         e.preventDefault();
 
         nextPage();
+
     };
 
 
@@ -589,6 +754,7 @@ document
         e.preventDefault();
 
         previousPage();
+
     };
 
 
@@ -597,7 +763,6 @@ document
     .onclick = function(e) {
 
         e.preventDefault();
-
         e.stopPropagation();
 
         document
@@ -651,7 +816,7 @@ document.addEventListener(
 
 
 /* =========================================================
-   SWIPE
+   MOBILE SWIPE
    ========================================================= */
 
 let startX = 0;
@@ -753,9 +918,8 @@ window.addEventListener(
 
                     if (!isTurning) {
 
-                        showPage(
-                            "next",
-                            false
+                        showState(
+                            currentState
                         );
 
                     }
@@ -772,10 +936,7 @@ window.addEventListener(
    START
    ========================================================= */
 
-showPage(
-    "next",
-    false
-);
+showState(0);
 
 </script>
 
