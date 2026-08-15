@@ -56,7 +56,6 @@
                 </span>
 
                 <span>98926486</span>
-
             </div>
 
         </div>
@@ -121,7 +120,6 @@
                 </span>
 
                 <span>98926486</span>
-
             </div>
 
         </div>
@@ -337,10 +335,6 @@ let isTurning = false;
 const TURN_TIME = 900;
 
 
-/* =========================================================
-   STATE
-   ========================================================= */
-
 function isMobile() {
     return window.innerWidth <= 700;
 }
@@ -350,113 +344,31 @@ function isMobile() {
    SOUND
    ========================================================= */
 
-function playFallbackSound() {
-
-    try {
-
-        const AudioContext =
-            window.AudioContext ||
-            window.webkitAudioContext;
-
-        if (!AudioContext) return;
-
-        const ctx =
-            new AudioContext();
-
-        if (ctx.state === "suspended") {
-            ctx.resume();
-        }
-
-        const osc =
-            ctx.createOscillator();
-
-        const gain =
-            ctx.createGain();
-
-        osc.type = "triangle";
-
-        osc.frequency.setValueAtTime(
-            520,
-            ctx.currentTime
-        );
-
-        osc.frequency.exponentialRampToValueAtTime(
-            130,
-            ctx.currentTime + 0.16
-        );
-
-        gain.gain.setValueAtTime(
-            0.0001,
-            ctx.currentTime
-        );
-
-        gain.gain.exponentialRampToValueAtTime(
-            0.12,
-            ctx.currentTime + 0.015
-        );
-
-        gain.gain.exponentialRampToValueAtTime(
-            0.0001,
-            ctx.currentTime + 0.17
-        );
-
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-
-        osc.start();
-        osc.stop(
-            ctx.currentTime + 0.18
-        );
-
-        setTimeout(() => {
-            try {
-                ctx.close();
-            } catch (e) {}
-        }, 300);
-
-    } catch (e) {}
-}
-
-
 function playSound() {
 
-    if (!sound) {
-
-        playFallbackSound();
-
-        return;
-    }
+    if (!sound) return;
 
     sound.pause();
     sound.currentTime = 0;
     sound.volume = 0.85;
 
-    const promise =
-        sound.play();
+    const promise = sound.play();
 
     if (promise) {
-
-        promise.catch(() => {
-
-            playFallbackSound();
-
-        });
-
+        promise.catch(() => {});
     }
 }
 
 
 /* =========================================================
-   CLEAR
+   CLEAR EVERYTHING
    ========================================================= */
 
 function clearAll() {
 
     groups.forEach(group => {
 
-        group.classList.remove(
-            "active"
-        );
+        group.classList.remove("active");
 
     });
 
@@ -482,19 +394,13 @@ function showState(state) {
 
     clearAll();
 
-    const group =
-        groups[state];
+    const group = groups[state];
 
     if (!group) return;
 
-    group.classList.add(
-        "active"
-    );
+    group.classList.add("active");
 
-
-    if (!isMobile()) {
-        return;
-    }
+    if (!isMobile()) return;
 
 
     const statePages = [
@@ -537,7 +443,7 @@ function nextPage() {
     playSound();
 
 
-    /* PAGE 1 -> PAGE 2+3 */
+    /* 1 -> 2+3 */
 
     if (currentState === 0) {
 
@@ -555,21 +461,16 @@ function nextPage() {
     }
 
 
-    /* PAGE 3 -> PAGE 2 / THEN 4+5 */
+    /* 2+3 -> 4+5
+       page 3 moves, page 2 stays */
 
     if (currentState === 1) {
 
-        const page3 =
-            pages[2];
+        clearAll();
 
-        groups[1].classList.add(
-            "active"
-        );
+        groups[1].classList.add("active");
 
-        page3.classList.remove(
-            "desktop-flip-next",
-            "desktop-flip-prev"
-        );
+        const page3 = pages[2];
 
         void page3.offsetWidth;
 
@@ -580,9 +481,9 @@ function nextPage() {
 
         setTimeout(() => {
 
-            currentState = 2;
-
             showState(2);
+
+            currentState = 2;
 
             isTurning = false;
 
@@ -592,21 +493,16 @@ function nextPage() {
     }
 
 
-    /* PAGE 5 -> PAGE 4 / THEN PAGE 6 */
+    /* 4+5 -> 6
+       page 5 moves, page 4 stays */
 
     if (currentState === 2) {
 
-        const page5 =
-            pages[4];
+        clearAll();
 
-        groups[2].classList.add(
-            "active"
-        );
+        groups[2].classList.add("active");
 
-        page5.classList.remove(
-            "desktop-flip-next",
-            "desktop-flip-prev"
-        );
+        const page5 = pages[4];
 
         void page5.offsetWidth;
 
@@ -617,9 +513,9 @@ function nextPage() {
 
         setTimeout(() => {
 
-            currentState = 3;
-
             showState(3);
+
+            currentState = 3;
 
             isTurning = false;
 
@@ -646,23 +542,16 @@ function previousPage() {
     playSound();
 
 
-    /* PAGE 6 -> PAGE 4+5 */
+    /* 6 -> 4+5
+       page 5 returns */
 
     if (currentState === 3) {
 
-        currentState = 2;
+        clearAll();
 
-        groups[2].classList.add(
-            "active"
-        );
+        groups[2].classList.add("active");
 
-        const page5 =
-            pages[4];
-
-        page5.classList.remove(
-            "desktop-flip-next",
-            "desktop-flip-prev"
-        );
+        const page5 = pages[4];
 
         void page5.offsetWidth;
 
@@ -670,6 +559,8 @@ function previousPage() {
             "desktop-flip-prev"
         );
 
+        currentState = 2;
+
 
         setTimeout(() => {
 
@@ -681,23 +572,16 @@ function previousPage() {
     }
 
 
-    /* PAGE 4+5 -> PAGE 2+3 */
+    /* 4+5 -> 2+3
+       page 3 returns */
 
     if (currentState === 2) {
 
-        currentState = 1;
+        clearAll();
 
-        groups[1].classList.add(
-            "active"
-        );
+        groups[1].classList.add("active");
 
-        const page3 =
-            pages[2];
-
-        page3.classList.remove(
-            "desktop-flip-next",
-            "desktop-flip-prev"
-        );
+        const page3 = pages[2];
 
         void page3.offsetWidth;
 
@@ -705,6 +589,8 @@ function previousPage() {
             "desktop-flip-prev"
         );
 
+        currentState = 1;
+
 
         setTimeout(() => {
 
@@ -716,13 +602,14 @@ function previousPage() {
     }
 
 
-    /* PAGE 2+3 -> PAGE 1 */
+    /* 2+3 -> 1 */
 
     if (currentState === 1) {
 
         currentState = 0;
 
         showState(0);
+
 
         setTimeout(() => {
 
@@ -748,9 +635,7 @@ function closeContents() {
 
     if (menu) {
 
-        menu.classList.remove(
-            "show"
-        );
+        menu.classList.remove("show");
 
     }
 }
@@ -796,12 +681,9 @@ function goToPage(pageNumber) {
     }
 
 
-    currentState =
-        targetState;
+    currentState = targetState;
 
-    showState(
-        currentState
-    );
+    showState(currentState);
 }
 
 
@@ -839,9 +721,7 @@ document
         e.stopPropagation();
 
         document
-            .getElementById(
-                "contentsMenu"
-            )
+            .getElementById("contentsMenu")
             .classList
             .toggle("show");
 
