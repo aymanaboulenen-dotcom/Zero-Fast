@@ -30,6 +30,11 @@
             <span class="logo-fast">Fast</span>
         </div>
 
+        <!-- العنوان الجديد -->
+        <div class="page1-program-title">
+            برنامج إدارة شركات التوصيل
+        </div>
+
         <div class="image-frame frame-page1">
             <img
                 src="images/Speeding%20Good%20Morning%20GIF%20by%20My%20Doodles%20Atalier.gif"
@@ -44,12 +49,15 @@
             </div>
 
             <div class="contact-item">
+
                 <span class="whatsapp-icon">
                     <svg viewBox="0 0 24 24">
                         <path d="M12 2C6.48 2 2 6.48 2 12c0 1.77.46 3.43 1.26 4.88L2 22l5.27-1.23A9.93 9.93 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.56 0-3.02-.4-4.31-1.1l-.31-.17-3.13.73.74-3.05-.18-.31A7.94 7.94 0 0 1 4 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8zm4.39-5.61c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.92-1.18-.71-.63-1.19-1.41-1.33-1.65-.14-.24-.01-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.47-.4-.41-.54-.42h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.33.98 2.49c.12.16 1.69 2.58 4.1 3.62.57.25 1.02.4 1.37.51.58.18 1.11.16 1.53.1.47-.07 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28z"/>
                     </svg>
                 </span>
+
                 <span>98926486</span>
+
             </div>
 
         </div>
@@ -104,12 +112,15 @@
             </div>
 
             <div class="contact-item">
+
                 <span class="whatsapp-icon">
                     <svg viewBox="0 0 24 24">
                         <path d="M12 2C6.48 2 2 6.48 2 12c0 1.77.46 3.43 1.26 4.88L2 22l5.27-1.23A9.93 9.93 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.56 0-3.02-.4-4.31-1.1l-.31-.17-3.13.73.74-3.05-.18-.31A7.94 7.94 0 0 1 4 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8zm4.39-5.61c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.92-1.18-.71-.63-1.19-1.41-1.33-1.65-.14-.24-.01-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.47-.4-.41-.54-.42h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.33.98 2.49c.12.16 1.69 2.58 4.1 3.62.57.25 1.02.4 1.37.51.58.18 1.11.16 1.53.1.47-.07 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28z"/>
                     </svg>
                 </span>
+
                 <span>98926486</span>
+
             </div>
 
         </div>
@@ -286,12 +297,14 @@
         </button>
 
         <div id="contentsMenu" class="contents-list">
+
             <button data-target="0">Page 1</button>
             <button data-target="1">Page 2</button>
             <button data-target="2">Page 3</button>
             <button data-target="3">Page 4</button>
             <button data-target="4">Page 5</button>
             <button data-target="5">Page 6</button>
+
         </div>
 
     </div>
@@ -308,9 +321,19 @@ const pages = [...document.querySelectorAll(".book-page")];
 const sound = document.getElementById("pageFlipSound");
 
 let currentPage = 0;
+let busy = false;
+
+const TURN_TIME = 680;
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
 
 function isMobile() {
+
     return window.innerWidth <= 700;
+
 }
 
 
@@ -330,20 +353,24 @@ function playSound() {
     if (promise) {
         promise.catch(() => {});
     }
+
 }
 
 
 /* =========================================================
-   PAGE MAPPING
+   PAGE GROUP
    ========================================================= */
 
 function getGroupIndex(page) {
 
     if (page === 0) return 0;
+
     if (page <= 2) return 1;
+
     if (page <= 4) return 2;
 
     return 3;
+
 }
 
 
@@ -354,8 +381,11 @@ function getGroupIndex(page) {
 function resetPages() {
 
     groups.forEach(group => {
+
         group.classList.remove("active");
+
     });
+
 
     pages.forEach(page => {
 
@@ -366,6 +396,7 @@ function resetPages() {
         );
 
     });
+
 }
 
 
@@ -373,32 +404,32 @@ function resetPages() {
    SHOW PAGE
    ========================================================= */
 
-function showPage(direction = "next") {
+function showPage(direction = "next", animate = true) {
 
     resetPages();
 
-    if (isMobile()) {
+    const group =
+        groups[getGroupIndex(currentPage)];
 
-        pages[currentPage].classList.add("mobile-visible");
-
-        void pages[currentPage].offsetWidth;
-
-        pages[currentPage].classList.add(
-            direction === "next"
-                ? "turn-next"
-                : "turn-prev"
-        );
-
-        return;
-    }
-
-
-    const group = groups[getGroupIndex(currentPage)];
 
     group.classList.add("active");
 
-    group.querySelectorAll(".book-page")
-        .forEach(page => {
+
+    /* MOBILE */
+
+    if (isMobile()) {
+
+        const page =
+            pages[currentPage];
+
+        page.classList.add(
+            "mobile-visible"
+        );
+
+
+        if (animate) {
+
+            void page.offsetWidth;
 
             page.classList.add(
                 direction === "next"
@@ -406,7 +437,46 @@ function showPage(direction = "next") {
                     : "turn-prev"
             );
 
-        });
+        }
+
+        return;
+
+    }
+
+
+    /* DESKTOP */
+
+    if (animate) {
+
+        group
+            .querySelectorAll(".book-page")
+            .forEach(page => {
+
+                page.classList.add(
+                    direction === "next"
+                        ? "turn-next"
+                        : "turn-prev"
+                );
+
+            });
+
+    }
+
+}
+
+
+/* =========================================================
+   FINISH TURN
+   ========================================================= */
+
+function finishTurn() {
+
+    setTimeout(() => {
+
+        busy = false;
+
+    }, TURN_TIME);
+
 }
 
 
@@ -416,13 +486,20 @@ function showPage(direction = "next") {
 
 function nextPage() {
 
+    if (busy) return;
+
     if (currentPage >= 5) return;
+
+    busy = true;
 
     currentPage++;
 
     playSound();
 
     showPage("next");
+
+    finishTurn();
+
 }
 
 
@@ -432,13 +509,20 @@ function nextPage() {
 
 function previousPage() {
 
+    if (busy) return;
+
     if (currentPage <= 0) return;
+
+    busy = true;
 
     currentPage--;
 
     playSound();
 
     showPage("prev");
+
+    finishTurn();
+
 }
 
 
@@ -448,15 +532,43 @@ function previousPage() {
 
 function goToPage(target) {
 
-    if (target === currentPage) {
+    if (busy) {
+
         closeContents();
+
         return;
+
     }
+
+
+    if (
+        target < 0 ||
+        target > 5
+    ) {
+
+        closeContents();
+
+        return;
+
+    }
+
+
+    if (target === currentPage) {
+
+        closeContents();
+
+        return;
+
+    }
+
 
     const direction =
         target > currentPage
             ? "next"
             : "prev";
+
+
+    busy = true;
 
     currentPage = target;
 
@@ -465,6 +577,9 @@ function goToPage(target) {
     showPage(direction);
 
     closeContents();
+
+    finishTurn();
+
 }
 
 
@@ -474,53 +589,97 @@ function goToPage(target) {
 
 function closeContents() {
 
-    document
-        .getElementById("contentsMenu")
-        .classList.remove("show");
+    const menu =
+        document.getElementById(
+            "contentsMenu"
+        );
+
+    if (menu) {
+
+        menu.classList.remove(
+            "show"
+        );
+
+    }
+
 }
 
 
-document.getElementById("nextBtn")
-    .addEventListener("click", nextPage);
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+document
+    .getElementById("nextBtn")
+    .addEventListener(
+        "click",
+        nextPage
+    );
 
 
-document.getElementById("prevBtn")
-    .addEventListener("click", previousPage);
+document
+    .getElementById("prevBtn")
+    .addEventListener(
+        "click",
+        previousPage
+    );
 
 
-document.getElementById("contentsBtn")
-    .addEventListener("click", function(e) {
+document
+    .getElementById("contentsBtn")
+    .addEventListener(
+        "click",
+        function(e) {
 
-        e.stopPropagation();
+            e.stopPropagation();
 
-        document
-            .getElementById("contentsMenu")
-            .classList.toggle("show");
+            document
+                .getElementById(
+                    "contentsMenu"
+                )
+                .classList
+                .toggle("show");
 
-    });
+        }
+    );
 
 
-document.querySelectorAll("[data-target]")
+document
+    .querySelectorAll("[data-target]")
     .forEach(button => {
 
-        button.addEventListener("click", function() {
+        button.addEventListener(
+            "click",
+            function() {
 
-            goToPage(
-                Number(this.dataset.target)
-            );
+                goToPage(
+                    Number(
+                        this.dataset.target
+                    )
+                );
 
-        });
+            }
+        );
 
     });
 
 
-document.addEventListener("click", function(e) {
+document.addEventListener(
+    "click",
+    function(e) {
 
-    if (!e.target.closest(".contents-dropdown")) {
-        closeContents();
+        if (
+            !e.target.closest(
+                ".contents-dropdown"
+            )
+        ) {
+
+            closeContents();
+
+        }
+
     }
-
-});
+);
 
 
 /* =========================================================
@@ -530,42 +689,80 @@ document.addEventListener("click", function(e) {
 let touchStartX = 0;
 let touchStartY = 0;
 
-document.addEventListener("touchstart", function(e) {
 
-    if (!isMobile()) return;
+document.addEventListener(
+    "touchstart",
+    function(e) {
 
-    if (e.touches.length !== 1) return;
+        if (!isMobile()) return;
 
-    touchStartX = e.touches[0].clientX;
-    touchStartY = e.touches[0].clientY;
+        if (e.touches.length !== 1) {
+            return;
+        }
 
-}, { passive: true });
+
+        touchStartX =
+            e.touches[0].clientX;
+
+        touchStartY =
+            e.touches[0].clientY;
+
+    },
+    { passive: true }
+);
 
 
-document.addEventListener("touchend", function(e) {
+document.addEventListener(
+    "touchend",
+    function(e) {
 
-    if (!isMobile()) return;
+        if (!isMobile()) return;
 
-    if (e.changedTouches.length !== 1) return;
+        if (
+            e.changedTouches.length !== 1
+        ) {
+            return;
+        }
 
-    const dx =
-        e.changedTouches[0].clientX - touchStartX;
 
-    const dy =
-        e.changedTouches[0].clientY - touchStartY;
+        const dx =
+            e.changedTouches[0].clientX -
+            touchStartX;
 
-    if (Math.abs(dy) > Math.abs(dx)) return;
 
-    if (Math.abs(dx) < 45) return;
+        const dy =
+            e.changedTouches[0].clientY -
+            touchStartY;
 
-    if (dx < 0) {
-        nextPage();
-    }
-    else {
-        previousPage();
-    }
 
-}, { passive: true });
+        if (
+            Math.abs(dy) >
+            Math.abs(dx)
+        ) {
+            return;
+        }
+
+
+        if (
+            Math.abs(dx) < 45
+        ) {
+            return;
+        }
+
+
+        if (dx < 0) {
+
+            nextPage();
+
+        } else {
+
+            previousPage();
+
+        }
+
+    },
+    { passive: true }
+);
 
 
 /* =========================================================
@@ -574,22 +771,41 @@ document.addEventListener("touchend", function(e) {
 
 let resizeTimer;
 
-window.addEventListener("resize", function() {
 
-    clearTimeout(resizeTimer);
+window.addEventListener(
+    "resize",
+    function() {
 
-    resizeTimer = setTimeout(function() {
-        showPage("next");
-    }, 120);
+        clearTimeout(
+            resizeTimer
+        );
 
-});
+
+        resizeTimer =
+            setTimeout(
+                function() {
+
+                    showPage(
+                        "next",
+                        false
+                    );
+
+                },
+                150
+            );
+
+    }
+);
 
 
 /* =========================================================
    START
    ========================================================= */
 
-showPage("next");
+showPage(
+    "next",
+    false
+);
 
 </script>
 
