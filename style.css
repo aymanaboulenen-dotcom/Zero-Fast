@@ -97,9 +97,6 @@ body {
             inset 0 0 0 1px rgba(0,0,0,.08);
     }
 
-
-    /* الهامش الداخلي فقط */
-
     .spread .book-page:first-child::after,
     .spread .book-page:last-child::after {
 
@@ -755,7 +752,7 @@ body {
 
 
 /* =========================================================
-   PAGE 4 + 5 TEXT
+   PAGE 4 + 5
    ========================================================= */
 
 .page4-description,
@@ -1005,10 +1002,6 @@ body {
 
 @media (min-width: 701px) {
 
-    /* -----------------------------------------------------
-       PAGE 1
-       ----------------------------------------------------- */
-
     .page1 .logo-circle {
 
         top: 2%;
@@ -1040,36 +1033,58 @@ body {
         height: 28%;
     }
 
+
+    /* CONTACT DESKTOP */
+
+    .page1 .contact-card,
+    .page2 .small-contact {
+
+        width: 27%;
+
+        min-height: 12.5%;
+
+        height: 12.5%;
+
+        padding:
+            5px 6px;
+
+        display: flex;
+
+        flex-direction: column;
+
+        justify-content: center;
+    }
+
     .page1 .contact-card {
 
         left: 6%;
 
         bottom: 5%;
+    }
 
-        width: 27%;
+    .page2 .small-contact {
 
-        min-height: 14%;
+        right: 7%;
 
-        padding: 6px 5px;
+        bottom: 2%;
+    }
+
+    .page1 .contact-card,
+    .page2 .small-contact {
 
         font-size:
             clamp(21px,2vw,27px);
     }
 
 
-    /* -----------------------------------------------------
-       PAGE 2
-       ----------------------------------------------------- */
+    /* PAGE 2 */
 
     .page2 .program-title {
-
         top: 6%;
     }
 
     .page2-title {
-
         top: 18%;
-
         height: 9.5%;
     }
 
@@ -1088,29 +1103,10 @@ body {
             4% 6% 3%;
     }
 
-    .page2 .small-contact {
 
-        right: 7%;
-
-        bottom: 2%;
-
-        width: 27%;
-
-        min-height: 14%;
-
-        padding: 6px 5px;
-
-        font-size:
-            clamp(20px,1.9vw,26px);
-    }
-
-
-    /* -----------------------------------------------------
-       PAGE 3
-       ----------------------------------------------------- */
+    /* PAGE 3 */
 
     .page3 .program-title {
-
         top: 6%;
     }
 
@@ -1164,12 +1160,9 @@ body {
     }
 
 
-    /* -----------------------------------------------------
-       PAGE 4
-       ----------------------------------------------------- */
+    /* PAGE 4 */
 
     .page4 .program-title {
-
         top: 5%;
     }
 
@@ -1229,12 +1222,9 @@ body {
     }
 
 
-    /* -----------------------------------------------------
-       PAGE 5
-       ----------------------------------------------------- */
+    /* PAGE 5 */
 
     .page5 .program-title {
-
         top: 5%;
     }
 
@@ -1293,9 +1283,7 @@ body {
     }
 
 
-    /* -----------------------------------------------------
-       PAGE 6
-       ----------------------------------------------------- */
+    /* PAGE 6 */
 
     .page6 .logo-circle {
 
@@ -1340,7 +1328,6 @@ body {
     }
 
     .frame-page6 img {
-
         object-fit: cover;
     }
 
@@ -1364,15 +1351,12 @@ body {
     }
 
     .page6-benefits p {
-
         margin:
             0 0 12px;
     }
 
 
-    /* -----------------------------------------------------
-       BUTTONS
-       ----------------------------------------------------- */
+    /* BUTTONS */
 
     .navigation {
 
@@ -1395,9 +1379,7 @@ body {
 
 
     /* =====================================================
-       REALISTIC PAGE TURN
-       الصفحة تتحرك في الاتجاه المعاكس السابق
-       مع ميل بسيط وانحناء بصري
+       PAGE TURN
        ===================================================== */
 
     .desktop-flip-next,
@@ -1418,18 +1400,25 @@ body {
     }
 
 
-    /* -----------------------------------------------------
-       NEXT
-       3 فوق 2
-       5 فوق 4
-       ----------------------------------------------------- */
-
     .desktop-flip-next {
 
         animation:
             pageFlipNext
-            900ms
-            cubic-bezier(.18,.72,.25,1)
+            1050ms
+            cubic-bezier(.22,.61,.36,1)
+            both;
+
+        transform-origin:
+            right center;
+    }
+
+
+    .desktop-flip-prev {
+
+        animation:
+            pageFlipPrev
+            1050ms
+            cubic-bezier(.22,.61,.36,1)
             both;
 
         transform-origin:
@@ -1456,60 +1445,70 @@ body {
                 brightness(1);
         }
 
-
-        25% {
+        20% {
 
             transform:
                 perspective(1800px)
-                rotateY(42deg)
-                rotateZ(1.5deg)
-                skewY(1.5deg)
-                scaleX(.97)
-                translateX(7px);
+                rotateY(18deg)
+                rotateZ(.5deg)
+                skewY(.5deg)
+                scaleX(.985)
+                translateX(2px);
 
             box-shadow:
-                14px 12px 25px rgba(0,0,0,.27);
+                7px 10px 20px rgba(0,0,0,.22);
 
             filter:
-                brightness(.96);
+                brightness(.985);
         }
 
-
-        50% {
+        45% {
 
             transform:
                 perspective(1800px)
-                rotateY(95deg)
-                rotateZ(3deg)
-                skewY(3deg)
-                scaleX(.89)
-                translateX(13px);
-
-            box-shadow:
-                22px 12px 30px rgba(0,0,0,.34);
-
-            filter:
-                brightness(.91);
-        }
-
-
-        75% {
-
-            transform:
-                perspective(1800px)
-                rotateY(140deg)
+                rotateY(65deg)
                 rotateZ(1.8deg)
-                skewY(1.5deg)
-                scaleX(.93)
+                skewY(1.2deg)
+                scaleX(.94)
                 translateX(8px);
 
             box-shadow:
-                15px 10px 24px rgba(0,0,0,.27);
+                17px 12px 29px rgba(0,0,0,.29);
 
             filter:
                 brightness(.95);
         }
 
+        70% {
+
+            transform:
+                perspective(1800px)
+                rotateY(118deg)
+                rotateZ(1.2deg)
+                skewY(.8deg)
+                scaleX(.93)
+                translateX(10px);
+
+            box-shadow:
+                18px 11px 28px rgba(0,0,0,.27);
+
+            filter:
+                brightness(.96);
+        }
+
+        88% {
+
+            transform:
+                perspective(1800px)
+                rotateY(155deg)
+                rotateZ(.4deg)
+                skewY(.2deg)
+                scaleX(.97)
+                translateX(4px);
+
+            filter:
+                brightness(.985);
+        }
 
         100% {
 
@@ -1518,7 +1517,7 @@ body {
                 rotateY(180deg)
                 rotateZ(0deg)
                 skewY(0deg)
-                scaleX(.96)
+                scaleX(1)
                 translateX(0);
 
             box-shadow:
@@ -1527,23 +1526,6 @@ body {
             filter:
                 brightness(1);
         }
-    }
-
-
-    /* -----------------------------------------------------
-       PREVIOUS
-       ----------------------------------------------------- */
-
-    .desktop-flip-prev {
-
-        animation:
-            pageFlipPrev
-            900ms
-            cubic-bezier(.18,.72,.25,1)
-            both;
-
-        transform-origin:
-            right center;
     }
 
 
@@ -1556,7 +1538,7 @@ body {
                 rotateY(180deg)
                 rotateZ(0deg)
                 skewY(0deg)
-                scaleX(.96)
+                scaleX(1)
                 translateX(0);
 
             box-shadow:
@@ -1566,60 +1548,70 @@ body {
                 brightness(1);
         }
 
-
-        25% {
-
-            transform:
-                perspective(1800px)
-                rotateY(140deg)
-                rotateZ(1.8deg)
-                skewY(1.5deg)
-                scaleX(.93)
-                translateX(8px);
-
-            box-shadow:
-                15px 10px 24px rgba(0,0,0,.27);
-
-            filter:
-                brightness(.95);
-        }
-
-
-        50% {
+        20% {
 
             transform:
                 perspective(1800px)
-                rotateY(95deg)
-                rotateZ(3deg)
-                skewY(3deg)
-                scaleX(.89)
-                translateX(13px);
-
-            box-shadow:
-                22px 12px 30px rgba(0,0,0,.34);
-
-            filter:
-                brightness(.91);
-        }
-
-
-        75% {
-
-            transform:
-                perspective(1800px)
-                rotateY(42deg)
-                rotateZ(1.5deg)
-                skewY(1.5deg)
+                rotateY(155deg)
+                rotateZ(.4deg)
+                skewY(.2deg)
                 scaleX(.97)
-                translateX(7px);
+                translateX(4px);
+
+            filter:
+                brightness(.985);
+        }
+
+        45% {
+
+            transform:
+                perspective(1800px)
+                rotateY(118deg)
+                rotateZ(1.2deg)
+                skewY(.8deg)
+                scaleX(.93)
+                translateX(10px);
 
             box-shadow:
-                14px 12px 25px rgba(0,0,0,.27);
+                18px 11px 28px rgba(0,0,0,.27);
 
             filter:
                 brightness(.96);
         }
 
+        70% {
+
+            transform:
+                perspective(1800px)
+                rotateY(65deg)
+                rotateZ(1.8deg)
+                skewY(1.2deg)
+                scaleX(.94)
+                translateX(8px);
+
+            box-shadow:
+                17px 12px 29px rgba(0,0,0,.29);
+
+            filter:
+                brightness(.95);
+        }
+
+        88% {
+
+            transform:
+                perspective(1800px)
+                rotateY(18deg)
+                rotateZ(.5deg)
+                skewY(.5deg)
+                scaleX(.985)
+                translateX(2px);
+
+            box-shadow:
+                7px 10px 20px rgba(0,0,0,.22);
+
+            filter:
+                brightness(.985);
+        }
 
         100% {
 
