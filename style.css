@@ -49,8 +49,90 @@ body {
     display: flex;
 }
 
-.spread.active {
-    gap: 18px;
+
+/* =========================================================
+   DESKTOP BOOK SPREAD
+   ========================================================= */
+
+@media (min-width: 701px) {
+
+    .page-group.spread.active {
+
+        display: flex;
+
+        flex-direction: row;
+
+        direction: rtl;
+
+        gap: 0;
+
+        justify-content: center;
+
+        align-items: center;
+    }
+
+    .spread .book-page:first-child {
+        margin-left: 0;
+        margin-right: 0;
+
+        box-shadow:
+            -3px 14px 28px rgba(0,0,0,.22),
+            inset -5px 0 10px rgba(0,0,0,.10),
+            inset 0 0 0 1px rgba(0,0,0,.08);
+    }
+
+    .spread .book-page:last-child {
+        margin-left: 0;
+        margin-right: 0;
+
+        box-shadow:
+            3px 14px 28px rgba(0,0,0,.22),
+            inset 5px 0 10px rgba(0,0,0,.10),
+            inset 0 0 0 1px rgba(0,0,0,.08);
+    }
+
+    /* هامش داخلي فقط */
+    .spread .book-page:first-child::after,
+    .spread .book-page:last-child::after {
+
+        content: "";
+
+        position: absolute;
+
+        top: 0;
+        bottom: 0;
+
+        width: 4px;
+
+        z-index: 30;
+
+        pointer-events: none;
+    }
+
+    .spread .book-page:first-child::after {
+
+        right: 0;
+
+        background:
+            linear-gradient(
+                to left,
+                rgba(80,80,80,.16),
+                rgba(255,255,255,.04)
+            );
+    }
+
+    .spread .book-page:last-child::after {
+
+        left: 0;
+
+        background:
+            linear-gradient(
+                to right,
+                rgba(80,80,80,.16),
+                rgba(255,255,255,.04)
+            );
+    }
+
 }
 
 
@@ -86,17 +168,6 @@ body {
         inset 0 0 0 1px rgba(0,0,0,.08);
 }
 
-.spread .book-page:first-child {
-    box-shadow:
-        -8px 14px 28px rgba(0,0,0,.28),
-        inset -7px 0 12px rgba(0,0,0,.10);
-}
-
-.spread .book-page:last-child {
-    box-shadow:
-        8px 14px 28px rgba(0,0,0,.28),
-        inset 7px 0 12px rgba(0,0,0,.10);
-}
 
 .page-group:not(.spread) .book-page {
 
@@ -122,6 +193,7 @@ body {
     background: #fff;
 }
 
+
 .design-bg::before {
 
     content: "";
@@ -146,6 +218,7 @@ body {
     box-shadow:
         inset -32px 0 38px rgba(255,255,255,.78);
 }
+
 
 .design-bg::after {
 
@@ -241,7 +314,7 @@ body {
         2px solid var(--orange);
 
     font-size:
-        clamp(17px, 2.5vw, 30px);
+        clamp(17px,2.5vw,30px);
 
     font-weight: bold;
 
@@ -291,6 +364,7 @@ body {
         0 2px 4px rgba(0,0,0,.20);
 }
 
+
 .logo-zero,
 .logo-fast {
 
@@ -300,14 +374,14 @@ body {
     font-weight: bold;
 }
 
+
 .logo-zero {
     color: var(--orange);
 }
 
+
 .logo-fast {
-
     color: white;
-
     margin-left: 6px;
 }
 
@@ -334,6 +408,7 @@ body {
     box-shadow:
         0 9px 16px rgba(0,0,0,.35);
 }
+
 
 .image-frame img {
 
@@ -384,85 +459,95 @@ body {
 }
 
 
-/* PAGE 2 */
+/* =========================================================
+   PAGE 2
+   ========================================================= */
 
 .page2-title {
 
-    top: 29%;
+    top: 30%;
 
     left: 31%;
 
     width: 38%;
 
-    height: 11%;
+    height: 10%;
 
     font-size:
         clamp(18px,2.4vw,32px);
 }
 
 
-/* PAGE 3 */
+/* =========================================================
+   PAGE 3
+   ========================================================= */
 
 .page3-title {
 
-    top: 29%;
+    top: 30%;
 
     left: 25%;
 
     width: 50%;
 
-    height: 12%;
+    height: 10%;
 
     font-size:
         clamp(18px,2.4vw,32px);
 }
 
 
-/* PAGE 4 */
+/* =========================================================
+   PAGE 4
+   ========================================================= */
 
 .page4-title {
 
-    top: 29%;
+    top: 25%;
 
     left: 27%;
 
     width: 46%;
 
-    height: 12%;
+    height: 10%;
 
     font-size:
         clamp(18px,2.4vw,32px);
 }
 
 
-/* PAGE 5 */
+/* =========================================================
+   PAGE 5
+   ========================================================= */
 
 .page5-title {
 
-    top: 29%;
+    top: 25%;
 
     left: 22%;
 
     width: 56%;
 
-    height: 12%;
+    height: 10%;
 
     font-size:
         clamp(17px,2.2vw,30px);
 }
 
 
-/* PAGE 6 */
+/* =========================================================
+   PAGE 6
+   ========================================================= */
 
 .page6-title {
 
-    top: 36%;
+    top: 51%;
 
     left: 25%;
 
     width: 50%;
 
-    height: 12%;
+    height: 10%;
 
     font-size:
         clamp(19px,2.6vw,34px);
@@ -470,18 +555,314 @@ body {
 
 
 /* =========================================================
-   PAGE 1 IMAGE
+   DESKTOP-SPECIFIC LAYOUT
    ========================================================= */
 
-.frame-page1 {
+@media (min-width: 701px) {
 
-    top: 46%;
+    /* الصفحة 1 */
 
-    left: 33%;
+    .page1 .logo-circle {
 
-    width: 40%;
+        top: 3%;
 
-    height: 29%;
+        width: 40%;
+
+        left: 30%;
+    }
+
+    .page1 .program-title {
+
+        top: 43%;
+
+        left: 17%;
+
+        width: 66%;
+
+        min-height: 7%;
+    }
+
+    .frame-page1 {
+
+        top: 52%;
+
+        left: 33%;
+
+        width: 40%;
+
+        height: 28%;
+    }
+
+
+    /* الهاتف */
+
+    .page1 .contact-card,
+    .page2 .small-contact {
+
+        width: 32%;
+
+        min-height: 17%;
+
+        padding: 8px 7px;
+    }
+
+    .page1 .contact-card {
+
+        left: 6%;
+
+        bottom: 6%;
+    }
+
+    .page2 .small-contact {
+
+        right: 7%;
+
+        bottom: 4%;
+    }
+
+    .page1 .contact-item,
+    .page2 .contact-item {
+
+        gap: 7px;
+    }
+
+
+    /* الصفحة 2 */
+
+    .page2 .program-title,
+    .page3 .program-title {
+
+        top: 7%;
+
+        left: 15%;
+
+        width: 70%;
+
+        min-height: 8%;
+    }
+
+    .page2-title,
+    .page3-title {
+
+        top: 18%;
+    }
+
+    .page2 .intro-text {
+
+        top: 31%;
+
+        height: 61%;
+    }
+
+
+    /* الصفحة 3 */
+
+    .frame-page3-1 {
+
+        top: 34%;
+
+        right: 8%;
+
+        width: 39%;
+
+        height: 25%;
+    }
+
+    .frame-page3-2 {
+
+        top: 62%;
+
+        left: 14%;
+
+        width: 39%;
+
+        height: 25%;
+    }
+
+    .page3 .bottom-pill {
+
+        bottom: 3%;
+
+        left: 15%;
+
+        width: 70%;
+
+        height: 8%;
+
+        font-size:
+            clamp(17px,2vw,27px);
+    }
+
+
+    /* الصفحتان 4 و5 */
+
+    .page4 .program-title,
+    .page5 .program-title {
+
+        top: 6%;
+
+        left: 15%;
+
+        width: 70%;
+
+        min-height: 8%;
+    }
+
+    .page4-title,
+    .page5-title {
+
+        top: 18%;
+    }
+
+    .frame-page4-main {
+
+        top: 32%;
+
+        left: 9%;
+
+        width: 82%;
+
+        height: 30%;
+    }
+
+    .frame-page4-small {
+
+        top: 65%;
+
+        right: 8%;
+
+        width: 32%;
+
+        height: 20%;
+    }
+
+    .frame-page5-1,
+    .frame-page5-2,
+    .frame-page5-3 {
+
+        top: 32%;
+
+        width: 27%;
+
+        height: 27%;
+    }
+
+    .page4-description,
+    .page5-description {
+
+        height: 15%;
+
+        font-size:
+            clamp(14px,1.6vw,21px);
+    }
+
+    .page4-description {
+
+        top: 66%;
+
+        left: 8%;
+
+        width: 39%;
+    }
+
+    .page5-description {
+
+        top: 66%;
+
+        left: 10%;
+
+        width: 80%;
+    }
+
+    .page4 .bottom-pill,
+    .page5 .bottom-pill {
+
+        bottom: 3%;
+
+        height: 8.5%;
+
+        font-size:
+            clamp(16px,1.9vw,25px);
+    }
+
+
+    /* الصفحة 6 */
+
+    .page6 .logo-circle {
+
+        top: 3%;
+
+        width: 40%;
+
+        left: 30%;
+    }
+
+    .page6 .program-title {
+
+        top: 43%;
+
+        left: 15%;
+
+        width: 70%;
+
+        min-height: 7%;
+    }
+
+    .page6-title {
+
+        top: 52%;
+
+        left: 25%;
+
+        width: 50%;
+
+        height: 9%;
+    }
+
+    .frame-page6 {
+
+        top: 63%;
+
+        left: 8%;
+
+        width: 34%;
+
+        height: 24%;
+    }
+
+    .page6-benefits {
+
+        top: 63%;
+
+        right: 7%;
+
+        width: 50%;
+
+        min-height: 24%;
+
+        padding: 9px 12px;
+    }
+
+
+    /* أزرار الكمبيوتر */
+
+    .navigation {
+
+        height: 65px;
+
+        gap: 14px;
+    }
+
+    .navigation button {
+
+        padding:
+            12px 25px;
+
+        font-size: 17px;
+
+        min-width: 92px;
+    }
+
 }
 
 
@@ -523,6 +904,7 @@ body {
         7px 10px 17px rgba(0,0,0,.42);
 }
 
+
 .contact-item {
 
     display: flex;
@@ -538,18 +920,24 @@ body {
     white-space: nowrap;
 }
 
+
 .contact-item + .contact-item {
     margin-top: 10px;
 }
 
+
 .phone-icon {
+
     font-size: 1.2em;
+
     color: var(--orange);
 }
+
 
 .whatsapp-icon {
 
     width: 1.3em;
+
     height: 1.3em;
 
     display: inline-flex;
@@ -559,13 +947,16 @@ body {
     justify-content: center;
 }
 
+
 .whatsapp-icon svg {
 
     width: 100%;
+
     height: 100%;
 
     fill: #fff;
 }
+
 
 .small-contact {
 
@@ -617,8 +1008,10 @@ body {
         inset 0 0 0 2px rgba(8,39,66,.10);
 }
 
+
 .intro-text p {
-    margin: 0 0 16px;
+    margin:
+        0 0 16px;
 }
 
 
@@ -637,6 +1030,7 @@ body {
     height: 26%;
 }
 
+
 .frame-page3-2 {
 
     top: 70%;
@@ -647,6 +1041,7 @@ body {
 
     height: 20%;
 }
+
 
 .bottom-pill {
 
@@ -664,30 +1059,8 @@ body {
 
 
 /* =========================================================
-   PAGE 4
+   PAGE 4 + 5 TEXT
    ========================================================= */
-
-.frame-page4-main {
-
-    top: 37%;
-
-    left: 9%;
-
-    width: 82%;
-
-    height: 30%;
-}
-
-.frame-page4-small {
-
-    top: 68%;
-
-    right: 8%;
-
-    width: 32%;
-
-    height: 20%;
-}
 
 .page4-description,
 .page5-description {
@@ -724,6 +1097,7 @@ body {
     font-weight: bold;
 }
 
+
 .page4-description {
 
     top: 70%;
@@ -737,33 +1111,6 @@ body {
     padding: 8px;
 }
 
-
-/* =========================================================
-   PAGE 5
-   ========================================================= */
-
-.frame-page5-1,
-.frame-page5-2,
-.frame-page5-3 {
-
-    top: 37%;
-
-    width: 27%;
-
-    height: 27%;
-}
-
-.frame-page5-1 {
-    right: 5%;
-}
-
-.frame-page5-2 {
-    left: 36.5%;
-}
-
-.frame-page5-3 {
-    left: 5%;
-}
 
 .page5-description {
 
@@ -794,6 +1141,7 @@ body {
 
     height: 28%;
 }
+
 
 .page6-benefits {
 
@@ -836,8 +1184,10 @@ body {
         0 7px 14px rgba(0,0,0,.35);
 }
 
+
 .page6-benefits p {
-    margin: 0 0 7px;
+    margin:
+        0 0 7px;
 }
 
 
@@ -864,6 +1214,7 @@ body {
     z-index: 100;
 }
 
+
 .navigation button {
 
     border: 0;
@@ -889,6 +1240,7 @@ body {
         0 4px 8px rgba(0,0,0,.28);
 }
 
+
 .navigation button:hover {
 
     background: var(--orange);
@@ -896,9 +1248,11 @@ body {
     color: var(--navy);
 }
 
+
 .contents-dropdown {
     position: relative;
 }
+
 
 .contents-list {
 
@@ -924,9 +1278,11 @@ body {
         0 7px 14px rgba(0,0,0,.30);
 }
 
+
 .contents-list.show {
     display: block;
 }
+
 
 .contents-list button {
 
@@ -958,8 +1314,13 @@ body {
         cubic-bezier(.22,.61,.36,1)
         both;
 
-    transform-origin: center right;
+    transform-origin:
+        center right;
+
+    backface-visibility:
+        hidden;
 }
+
 
 .page-turn-prev {
 
@@ -968,22 +1329,31 @@ body {
         cubic-bezier(.22,.61,.36,1)
         both;
 
-    transform-origin: center left;
+    transform-origin:
+        center left;
+
+    backface-visibility:
+        hidden;
 }
+
 
 @keyframes pageNext {
 
-    0% {
-        opacity: .35;
+    from {
+
+        opacity: .2;
+
         transform:
             perspective(1600px)
-            rotateY(-18deg)
-            translateX(35px)
-            scale(.97);
+            rotateY(-16deg)
+            translateX(22px)
+            scale(.985);
     }
 
-    100% {
+    to {
+
         opacity: 1;
+
         transform:
             perspective(1600px)
             rotateY(0)
@@ -992,19 +1362,24 @@ body {
     }
 }
 
+
 @keyframes pagePrev {
 
-    0% {
-        opacity: .35;
+    from {
+
+        opacity: .2;
+
         transform:
             perspective(1600px)
-            rotateY(18deg)
-            translateX(-35px)
-            scale(.97);
+            rotateY(16deg)
+            translateX(-22px)
+            scale(.985);
     }
 
-    100% {
+    to {
+
         opacity: 1;
+
         transform:
             perspective(1600px)
             rotateY(0)
@@ -1060,8 +1435,6 @@ body {
     }
 
 
-    /* العنوان */
-
     .program-title {
 
         top: 17%;
@@ -1080,8 +1453,6 @@ body {
     }
 
 
-    /* الصفحة 1 */
-
     .page1 .logo-circle,
     .page6 .logo-circle {
 
@@ -1092,12 +1463,11 @@ body {
         top: 4%;
     }
 
+
     .page1 .program-title {
         top: 35%;
     }
 
-
-    /* الهاتف */
 
     .contact-card {
 
@@ -1112,19 +1482,20 @@ body {
             8px 5px;
     }
 
+
     .small-contact {
         width: 40%;
     }
 
 
-    /* الصفحة 2 */
-
     .page2-title {
 
         top: 29%;
 
-        font-size: 21px;
+        font-size:
+            21px;
     }
+
 
     .intro-text {
 
@@ -1142,18 +1513,19 @@ body {
         font-size:
             clamp(13px,3.8vw,18px);
 
-        line-height: 1.65;
+        line-height:
+            1.65;
     }
 
-
-    /* الصفحة 3 */
 
     .page3-title {
 
         top: 29%;
 
-        font-size: 20px;
+        font-size:
+            20px;
     }
+
 
     .frame-page3-1 {
 
@@ -1162,12 +1534,14 @@ body {
         height: 25%;
     }
 
+
     .frame-page3-2 {
 
         top: 70%;
 
         height: 18%;
     }
+
 
     .bottom-pill {
 
@@ -1176,15 +1550,15 @@ body {
     }
 
 
-    /* الصفحات 4 و 5 */
-
     .page4-title,
     .page5-title {
 
         top: 29%;
 
-        font-size: 20px;
+        font-size:
+            20px;
     }
+
 
     .page4-description,
     .page5-description {
@@ -1194,25 +1568,42 @@ body {
     }
 
 
-    /* الصفحة 6 */
-
     .page6-title {
 
         top: 36%;
 
-        font-size: 22px;
+        font-size:
+            22px;
     }
+
 
     .page6-benefits {
 
         font-size:
             clamp(13px,3.5vw,18px);
 
-        padding: 8px;
+        padding:
+            8px;
     }
 
 
-    /* حركة الموبايل */
+    .navigation {
+
+        height: 60px;
+
+        gap: 7px;
+    }
+
+
+    .navigation button {
+
+        padding:
+            9px 14px;
+
+        font-size:
+            13px;
+    }
+
 
     .mobile-turn-next {
 
@@ -1222,6 +1613,7 @@ body {
             both;
     }
 
+
     .mobile-turn-prev {
 
         animation:
@@ -1229,6 +1621,7 @@ body {
             cubic-bezier(.22,.61,.36,1)
             both;
     }
+
 
     @keyframes mobileNext {
 
@@ -1254,6 +1647,7 @@ body {
                 translateX(0);
         }
     }
+
 
     @keyframes mobilePrev {
 
