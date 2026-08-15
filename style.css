@@ -51,7 +51,7 @@ body {
 
 
 /* =========================================================
-   DESKTOP BOOK SPREAD
+   DESKTOP BOOK
    ========================================================= */
 
 @media (min-width: 701px) {
@@ -69,11 +69,21 @@ body {
         justify-content: center;
 
         align-items: center;
+
+        perspective: 1800px;
     }
 
+    .spread .book-page {
+
+        margin: 0 !important;
+
+        transform-style:
+            preserve-3d;
+    }
+
+    /* الهامش داخلي فقط */
+
     .spread .book-page:first-child {
-        margin-left: 0;
-        margin-right: 0;
 
         box-shadow:
             -3px 14px 28px rgba(0,0,0,.22),
@@ -82,8 +92,6 @@ body {
     }
 
     .spread .book-page:last-child {
-        margin-left: 0;
-        margin-right: 0;
 
         box-shadow:
             3px 14px 28px rgba(0,0,0,.22),
@@ -91,7 +99,6 @@ body {
             inset 0 0 0 1px rgba(0,0,0,.08);
     }
 
-    /* هامش داخلي فقط */
     .spread .book-page:first-child::after,
     .spread .book-page:last-child::after {
 
@@ -555,318 +562,6 @@ body {
 
 
 /* =========================================================
-   DESKTOP-SPECIFIC LAYOUT
-   ========================================================= */
-
-@media (min-width: 701px) {
-
-    /* الصفحة 1 */
-
-    .page1 .logo-circle {
-
-        top: 3%;
-
-        width: 40%;
-
-        left: 30%;
-    }
-
-    .page1 .program-title {
-
-        top: 43%;
-
-        left: 17%;
-
-        width: 66%;
-
-        min-height: 7%;
-    }
-
-    .frame-page1 {
-
-        top: 52%;
-
-        left: 33%;
-
-        width: 40%;
-
-        height: 28%;
-    }
-
-
-    /* الهاتف */
-
-    .page1 .contact-card,
-    .page2 .small-contact {
-
-        width: 32%;
-
-        min-height: 17%;
-
-        padding: 8px 7px;
-    }
-
-    .page1 .contact-card {
-
-        left: 6%;
-
-        bottom: 6%;
-    }
-
-    .page2 .small-contact {
-
-        right: 7%;
-
-        bottom: 4%;
-    }
-
-    .page1 .contact-item,
-    .page2 .contact-item {
-
-        gap: 7px;
-    }
-
-
-    /* الصفحة 2 */
-
-    .page2 .program-title,
-    .page3 .program-title {
-
-        top: 7%;
-
-        left: 15%;
-
-        width: 70%;
-
-        min-height: 8%;
-    }
-
-    .page2-title,
-    .page3-title {
-
-        top: 18%;
-    }
-
-    .page2 .intro-text {
-
-        top: 31%;
-
-        height: 61%;
-    }
-
-
-    /* الصفحة 3 */
-
-    .frame-page3-1 {
-
-        top: 34%;
-
-        right: 8%;
-
-        width: 39%;
-
-        height: 25%;
-    }
-
-    .frame-page3-2 {
-
-        top: 62%;
-
-        left: 14%;
-
-        width: 39%;
-
-        height: 25%;
-    }
-
-    .page3 .bottom-pill {
-
-        bottom: 3%;
-
-        left: 15%;
-
-        width: 70%;
-
-        height: 8%;
-
-        font-size:
-            clamp(17px,2vw,27px);
-    }
-
-
-    /* الصفحتان 4 و5 */
-
-    .page4 .program-title,
-    .page5 .program-title {
-
-        top: 6%;
-
-        left: 15%;
-
-        width: 70%;
-
-        min-height: 8%;
-    }
-
-    .page4-title,
-    .page5-title {
-
-        top: 18%;
-    }
-
-    .frame-page4-main {
-
-        top: 32%;
-
-        left: 9%;
-
-        width: 82%;
-
-        height: 30%;
-    }
-
-    .frame-page4-small {
-
-        top: 65%;
-
-        right: 8%;
-
-        width: 32%;
-
-        height: 20%;
-    }
-
-    .frame-page5-1,
-    .frame-page5-2,
-    .frame-page5-3 {
-
-        top: 32%;
-
-        width: 27%;
-
-        height: 27%;
-    }
-
-    .page4-description,
-    .page5-description {
-
-        height: 15%;
-
-        font-size:
-            clamp(14px,1.6vw,21px);
-    }
-
-    .page4-description {
-
-        top: 66%;
-
-        left: 8%;
-
-        width: 39%;
-    }
-
-    .page5-description {
-
-        top: 66%;
-
-        left: 10%;
-
-        width: 80%;
-    }
-
-    .page4 .bottom-pill,
-    .page5 .bottom-pill {
-
-        bottom: 3%;
-
-        height: 8.5%;
-
-        font-size:
-            clamp(16px,1.9vw,25px);
-    }
-
-
-    /* الصفحة 6 */
-
-    .page6 .logo-circle {
-
-        top: 3%;
-
-        width: 40%;
-
-        left: 30%;
-    }
-
-    .page6 .program-title {
-
-        top: 43%;
-
-        left: 15%;
-
-        width: 70%;
-
-        min-height: 7%;
-    }
-
-    .page6-title {
-
-        top: 52%;
-
-        left: 25%;
-
-        width: 50%;
-
-        height: 9%;
-    }
-
-    .frame-page6 {
-
-        top: 63%;
-
-        left: 8%;
-
-        width: 34%;
-
-        height: 24%;
-    }
-
-    .page6-benefits {
-
-        top: 63%;
-
-        right: 7%;
-
-        width: 50%;
-
-        min-height: 24%;
-
-        padding: 9px 12px;
-    }
-
-
-    /* أزرار الكمبيوتر */
-
-    .navigation {
-
-        height: 65px;
-
-        gap: 14px;
-    }
-
-    .navigation button {
-
-        padding:
-            12px 25px;
-
-        font-size: 17px;
-
-        min-width: 92px;
-    }
-
-}
-
-
-/* =========================================================
    CONTACT
    ========================================================= */
 
@@ -1059,7 +754,7 @@ body {
 
 
 /* =========================================================
-   PAGE 4 + 5 TEXT
+   PAGE 4 + 5
    ========================================================= */
 
 .page4-description,
@@ -1304,88 +999,536 @@ body {
 
 
 /* =========================================================
-   DESKTOP PAGE TURN
+   DESKTOP FINAL FIXES
    ========================================================= */
 
-.page-turn-next {
+@media (min-width: 701px) {
 
-    animation:
-        pageNext .75s
-        cubic-bezier(.22,.61,.36,1)
-        both;
+    /* PAGE 1 */
 
-    transform-origin:
-        center right;
+    .page1 .logo-circle {
 
-    backface-visibility:
-        hidden;
-}
+        top: 2%;
 
+        width: 39%;
 
-.page-turn-prev {
-
-    animation:
-        pagePrev .75s
-        cubic-bezier(.22,.61,.36,1)
-        both;
-
-    transform-origin:
-        center left;
-
-    backface-visibility:
-        hidden;
-}
-
-
-@keyframes pageNext {
-
-    from {
-
-        opacity: .2;
-
-        transform:
-            perspective(1600px)
-            rotateY(-16deg)
-            translateX(22px)
-            scale(.985);
+        left: 30.5%;
     }
 
-    to {
+    .page1 .program-title {
 
-        opacity: 1;
+        top: 36%;
 
-        transform:
-            perspective(1600px)
-            rotateY(0)
-            translateX(0)
-            scale(1);
-    }
-}
+        left: 17%;
 
+        width: 66%;
 
-@keyframes pagePrev {
-
-    from {
-
-        opacity: .2;
-
-        transform:
-            perspective(1600px)
-            rotateY(16deg)
-            translateX(-22px)
-            scale(.985);
+        min-height: 7%;
     }
 
-    to {
+    .page1 .frame-page1 {
 
-        opacity: 1;
+        top: 48%;
 
-        transform:
-            perspective(1600px)
-            rotateY(0)
-            translateX(0)
-            scale(1);
+        left: 33%;
+
+        width: 40%;
+
+        height: 28%;
     }
+
+    .page1 .contact-card {
+
+        left: 6%;
+
+        bottom: 5%;
+
+        width: 29%;
+
+        min-height: 15%;
+
+        padding: 7px 6px;
+
+        font-size:
+            clamp(19px,1.9vw,25px);
+    }
+
+
+    /* PAGE 2 */
+
+    .page2 .program-title {
+
+        top: 6%;
+    }
+
+    .page2-title {
+
+        top: 18%;
+
+        height: 9.5%;
+    }
+
+    .page2 .intro-text {
+
+        top: 30%;
+
+        height: 61%;
+
+        font-size:
+            clamp(17px,2vw,25px);
+
+        line-height: 1.62;
+
+        padding:
+            4% 6% 3%;
+    }
+
+    .page2 .small-contact {
+
+        right: 7%;
+
+        bottom: 2%;
+
+        width: 29%;
+
+        min-height: 15%;
+
+        padding: 7px 6px;
+
+        font-size:
+            clamp(18px,1.8vw,24px);
+    }
+
+
+    /* PAGE 3 */
+
+    .page3 .program-title {
+
+        top: 6%;
+    }
+
+    .page3-title {
+
+        top: 18%;
+
+        height: 9.5%;
+    }
+
+    .frame-page3-1 {
+
+        top: 31%;
+
+        right: 8%;
+
+        width: 39%;
+
+        height: auto;
+
+        aspect-ratio: 1 / 1;
+    }
+
+    .frame-page3-2 {
+
+        top: 59%;
+
+        left: 14%;
+
+        width: 39%;
+
+        height: auto;
+
+        aspect-ratio: 1 / 1;
+    }
+
+    .frame-page3-1 img,
+    .frame-page3-2 img {
+
+        object-fit: cover;
+    }
+
+    .page3 .bottom-pill {
+
+        bottom: 3%;
+
+        left: 15%;
+
+        width: 70%;
+
+        height: 8%;
+
+        font-size:
+            clamp(18px,2vw,27px);
+    }
+
+
+    /* PAGE 4 */
+
+    .page4 .program-title {
+
+        top: 5%;
+    }
+
+    .page4-title {
+
+        top: 16%;
+
+        height: 9.5%;
+    }
+
+    .frame-page4-main {
+
+        top: 29%;
+
+        left: 9%;
+
+        width: 82%;
+
+        height: 30%;
+    }
+
+    .frame-page4-small {
+
+        top: 63%;
+
+        right: 8%;
+
+        width: 32%;
+
+        height: 20%;
+    }
+
+    .page4-description {
+
+        top: 65%;
+
+        left: 8%;
+
+        width: 39%;
+
+        height: 16%;
+
+        font-size:
+            clamp(17px,1.8vw,24px);
+
+        line-height: 1.45;
+    }
+
+    .page4 .bottom-pill {
+
+        bottom: 3%;
+
+        height: 8.5%;
+
+        font-size:
+            clamp(17px,1.9vw,25px);
+    }
+
+
+    /* PAGE 5 */
+
+    .page5 .program-title {
+
+        top: 5%;
+    }
+
+    .page5-title {
+
+        top: 16%;
+
+        height: 9.5%;
+    }
+
+    .frame-page5-1,
+    .frame-page5-2,
+    .frame-page5-3 {
+
+        top: 29%;
+
+        width: 27%;
+
+        height: 27%;
+    }
+
+    .page5-description {
+
+        top: 65%;
+
+        left: 10%;
+
+        width: 80%;
+
+        height: 16%;
+
+        font-size:
+            clamp(16px,1.7vw,23px);
+    }
+
+    .page5 .bottom-pill {
+
+        bottom: 3%;
+
+        height: 8.5%;
+
+        font-size:
+            clamp(17px,1.9vw,25px);
+    }
+
+
+    /* PAGE 6 */
+
+    .page6 .logo-circle {
+
+        top: 2%;
+
+        width: 39%;
+
+        left: 30.5%;
+    }
+
+    .page6 .program-title {
+
+        top: 33%;
+
+        left: 15%;
+
+        width: 70%;
+
+        min-height: 7%;
+    }
+
+    .page6-title {
+
+        top: 43%;
+
+        left: 25%;
+
+        width: 50%;
+
+        height: 9%;
+    }
+
+    .frame-page6 {
+
+        top: 64%;
+
+        left: 8%;
+
+        width: 34%;
+
+        height: 23%;
+    }
+
+    .frame-page6 img {
+
+        object-fit: cover;
+    }
+
+    .page6-benefits {
+
+        top: 55%;
+
+        right: 7%;
+
+        width: 50%;
+
+        min-height: 30%;
+
+        padding:
+            8px 11px;
+
+        font-size:
+            clamp(15px,1.6vw,21px);
+
+        line-height: 1.45;
+    }
+
+
+    /* BUTTONS */
+
+    .navigation {
+
+        height: 65px;
+
+        gap: 14px;
+    }
+
+    .navigation button {
+
+        min-width: 105px;
+
+        padding:
+            12px 26px;
+
+        font-size: 18px;
+
+        font-weight: bold;
+    }
+
+
+    /* =====================================================
+       REALISTIC DESKTOP PAGE TURN
+       ===================================================== */
+
+    .page-turn-next {
+
+        animation:
+            realisticPageNext
+            .9s
+            cubic-bezier(.18,.74,.25,1)
+            both;
+
+        transform-origin:
+            left center;
+
+        backface-visibility:
+            hidden;
+
+        will-change:
+            transform,
+            opacity,
+            filter;
+    }
+
+    .page-turn-prev {
+
+        animation:
+            realisticPagePrev
+            .9s
+            cubic-bezier(.18,.74,.25,1)
+            both;
+
+        transform-origin:
+            right center;
+
+        backface-visibility:
+            hidden;
+
+        will-change:
+            transform,
+            opacity,
+            filter;
+    }
+
+
+    @keyframes realisticPageNext {
+
+        0% {
+
+            opacity: .15;
+
+            filter:
+                brightness(.82);
+
+            transform:
+                perspective(1800px)
+                rotateY(-72deg)
+                translateX(60px)
+                scale(.94);
+        }
+
+        35% {
+
+            opacity: .75;
+
+            filter:
+                brightness(.92);
+
+            transform:
+                perspective(1800px)
+                rotateY(-35deg)
+                translateX(28px)
+                scale(.975);
+        }
+
+        70% {
+
+            opacity: .96;
+
+            filter:
+                brightness(.98);
+
+            transform:
+                perspective(1800px)
+                rotateY(-10deg)
+                translateX(7px)
+                scale(.992);
+        }
+
+        100% {
+
+            opacity: 1;
+
+            filter:
+                brightness(1);
+
+            transform:
+                perspective(1800px)
+                rotateY(0)
+                translateX(0)
+                scale(1);
+        }
+    }
+
+
+    @keyframes realisticPagePrev {
+
+        0% {
+
+            opacity: .15;
+
+            filter:
+                brightness(.82);
+
+            transform:
+                perspective(1800px)
+                rotateY(72deg)
+                translateX(-60px)
+                scale(.94);
+        }
+
+        35% {
+
+            opacity: .75;
+
+            filter:
+                brightness(.92);
+
+            transform:
+                perspective(1800px)
+                rotateY(35deg)
+                translateX(-28px)
+                scale(.975);
+        }
+
+        70% {
+
+            opacity: .96;
+
+            filter:
+                brightness(.98);
+
+            transform:
+                perspective(1800px)
+                rotateY(10deg)
+                translateX(-7px)
+                scale(.992);
+        }
+
+        100% {
+
+            opacity: 1;
+
+            filter:
+                brightness(1);
+
+            transform:
+                perspective(1800px)
+                rotateY(0)
+                translateX(0)
+                scale(1);
+        }
+    }
+
 }
 
 
