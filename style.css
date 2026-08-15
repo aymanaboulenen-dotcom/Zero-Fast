@@ -1397,8 +1397,10 @@ body {
 
         will-change:
             transform,
-            box-shadow,
-            filter;
+            box-shadow;
+
+        transform-origin:
+            right center;
     }
 
 
@@ -1407,11 +1409,8 @@ body {
         animation:
             softPageNext
             1.15s
-            cubic-bezier(.25,.65,.30,1)
+            cubic-bezier(.22,.70,.30,1)
             both;
-
-        transform-origin:
-            right center;
     }
 
 
@@ -1420,11 +1419,8 @@ body {
         animation:
             softPagePrev
             1.15s
-            cubic-bezier(.25,.65,.30,1)
+            cubic-bezier(.22,.70,.30,1)
             both;
-
-        transform-origin:
-            right center;
     }
 
 
@@ -1435,79 +1431,59 @@ body {
             transform:
                 perspective(1800px)
                 rotateY(0deg)
-                rotateZ(0deg)
                 scaleX(1)
                 translateX(0);
 
             box-shadow:
                 0 8px 15px rgba(0,0,0,.18);
-
-            filter:
-                brightness(1);
         }
 
-        20% {
+        25% {
 
             transform:
                 perspective(1800px)
-                rotateY(12deg)
-                rotateZ(.25deg)
-                scaleX(.985)
-                translateX(2px);
+                rotateY(10deg)
+                scaleX(.992)
+                translateX(1px);
 
             box-shadow:
-                5px 9px 18px rgba(0,0,0,.20);
-
-            filter:
-                brightness(.985);
+                4px 9px 17px rgba(0,0,0,.19);
         }
 
-        45% {
+        50% {
 
             transform:
                 perspective(1800px)
                 rotateY(48deg)
-                rotateZ(.7deg)
-                scaleX(.95)
-                translateX(6px);
+                scaleX(.955)
+                translateX(4px);
 
             box-shadow:
-                11px 11px 23px rgba(0,0,0,.24);
-
-            filter:
-                brightness(.95);
+                10px 10px 22px rgba(0,0,0,.23);
         }
 
-        65% {
+        70% {
 
             transform:
                 perspective(1800px)
-                rotateY(88deg)
-                rotateZ(.9deg)
-                scaleX(.93)
-                translateX(9px);
+                rotateY(92deg)
+                scaleX(.935)
+                translateX(7px);
 
             box-shadow:
-                14px 12px 26px rgba(0,0,0,.26);
-
-            filter:
-                brightness(.96);
+                13px 11px 25px rgba(0,0,0,.25);
         }
 
-        82% {
+        85% {
 
             transform:
                 perspective(1800px)
-                rotateY(130deg)
-                rotateZ(.45deg)
-                scaleX(.96)
-                translateX(6px);
+                rotateY(135deg)
+                scaleX(.965)
+                translateX(4px);
 
             box-shadow:
-                9px 10px 21px rgba(0,0,0,.22);
-
-            filter:
-                brightness(.985);
+                8px 9px 20px rgba(0,0,0,.21);
         }
 
         100% {
@@ -1515,15 +1491,11 @@ body {
             transform:
                 perspective(1800px)
                 rotateY(180deg)
-                rotateZ(0deg)
                 scaleX(1)
                 translateX(0);
 
             box-shadow:
                 0 5px 10px rgba(0,0,0,.12);
-
-            filter:
-                brightness(1);
         }
     }
 
@@ -1535,79 +1507,59 @@ body {
             transform:
                 perspective(1800px)
                 rotateY(180deg)
-                rotateZ(0deg)
                 scaleX(1)
                 translateX(0);
 
             box-shadow:
                 0 5px 10px rgba(0,0,0,.12);
-
-            filter:
-                brightness(1);
         }
 
-        18% {
+        15% {
 
             transform:
                 perspective(1800px)
-                rotateY(130deg)
-                rotateZ(.45deg)
-                scaleX(.96)
-                translateX(6px);
+                rotateY(135deg)
+                scaleX(.965)
+                translateX(4px);
 
             box-shadow:
-                9px 10px 21px rgba(0,0,0,.22);
-
-            filter:
-                brightness(.985);
+                8px 9px 20px rgba(0,0,0,.21);
         }
 
-        35% {
+        30% {
 
             transform:
                 perspective(1800px)
-                rotateY(88deg)
-                rotateZ(.9deg)
-                scaleX(.93)
-                translateX(9px);
+                rotateY(92deg)
+                scaleX(.935)
+                translateX(7px);
 
             box-shadow:
-                14px 12px 26px rgba(0,0,0,.26);
-
-            filter:
-                brightness(.96);
+                13px 11px 25px rgba(0,0,0,.25);
         }
 
-        55% {
+        50% {
 
             transform:
                 perspective(1800px)
                 rotateY(48deg)
-                rotateZ(.7deg)
-                scaleX(.95)
-                translateX(6px);
+                scaleX(.955)
+                translateX(4px);
 
             box-shadow:
-                11px 11px 23px rgba(0,0,0,.24);
-
-            filter:
-                brightness(.95);
+                10px 10px 22px rgba(0,0,0,.23);
         }
 
-        78% {
+        75% {
 
             transform:
                 perspective(1800px)
-                rotateY(12deg)
-                rotateZ(.25deg)
-                scaleX(.985)
-                translateX(2px);
+                rotateY(10deg)
+                scaleX(.992)
+                translateX(1px);
 
             box-shadow:
-                5px 9px 18px rgba(0,0,0,.20);
-
-            filter:
-                brightness(.985);
+                4px 9px 17px rgba(0,0,0,.19);
         }
 
         100% {
@@ -1615,15 +1567,11 @@ body {
             transform:
                 perspective(1800px)
                 rotateY(0deg)
-                rotateZ(0deg)
                 scaleX(1)
                 translateX(0);
 
             box-shadow:
                 0 8px 15px rgba(0,0,0,.18);
-
-            filter:
-                brightness(1);
         }
     }
 
