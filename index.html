@@ -56,6 +56,7 @@
                 </span>
 
                 <span>98926486</span>
+
             </div>
 
         </div>
@@ -70,8 +71,6 @@
      ========================================================= -->
 
 <div class="page-group spread" data-group="1">
-
-    <!-- PAGE 2 -->
 
     <section class="book-page page2">
 
@@ -122,14 +121,13 @@
                 </span>
 
                 <span>98926486</span>
+
             </div>
 
         </div>
 
     </section>
 
-
-    <!-- PAGE 3 -->
 
     <section class="book-page page3">
 
@@ -170,8 +168,6 @@
 
 <div class="page-group spread" data-group="2">
 
-    <!-- PAGE 4 -->
-
     <section class="book-page page4">
 
         <div class="design-bg"></div>
@@ -207,8 +203,6 @@
 
     </section>
 
-
-    <!-- PAGE 5 -->
 
     <section class="book-page page5">
 
@@ -344,12 +338,7 @@ const TURN_TIME = 900;
 
 
 /* =========================================================
-   STATES
-
-   0 = PAGE 1
-   1 = PAGE 2 + 3
-   2 = PAGE 4 + 5
-   3 = PAGE 6
+   STATE
    ========================================================= */
 
 function isMobile() {
@@ -361,18 +350,98 @@ function isMobile() {
    SOUND
    ========================================================= */
 
+function playFallbackSound() {
+
+    try {
+
+        const AudioContext =
+            window.AudioContext ||
+            window.webkitAudioContext;
+
+        if (!AudioContext) return;
+
+        const ctx =
+            new AudioContext();
+
+        if (ctx.state === "suspended") {
+            ctx.resume();
+        }
+
+        const osc =
+            ctx.createOscillator();
+
+        const gain =
+            ctx.createGain();
+
+        osc.type = "triangle";
+
+        osc.frequency.setValueAtTime(
+            520,
+            ctx.currentTime
+        );
+
+        osc.frequency.exponentialRampToValueAtTime(
+            130,
+            ctx.currentTime + 0.16
+        );
+
+        gain.gain.setValueAtTime(
+            0.0001,
+            ctx.currentTime
+        );
+
+        gain.gain.exponentialRampToValueAtTime(
+            0.12,
+            ctx.currentTime + 0.015
+        );
+
+        gain.gain.exponentialRampToValueAtTime(
+            0.0001,
+            ctx.currentTime + 0.17
+        );
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        osc.start();
+        osc.stop(
+            ctx.currentTime + 0.18
+        );
+
+        setTimeout(() => {
+            try {
+                ctx.close();
+            } catch (e) {}
+        }, 300);
+
+    } catch (e) {}
+}
+
+
 function playSound() {
 
-    if (!sound) return;
+    if (!sound) {
+
+        playFallbackSound();
+
+        return;
+    }
 
     sound.pause();
     sound.currentTime = 0;
     sound.volume = 0.85;
 
-    const promise = sound.play();
+    const promise =
+        sound.play();
 
     if (promise) {
-        promise.catch(() => {});
+
+        promise.catch(() => {
+
+            playFallbackSound();
+
+        });
+
     }
 }
 
@@ -386,9 +455,7 @@ function clearAll() {
     groups.forEach(group => {
 
         group.classList.remove(
-            "active",
-            "desktop-flip-next",
-            "desktop-flip-prev"
+            "active"
         );
 
     });
@@ -415,17 +482,20 @@ function showState(state) {
 
     clearAll();
 
-    const group = groups[state];
+    const group =
+        groups[state];
 
     if (!group) return;
 
-    group.classList.add("active");
+    group.classList.add(
+        "active"
+    );
 
 
-    if (!isMobile()) return;
+    if (!isMobile()) {
+        return;
+    }
 
-
-    /* MOBILE */
 
     const statePages = [
         [0],
@@ -436,6 +506,7 @@ function showState(state) {
 
     const visiblePages =
         statePages[state] || [];
+
 
     visiblePages.forEach(index => {
 
@@ -466,9 +537,7 @@ function nextPage() {
     playSound();
 
 
-    /*
-       PAGE 1 → PAGE 2+3
-    */
+    /* PAGE 1 -> PAGE 2+3 */
 
     if (currentState === 0) {
 
@@ -486,26 +555,28 @@ function nextPage() {
     }
 
 
-    /*
-       PAGE 2+3 → PAGE 4+5
-
-       PAGE 3 turns.
-       PAGE 2 stays still.
-    */
+    /* PAGE 3 -> PAGE 2 / THEN 4+5 */
 
     if (currentState === 1) {
 
-        const page3 = pages[2];
+        const page3 =
+            pages[2];
 
-        clearAll();
+        groups[1].classList.add(
+            "active"
+        );
 
-        groups[1].classList.add("active");
+        page3.classList.remove(
+            "desktop-flip-next",
+            "desktop-flip-prev"
+        );
 
         void page3.offsetWidth;
 
         page3.classList.add(
             "desktop-flip-next"
         );
+
 
         setTimeout(() => {
 
@@ -521,26 +592,28 @@ function nextPage() {
     }
 
 
-    /*
-       PAGE 4+5 → PAGE 6
-
-       PAGE 5 turns.
-       PAGE 4 stays still.
-    */
+    /* PAGE 5 -> PAGE 4 / THEN PAGE 6 */
 
     if (currentState === 2) {
 
-        const page5 = pages[4];
+        const page5 =
+            pages[4];
 
-        clearAll();
+        groups[2].classList.add(
+            "active"
+        );
 
-        groups[2].classList.add("active");
+        page5.classList.remove(
+            "desktop-flip-next",
+            "desktop-flip-prev"
+        );
 
         void page5.offsetWidth;
 
         page5.classList.add(
             "desktop-flip-next"
         );
+
 
         setTimeout(() => {
 
@@ -573,21 +646,23 @@ function previousPage() {
     playSound();
 
 
-    /*
-       PAGE 6 → PAGE 4+5
-
-       PAGE 5 returns.
-    */
+    /* PAGE 6 -> PAGE 4+5 */
 
     if (currentState === 3) {
 
         currentState = 2;
 
-        clearAll();
+        groups[2].classList.add(
+            "active"
+        );
 
-        groups[2].classList.add("active");
+        const page5 =
+            pages[4];
 
-        const page5 = pages[4];
+        page5.classList.remove(
+            "desktop-flip-next",
+            "desktop-flip-prev"
+        );
 
         void page5.offsetWidth;
 
@@ -595,6 +670,7 @@ function previousPage() {
             "desktop-flip-prev"
         );
 
+
         setTimeout(() => {
 
             isTurning = false;
@@ -605,21 +681,23 @@ function previousPage() {
     }
 
 
-    /*
-       PAGE 4+5 → PAGE 2+3
-
-       PAGE 3 returns.
-    */
+    /* PAGE 4+5 -> PAGE 2+3 */
 
     if (currentState === 2) {
 
         currentState = 1;
 
-        clearAll();
+        groups[1].classList.add(
+            "active"
+        );
 
-        groups[1].classList.add("active");
+        const page3 =
+            pages[2];
 
-        const page3 = pages[2];
+        page3.classList.remove(
+            "desktop-flip-next",
+            "desktop-flip-prev"
+        );
 
         void page3.offsetWidth;
 
@@ -627,6 +705,7 @@ function previousPage() {
             "desktop-flip-prev"
         );
 
+
         setTimeout(() => {
 
             isTurning = false;
@@ -637,9 +716,7 @@ function previousPage() {
     }
 
 
-    /*
-       PAGE 2+3 → PAGE 1
-    */
+    /* PAGE 2+3 -> PAGE 1 */
 
     if (currentState === 1) {
 
@@ -653,7 +730,6 @@ function previousPage() {
 
         }, 450);
 
-        return;
     }
 
 }
@@ -691,44 +767,41 @@ function goToPage(pageNumber) {
 
         targetState = 0;
 
-    }
-
-    else if (
+    } else if (
         pageNumber === 1 ||
         pageNumber === 2
     ) {
 
         targetState = 1;
 
-    }
-
-    else if (
+    } else if (
         pageNumber === 3 ||
         pageNumber === 4
     ) {
 
         targetState = 2;
 
-    }
-
-    else if (pageNumber === 5) {
+    } else {
 
         targetState = 3;
 
     }
 
 
-    if (targetState === currentState) {
+    if (
+        targetState === currentState ||
+        isTurning
+    ) {
         return;
     }
 
-    if (isTurning) {
-        return;
-    }
 
-    currentState = targetState;
+    currentState =
+        targetState;
 
-    showState(currentState);
+    showState(
+        currentState
+    );
 }
 
 
