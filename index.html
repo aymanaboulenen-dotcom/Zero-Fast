@@ -332,7 +332,7 @@ const sound = document.getElementById("pageFlipSound");
 let currentState = 0;
 let isTurning = false;
 
-const TURN_TIME = 900;
+const TURN_TIME = 1150;
 
 
 function isMobile() {
@@ -361,15 +361,13 @@ function playSound() {
 
 
 /* =========================================================
-   CLEAR EVERYTHING
+   CLEAR
    ========================================================= */
 
 function clearAll() {
 
     groups.forEach(group => {
-
         group.classList.remove("active");
-
     });
 
     pages.forEach(page => {
@@ -402,7 +400,6 @@ function showState(state) {
 
     if (!isMobile()) return;
 
-
     const statePages = [
         [0],
         [1, 2],
@@ -412,7 +409,6 @@ function showState(state) {
 
     const visiblePages =
         statePages[state] || [];
-
 
     visiblePages.forEach(index => {
 
@@ -435,7 +431,6 @@ function showState(state) {
 function nextPage() {
 
     if (isTurning) return;
-
     if (currentState >= 3) return;
 
     isTurning = true;
@@ -461,8 +456,7 @@ function nextPage() {
     }
 
 
-    /* 2+3 -> 4+5
-       page 3 moves, page 2 stays */
+    /* 2+3 -> 4+5 */
 
     if (currentState === 1) {
 
@@ -478,12 +472,13 @@ function nextPage() {
             "desktop-flip-next"
         );
 
-
         setTimeout(() => {
 
-            showState(2);
+            clearAll();
 
             currentState = 2;
+
+            groups[2].classList.add("active");
 
             isTurning = false;
 
@@ -493,8 +488,7 @@ function nextPage() {
     }
 
 
-    /* 4+5 -> 6
-       page 5 moves, page 4 stays */
+    /* 4+5 -> 6 */
 
     if (currentState === 2) {
 
@@ -510,12 +504,13 @@ function nextPage() {
             "desktop-flip-next"
         );
 
-
         setTimeout(() => {
 
-            showState(3);
+            clearAll();
 
             currentState = 3;
+
+            groups[3].classList.add("active");
 
             isTurning = false;
 
@@ -534,7 +529,6 @@ function nextPage() {
 function previousPage() {
 
     if (isTurning) return;
-
     if (currentState <= 0) return;
 
     isTurning = true;
@@ -542,8 +536,7 @@ function previousPage() {
     playSound();
 
 
-    /* 6 -> 4+5
-       page 5 returns */
+    /* 6 -> 4+5 */
 
     if (currentState === 3) {
 
@@ -561,7 +554,6 @@ function previousPage() {
 
         currentState = 2;
 
-
         setTimeout(() => {
 
             isTurning = false;
@@ -572,8 +564,7 @@ function previousPage() {
     }
 
 
-    /* 4+5 -> 2+3
-       page 3 returns */
+    /* 4+5 -> 2+3 */
 
     if (currentState === 2) {
 
@@ -590,7 +581,6 @@ function previousPage() {
         );
 
         currentState = 1;
-
 
         setTimeout(() => {
 
@@ -609,7 +599,6 @@ function previousPage() {
         currentState = 0;
 
         showState(0);
-
 
         setTimeout(() => {
 
@@ -634,9 +623,7 @@ function closeContents() {
         );
 
     if (menu) {
-
         menu.classList.remove("show");
-
     }
 }
 
@@ -646,7 +633,6 @@ function goToPage(pageNumber) {
     closeContents();
 
     let targetState = 0;
-
 
     if (pageNumber === 0) {
 
@@ -669,9 +655,7 @@ function goToPage(pageNumber) {
     } else {
 
         targetState = 3;
-
     }
-
 
     if (
         targetState === currentState ||
@@ -679,7 +663,6 @@ function goToPage(pageNumber) {
     ) {
         return;
     }
-
 
     currentState = targetState;
 
@@ -696,7 +679,6 @@ document
     .onclick = function(e) {
 
         e.preventDefault();
-
         nextPage();
 
     };
@@ -707,7 +689,6 @@ document
     .onclick = function(e) {
 
         e.preventDefault();
-
         previousPage();
 
     };
@@ -775,18 +756,13 @@ document.addEventListener(
 let startX = 0;
 let startY = 0;
 
-
 document.addEventListener(
     "touchstart",
     function(e) {
 
         if (!isMobile()) return;
 
-        if (
-            e.touches.length !== 1
-        ) {
-            return;
-        }
+        if (e.touches.length !== 1) return;
 
         startX =
             e.touches[0].clientX;
@@ -795,9 +771,7 @@ document.addEventListener(
             e.touches[0].clientY;
 
     },
-    {
-        passive: true
-    }
+    { passive: true }
 );
 
 
@@ -835,19 +809,13 @@ document.addEventListener(
         }
 
         if (dx < 0) {
-
             nextPage();
-
         } else {
-
             previousPage();
-
         }
 
     },
-    {
-        passive: true
-    }
+    { passive: true }
 );
 
 
@@ -861,9 +829,7 @@ window.addEventListener(
     "resize",
     function() {
 
-        clearTimeout(
-            resizeTimer
-        );
+        clearTimeout(resizeTimer);
 
         resizeTimer =
             setTimeout(
