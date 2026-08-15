@@ -31,7 +31,7 @@
         </div>
 
         <div class="program-title">
-            برنامج إدارة شركات التوصيل
+            برنامج لإدارة شركات التوصيل
         </div>
 
         <div class="image-frame frame-page1">
@@ -56,6 +56,7 @@
                 </span>
 
                 <span>98926486</span>
+
             </div>
 
         </div>
@@ -78,7 +79,7 @@
         <div class="design-bg"></div>
 
         <div class="program-title">
-            برنامج إدارة شركات التوصيل
+            برنامج لإدارة شركات التوصيل
         </div>
 
         <div class="title-pill page2-title">
@@ -122,6 +123,7 @@
                 </span>
 
                 <span>98926486</span>
+
             </div>
 
         </div>
@@ -136,7 +138,7 @@
         <div class="design-bg"></div>
 
         <div class="program-title">
-            برنامج إدارة شركات التوصيل
+            برنامج لإدارة شركات التوصيل
         </div>
 
         <div class="title-pill page3-title">
@@ -177,7 +179,7 @@
         <div class="design-bg"></div>
 
         <div class="program-title">
-            برنامج إدارة شركات التوصيل
+            برنامج لإدارة شركات التوصيل
         </div>
 
         <div class="title-pill page4-title">
@@ -215,7 +217,7 @@
         <div class="design-bg"></div>
 
         <div class="program-title">
-            برنامج إدارة شركات التوصيل
+            برنامج لإدارة شركات التوصيل
         </div>
 
         <div class="title-pill page5-title">
@@ -270,7 +272,7 @@
         </div>
 
         <div class="program-title">
-            برنامج إدارة شركات التوصيل
+            برنامج لإدارة شركات التوصيل
         </div>
 
         <div class="title-pill page6-title">
@@ -349,7 +351,8 @@ const pageToGroup = [
     3
 ];
 
-const TURN_DURATION = 760;
+const TURN_DURATION = 900;
+
 
 function isMobile() {
     return window.innerWidth <= 700;
@@ -364,7 +367,10 @@ function playSound() {
 
     if (!sound) return;
 
+    sound.volume = 0.85;
+
     sound.pause();
+
     sound.currentTime = 0;
 
     const promise = sound.play();
@@ -407,7 +413,10 @@ function clearView() {
    SHOW
    ========================================================= */
 
-function showPage(direction = "next", animate = true) {
+function showPage(
+    direction = "next",
+    animate = true
+) {
 
     clearView();
 
@@ -416,6 +425,8 @@ function showPage(direction = "next", animate = true) {
 
     group.classList.add("active");
 
+
+    /* MOBILE */
 
     if (isMobile()) {
 
@@ -435,31 +446,24 @@ function showPage(direction = "next", animate = true) {
                     ? "mobile-turn-next"
                     : "mobile-turn-prev"
             );
+
         }
 
         return;
     }
 
 
-    if (animate) {
+    /* DESKTOP */
 
-        void group.offsetWidth;
+    if (!animate) return;
 
-        group.classList.add(
-            direction === "next"
-                ? "page-turn-next"
-                : "page-turn-prev"
-        );
+    void group.offsetWidth;
 
-        setTimeout(() => {
-
-            group.classList.remove(
-                "page-turn-next",
-                "page-turn-prev"
-            );
-
-        }, TURN_DURATION);
-    }
+    group.classList.add(
+        direction === "next"
+            ? "page-turn-next"
+            : "page-turn-prev"
+    );
 }
 
 
@@ -471,9 +475,16 @@ function moveTo(target) {
 
     if (isTurning) return;
 
-    if (target < 0 || target > 5) return;
+    if (
+        target < 0 ||
+        target > 5
+    ) {
+        return;
+    }
 
-    if (target === currentPage) return;
+    if (target === currentPage) {
+        return;
+    }
 
     const direction =
         target > currentPage
@@ -482,37 +493,49 @@ function moveTo(target) {
 
     isTurning = true;
 
-    currentPage = target;
-
     playSound();
 
-    showPage(direction, true);
+    currentPage = target;
 
-    setTimeout(() => {
+    showPage(
+        direction,
+        true
+    );
 
-        isTurning = false;
-
-    }, TURN_DURATION);
+    setTimeout(
+        () => {
+            isTurning = false;
+        },
+        TURN_DURATION
+    );
 }
 
 
 /* =========================================================
-   NEXT / PREVIOUS
+   NEXT
    ========================================================= */
 
 function nextPage() {
 
     if (currentPage >= 5) return;
 
-    moveTo(currentPage + 1);
+    moveTo(
+        currentPage + 1
+    );
 }
 
+
+/* =========================================================
+   PREVIOUS
+   ========================================================= */
 
 function previousPage() {
 
     if (currentPage <= 0) return;
 
-    moveTo(currentPage - 1);
+    moveTo(
+        currentPage - 1
+    );
 }
 
 
@@ -528,7 +551,11 @@ function closeContents() {
         );
 
     if (menu) {
-        menu.classList.remove("show");
+
+        menu.classList.remove(
+            "show"
+        );
+
     }
 }
 
@@ -547,23 +574,38 @@ function goToPage(target) {
 
 document
     .getElementById("nextBtn")
-    .onclick = nextPage;
+    .onclick = function(e) {
+
+        e.preventDefault();
+
+        nextPage();
+    };
 
 
 document
     .getElementById("prevBtn")
-    .onclick = previousPage;
+    .onclick = function(e) {
+
+        e.preventDefault();
+
+        previousPage();
+    };
 
 
 document
     .getElementById("contentsBtn")
     .onclick = function(e) {
 
+        e.preventDefault();
+
         e.stopPropagation();
 
         document
-            .getElementById("contentsMenu")
-            .classList.toggle("show");
+            .getElementById(
+                "contentsMenu"
+            )
+            .classList
+            .toggle("show");
 
     };
 
@@ -574,15 +616,18 @@ document
     )
     .forEach(button => {
 
-        button.onclick = function() {
+        button.onclick =
+            function(e) {
 
-            goToPage(
-                Number(
-                    this.dataset.target
-                )
-            );
+                e.preventDefault();
 
-        };
+                goToPage(
+                    Number(
+                        this.dataset.target
+                    )
+                );
+
+            };
 
     });
 
@@ -606,7 +651,7 @@ document.addEventListener(
 
 
 /* =========================================================
-   TOUCH SWIPE
+   SWIPE
    ========================================================= */
 
 let startX = 0;
@@ -619,7 +664,11 @@ document.addEventListener(
 
         if (!isMobile()) return;
 
-        if (e.touches.length !== 1) return;
+        if (
+            e.touches.length !== 1
+        ) {
+            return;
+        }
 
         startX =
             e.touches[0].clientX;
@@ -628,7 +677,9 @@ document.addEventListener(
             e.touches[0].clientY;
 
     },
-    { passive: true }
+    {
+        passive: true
+    }
 );
 
 
@@ -640,7 +691,9 @@ document.addEventListener(
 
         if (
             e.changedTouches.length !== 1
-        ) return;
+        ) {
+            return;
+        }
 
         const dx =
             e.changedTouches[0].clientX -
@@ -664,13 +717,19 @@ document.addEventListener(
         }
 
         if (dx < 0) {
+
             nextPage();
+
         } else {
+
             previousPage();
+
         }
 
     },
-    { passive: true }
+    {
+        passive: true
+    }
 );
 
 
@@ -684,7 +743,9 @@ window.addEventListener(
     "resize",
     function() {
 
-        clearTimeout(resizeTimer);
+        clearTimeout(
+            resizeTimer
+        );
 
         resizeTimer =
             setTimeout(
@@ -711,7 +772,10 @@ window.addEventListener(
    START
    ========================================================= */
 
-showPage("next", false);
+showPage(
+    "next",
+    false
+);
 
 </script>
 
