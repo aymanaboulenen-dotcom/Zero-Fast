@@ -1,131 +1,185 @@
 /* =========================================================
+   ZERO FAST
+   التصميم مبني على شكل ملف AI
+   ========================================================= */
+
+:root {
+    --navy: #082742;
+    --orange: #F4A83A;
+    --gray: #dedede;
+
+    /* ليس A4 */
+    --page-height: min(82vh, 760px);
+    --page-width: calc(var(--page-height) * .707);
+
+    --book-gap: 3px;
+}
+
+
+/* =========================================================
    الأساس
    ========================================================= */
+
+* {
+    box-sizing: border-box;
+}
 
 html,
 body {
     margin: 0;
     padding: 0;
     width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
-    overscroll-behavior-x: none;
-    background: #cfcfcf;
-    font-family: "Times New Roman", serif;
-    box-sizing: border-box;
+    min-height: 100%;
 }
 
-*,
-*::before,
-*::after {
-    box-sizing: inherit;
+body {
+    background: #bfc0c0;
+    font-family: "Times New Roman", serif;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    overflow-x: hidden;
 }
 
 
 /* =========================================================
-   الصفحات
+   مجموعة الصفحات
    ========================================================= */
 
 .page-group {
     display: none;
     width: 100%;
+    justify-content: center;
+    align-items: center;
 }
 
 .page-group.active {
     display: flex;
-    justify-content: center;
-    width: 100%;
+}
+
+.book-spread.active {
+    gap: var(--book-gap);
 }
 
 
 /* =========================================================
-   صفحة A4
+   الصفحة
    ========================================================= */
 
-.a4-page {
+.book-page {
     position: relative;
-    width: 500px;
-    height: 707px;
-    flex: 0 0 500px;
-    margin: 10px auto;
+
+    width: var(--page-width);
+    height: var(--page-height);
+
+    flex: 0 0 var(--page-width);
+
     overflow: hidden;
-    background: white;
+
+    background: #fff;
+
+    box-shadow:
+        0 8px 22px rgba(0, 0, 0, .28);
+
+    isolation: isolate;
 }
 
 
 /* =========================================================
-   الصفحة الأولى
+   خلفية التصميم
    ========================================================= */
 
-.cover-page {
-    background: #102A43;
-    color: white;
-}
-
-
-/* =========================================================
-   الأشكال الهندسية
-   ========================================================= */
-
-.design-triangle {
+.page-background {
     position: absolute;
-    pointer-events: none;
-    z-index: 1;
-}
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
 
-.design-triangle-1 {
-    width: 150px;
-    height: 150px;
-    left: -75px;
-    bottom: -75px;
-    background: #F4A261;
-    transform: rotate(45deg);
-}
-
-.design-triangle-2 {
-    width: 120px;
-    height: 120px;
-    right: -60px;
-    top: -60px;
-    background: #102A43;
-    transform: rotate(45deg);
+    background: #fff;
 }
 
 
-/* =========================================================
-   دوائر الشعار
-   ========================================================= */
+/* الخطوط الرمادية على الجانب */
 
-.brand-circles {
+.page-background::before {
+    content: "";
+
     position: absolute;
-    top: 28px;
-    left: 28px;
-    width: 125px;
-    height: 125px;
-    z-index: 10;
-}
 
-.brand-circle {
-    position: absolute;
-    width: 105px;
-    height: 105px;
-    border-radius: 50%;
-}
-
-.brand-circle-back {
-    top: 10px;
-    left: 10px;
-    background: #F4A261;
-}
-
-.brand-circle-front {
     top: 0;
+    bottom: 0;
     left: 0;
-    background: #102A43;
-    border: 2px solid #F4A261;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+
+    width: 27%;
+
+    background:
+        repeating-linear-gradient(
+            82deg,
+            rgba(80,80,80,.40) 0px,
+            rgba(80,80,80,.40) 2px,
+            rgba(220,220,220,.12) 2px,
+            rgba(220,220,220,.12) 6px
+        );
+
+    opacity: .75;
+}
+
+
+/* الموجة البرتقالية السفلية */
+
+.page-background::after {
+    content: "";
+
+    position: absolute;
+
+    left: -18%;
+    right: -18%;
+    bottom: -10%;
+
+    height: 42%;
+
+    background: var(--orange);
+
+    border-radius: 55% 55% 0 0 / 35% 35% 0 0;
+
+    transform: rotate(4deg);
+}
+
+
+/* =========================================================
+   شريط كحلي سفلي
+   ========================================================= */
+
+.page1::after,
+.page2::after,
+.page3::after,
+.page4::after,
+.page5::after,
+.page6::after {
+
+    content: "";
+
+    position: absolute;
+
+    z-index: -1;
+
+    bottom: -18%;
+    right: -12%;
+
+    width: 42%;
+    height: 55%;
+
+    background: var(--navy);
+
+    clip-path: polygon(
+        100% 0,
+        100% 100%,
+        0 100%
+    );
+
+    opacity: .98;
 }
 
 
@@ -133,341 +187,73 @@ body {
    الشعار
    ========================================================= */
 
-.logo {
-    direction: ltr;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    line-height: 0.82;
-    font-weight: bold;
-    letter-spacing: -1px;
-}
+.brand-logo {
 
-.logo-zero {
-    color: white;
-    font-size: 27px;
-}
-
-.logo-fast {
-    color: #F4A261;
-    font-size: 27px;
-}
-
-
-/* =========================================================
-   عنوان الصفحة داخل الدائرة
-   ========================================================= */
-
-.page-title-circle {
-    width: 100%;
-    text-align: center;
-}
-
-.page-title-circle h1 {
-    margin: 0;
-    padding: 0 5px;
-    color: white;
-    font-size: 20px;
-    line-height: 1.2;
-    font-weight: bold;
-}
-
-
-/* =========================================================
-   لوحات المحتوى
-   ========================================================= */
-
-.content-panels {
     position: absolute;
-    top: 115px;
-    right: 25px;
-    left: 25px;
-    bottom: 55px;
-    z-index: 3;
-}
 
-.content-panel {
-    position: absolute;
-    border-radius: 0;
-}
+    top: 5.5%;
+    left: 24%;
 
-.content-panel-back {
-    top: 8px;
-    right: 8px;
-    width: 100%;
-    height: 100%;
-    background: #F4A261;
-}
+    width: 49%;
+    aspect-ratio: 1;
 
-.content-panel-front {
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    background: white;
-    border: 1px solid #102A43;
-    overflow: hidden;
-}
+    border-radius: 50%;
 
+    background: var(--navy);
 
-/* =========================================================
-   الصفحة الأولى - GIF
-   ========================================================= */
+    border: 6px solid var(--orange);
 
-.page1-gif {
-    width: 100%;
-    height: 100%;
     display: flex;
-    align-items: center;
     justify-content: center;
-    padding: 30px;
+    align-items: center;
+
+    direction: ltr;
+
+    z-index: 10;
+
+    box-shadow:
+        0 3px 7px rgba(0,0,0,.15);
 }
 
-.page1-gif .userform-card {
-    width: 100%;
-    height: 100%;
+.brand-logo .zero {
+    color: var(--orange);
+    font-size: clamp(24px, 4vw, 48px);
+    font-weight: bold;
+}
+
+.brand-logo .fast {
+    color: white;
+    font-size: clamp(24px, 4vw, 48px);
+    font-weight: bold;
+    margin-left: 8px;
 }
 
 
 /* =========================================================
-   الصور العامة
+   الصفحة 1
    ========================================================= */
 
-.userform-images {
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
+.page1-image {
 
-.userform-card {
     position: absolute;
-}
 
-.userform-image-frame {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
+    top: 43%;
+    left: 29%;
+
+    width: 43%;
+    aspect-ratio: 1;
+
     background: white;
+
+    border: 1px solid var(--navy);
+
+    z-index: 5;
 }
 
-.userform-image-frame img {
-    display: block;
+.page1-image img {
     width: 100%;
     height: 100%;
     object-fit: contain;
-}
-
-
-/* =========================================================
-   المقدمة
-   ========================================================= */
-
-.cover-intro {
-    width: 100%;
-    height: 100%;
-    padding: 38px 35px;
-    color: #102A43;
-    direction: rtl;
-    text-align: right;
-}
-
-.cover-intro p {
-    margin: 0 0 24px;
-    font-size: 17px;
-    line-height: 1.9;
-}
-
-.cover-intro strong {
-    color: #102A43;
-}
-
-
-/* =========================================================
-   صفحة 3
-   ========================================================= */
-
-.page3-gifs {
-    width: 100%;
-    height: 100%;
-}
-
-.page3-gif-1 {
-    top: 30px;
-    right: 35px;
-    width: 180px;
-    height: 180px;
-}
-
-.page3-gif-2 {
-    bottom: 35px;
-    left: 35px;
-    width: 180px;
-    height: 180px;
-}
-
-
-/* =========================================================
-   النصوص السفلية
-   ========================================================= */
-
-.page-subtitle {
-    position: absolute;
-    bottom: 29px;
-    left: 0;
-    width: 100%;
-    text-align: center;
-    color: #102A43;
-    font-size: 16px;
-    font-weight: bold;
-    z-index: 8;
-}
-
-.page-footer-note {
-    position: absolute;
-    bottom: 10px;
-    left: 0;
-    width: 100%;
-    text-align: center;
-    color: #102A43;
-    font-size: 11px;
-    z-index: 8;
-}
-
-
-/* =========================================================
-   صفحة 4
-   ========================================================= */
-
-.page4-images {
-    width: 100%;
-    height: 100%;
-}
-
-.page4-main-gif {
-    top: 20px;
-    right: 30px;
-    width: 440px;
-    height: 245px;
-}
-
-.page4-static-image {
-    bottom: 75px;
-    right: 145px;
-    width: 210px;
-    height: 145px;
-}
-
-.page4-description {
-    position: absolute;
-    bottom: 10px;
-    right: 25px;
-    left: 25px;
-    text-align: center;
-    direction: rtl;
-}
-
-.page4-description p {
-    margin: 0;
-    color: #102A43;
-    font-size: 13px;
-    line-height: 1.5;
-}
-
-
-/* =========================================================
-   صفحة 5
-   ========================================================= */
-
-.page5-images {
-    width: 100%;
-    height: 100%;
-}
-
-.page5-image-1 {
-    top: 25px;
-    right: 25px;
-    width: 185px;
-    height: 185px;
-}
-
-.page5-image-2 {
-    top: 25px;
-    left: 25px;
-    width: 185px;
-    height: 185px;
-}
-
-.page5-image-3 {
-    top: 235px;
-    right: 145px;
-    width: 185px;
-    height: 185px;
-}
-
-.page5-description {
-    position: absolute;
-    right: 25px;
-    left: 25px;
-    bottom: 20px;
-    text-align: center;
-    direction: rtl;
-}
-
-.page5-description p {
-    margin: 0;
-    color: #102A43;
-    font-size: 13px;
-    line-height: 1.5;
-}
-
-
-/* =========================================================
-   صفحة 6
-   ========================================================= */
-
-.page-6 {
-    background: white;
-    color: #102A43;
-}
-
-.page-6 .brand-circle-front {
-    background: #102A43;
-}
-
-.page-6 .content-panel-front {
-    background: white;
-}
-
-.page-6 .cover-intro {
-    padding-top: 25px;
-}
-
-.page-6 .cover-intro h2 {
-    margin: 0 0 18px;
-    text-align: center;
-    color: #102A43;
-    font-size: 22px;
-}
-
-.page6-gif {
-    width: 190px;
-    height: 150px;
-    margin: 0 auto 20px;
-    overflow: hidden;
-}
-
-.page6-gif img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    display: block;
-}
-
-.page-6 .cover-intro p {
-    margin: 0 0 10px;
-    font-size: 16px;
-    line-height: 1.45;
-    font-weight: bold;
 }
 
 
@@ -475,235 +261,674 @@ body {
    الاتصال
    ========================================================= */
 
-.contact-panel {
+.contact-box {
+
     position: absolute;
-    bottom: 15px;
-    left: 20px;
+
+    left: 8%;
+    bottom: 8%;
+
+    width: 25%;
+
+    padding: 14px 8px;
+
+    background: var(--navy);
+
+    color: white;
+
+    border-radius: 22px;
+
+    text-align: center;
+
+    font-size: clamp(10px, 1.5vw, 18px);
+
+    line-height: 1.65;
+
+    box-shadow:
+        5px 7px 12px rgba(0,0,0,.28);
+
     z-index: 20;
-    direction: ltr;
 }
 
-.contact-item {
-    display: flex;
-    align-items: center;
-    gap: 7px;
+.contact-space {
     margin-top: 5px;
-    color: #102A43;
-    font-size: 13px;
+}
+
+.small-contact {
+    bottom: 8%;
+}
+
+
+/* =========================================================
+   عناوين الصفحات
+   ========================================================= */
+
+.title-box {
+
+    position: absolute;
+
+    z-index: 15;
+
+    background: var(--navy);
+
+    color: white;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 5px 8px rgba(0,0,0,.30);
+
+    text-align: center;
+
+    font-weight: bold;
+
+    white-space: nowrap;
+}
+
+.page2-title {
+    top: 4%;
+    right: 11%;
+    width: 36%;
+    padding: 10px 5px;
+    font-size: clamp(15px, 2vw, 25px);
+}
+
+.page3-title {
+    top: 4%;
+    left: 7%;
+    width: 75%;
+    padding: 9px 5px;
+    font-size: clamp(13px, 1.8vw, 23px);
+}
+
+.page4-title,
+.page5-title {
+    top: 4%;
+    left: 7%;
+    width: 75%;
+    padding: 9px 5px;
+    font-size: clamp(13px, 1.8vw, 23px);
+}
+
+.page6-title {
+    top: 23%;
+    left: 25%;
+    width: 50%;
+    padding: 8px;
+    font-size: clamp(14px, 2vw, 23px);
+}
+
+
+/* =========================================================
+   العناوين الصغيرة
+   ========================================================= */
+
+.subtitle-box {
+
+    position: absolute;
+
+    z-index: 15;
+
+    background: var(--navy);
+
+    color: white;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 5px 8px rgba(0,0,0,.30);
+
+    text-align: center;
+
     font-weight: bold;
 }
 
-.cover-page .contact-item,
-.page-6 .contact-item {
-    color: white;
+.page3-subtitle {
+    top: 12%;
+    left: 8%;
+    width: 43%;
+    padding: 6px;
+    font-size: clamp(11px, 1.5vw, 18px);
 }
 
-.contact-icon {
-    font-size: 15px;
-}
-
-.whatsapp-icon {
-    width: 15px;
-    height: 15px;
-    display: inline-flex;
-}
-
-.whatsapp-icon svg {
-    width: 100%;
-    height: 100%;
-    fill: currentColor;
+.page4-subtitle,
+.page5-subtitle {
+    top: 12%;
+    left: 22%;
+    width: 52%;
+    padding: 6px;
+    font-size: clamp(11px, 1.5vw, 18px);
 }
 
 
 /* =========================================================
-   Navigation
+   PAGE 2
+   ========================================================= */
+
+.page2-image {
+
+    position: absolute;
+
+    top: 22%;
+    right: 9%;
+
+    width: 72%;
+    height: 34%;
+
+    background: white;
+
+    border: 1px solid #222;
+
+    z-index: 5;
+}
+
+.page2-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.intro-text {
+
+    position: absolute;
+
+    top: 59%;
+    right: 10%;
+    left: 10%;
+
+    color: #222;
+
+    text-align: right;
+    direction: rtl;
+
+    font-size: clamp(9px, 1.35vw, 16px);
+
+    line-height: 1.65;
+}
+
+.intro-text p {
+    margin: 0 0 8px;
+}
+
+
+/* =========================================================
+   PAGE 3
+   ========================================================= */
+
+.page3-image {
+
+    position: absolute;
+
+    width: 34%;
+    aspect-ratio: 1;
+
+    background: white;
+
+    border: 1px solid #222;
+
+    z-index: 5;
+}
+
+.page3-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.page3-image-1 {
+    top: 21%;
+    right: 9%;
+}
+
+.page3-image-2 {
+    top: 48%;
+    left: 17%;
+}
+
+.bottom-note {
+
+    position: absolute;
+
+    bottom: 6%;
+    left: 10%;
+    right: 10%;
+
+    z-index: 15;
+
+    background: var(--navy);
+
+    color: white;
+
+    border-radius: 17px;
+
+    padding: 6px;
+
+    text-align: center;
+
+    font-size: clamp(9px, 1.3vw, 15px);
+
+    box-shadow:
+        0 4px 7px rgba(0,0,0,.25);
+}
+
+
+/* =========================================================
+   PAGE 4
+   ========================================================= */
+
+.page4-main-image {
+
+    position: absolute;
+
+    top: 21%;
+    left: 7%;
+
+    width: 86%;
+    height: 31%;
+
+    background: white;
+
+    border: 1px solid #222;
+
+    z-index: 5;
+}
+
+.page4-main-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.page4-small-image {
+
+    position: absolute;
+
+    top: 54%;
+    left: 49%;
+
+    width: 28%;
+    height: 18%;
+
+    background: white;
+
+    border: 1px solid #222;
+
+    transform: rotate(18deg);
+
+    z-index: 7;
+}
+
+.page4-small-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.page4-text {
+
+    position: absolute;
+
+    top: 57%;
+    left: 10%;
+
+    width: 35%;
+
+    padding: 15px;
+
+    background: white;
+
+    border: 1px solid #aaa;
+
+    text-align: center;
+
+    font-size: clamp(10px, 1.4vw, 17px);
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   PAGE 5
+   ========================================================= */
+
+.page5-image {
+
+    position: absolute;
+
+    top: 22%;
+
+    width: 25%;
+    height: 21%;
+
+    background: white;
+
+    border: 1px solid #222;
+
+    z-index: 5;
+}
+
+.page5-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.page5-image-1 {
+    right: 7%;
+}
+
+.page5-image-2 {
+    left: 37.5%;
+}
+
+.page5-image-3 {
+    left: 7%;
+}
+
+.page5-text {
+
+    position: absolute;
+
+    top: 49%;
+    left: 15%;
+
+    width: 70%;
+    height: 16%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: white;
+
+    border: 1px solid #aaa;
+
+    font-size: clamp(12px, 1.7vw, 20px);
+}
+
+
+/* =========================================================
+   PAGE 6
+   ========================================================= */
+
+.page6-logo {
+    top: 5%;
+    left: 27%;
+    width: 46%;
+}
+
+.page6-image {
+
+    position: absolute;
+
+    top: 39%;
+    left: 10%;
+
+    width: 35%;
+    aspect-ratio: 1;
+
+    background: white;
+
+    border: 1px solid #222;
+
+    z-index: 5;
+}
+
+.page6-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.page6-text {
+
+    position: absolute;
+
+    top: 39%;
+    right: 8%;
+
+    width: 48%;
+
+    padding: 10px 12px;
+
+    direction: rtl;
+    text-align: right;
+
+    background: rgba(255,255,255,.72);
+
+    color: #222;
+
+    font-size: clamp(10px, 1.45vw, 17px);
+
+    line-height: 1.55;
+
+    z-index: 6;
+}
+
+.page6-text p {
+    margin: 0 0 5px;
+}
+
+
+/* =========================================================
+   الكتاب - هامش خارجي
+   ========================================================= */
+
+.page-group {
+    padding: 18px 20px 12px;
+}
+
+
+/* =========================================================
+   الملاحة
    ========================================================= */
 
 .navigation {
-    width: 100%;
+
     display: flex;
-    justify-content: center;
+
     align-items: center;
+    justify-content: center;
+
     gap: 10px;
-    padding: 10px 0 20px;
+
+    padding: 7px 0 14px;
+
     direction: ltr;
+
+    position: relative;
+
+    z-index: 100;
 }
 
 .navigation button {
+
     border: none;
-    background: #102A43;
+
+    background: var(--navy);
     color: white;
-    padding: 8px 18px;
+
+    padding: 7px 17px;
+
     font-family: "Times New Roman", serif;
-    font-size: 14px;
+
+    font-size: 13px;
+
+    border-radius: 4px;
+
     cursor: pointer;
-    border-radius: 3px;
 }
 
 .navigation button:hover {
-    background: #F4A261;
-    color: #102A43;
+    background: var(--orange);
+    color: var(--navy);
 }
-
-
-/* =========================================================
-   Contents
-   ========================================================= */
 
 .contents-dropdown {
     position: relative;
 }
 
-.contents-button {
-    min-width: 90px;
+.contents-list {
+
+    display: none;
+
+    position: absolute;
+
+    bottom: calc(100% + 5px);
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 105px;
+
+    background: white;
+
+    border: 1px solid var(--navy);
+
+    box-shadow:
+        0 4px 10px rgba(0,0,0,.25);
+
+    z-index: 200;
 }
 
-.contents-list {
-    display: none;
-    position: absolute;
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    min-width: 110px;
-    background: white;
-    border: 1px solid #102A43;
-    z-index: 1000;
-    direction: ltr;
+.contents-list.show {
+    display: block;
 }
 
 .contents-list button {
-    display: block;
-    width: 100%;
-    background: white;
-    color: #102A43;
-    border-radius: 0;
-    border-bottom: 1px solid #ddd;
-    padding: 7px 10px;
-}
 
-.contents-list button:last-child {
-    border-bottom: none;
+    width: 100%;
+
+    display: block;
+
+    background: white;
+
+    color: var(--navy);
+
+    border-radius: 0;
+
+    border-bottom: 1px solid #ddd;
+
+    padding: 6px;
+
+    font-size: 12px;
 }
 
 
 /* =========================================================
-   حركة تقليب الصفحات
+   حركة التقليب
    ========================================================= */
 
 .page-flip {
-    transform-origin: center center;
+    transform-origin: center;
     backface-visibility: hidden;
 }
 
 .flip-next {
-    animation: pageFlipNext 0.45s ease;
+    animation: flipNext .42s ease;
 }
 
 .flip-previous {
-    animation: pageFlipPrevious 0.45s ease;
+    animation: flipPrevious .42s ease;
 }
 
-@keyframes pageFlipNext {
+@keyframes flipNext {
 
-    0% {
+    from {
         opacity: 0;
         transform: perspective(900px)
-                   rotateY(-12deg)
-                   scale(0.98);
+                   rotateY(-8deg)
+                   translateX(10px);
     }
 
-    100% {
+    to {
         opacity: 1;
         transform: perspective(900px)
                    rotateY(0)
-                   scale(1);
+                   translateX(0);
     }
-
 }
 
-@keyframes pageFlipPrevious {
+@keyframes flipPrevious {
 
-    0% {
+    from {
         opacity: 0;
         transform: perspective(900px)
-                   rotateY(12deg)
-                   scale(0.98);
+                   rotateY(8deg)
+                   translateX(-10px);
     }
 
-    100% {
+    to {
         opacity: 1;
         transform: perspective(900px)
                    rotateY(0)
-                   scale(1);
+                   translateX(0);
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    :root {
+        --page-height: min(78vh, 760px);
+        --page-width: calc(var(--page-height) * .707);
+    }
+
+    body {
+        background: #bfc0c0;
+    }
+
+    .page-group {
+        padding: 10px 8px 7px;
+    }
+
+    .book-spread {
+        display: block !important;
+    }
+
+    .book-spread .book-page {
+        display: none;
+    }
+
+    .book-spread .book-page:nth-child(1) {
+        display: block;
+    }
+
+    .navigation {
+        padding-bottom: 10px;
+    }
+
+    .navigation button {
+        padding: 7px 13px;
+        font-size: 12px;
+    }
+
+    .contact-box {
+        font-size: 11px;
     }
 
 }
 
 
 /* =========================================================
-   Mobile
+   شاشة صغيرة جدًا
    ========================================================= */
 
-@media (max-width: 600px) {
+@media (max-width: 430px) {
 
-    body {
-        background: #cfcfcf;
+    :root {
+        --page-height: min(76vh, 650px);
+        --page-width: calc(var(--page-height) * .707);
     }
 
     .page-group {
-        width: 100%;
-    }
-
-    .page-group.active {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-    }
-
-    .a4-page {
-        width: min(575px, calc(100vw - 10px));
-        height: calc(min(575px, calc(100vw - 10px)) * 1.414);
-        max-height: none;
-        flex: 0 0 auto;
-        margin: 5px auto;
-    }
-
-    .brand-circles {
-        transform: scale(1.08);
-        transform-origin: top left;
-    }
-
-    .content-panels {
-        top: 125px;
-        right: 25px;
-        left: 25px;
-        bottom: 60px;
-    }
-
-    .cover-intro {
-        padding: 35px 30px;
-    }
-
-    .cover-intro p {
-        font-size: 17px;
-        line-height: 1.85;
-    }
-
-    .page-subtitle {
-        font-size: 16px;
-    }
-
-    .page-footer-note {
-        font-size: 11px;
-    }
-
-    .navigation {
-        padding-bottom: 15px;
-    }
-
-    .navigation button {
-        padding: 8px 15px;
-        font-size: 13px;
+        padding-left: 5px;
+        padding-right: 5px;
     }
 
 }
