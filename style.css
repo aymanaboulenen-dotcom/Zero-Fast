@@ -29,20 +29,12 @@ body {
    ========================================================= */
 
 .page-group {
-
     display: none;
-
     width: 100%;
-
-    min-height:
-        calc(100vh - 65px);
-
+    min-height: calc(100vh - 65px);
     justify-content: center;
-
     align-items: center;
-
-    padding:
-        16px 22px 10px;
+    padding: 16px 22px 10px;
 }
 
 .page-group.active {
@@ -57,32 +49,21 @@ body {
 @media (min-width: 701px) {
 
     .page-group.spread.active {
-
         display: flex;
-
         flex-direction: row;
-
         direction: rtl;
-
         gap: 0;
-
         justify-content: center;
-
         align-items: center;
-
         perspective: 1800px;
     }
 
     .spread .book-page {
-
         margin: 0 !important;
-
-        transform-style:
-            preserve-3d;
+        transform-style: preserve-3d;
     }
 
     .spread .book-page:first-child {
-
         box-shadow:
             -3px 14px 28px rgba(0,0,0,.22),
             inset -5px 0 10px rgba(0,0,0,.10),
@@ -90,7 +71,6 @@ body {
     }
 
     .spread .book-page:last-child {
-
         box-shadow:
             3px 14px 28px rgba(0,0,0,.22),
             inset 5px 0 10px rgba(0,0,0,.10),
@@ -99,25 +79,17 @@ body {
 
     .spread .book-page:first-child::after,
     .spread .book-page:last-child::after {
-
         content: "";
-
         position: absolute;
-
         top: 0;
         bottom: 0;
-
         width: 4px;
-
         z-index: 30;
-
         pointer-events: none;
     }
 
     .spread .book-page:first-child::after {
-
         right: 0;
-
         background:
             linear-gradient(
                 to left,
@@ -127,9 +99,7 @@ body {
     }
 
     .spread .book-page:last-child::after {
-
         left: 0;
-
         background:
             linear-gradient(
                 to right,
@@ -146,7 +116,6 @@ body {
    ========================================================= */
 
 .book-page {
-
     position: relative;
 
     width: min(
@@ -154,17 +123,13 @@ body {
         calc((100vh - 92px) * var(--page-ratio))
     );
 
-    aspect-ratio:
-        623.622 / 870.236;
+    aspect-ratio: 623.622 / 870.236;
 
     flex: 0 0 auto;
 
     background: #fff;
-
     overflow: hidden;
-
     isolation: isolate;
-
     border-radius: 1px;
 
     box-shadow:
@@ -173,9 +138,7 @@ body {
         inset 0 0 0 1px rgba(0,0,0,.08);
 }
 
-
 .page-group:not(.spread) .book-page {
-
     width: min(
         calc((100vw - 72px) * .97),
         calc((100vh - 92px) * var(--page-ratio))
@@ -188,27 +151,18 @@ body {
    ========================================================= */
 
 .design-bg {
-
     position: absolute;
-
     inset: 0;
-
     z-index: -5;
-
     background: #fff;
 }
 
-
 .design-bg::before {
-
     content: "";
-
     position: absolute;
-
     top: 0;
     bottom: 0;
     left: 0;
-
     width: 24%;
 
     background:
@@ -224,16 +178,11 @@ body {
         inset -32px 0 38px rgba(255,255,255,.78);
 }
 
-
 .design-bg::after {
-
     content: "";
-
     position: absolute;
-
     left: -18%;
     bottom: -23%;
-
     width: 130%;
     height: 54%;
 
@@ -251,6 +200,21 @@ body {
 
 
 /* =========================================================
+   ZIGZAG / GRAY STRIP
+   PAGE 3 + PAGE 5 -> RIGHT
+   ========================================================= */
+
+.page3 .design-bg::before,
+.page5 .design-bg::before {
+    left: auto;
+    right: 0;
+
+    box-shadow:
+        inset 32px 0 38px rgba(255,255,255,.78);
+}
+
+
+/* =========================================================
    NAVY SHAPE
    ========================================================= */
 
@@ -259,11 +223,8 @@ body {
 .page4::before,
 .page5::before,
 .page6::before {
-
     content: "";
-
     position: absolute;
-
     z-index: -2;
 
     right: -12%;
@@ -288,41 +249,28 @@ body {
    ========================================================= */
 
 .program-title {
-
     position: absolute;
-
     z-index: 25;
 
     top: 18%;
-
     left: 15%;
-
     width: 70%;
-
     min-height: 8%;
 
     padding: 6px 12px;
 
     display: flex;
-
     align-items: center;
-
     justify-content: center;
 
     background: var(--navy);
-
     color: white;
 
     border-radius: 12px;
+    border: 2px solid var(--orange);
 
-    border:
-        2px solid var(--orange);
-
-    font-size:
-        clamp(17px,2.5vw,30px);
-
+    font-size: clamp(17px,2.5vw,30px);
     font-weight: bold;
-
     text-align: center;
 
     box-shadow:
@@ -335,31 +283,21 @@ body {
    ========================================================= */
 
 .logo-circle {
-
     position: absolute;
-
     z-index: 10;
 
     top: 5%;
-
     left: 29%;
-
     width: 42%;
-
     aspect-ratio: 1;
 
     border-radius: 50%;
 
     background: var(--navy);
-
-    border:
-        clamp(3px,.5vw,6px)
-        solid var(--orange);
+    border: clamp(3px,.5vw,6px) solid var(--orange);
 
     display: flex;
-
     align-items: center;
-
     justify-content: center;
 
     direction: ltr;
@@ -369,21 +307,15 @@ body {
         0 2px 4px rgba(0,0,0,.20);
 }
 
-
 .logo-zero,
 .logo-fast {
-
-    font-size:
-        clamp(20px,3.5vw,50px);
-
+    font-size: clamp(20px,3.5vw,50px);
     font-weight: bold;
 }
-
 
 .logo-zero {
     color: var(--orange);
 }
-
 
 .logo-fast {
     color: white;
@@ -396,34 +328,26 @@ body {
    ========================================================= */
 
 .image-frame {
-
     position: absolute;
 
     background: var(--orange);
 
-    border:
-        3px solid var(--navy);
-
+    border: 3px solid var(--navy);
     padding: 6px;
 
     overflow: hidden;
-
     z-index: 6;
 
     box-shadow:
         0 9px 16px rgba(0,0,0,.35);
 }
 
-
 .image-frame img {
-
     display: block;
-
     width: 100%;
     height: 100%;
 
     object-fit: contain;
-
     background: #fff;
 }
 
@@ -434,13 +358,10 @@ body {
 
 .title-pill,
 .bottom-pill {
-
     position: absolute;
-
     z-index: 20;
 
     background: var(--navy);
-
     color: white;
 
     border-radius: 28px;
@@ -451,15 +372,11 @@ body {
         0 8px 15px rgba(0,0,0,.42);
 
     display: flex;
-
     align-items: center;
-
     justify-content: center;
 
     line-height: 1.1;
-
     white-space: nowrap;
-
     font-weight: bold;
 }
 
@@ -469,17 +386,12 @@ body {
    ========================================================= */
 
 .page2-title {
-
     top: 30%;
-
     left: 31%;
-
     width: 38%;
-
     height: 10%;
 
-    font-size:
-        clamp(18px,2.4vw,32px);
+    font-size: clamp(18px,2.4vw,32px);
 }
 
 
@@ -488,17 +400,12 @@ body {
    ========================================================= */
 
 .page3-title {
-
     top: 30%;
-
     left: 25%;
-
     width: 50%;
-
     height: 10%;
 
-    font-size:
-        clamp(18px,2.4vw,32px);
+    font-size: clamp(18px,2.4vw,32px);
 }
 
 
@@ -507,17 +414,12 @@ body {
    ========================================================= */
 
 .page4-title {
-
     top: 25%;
-
     left: 27%;
-
     width: 46%;
-
     height: 10%;
 
-    font-size:
-        clamp(18px,2.4vw,32px);
+    font-size: clamp(18px,2.4vw,32px);
 }
 
 
@@ -526,17 +428,12 @@ body {
    ========================================================= */
 
 .page5-title {
-
     top: 25%;
-
     left: 22%;
-
     width: 56%;
-
     height: 10%;
 
-    font-size:
-        clamp(17px,2.2vw,30px);
+    font-size: clamp(17px,2.2vw,30px);
 }
 
 
@@ -545,17 +442,12 @@ body {
    ========================================================= */
 
 .page6-title {
-
     top: 51%;
-
     left: 25%;
-
     width: 50%;
-
     height: 10%;
 
-    font-size:
-        clamp(19px,2.6vw,34px);
+    font-size: clamp(19px,2.6vw,34px);
 }
 
 
@@ -564,101 +456,70 @@ body {
    ========================================================= */
 
 .contact-card {
-
     position: absolute;
-
     z-index: 25;
 
     left: 5%;
-
     bottom: 6%;
 
     width: 36%;
-
     min-height: 19%;
 
-    padding:
-        11px 8px;
+    padding: 11px 8px;
 
     background: var(--navy);
-
     color: white;
 
     border-radius: 20px;
 
     text-align: center;
 
-    font-size:
-        clamp(17px,2.2vw,26px);
-
+    font-size: clamp(17px,2.2vw,26px);
     line-height: 1.4;
 
     box-shadow:
         7px 10px 17px rgba(0,0,0,.42);
 }
 
-
 .contact-item {
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
 
     gap: 8px;
 
     direction: ltr;
-
     white-space: nowrap;
 }
-
 
 .contact-item + .contact-item {
     margin-top: 10px;
 }
 
-
 .phone-icon {
-
     font-size: 1.2em;
-
     color: var(--orange);
 }
 
-
 .whatsapp-icon {
-
     width: 1.3em;
-
     height: 1.3em;
 
     display: inline-flex;
-
     align-items: center;
-
     justify-content: center;
 }
 
-
 .whatsapp-icon svg {
-
     width: 100%;
-
     height: 100%;
-
     fill: #fff;
 }
 
-
 .small-contact {
-
     width: 36%;
-
     min-height: 18%;
-
-    font-size:
-        clamp(15px,1.8vw,22px);
+    font-size: clamp(15px,1.8vw,22px);
 }
 
 
@@ -667,32 +528,25 @@ body {
    ========================================================= */
 
 .intro-text {
-
     position: absolute;
-
     z-index: 7;
 
     top: 43%;
-
     left: 10%;
     right: 10%;
 
     height: 48%;
 
-    padding:
-        5% 7% 4%;
+    padding: 5% 7% 4%;
 
     color: #222;
 
-    font-size:
-        clamp(15px,1.9vw,24px);
-
+    font-size: clamp(15px,1.9vw,24px);
     line-height: 1.8;
 
     text-align: right;
 
-    background:
-        rgba(255,255,255,.92);
+    background: rgba(255,255,255,.92);
 
     border-radius: 18px;
 
@@ -701,10 +555,8 @@ body {
         inset 0 0 0 2px rgba(8,39,66,.10);
 }
 
-
 .intro-text p {
-    margin:
-        0 0 16px;
+    margin: 0 0 16px;
 }
 
 
@@ -713,41 +565,26 @@ body {
    ========================================================= */
 
 .frame-page3-1 {
-
     top: 43%;
-
     right: 8%;
-
     width: 39%;
-
     height: 26%;
 }
 
-
 .frame-page3-2 {
-
     top: 70%;
-
     left: 14%;
-
     width: 39%;
-
     height: 20%;
 }
 
-
 .bottom-pill {
-
     bottom: 3%;
-
     left: 15%;
-
     width: 70%;
-
     height: 9%;
 
-    font-size:
-        clamp(16px,2vw,27px);
+    font-size: clamp(16px,2vw,27px);
 }
 
 
@@ -757,66 +594,43 @@ body {
 
 .page4-description,
 .page5-description {
-
     position: absolute;
-
     z-index: 8;
 
     display: flex;
-
     align-items: center;
-
     justify-content: center;
 
     text-align: center;
 
     color: white;
-
     background: var(--navy);
 
-    border:
-        2px solid var(--orange);
-
+    border: 2px solid var(--orange);
     border-radius: 15px;
 
     box-shadow:
         0 7px 14px rgba(0,0,0,.35);
 
-    font-size:
-        clamp(14px,1.7vw,22px);
-
+    font-size: clamp(14px,1.7vw,22px);
     line-height: 1.5;
-
     font-weight: bold;
 }
 
-
 .page4-description {
-
     top: 70%;
-
     left: 8%;
-
     width: 39%;
-
     height: 17%;
-
     padding: 8px;
 }
 
-
 .page5-description {
-
     top: 69%;
-
     left: 10%;
-
     width: 80%;
-
     height: 17%;
-
-    padding:
-        8px 14px;
+    padding: 8px 14px;
 }
 
 
@@ -825,62 +639,42 @@ body {
    ========================================================= */
 
 .frame-page6 {
-
     top: 52%;
-
     left: 8%;
-
     width: 34%;
-
     height: 28%;
 }
 
-
 .page6-benefits {
-
     position: absolute;
-
     z-index: 10;
 
     top: 51%;
-
     right: 7%;
-
     width: 50%;
-
     min-height: 37%;
 
-    padding:
-        10px 12px;
+    padding: 10px 12px;
 
     direction: rtl;
-
     text-align: right;
 
     color: white;
-
     background: var(--navy);
 
-    border:
-        2px solid var(--orange);
-
+    border: 2px solid var(--orange);
     border-radius: 15px;
 
-    font-size:
-        clamp(14px,1.7vw,22px);
-
+    font-size: clamp(14px,1.7vw,22px);
     font-weight: bold;
-
     line-height: 1.55;
 
     box-shadow:
         0 7px 14px rgba(0,0,0,.35);
 }
 
-
 .page6-benefits p {
-    margin:
-        0 0 11px;
+    margin: 0 0 11px;
 }
 
 
@@ -889,106 +683,80 @@ body {
    ========================================================= */
 
 .navigation {
-
     height: 65px;
 
     display: flex;
-
     align-items: center;
-
     justify-content: center;
 
     gap: 12px;
-
     direction: ltr;
 
     position: relative;
-
     z-index: 100;
 }
 
-
 .navigation button {
-
     border: 0;
 
     background: var(--navy);
-
     color: white;
 
-    padding:
-        10px 21px;
+    padding: 10px 21px;
 
     border-radius: 7px;
 
     cursor: pointer;
 
-    font-family:
-        "Times New Roman",
-        serif;
-
+    font-family: "Times New Roman", serif;
     font-size: 15px;
 
     box-shadow:
         0 4px 8px rgba(0,0,0,.28);
 }
 
-
 .navigation button:hover {
-
     background: var(--orange);
-
     color: var(--navy);
 }
-
 
 .contents-dropdown {
     position: relative;
 }
 
-
 .contents-list {
-
     position: absolute;
 
     display: none;
 
     bottom: 49px;
-
     left: 50%;
 
-    transform:
-        translateX(-50%);
+    transform: translateX(-50%);
 
     width: 115px;
 
     background: white;
 
-    border:
-        1px solid var(--navy);
+    border: 1px solid var(--navy);
 
     box-shadow:
         0 7px 14px rgba(0,0,0,.30);
 }
 
-
 .contents-list.show {
     display: block;
 }
 
-
 .contents-list button {
-
     width: 100%;
 
     border-radius: 0;
 
     background: white;
-
     color: var(--navy);
 
-    border-bottom:
-        1px solid #ddd;
+    border-bottom: 1px solid #ddd;
 
     box-shadow: none;
 
@@ -1005,33 +773,22 @@ body {
     /* PAGE 1 */
 
     .page1 .logo-circle {
-
         top: 2%;
-
         width: 39%;
-
         left: 30.5%;
     }
 
     .page1 .program-title {
-
         top: 35%;
-
         left: 17%;
-
         width: 66%;
-
         min-height: 7%;
     }
 
     .page1 .frame-page1 {
-
         top: 48%;
-
         left: 33%;
-
         width: 40%;
-
         height: 28%;
     }
 
@@ -1040,42 +797,30 @@ body {
 
     .page1 .contact-card,
     .page2 .small-contact {
-
         width: 27%;
-
         min-height: 12.5%;
-
         height: 12.5%;
 
-        padding:
-            5px 6px;
+        padding: 5px 6px;
 
         display: flex;
-
         flex-direction: column;
-
         justify-content: center;
     }
 
     .page1 .contact-card {
-
         left: 6%;
-
         bottom: 5%;
     }
 
     .page2 .small-contact {
-
         right: 7%;
-
         bottom: 2%;
     }
 
     .page1 .contact-card,
     .page2 .small-contact {
-
-        font-size:
-            clamp(21px,2vw,27px);
+        font-size: clamp(21px,2vw,27px);
     }
 
 
@@ -1091,18 +836,13 @@ body {
     }
 
     .page2 .intro-text {
-
         top: 30%;
-
         height: 61%;
 
-        font-size:
-            clamp(17px,2vw,25px);
-
+        font-size: clamp(17px,2vw,25px);
         line-height: 1.62;
 
-        padding:
-            4% 6% 3%;
+        padding: 4% 6% 3%;
     }
 
 
@@ -1113,52 +853,36 @@ body {
     }
 
     .page3-title {
-
         top: 18%;
-
         height: 9.5%;
     }
 
     .frame-page3-1 {
-
         top: 31%;
-
         right: 8%;
-
         width: 39%;
-
         height: 26%;
     }
 
     .frame-page3-2 {
-
         top: 59%;
-
         left: 14%;
-
         width: 39%;
-
         height: 26%;
     }
 
     .frame-page3-1 img,
     .frame-page3-2 img {
-
         object-fit: cover;
     }
 
     .page3 .bottom-pill {
-
         bottom: 3%;
-
         left: 15%;
-
         width: 70%;
-
         height: 8%;
 
-        font-size:
-            clamp(18px,2vw,27px);
+        font-size: clamp(18px,2vw,27px);
     }
 
 
@@ -1169,58 +893,39 @@ body {
     }
 
     .page4-title {
-
         top: 16%;
-
         height: 9.5%;
     }
 
     .frame-page4-main {
-
         top: 29%;
-
         left: 9%;
-
         width: 82%;
-
         height: 30%;
     }
 
     .frame-page4-small {
-
         top: 63%;
-
         right: 8%;
-
         width: 32%;
-
         height: 20%;
     }
 
     .page4-description {
-
         top: 65%;
-
         left: 8%;
-
         width: 39%;
-
         height: 16%;
 
-        font-size:
-            clamp(17px,1.8vw,24px);
-
+        font-size: clamp(17px,1.8vw,24px);
         line-height: 1.45;
     }
 
     .page4 .bottom-pill {
-
         bottom: 3%;
-
         height: 8.5%;
 
-        font-size:
-            clamp(17px,1.9vw,25px);
+        font-size: clamp(17px,1.9vw,25px);
     }
 
 
@@ -1231,20 +936,15 @@ body {
     }
 
     .page5-title {
-
         top: 16%;
-
         height: 9.5%;
     }
 
     .frame-page5-1,
     .frame-page5-2,
     .frame-page5-3 {
-
         top: 29%;
-
         width: 26%;
-
         height: 27%;
     }
 
@@ -1261,71 +961,48 @@ body {
     }
 
     .page5-description {
-
         top: 65%;
-
         left: 10%;
-
         width: 80%;
-
         height: 16%;
 
-        font-size:
-            clamp(16px,1.7vw,23px);
+        font-size: clamp(16px,1.7vw,23px);
     }
 
     .page5 .bottom-pill {
-
         bottom: 3%;
-
         height: 8.5%;
 
-        font-size:
-            clamp(17px,1.9vw,25px);
+        font-size: clamp(17px,1.9vw,25px);
     }
 
 
     /* PAGE 6 */
 
     .page6 .logo-circle {
-
         top: 2%;
-
         width: 39%;
-
         left: 30.5%;
     }
 
     .page6 .program-title {
-
         top: 33%;
-
         left: 15%;
-
         width: 70%;
-
         min-height: 7%;
     }
 
     .page6-title {
-
         top: 43%;
-
         left: 25%;
-
         width: 50%;
-
         height: 9%;
     }
 
     .frame-page6 {
-
         top: 64%;
-
         left: 8%;
-
         width: 34%;
-
         height: 23%;
     }
 
@@ -1334,48 +1011,35 @@ body {
     }
 
     .page6-benefits {
-
         top: 55%;
-
         right: 7%;
-
         width: 50%;
-
         min-height: 31%;
 
-        padding:
-            9px 11px;
+        padding: 9px 11px;
 
-        font-size:
-            clamp(16px,1.7vw,23px);
-
+        font-size: clamp(16px,1.7vw,23px);
         line-height: 1.5;
     }
 
     .page6-benefits p {
-        margin:
-            0 0 12px;
+        margin: 0 0 12px;
     }
 
 
     /* BUTTONS */
 
     .navigation {
-
         height: 65px;
-
         gap: 14px;
     }
 
     .navigation button {
-
         min-width: 105px;
 
-        padding:
-            12px 26px;
+        padding: 12px 26px;
 
         font-size: 18px;
-
         font-weight: bold;
     }
 
@@ -1386,26 +1050,17 @@ body {
 
     .desktop-flip-next,
     .desktop-flip-prev {
-
         z-index: 100;
 
-        transform-style:
-            preserve-3d;
+        transform-style: preserve-3d;
+        backface-visibility: hidden;
 
-        backface-visibility:
-            hidden;
+        will-change: transform, box-shadow;
 
-        will-change:
-            transform,
-            box-shadow;
-
-        transform-origin:
-            right center;
+        transform-origin: right center;
     }
 
-
     .desktop-flip-next {
-
         animation:
             softPageNext
             1.15s
@@ -1413,9 +1068,7 @@ body {
             both;
     }
 
-
     .desktop-flip-prev {
-
         animation:
             softPagePrev
             1.15s
@@ -1423,11 +1076,9 @@ body {
             both;
     }
 
-
     @keyframes softPageNext {
 
         0% {
-
             transform:
                 perspective(1800px)
                 rotateY(0deg)
@@ -1439,7 +1090,6 @@ body {
         }
 
         25% {
-
             transform:
                 perspective(1800px)
                 rotateY(10deg)
@@ -1451,7 +1101,6 @@ body {
         }
 
         50% {
-
             transform:
                 perspective(1800px)
                 rotateY(48deg)
@@ -1463,7 +1112,6 @@ body {
         }
 
         70% {
-
             transform:
                 perspective(1800px)
                 rotateY(92deg)
@@ -1475,7 +1123,6 @@ body {
         }
 
         85% {
-
             transform:
                 perspective(1800px)
                 rotateY(135deg)
@@ -1487,7 +1134,6 @@ body {
         }
 
         100% {
-
             transform:
                 perspective(1800px)
                 rotateY(180deg)
@@ -1499,11 +1145,9 @@ body {
         }
     }
 
-
     @keyframes softPagePrev {
 
         0% {
-
             transform:
                 perspective(1800px)
                 rotateY(180deg)
@@ -1515,7 +1159,6 @@ body {
         }
 
         15% {
-
             transform:
                 perspective(1800px)
                 rotateY(135deg)
@@ -1527,7 +1170,6 @@ body {
         }
 
         30% {
-
             transform:
                 perspective(1800px)
                 rotateY(92deg)
@@ -1539,7 +1181,6 @@ body {
         }
 
         50% {
-
             transform:
                 perspective(1800px)
                 rotateY(48deg)
@@ -1551,7 +1192,6 @@ body {
         }
 
         75% {
-
             transform:
                 perspective(1800px)
                 rotateY(10deg)
@@ -1563,7 +1203,6 @@ body {
         }
 
         100% {
-
             transform:
                 perspective(1800px)
                 rotateY(0deg)
@@ -1590,232 +1229,154 @@ body {
     }
 
     .page-group {
-
-        min-height:
-            calc(100vh - 60px);
-
-        padding:
-            8px 0 6px;
+        min-height: calc(100vh - 60px);
+        padding: 8px 0 6px;
     }
 
     .book-page {
-
         display: none;
 
-        width:
-            100vw !important;
-
+        width: 100vw !important;
         max-width: none;
 
-        aspect-ratio:
-            623.622 / 870.236;
+        aspect-ratio: 623.622 / 870.236;
 
         box-shadow:
             0 12px 25px rgba(0,0,0,.38);
 
-        transform:
-            scale(1.15);
+        transform: scale(1.15);
     }
 
     .page-group.active
     .book-page.mobile-visible {
-
         display: block;
     }
 
-
     .program-title {
-
         top: 17%;
-
         left: 8%;
-
         width: 84%;
-
         min-height: 8%;
 
-        font-size:
-            clamp(17px,4.8vw,24px);
+        font-size: clamp(17px,4.8vw,24px);
 
-        padding:
-            6px 8px;
+        padding: 6px 8px;
     }
-
 
     .page1 .logo-circle,
     .page6 .logo-circle {
-
         width: 42%;
-
         left: 29%;
-
         top: 4%;
     }
-
 
     .page1 .program-title {
         top: 35%;
     }
 
-
     .contact-card {
-
         width: 40%;
-
         min-height: 19%;
 
-        font-size:
-            clamp(15px,4vw,20px);
-
-        padding:
-            8px 5px;
+        font-size: clamp(15px,4vw,20px);
+        padding: 8px 5px;
     }
-
 
     .small-contact {
         width: 40%;
     }
 
-
     .page2-title {
-
         top: 29%;
-
-        font-size:
-            21px;
+        font-size: 21px;
     }
-
 
     .intro-text {
-
         top: 43%;
-
         left: 7%;
-
         right: 7%;
-
         height: 47%;
 
-        padding:
-            5% 6%;
+        padding: 5% 6%;
 
-        font-size:
-            clamp(13px,3.8vw,18px);
-
-        line-height:
-            1.65;
+        font-size: clamp(13px,3.8vw,18px);
+        line-height: 1.65;
     }
-
 
     .page3-title {
-
         top: 29%;
-
-        font-size:
-            20px;
+        font-size: 20px;
     }
 
-
     .frame-page3-1 {
-
         top: 43%;
-
         height: 25%;
     }
 
-
     .frame-page3-2 {
-
         top: 70%;
-
         height: 18%;
     }
 
-
     .bottom-pill {
-
-        font-size:
-            clamp(17px,4.5vw,24px);
+        font-size: clamp(17px,4.5vw,24px);
     }
-
 
     .page4-title,
     .page5-title {
-
         top: 29%;
-
-        font-size:
-            20px;
+        font-size: 20px;
     }
-
 
     .page4-description,
     .page5-description {
-
-        font-size:
-            clamp(13px,3.6vw,18px);
+        font-size: clamp(13px,3.6vw,18px);
     }
-
 
     .page6-title {
-
         top: 36%;
-
-        font-size:
-            22px;
+        font-size: 22px;
     }
-
 
     .page6-benefits {
-
-        font-size:
-            clamp(13px,3.5vw,18px);
-
-        padding:
-            8px;
+        font-size: clamp(13px,3.5vw,18px);
+        padding: 8px;
     }
 
-
     .navigation {
-
         height: 60px;
-
         gap: 7px;
     }
 
-
     .navigation button {
-
-        padding:
-            9px 14px;
-
-        font-size:
-            13px;
+        padding: 9px 14px;
+        font-size: 13px;
     }
 
+
+    /* =====================================================
+       MOBILE PAGE 1 / PAGE 6 MOTION
+       ===================================================== */
 
     .mobile-turn-next {
-
         animation:
-            mobileNext .65s
+            mobileNext
+            .65s
             cubic-bezier(.22,.61,.36,1)
             both;
     }
-
 
     .mobile-turn-prev {
-
         animation:
-            mobilePrev .65s
+            mobilePrev
+            .65s
             cubic-bezier(.22,.61,.36,1)
             both;
     }
-
 
     @keyframes mobileNext {
 
         from {
-
             opacity: .3;
 
             transform:
@@ -1826,7 +1387,6 @@ body {
         }
 
         to {
-
             opacity: 1;
 
             transform:
@@ -1837,11 +1397,9 @@ body {
         }
     }
 
-
     @keyframes mobilePrev {
 
         from {
-
             opacity: .3;
 
             transform:
@@ -1852,7 +1410,6 @@ body {
         }
 
         to {
-
             opacity: 1;
 
             transform:
@@ -1884,11 +1441,7 @@ body {
     }
 
     .navigation button {
-
-        padding:
-            8px 11px;
-
-        font-size:
-            12px;
+        padding: 8px 11px;
+        font-size: 12px;
     }
 }
