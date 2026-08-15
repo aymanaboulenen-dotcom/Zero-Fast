@@ -752,7 +752,7 @@ body {
 
 
 /* =========================================================
-   PAGE 4 + 5
+   PAGE 4 + 5 TEXT
    ========================================================= */
 
 .page4-description,
@@ -1002,6 +1002,8 @@ body {
 
 @media (min-width: 701px) {
 
+    /* PAGE 1 */
+
     .page1 .logo-circle {
 
         top: 2%;
@@ -1034,7 +1036,7 @@ body {
     }
 
 
-    /* CONTACT DESKTOP */
+    /* CONTACT */
 
     .page1 .contact-card,
     .page2 .small-contact {
@@ -1379,7 +1381,7 @@ body {
 
 
     /* =====================================================
-       PAGE TURN
+       SOFT PAPER TURN
        ===================================================== */
 
     .desktop-flip-next,
@@ -1403,9 +1405,9 @@ body {
     .desktop-flip-next {
 
         animation:
-            pageFlipNext
-            1050ms
-            cubic-bezier(.22,.61,.36,1)
+            softPageNext
+            1.15s
+            cubic-bezier(.25,.65,.30,1)
             both;
 
         transform-origin:
@@ -1416,9 +1418,9 @@ body {
     .desktop-flip-prev {
 
         animation:
-            pageFlipPrev
-            1050ms
-            cubic-bezier(.22,.61,.36,1)
+            softPagePrev
+            1.15s
+            cubic-bezier(.25,.65,.30,1)
             both;
 
         transform-origin:
@@ -1426,7 +1428,7 @@ body {
     }
 
 
-    @keyframes pageFlipNext {
+    @keyframes softPageNext {
 
         0% {
 
@@ -1434,7 +1436,6 @@ body {
                 perspective(1800px)
                 rotateY(0deg)
                 rotateZ(0deg)
-                skewY(0deg)
                 scaleX(1)
                 translateX(0);
 
@@ -1449,14 +1450,13 @@ body {
 
             transform:
                 perspective(1800px)
-                rotateY(18deg)
-                rotateZ(.5deg)
-                skewY(.5deg)
+                rotateY(12deg)
+                rotateZ(.25deg)
                 scaleX(.985)
                 translateX(2px);
 
             box-shadow:
-                7px 10px 20px rgba(0,0,0,.22);
+                5px 9px 18px rgba(0,0,0,.20);
 
             filter:
                 brightness(.985);
@@ -1466,45 +1466,45 @@ body {
 
             transform:
                 perspective(1800px)
-                rotateY(65deg)
-                rotateZ(1.8deg)
-                skewY(1.2deg)
-                scaleX(.94)
-                translateX(8px);
+                rotateY(48deg)
+                rotateZ(.7deg)
+                scaleX(.95)
+                translateX(6px);
 
             box-shadow:
-                17px 12px 29px rgba(0,0,0,.29);
+                11px 11px 23px rgba(0,0,0,.24);
 
             filter:
                 brightness(.95);
         }
 
-        70% {
+        65% {
 
             transform:
                 perspective(1800px)
-                rotateY(118deg)
-                rotateZ(1.2deg)
-                skewY(.8deg)
+                rotateY(88deg)
+                rotateZ(.9deg)
                 scaleX(.93)
-                translateX(10px);
+                translateX(9px);
 
             box-shadow:
-                18px 11px 28px rgba(0,0,0,.27);
+                14px 12px 26px rgba(0,0,0,.26);
 
             filter:
                 brightness(.96);
         }
 
-        88% {
+        82% {
 
             transform:
                 perspective(1800px)
-                rotateY(155deg)
-                rotateZ(.4deg)
-                skewY(.2deg)
-                scaleX(.97)
-                translateX(4px);
+                rotateY(130deg)
+                rotateZ(.45deg)
+                scaleX(.96)
+                translateX(6px);
+
+            box-shadow:
+                9px 10px 21px rgba(0,0,0,.22);
 
             filter:
                 brightness(.985);
@@ -1516,7 +1516,6 @@ body {
                 perspective(1800px)
                 rotateY(180deg)
                 rotateZ(0deg)
-                skewY(0deg)
                 scaleX(1)
                 translateX(0);
 
@@ -1529,7 +1528,7 @@ body {
     }
 
 
-    @keyframes pageFlipPrev {
+    @keyframes softPagePrev {
 
         0% {
 
@@ -1537,7 +1536,6 @@ body {
                 perspective(1800px)
                 rotateY(180deg)
                 rotateZ(0deg)
-                skewY(0deg)
                 scaleX(1)
                 translateX(0);
 
@@ -1548,66 +1546,65 @@ body {
                 brightness(1);
         }
 
-        20% {
+        18% {
 
             transform:
                 perspective(1800px)
-                rotateY(155deg)
-                rotateZ(.4deg)
-                skewY(.2deg)
-                scaleX(.97)
-                translateX(4px);
+                rotateY(130deg)
+                rotateZ(.45deg)
+                scaleX(.96)
+                translateX(6px);
+
+            box-shadow:
+                9px 10px 21px rgba(0,0,0,.22);
 
             filter:
                 brightness(.985);
         }
 
-        45% {
+        35% {
 
             transform:
                 perspective(1800px)
-                rotateY(118deg)
-                rotateZ(1.2deg)
-                skewY(.8deg)
+                rotateY(88deg)
+                rotateZ(.9deg)
                 scaleX(.93)
-                translateX(10px);
+                translateX(9px);
 
             box-shadow:
-                18px 11px 28px rgba(0,0,0,.27);
+                14px 12px 26px rgba(0,0,0,.26);
 
             filter:
                 brightness(.96);
         }
 
-        70% {
+        55% {
 
             transform:
                 perspective(1800px)
-                rotateY(65deg)
-                rotateZ(1.8deg)
-                skewY(1.2deg)
-                scaleX(.94)
-                translateX(8px);
+                rotateY(48deg)
+                rotateZ(.7deg)
+                scaleX(.95)
+                translateX(6px);
 
             box-shadow:
-                17px 12px 29px rgba(0,0,0,.29);
+                11px 11px 23px rgba(0,0,0,.24);
 
             filter:
                 brightness(.95);
         }
 
-        88% {
+        78% {
 
             transform:
                 perspective(1800px)
-                rotateY(18deg)
-                rotateZ(.5deg)
-                skewY(.5deg)
+                rotateY(12deg)
+                rotateZ(.25deg)
                 scaleX(.985)
                 translateX(2px);
 
             box-shadow:
-                7px 10px 20px rgba(0,0,0,.22);
+                5px 9px 18px rgba(0,0,0,.20);
 
             filter:
                 brightness(.985);
@@ -1619,7 +1616,6 @@ body {
                 perspective(1800px)
                 rotateY(0deg)
                 rotateZ(0deg)
-                skewY(0deg)
                 scaleX(1)
                 translateX(0);
 
