@@ -152,7 +152,7 @@ body {
 .design-bg {
     position: absolute;
     inset: 0;
-    z-index: 0;
+    z-index: -5;
     background: #fff;
 }
 
@@ -223,7 +223,7 @@ body {
 .page6::before {
     content: "";
     position: absolute;
-    z-index: 1;
+    z-index: -2;
 
     right: -12%;
     bottom: -5%;
@@ -788,6 +788,9 @@ body {
         height: 28%;
     }
 
+
+    /* CONTACT */
+
     .page1 .contact-card,
     .page2 .small-contact {
         width: 25%;
@@ -816,6 +819,9 @@ body {
         font-size: clamp(21px,2vw,27px);
     }
 
+
+    /* PAGE 2 */
+
     .page2 .program-title {
         top: 6%;
     }
@@ -834,6 +840,9 @@ body {
 
         padding: 4% 6% 3%;
     }
+
+
+    /* PAGE 3 */
 
     .page3 .program-title {
         top: 6%;
@@ -872,6 +881,11 @@ body {
         font-size: clamp(18px,2vw,27px);
     }
 
+
+    /* =====================================================
+       PAGE 4
+       ===================================================== */
+
     .page4 .program-title {
         top: 5%;
     }
@@ -903,12 +917,13 @@ body {
         background: #fff;
     }
 
+    /* مستطيل الشرح - ارتفاع أقل */
     .page4-description {
         top: 64%;
         left: 4%;
 
         width: 52%;
-        height: 13%;
+        height: 8.5%;
 
         padding: 5px 8px;
 
@@ -924,6 +939,11 @@ body {
 
         font-size: clamp(17px,1.9vw,25px);
     }
+
+
+    /* =====================================================
+       PAGE 5
+       ===================================================== */
 
     .page5 .program-title {
         top: 5%;
@@ -958,7 +978,7 @@ body {
         top: 65%;
         left: 10%;
         width: 80%;
-        height: 16%;
+        height: 8.8%;
 
         font-size: clamp(16px,1.7vw,23px);
     }
@@ -970,7 +990,10 @@ body {
         font-size: clamp(17px,1.9vw,25px);
     }
 
-    /* PAGE 6 */
+
+    /* =====================================================
+       PAGE 6
+       ===================================================== */
 
     .page6 .logo-circle {
         top: 2%;
@@ -985,8 +1008,9 @@ body {
         min-height: 7%;
     }
 
+    /* رفع عنوان مميزات البرنامج قليلاً */
     .page6-title {
-        top: 44%;
+        top: 42%;
         left: 25%;
         width: 50%;
         height: 8.5%;
@@ -1025,6 +1049,9 @@ body {
         margin: 0 0 12px;
     }
 
+
+    /* BUTTONS */
+
     .navigation {
         height: 65px;
         gap: 14px;
@@ -1038,6 +1065,11 @@ body {
         font-size: 18px;
         font-weight: bold;
     }
+
+
+    /* =====================================================
+       SOFT PAPER TURN
+       ===================================================== */
 
     .desktop-flip-next,
     .desktop-flip-prev {
@@ -1075,6 +1107,9 @@ body {
                 rotateY(0deg)
                 scaleX(1)
                 translateX(0);
+
+            box-shadow:
+                0 8px 15px rgba(0,0,0,.18);
         }
 
         25% {
@@ -1083,6 +1118,9 @@ body {
                 rotateY(10deg)
                 scaleX(.992)
                 translateX(0);
+
+            box-shadow:
+                4px 9px 17px rgba(0,0,0,.19);
         }
 
         50% {
@@ -1091,6 +1129,9 @@ body {
                 rotateY(48deg)
                 scaleX(.955)
                 translateX(0);
+
+            box-shadow:
+                10px 10px 22px rgba(0,0,0,.23);
         }
 
         70% {
@@ -1099,6 +1140,9 @@ body {
                 rotateY(92deg)
                 scaleX(.935)
                 translateX(0);
+
+            box-shadow:
+                13px 11px 25px rgba(0,0,0,.25);
         }
 
         85% {
@@ -1107,6 +1151,9 @@ body {
                 rotateY(135deg)
                 scaleX(.965)
                 translateX(0);
+
+            box-shadow:
+                8px 9px 20px rgba(0,0,0,.21);
         }
 
         100% {
@@ -1115,6 +1162,9 @@ body {
                 rotateY(180deg)
                 scaleX(1)
                 translateX(0);
+
+            box-shadow:
+                0 5px 10px rgba(0,0,0,.12);
         }
     }
 
@@ -1126,6 +1176,9 @@ body {
                 rotateY(180deg)
                 scaleX(1)
                 translateX(0);
+
+            box-shadow:
+                0 5px 10px rgba(0,0,0,.12);
         }
 
         15% {
@@ -1134,6 +1187,9 @@ body {
                 rotateY(135deg)
                 scaleX(.965)
                 translateX(0);
+
+            box-shadow:
+                8px 9px 20px rgba(0,0,0,.21);
         }
 
         30% {
@@ -1142,6 +1198,9 @@ body {
                 rotateY(92deg)
                 scaleX(.935)
                 translateX(0);
+
+            box-shadow:
+                13px 11px 25px rgba(0,0,0,.25);
         }
 
         50% {
@@ -1150,6 +1209,9 @@ body {
                 rotateY(48deg)
                 scaleX(.955)
                 translateX(0);
+
+            box-shadow:
+                10px 10px 22px rgba(0,0,0,.23);
         }
 
         75% {
@@ -1158,6 +1220,9 @@ body {
                 rotateY(10deg)
                 scaleX(.992)
                 translateX(0);
+
+            box-shadow:
+                4px 9px 17px rgba(0,0,0,.19);
         }
 
         100% {
@@ -1166,13 +1231,16 @@ body {
                 rotateY(0deg)
                 scaleX(1)
                 translateX(0);
+
+            box-shadow:
+                0 8px 15px rgba(0,0,0,.18);
         }
     }
 }
 
 
 /* =========================================================
-   MOBILE — RESTORED
+   MOBILE
    ========================================================= */
 
 @media (max-width:700px) {
@@ -1202,8 +1270,6 @@ body {
 
         aspect-ratio: 623.622 / 870.236;
 
-        background: #fff;
-
         box-shadow:
             0 12px 25px rgba(0,0,0,.38);
 
@@ -1216,7 +1282,9 @@ body {
     }
 
 
-    /* GENERAL MOBILE */
+    /* =====================================================
+       GENERAL MOBILE
+       ===================================================== */
 
     .program-title {
         top: 17%;
@@ -1230,7 +1298,9 @@ body {
     }
 
 
-    /* PAGE 1 */
+    /* =====================================================
+       PAGE 1
+       ===================================================== */
 
     .page1 .logo-circle {
         width: 42%;
@@ -1254,6 +1324,9 @@ body {
         height: 100%;
         object-fit: cover;
     }
+
+
+    /* CONTACT PAGE 1 */
 
     .page1 .contact-card {
         left: 7%;
@@ -1282,7 +1355,9 @@ body {
     }
 
 
-    /* PAGE 2 */
+    /* =====================================================
+       PAGE 2
+       ===================================================== */
 
     .page2 .program-title {
         top: 6%;
@@ -1316,6 +1391,9 @@ body {
         margin: 0 0 10px;
     }
 
+
+    /* CONTACT PAGE 2 */
+
     .page2 .small-contact {
         right: 8%;
         left: auto;
@@ -1345,7 +1423,9 @@ body {
     }
 
 
-    /* PAGE 3 */
+    /* =====================================================
+       PAGE 3
+       ===================================================== */
 
     .page3 .program-title {
         top: 6%;
@@ -1389,7 +1469,9 @@ body {
     }
 
 
-    /* PAGE 4 */
+    /* =====================================================
+       PAGE 4
+       ===================================================== */
 
     .page4 .program-title {
         top: 5%;
@@ -1426,22 +1508,25 @@ body {
         background: #fff;
     }
 
-    /* مستطيل النص — أعرض ومفصول عن الصورة */
-
+    /*
+       مستطيل الشرح:
+       - تحريك ناحية اليمين
+       - المحافظة على سطرين
+       - تقليل الارتفاع
+    */
     .page4-description {
         top: 64%;
-        left: 4%;
+        left: 9%;
 
-        width: 61%;
-        height: 15%;
+        width: 53%;
+        height: 8.5%;
 
-        padding: 4px 8px;
+        padding: 4px 6px;
 
         font-size: clamp(11px,2.8vw,15px);
-        line-height: 1.2;
+        line-height: 1.18;
 
-        white-space: normal;
-        overflow: hidden;
+        white-space: nowrap;
     }
 
     .page4 .bottom-pill {
@@ -1454,7 +1539,9 @@ body {
     }
 
 
-    /* PAGE 5 */
+    /* =====================================================
+       PAGE 5
+       ===================================================== */
 
     .page5 .program-title {
         top: 5%;
@@ -1485,6 +1572,10 @@ body {
         left: 36.5%;
     }
 
+    /*
+       الصورة الثالثة محفوظة بنفس مكانها
+       وحجمها كما كان في التعديل السابق
+    */
     .page5 .frame-page5-3 {
         left: 7%;
     }
@@ -1495,11 +1586,15 @@ body {
         object-fit: cover;
     }
 
+    /*
+       مربع الكلام:
+       تقليل الارتفاع تقريباً 45%
+    */
     .page5-description {
         top: 62%;
         left: 10%;
         width: 80%;
-        height: 16%;
+        height: 8.8%;
 
         padding: 5px 8px;
 
@@ -1517,7 +1612,9 @@ body {
     }
 
 
-    /* PAGE 6 */
+    /* =====================================================
+       PAGE 6
+       ===================================================== */
 
     .page6 .logo-circle {
         top: 3%;
@@ -1526,7 +1623,7 @@ body {
     }
 
     .page6 .program-title {
-        top: 34%;
+        top: 37%;
         left: 10%;
         width: 80%;
         min-height: 7%;
@@ -1534,6 +1631,7 @@ body {
         font-size: clamp(15px,4vw,20px);
     }
 
+    /* رفع عنوان مميزات البرنامج قليلاً */
     .page6-title {
         top: 48%;
         left: 25%;
@@ -1555,7 +1653,7 @@ body {
     }
 
     .page6-benefits {
-        top: 58%;
+        top: 59%;
         right: 7%;
         width: 46%;
         min-height: 34%;
@@ -1575,7 +1673,9 @@ body {
     }
 
 
-    /* MOBILE NAVIGATION */
+    /* =====================================================
+       MOBILE NAVIGATION
+       ===================================================== */
 
     .navigation {
         height: 58px;
@@ -1594,7 +1694,9 @@ body {
     }
 
 
-    /* MOBILE PAGE MOTION */
+    /* =====================================================
+       MOBILE PAGE MOTION
+       ===================================================== */
 
     .mobile-turn-next {
         animation:
@@ -1681,7 +1783,7 @@ body {
     .page4-description {
         font-size: 11px;
         line-height: 1.15;
-        white-space: normal;
+        white-space: nowrap;
     }
 
     .page6-benefits {
