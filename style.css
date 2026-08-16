@@ -904,10 +904,11 @@ body {
 
     /* الصورة الأصلية بالطول */
     .frame-page4-small {
-        top: 63%;
+        top: 64%;
         right: 8%;
-        width: 24%;
-        height: 23%;
+
+        width: 28%;
+        height: 18%;
     }
 
     .frame-page4-small img {
@@ -917,17 +918,20 @@ body {
         background: #fff;
     }
 
-    /* مربع الشرح بنفس عرض الصورة تقريباً */
+    /* مربع الشرح - سطران فقط */
     .page4-description {
-        top: 65%;
-        left: 42%;
-        width: 24%;
-        height: 16%;
+        top: 64%;
+        left: 4%;
+
+        width: 52%;
+        height: 13%;
 
         padding: 5px 8px;
 
-        font-size: clamp(16px,1.7vw,23px);
-        line-height: 1.25;
+        font-size: clamp(16px,1.8vw,24px);
+        line-height: 1.18;
+
+        white-space: nowrap;
     }
 
     .page4 .bottom-pill {
@@ -998,8 +1002,9 @@ body {
         left: 30.5%;
     }
 
+    /* رفع عنوان برنامج لإدارة المشاريع */
     .page6 .program-title {
-        top: 34%;
+        top: 31%;
         left: 15%;
         width: 70%;
         min-height: 7%;
@@ -1489,13 +1494,14 @@ body {
         height: 29%;
     }
 
-    /* الصورة بالطول وإظهارها كاملة */
+
+    /* الصورة بالطول */
     .page4 .frame-page4-small {
-        top: 63%;
+        top: 64%;
         right: 7%;
 
-        width: 25%;
-        height: 24%;
+        width: 28%;
+        height: 18%;
     }
 
     .page4 .frame-page4-small img {
@@ -1505,13 +1511,14 @@ body {
         background: #fff;
     }
 
-    /* مربع الكلام ناحية اليمين */
-    .page4-description {
-        top: 65%;
-        left: 43%;
 
-        width: 25%;
-        height: 17%;
+    /* مربع الشرح - أعرض حتى يستوعب السطرين */
+    .page4-description {
+        top: 64%;
+        left: 5%;
+
+        width: 57%;
+        height: 13%;
 
         padding: 4px 6px;
 
@@ -1606,8 +1613,9 @@ body {
         left: 32%;
     }
 
+    /* رفع عنوان برنامج لإدارة المشاريع */
     .page6 .program-title {
-        top: 41%;
+        top: 37%;
         left: 10%;
         width: 80%;
         min-height: 7%;
@@ -1766,6 +1774,7 @@ body {
     .page4-description {
         font-size: 11px;
         line-height: 1.15;
+        white-space: nowrap;
     }
 
     .page6-benefits {
