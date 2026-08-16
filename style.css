@@ -107,7 +107,6 @@ body {
                 rgba(255,255,255,.04)
             );
     }
-
 }
 
 
@@ -784,11 +783,12 @@ body {
         min-height: 7%;
     }
 
+    /* تم تصغير صورة الصفحة 1 */
     .page1 .frame-page1 {
-        top: 48%;
-        left: 33%;
-        width: 40%;
-        height: 28%;
+        top: 49%;
+        left: 35%;
+        width: 36%;
+        height: 25%;
     }
 
 
@@ -905,17 +905,12 @@ body {
         height: 30%;
     }
 
-    /*
-       الصورة السفلية:
-       لا Stretch.
-       الإطار يأخذ أبعاد الصورة بنسبة ثابتة،
-       والصورة تستخدم contain.
-    */
+    /* تم تصغير الصورة السفلية */
     .frame-page4-small {
-        top: 64%;
+        top: 65%;
         right: 8%;
 
-        width: 32%;
+        width: 29%;
         height: auto;
         aspect-ratio: 16 / 9;
     }
@@ -926,10 +921,7 @@ body {
         object-fit: contain;
     }
 
-    /*
-       مربع الشرح:
-       أعرض + أقل ارتفاعًا + سطرين.
-    */
+    /* مربع الشرح - سطرين */
     .page4-description {
         top: 64%;
         left: 7%;
@@ -1010,15 +1002,6 @@ body {
         width: 39%;
         left: 30.5%;
     }
-
-    /*
-       ترتيب صفحة 6:
-       الدائرة
-          ↓
-       عنوان البرنامج
-          ↓
-       مميزات البرنامج
-    */
 
     .page6 .program-title {
         top: 33%;
@@ -1254,7 +1237,6 @@ body {
                 0 8px 15px rgba(0,0,0,.18);
         }
     }
-
 }
 
 
@@ -1331,11 +1313,12 @@ body {
         top: 35%;
     }
 
+    /* تصغير مربع الصورة في الصفحة 1 */
     .page1 .frame-page1 {
-        top: 48%;
-        left: 29%;
-        width: 42%;
-        height: 23%;
+        top: 49%;
+        left: 32%;
+        width: 36%;
+        height: 21%;
     }
 
     .page1 .frame-page1 img {
@@ -1510,15 +1493,12 @@ body {
         height: 29%;
     }
 
-    /*
-       الصورة السفلية:
-       الإطار يتناسب مع نسبة الصورة.
-    */
+    /* تصغير الصورة السفلية في الصفحة 4 */
     .page4 .frame-page4-small {
-        top: 64%;
+        top: 65%;
         right: 8%;
 
-        width: 32%;
+        width: 29%;
         height: auto;
         aspect-ratio: 16 / 9;
     }
@@ -1530,19 +1510,22 @@ body {
     }
 
     /*
-       مربع الشرح أعرض وأقل ارتفاعًا
-       ومناسب لسطرين.
+       مربع الشرح:
+       أعرض قليلًا حتى يظهر النص في سطرين
     */
     .page4-description {
         top: 64%;
-        left: 7%;
-        width: 46%;
+        left: 6%;
+
+        width: 48%;
         height: 13%;
 
-        padding: 5px 7px;
+        padding: 4px 6px;
 
-        font-size: clamp(12px,3.2vw,17px);
-        line-height: 1.25;
+        font-size: clamp(11px,2.8vw,16px);
+        line-height: 1.15;
+
+        white-space: normal;
     }
 
     .page4 .bottom-pill {
@@ -1631,11 +1614,11 @@ body {
     }
 
     /*
-       ترتيب صفحة 6:
+       المسافات في صفحة 6:
        الدائرة
-          ↓
+           ↓
        عنوان البرنامج
-          ↓
+           ↓
        مميزات البرنامج
     */
 
@@ -1649,7 +1632,7 @@ body {
     }
 
     .page6-title {
-        top: 47%;
+        top: 48%;
         left: 25%;
         width: 50%;
         height: 8%;
