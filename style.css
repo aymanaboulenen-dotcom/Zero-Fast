@@ -152,7 +152,7 @@ body {
 .design-bg {
     position: absolute;
     inset: 0;
-    z-index: -5;
+    z-index: 0;
     background: #fff;
 }
 
@@ -223,7 +223,7 @@ body {
 .page6::before {
     content: "";
     position: absolute;
-    z-index: -2;
+    z-index: 1;
 
     right: -12%;
     bottom: -5%;
@@ -788,9 +788,6 @@ body {
         height: 28%;
     }
 
-
-    /* CONTACT */
-
     .page1 .contact-card,
     .page2 .small-contact {
         width: 25%;
@@ -819,9 +816,6 @@ body {
         font-size: clamp(21px,2vw,27px);
     }
 
-
-    /* PAGE 2 */
-
     .page2 .program-title {
         top: 6%;
     }
@@ -840,9 +834,6 @@ body {
 
         padding: 4% 6% 3%;
     }
-
-
-    /* PAGE 3 */
 
     .page3 .program-title {
         top: 6%;
@@ -881,11 +872,6 @@ body {
         font-size: clamp(18px,2vw,27px);
     }
 
-
-    /* =====================================================
-       PAGE 4
-       ===================================================== */
-
     .page4 .program-title {
         top: 5%;
     }
@@ -906,7 +892,7 @@ body {
         top: 64%;
         right: 8%;
 
-        width: 32%;
+        width: 28%;
         height: 18%;
     }
 
@@ -938,11 +924,6 @@ body {
 
         font-size: clamp(17px,1.9vw,25px);
     }
-
-
-    /* =====================================================
-       PAGE 5
-       ===================================================== */
 
     .page5 .program-title {
         top: 5%;
@@ -989,10 +970,7 @@ body {
         font-size: clamp(17px,1.9vw,25px);
     }
 
-
-    /* =====================================================
-       PAGE 6
-       ===================================================== */
+    /* PAGE 6 */
 
     .page6 .logo-circle {
         top: 2%;
@@ -1001,14 +979,14 @@ body {
     }
 
     .page6 .program-title {
-        top: 29%;
+        top: 31%;
         left: 15%;
         width: 70%;
         min-height: 7%;
     }
 
     .page6-title {
-        top: 43%;
+        top: 44%;
         left: 25%;
         width: 50%;
         height: 8.5%;
@@ -1047,9 +1025,6 @@ body {
         margin: 0 0 12px;
     }
 
-
-    /* BUTTONS */
-
     .navigation {
         height: 65px;
         gap: 14px;
@@ -1063,11 +1038,6 @@ body {
         font-size: 18px;
         font-weight: bold;
     }
-
-
-    /* =====================================================
-       SOFT PAPER TURN
-       ===================================================== */
 
     .desktop-flip-next,
     .desktop-flip-prev {
@@ -1105,9 +1075,6 @@ body {
                 rotateY(0deg)
                 scaleX(1)
                 translateX(0);
-
-            box-shadow:
-                0 8px 15px rgba(0,0,0,.18);
         }
 
         25% {
@@ -1116,9 +1083,6 @@ body {
                 rotateY(10deg)
                 scaleX(.992)
                 translateX(0);
-
-            box-shadow:
-                4px 9px 17px rgba(0,0,0,.19);
         }
 
         50% {
@@ -1127,9 +1091,6 @@ body {
                 rotateY(48deg)
                 scaleX(.955)
                 translateX(0);
-
-            box-shadow:
-                10px 10px 22px rgba(0,0,0,.23);
         }
 
         70% {
@@ -1138,9 +1099,6 @@ body {
                 rotateY(92deg)
                 scaleX(.935)
                 translateX(0);
-
-            box-shadow:
-                13px 11px 25px rgba(0,0,0,.25);
         }
 
         85% {
@@ -1149,9 +1107,6 @@ body {
                 rotateY(135deg)
                 scaleX(.965)
                 translateX(0);
-
-            box-shadow:
-                8px 9px 20px rgba(0,0,0,.21);
         }
 
         100% {
@@ -1160,9 +1115,6 @@ body {
                 rotateY(180deg)
                 scaleX(1)
                 translateX(0);
-
-            box-shadow:
-                0 5px 10px rgba(0,0,0,.12);
         }
     }
 
@@ -1174,9 +1126,6 @@ body {
                 rotateY(180deg)
                 scaleX(1)
                 translateX(0);
-
-            box-shadow:
-                0 5px 10px rgba(0,0,0,.12);
         }
 
         15% {
@@ -1185,9 +1134,6 @@ body {
                 rotateY(135deg)
                 scaleX(.965)
                 translateX(0);
-
-            box-shadow:
-                8px 9px 20px rgba(0,0,0,.21);
         }
 
         30% {
@@ -1196,9 +1142,6 @@ body {
                 rotateY(92deg)
                 scaleX(.935)
                 translateX(0);
-
-            box-shadow:
-                13px 11px 25px rgba(0,0,0,.25);
         }
 
         50% {
@@ -1207,9 +1150,6 @@ body {
                 rotateY(48deg)
                 scaleX(.955)
                 translateX(0);
-
-            box-shadow:
-                10px 10px 22px rgba(0,0,0,.23);
         }
 
         75% {
@@ -1218,9 +1158,6 @@ body {
                 rotateY(10deg)
                 scaleX(.992)
                 translateX(0);
-
-            box-shadow:
-                4px 9px 17px rgba(0,0,0,.19);
         }
 
         100% {
@@ -1229,16 +1166,13 @@ body {
                 rotateY(0deg)
                 scaleX(1)
                 translateX(0);
-
-            box-shadow:
-                0 8px 15px rgba(0,0,0,.18);
         }
     }
 }
 
 
 /* =========================================================
-   MOBILE
+   MOBILE — RESTORED
    ========================================================= */
 
 @media (max-width:700px) {
@@ -1268,6 +1202,8 @@ body {
 
         aspect-ratio: 623.622 / 870.236;
 
+        background: #fff;
+
         box-shadow:
             0 12px 25px rgba(0,0,0,.38);
 
@@ -1280,9 +1216,7 @@ body {
     }
 
 
-    /* =====================================================
-       GENERAL MOBILE
-       ===================================================== */
+    /* GENERAL MOBILE */
 
     .program-title {
         top: 17%;
@@ -1296,9 +1230,7 @@ body {
     }
 
 
-    /* =====================================================
-       PAGE 1
-       ===================================================== */
+    /* PAGE 1 */
 
     .page1 .logo-circle {
         width: 42%;
@@ -1322,9 +1254,6 @@ body {
         height: 100%;
         object-fit: cover;
     }
-
-
-    /* CONTACT PAGE 1 */
 
     .page1 .contact-card {
         left: 7%;
@@ -1353,9 +1282,7 @@ body {
     }
 
 
-    /* =====================================================
-       PAGE 2
-       ===================================================== */
+    /* PAGE 2 */
 
     .page2 .program-title {
         top: 6%;
@@ -1389,9 +1316,6 @@ body {
         margin: 0 0 10px;
     }
 
-
-    /* CONTACT PAGE 2 */
-
     .page2 .small-contact {
         right: 8%;
         left: auto;
@@ -1421,9 +1345,7 @@ body {
     }
 
 
-    /* =====================================================
-       PAGE 3
-       ===================================================== */
+    /* PAGE 3 */
 
     .page3 .program-title {
         top: 6%;
@@ -1467,9 +1389,7 @@ body {
     }
 
 
-    /* =====================================================
-       PAGE 4
-       ===================================================== */
+    /* PAGE 4 */
 
     .page4 .program-title {
         top: 5%;
@@ -1493,9 +1413,10 @@ body {
 
     .page4 .frame-page4-small {
         top: 64%;
-        right: 5%;
+        right: 7%;
+
         width: 28%;
-        height: 17%;
+        height: 18%;
     }
 
     .page4 .frame-page4-small img {
@@ -1505,18 +1426,19 @@ body {
         background: #fff;
     }
 
-    /* النص بعيد عن الصورة ولا يدخل عليها */
+    /* مستطيل النص — أعرض ومفصول عن الصورة */
+
     .page4-description {
-        top: 63.5%;
-        left: 5%;
+        top: 64%;
+        left: 4%;
 
-        width: 56%;
-        height: 15.5%;
+        width: 61%;
+        height: 15%;
 
-        padding: 5px 7px;
+        padding: 4px 8px;
 
-        font-size: clamp(10px,2.65vw,15px);
-        line-height: 1.25;
+        font-size: clamp(11px,2.8vw,15px);
+        line-height: 1.2;
 
         white-space: normal;
         overflow: hidden;
@@ -1532,9 +1454,7 @@ body {
     }
 
 
-    /* =====================================================
-       PAGE 5
-       ===================================================== */
+    /* PAGE 5 */
 
     .page5 .program-title {
         top: 5%;
@@ -1597,32 +1517,30 @@ body {
     }
 
 
-    /* =====================================================
-       PAGE 6
-       ===================================================== */
+    /* PAGE 6 */
 
     .page6 .logo-circle {
-        top: 2.5%;
-        width: 34%;
-        left: 33%;
+        top: 3%;
+        width: 36%;
+        left: 32%;
     }
 
     .page6 .program-title {
-        top: 33%;
-        left: 8%;
-        width: 84%;
-        min-height: 7.5%;
+        top: 34%;
+        left: 10%;
+        width: 80%;
+        min-height: 7%;
 
-        font-size: clamp(14px,3.8vw,20px);
+        font-size: clamp(15px,4vw,20px);
     }
 
     .page6-title {
-        top: 45%;
-        left: 24%;
-        width: 52%;
+        top: 48%;
+        left: 25%;
+        width: 50%;
         height: 8%;
 
-        font-size: clamp(15px,3.8vw,21px);
+        font-size: clamp(16px,4vw,21px);
     }
 
     .page6 .frame-page6 {
@@ -1637,7 +1555,7 @@ body {
     }
 
     .page6-benefits {
-        top: 59%;
+        top: 58%;
         right: 7%;
         width: 46%;
         min-height: 34%;
@@ -1657,9 +1575,7 @@ body {
     }
 
 
-    /* =====================================================
-       MOBILE NAVIGATION
-       ===================================================== */
+    /* MOBILE NAVIGATION */
 
     .navigation {
         height: 58px;
@@ -1678,9 +1594,7 @@ body {
     }
 
 
-    /* =====================================================
-       MOBILE PAGE MOTION
-       ===================================================== */
+    /* MOBILE PAGE MOTION */
 
     .mobile-turn-next {
         animation:
@@ -1765,29 +1679,9 @@ body {
     }
 
     .page4-description {
-        font-size: 10px;
-        line-height: 1.2;
+        font-size: 11px;
+        line-height: 1.15;
         white-space: normal;
-        width: 56%;
-        height: 15.5%;
-    }
-
-    .page6 .logo-circle {
-        width: 34%;
-        left: 33%;
-        top: 2.5%;
-    }
-
-    .page6 .program-title {
-        top: 33%;
-        left: 8%;
-        width: 84%;
-    }
-
-    .page6-title {
-        top: 45%;
-        left: 24%;
-        width: 52%;
     }
 
     .page6-benefits {
