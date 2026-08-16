@@ -902,15 +902,20 @@ body {
         height: 30%;
     }
 
-    /* الصورة الصغيرة — تملأ الإطار بالكامل */
+
+    /*
+       الصورة السفلية ومربع الشرح
+       أصبحا بنفس الارتفاع والمحاذاة
+    */
 
     .frame-page4-small {
         top: 64%;
         right: 8%;
 
         width: 32%;
-        height: auto;
-        aspect-ratio: 16 / 9;
+        height: 13%;
+
+        aspect-ratio: auto;
     }
 
     .frame-page4-small img {
@@ -919,7 +924,6 @@ body {
         object-fit: cover;
     }
 
-    /* مربع الشرح */
 
     .page4-description {
         top: 64%;
@@ -932,6 +936,8 @@ body {
 
         font-size: clamp(17px,1.8vw,24px);
         line-height: 1.22;
+
+        white-space: nowrap;
     }
 
     .page4 .bottom-pill {
@@ -1319,8 +1325,6 @@ body {
         height: 23%;
     }
 
-    /* مهم: الصورة تملأ المربع بالكامل */
-
     .page1 .frame-page1 img {
         width: 100%;
         height: 100%;
@@ -1495,15 +1499,20 @@ body {
         height: 29%;
     }
 
-    /* الصورة الصغيرة تملأ الإطار */
+
+    /*
+       الصورة السفلية أصبحت بنفس ارتفاع
+       مربع الشرح تمامًا
+    */
 
     .page4 .frame-page4-small {
         top: 64%;
         right: 7%;
 
         width: 32%;
-        height: auto;
-        aspect-ratio: 16 / 9;
+        height: 13%;
+
+        aspect-ratio: auto;
     }
 
     .page4 .frame-page4-small img {
@@ -1512,26 +1521,25 @@ body {
         object-fit: cover;
     }
 
+
     /*
-       مربع الشرح:
-       أكبر قليلًا من السابق حتى النص
-       الموجود في HTML (وفيه <br>)
-       يظل سطرين على الموبايل.
+       النص مضبوط ليظهر في سطرين فقط
     */
 
     .page4-description {
         top: 64%;
         left: 5%;
 
-        width: 50%;
+        width: 55%;
         height: 13%;
 
-        padding: 4px 6px;
+        padding: 3px 5px;
 
-        font-size: clamp(11px,2.8vw,15px);
-        line-height: 1.18;
+        font-size: clamp(10px,2.6vw,14px);
+        line-height: 1.15;
 
         white-space: nowrap;
+        overflow: hidden;
     }
 
     .page4 .bottom-pill {
@@ -1613,28 +1621,28 @@ body {
        PAGE 6
        ===================================================== */
 
+    /*
+       الترتيب النهائي للموبايل:
+
+       دائرة Zero Fast
+              ↓
+          مسافة
+              ↓
+       برنامج لإدارة شركات التوصيل
+              ↓
+          مسافة
+              ↓
+       مميزات البرنامج
+    */
+
     .page6 .logo-circle {
         top: 3%;
         width: 36%;
         left: 32%;
     }
 
-    /*
-       الترتيب الجديد:
-       
-       الدائرة
-       ↓
-       مسافة واضحة
-       ↓
-       العنوان الأول
-       ↓
-       مسافة واضحة
-       ↓
-       العنوان الثاني
-    */
-
     .page6 .program-title {
-        top: 41%;
+        top: 36%;
         left: 10%;
         width: 80%;
         min-height: 7%;
@@ -1643,7 +1651,7 @@ body {
     }
 
     .page6-title {
-        top: 50%;
+        top: 46%;
         left: 25%;
         width: 50%;
         height: 8%;
@@ -1793,6 +1801,7 @@ body {
     .page4-description {
         font-size: 11px;
         line-height: 1.15;
+        white-space: nowrap;
     }
 
     .page6-benefits {
