@@ -458,11 +458,13 @@ function showState(state) {
    NEXT PAGE
    ========================================================= */
 
-function nextPage() {
+function nextPage(soundAlreadyPlayed = false) {
 
     if (isTurning) return;
 
-    playSound();
+    if (!soundAlreadyPlayed) {
+        playSound();
+    }
 
 
     /* =====================================================
@@ -622,13 +624,15 @@ function nextPage() {
    PREVIOUS PAGE
    ========================================================= */
 
-function previousPage() {
+function previousPage(soundAlreadyPlayed = false) {
 
     if (isTurning) return;
 
     if (currentState <= 0) return;
 
-    playSound();
+    if (!soundAlreadyPlayed) {
+        playSound();
+    }
 
 
     /* =====================================================
@@ -988,13 +992,21 @@ document.addEventListener(
             return;
         }
 
+        /*
+         * تشغيل الصوت هنا مباشرة داخل touchend
+         * حتى تسمح متصفحات الموبايل بتشغيله
+         * مع حركة السحب.
+         */
+
+        playSound();
+
         if (dx < 0) {
 
-            nextPage();
+            nextPage(true);
 
         } else {
 
-            previousPage();
+            previousPage(true);
 
         }
 
@@ -1020,11 +1032,6 @@ window.addEventListener(
                 function() {
 
                     if (!isTurning) {
-
-                        /*
-                         * عند تغيير الجهاز/حجم الشاشة
-                         * نعيد عرض الحالة الحالية.
-                         */
 
                         if (isMobile()) {
 
