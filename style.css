@@ -1229,10 +1229,17 @@ body {
 
     .page-group {
         min-height: calc(100vh - 58px);
-        padding: 5px 0 3px;
+
+        /*
+         * رفع الصفحة لأعلى حوالي 1 سم
+         */
+        padding: 0 0 3px;
 
         justify-content: center;
         align-items: center;
+
+        position: relative;
+        top: -10px;
     }
 
     /*
@@ -1252,10 +1259,6 @@ body {
         box-shadow:
             0 12px 25px rgba(0,0,0,.38);
 
-        /*
-           تقليل الحجم الإجمالي حوالي 1%
-           مع الحفاظ على النسبة السابقة.
-        */
         transform: scale(1.1385);
     }
 
@@ -1631,6 +1634,12 @@ body {
     .navigation {
         height: 58px;
         gap: 7px;
+
+        /*
+         * رفع الأزرار حوالي نصف سم
+         */
+        position: relative;
+        top: -19px;
     }
 
     .navigation button {
