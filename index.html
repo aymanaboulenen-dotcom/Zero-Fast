@@ -11,7 +11,7 @@
 <body>
 
 <audio id="pageFlipSound" preload="auto">
-   <source src="mixkit-big-paper-page-turn-1105.mp3" type="audio/mpeg">
+    <source src="mixkit-big-paper-page-turn-1105.mp3" type="audio/mpeg">
 </audio>
 
 
@@ -223,7 +223,7 @@
         <div class="image-frame frame-page5-2">
             <img
                 src="images/Screenshot%202026-08-13%20172635.png"
-                alt="واجهة البرنامج">
+                alt="الواجهة الرئيسية">
         </div>
 
         <div class="image-frame frame-page5-3">
@@ -330,10 +330,10 @@ const pages = [...document.querySelectorAll(".book-page")];
 const sound = document.getElementById("pageFlipSound");
 
 let currentState = 0;
-let mobilePage = 0;
 let isTurning = false;
 
 const TURN_TIME = 1150;
+const MOBILE_TURN_TIME = 650;
 
 
 function isMobile() {
@@ -362,6 +362,26 @@ function playSound() {
 
 
 /* =========================================================
+   MOBILE GROUP
+   ========================================================= */
+
+function mobileGroupForPage(pageNumber) {
+
+    if (pageNumber === 0) return 0;
+
+    if (pageNumber === 1 || pageNumber === 2) {
+        return 1;
+    }
+
+    if (pageNumber === 3 || pageNumber === 4) {
+        return 2;
+    }
+
+    return 3;
+}
+
+
+/* =========================================================
    CLEAR
    ========================================================= */
 
@@ -386,58 +406,64 @@ function clearAll() {
 
 
 /* =========================================================
-   DESKTOP SHOW STATE
+   SHOW STATE
    ========================================================= */
 
 function showState(state) {
 
     clearAll();
 
-    const group = groups[state];
+    if (isMobile()) {
+
+        const pageNumber = Math.max(
+            0,
+            Math.min(5, state)
+        );
+
+        const groupNumber =
+            mobileGroupForPage(pageNumber);
+
+        groups[groupNumber].classList.add("active");
+
+        if (pages[pageNumber]) {
+
+            pages[pageNumber].classList.add(
+                "mobile-visible"
+            );
+
+        }
+
+        return;
+    }
+
+
+    /* =====================================================
+       DESKTOP
+       ===================================================== */
+
+    const desktopState = Math.max(
+        0,
+        Math.min(3, state)
+    );
+
+    const group = groups[desktopState];
 
     if (!group) return;
 
     group.classList.add("active");
-
-    if (!isMobile()) return;
 }
 
 
 /* =========================================================
-   MOBILE SHOW PAGE
-   ========================================================= */
-
-function showMobilePage(pageNumber) {
-
-    clearAll();
-
-    if (pageNumber < 0 || pageNumber > 5) {
-        return;
-    }
-
-    const page = pages[pageNumber];
-
-    if (!page) {
-        return;
-    }
-
-    const group = page.closest(".page-group");
-
-    if (group) {
-        group.classList.add("active");
-    }
-
-    page.classList.add("mobile-visible");
-}
-
-
-/* =========================================================
-   NEXT
+   NEXT PAGE
    ========================================================= */
 
 function nextPage() {
 
     if (isTurning) return;
+
+    playSound();
+
 
     /* =====================================================
        MOBILE
@@ -445,17 +471,15 @@ function nextPage() {
 
     if (isMobile()) {
 
-        if (mobilePage >= 5) return;
+        if (currentState >= 5) return;
 
         isTurning = true;
 
-        playSound();
+        const currentPage = pages[currentState];
 
-        const oldPage = pages[mobilePage];
+        if (currentPage) {
 
-        if (oldPage) {
-
-            oldPage.classList.add(
+            currentPage.classList.add(
                 "mobile-visible",
                 "mobile-turn-next"
             );
@@ -464,34 +488,15 @@ function nextPage() {
 
         setTimeout(() => {
 
-            mobilePage++;
+            clearAll();
 
-            showMobilePage(mobilePage);
+            currentState++;
 
-            const newPage = pages[mobilePage];
+            showState(currentState);
 
-            if (newPage) {
+            isTurning = false;
 
-                newPage.classList.add(
-                    "mobile-visible",
-                    "mobile-turn-next"
-                );
-
-            }
-
-            setTimeout(() => {
-
-                if (newPage) {
-                    newPage.classList.remove(
-                        "mobile-turn-next"
-                    );
-                }
-
-                isTurning = false;
-
-            }, 650);
-
-        }, 650);
+        }, MOBILE_TURN_TIME);
 
         return;
     }
@@ -505,12 +510,8 @@ function nextPage() {
 
     isTurning = true;
 
-    playSound();
 
-
-    /* =====================================================
-       PAGE 1 -> PAGE 2 + PAGE 3
-       ===================================================== */
+    /* PAGE 1 -> PAGE 2 + 3 */
 
     if (currentState === 0) {
 
@@ -536,9 +537,7 @@ function nextPage() {
     }
 
 
-    /* =====================================================
-       PAGE 2 + 3 -> PAGE 4 + 5
-       ===================================================== */
+    /* PAGE 2 + 3 -> PAGE 4 + 5 */
 
     if (currentState === 1) {
 
@@ -560,7 +559,7 @@ function nextPage() {
 
             currentState = 2;
 
-            groups[2].classList.add("active");
+            showState(2);
 
             isTurning = false;
 
@@ -570,9 +569,7 @@ function nextPage() {
     }
 
 
-    /* =====================================================
-       PAGE 4 + 5 -> PAGE 6
-       ===================================================== */
+    /* PAGE 4 + 5 -> PAGE 6 */
 
     if (currentState === 2) {
 
@@ -618,17 +615,20 @@ function nextPage() {
 
         return;
     }
-
 }
 
 
 /* =========================================================
-   PREVIOUS
+   PREVIOUS PAGE
    ========================================================= */
 
 function previousPage() {
 
     if (isTurning) return;
+
+    if (currentState <= 0) return;
+
+    playSound();
 
 
     /* =====================================================
@@ -637,17 +637,13 @@ function previousPage() {
 
     if (isMobile()) {
 
-        if (mobilePage <= 0) return;
-
         isTurning = true;
 
-        playSound();
+        const currentPage = pages[currentState];
 
-        const oldPage = pages[mobilePage];
+        if (currentPage) {
 
-        if (oldPage) {
-
-            oldPage.classList.add(
+            currentPage.classList.add(
                 "mobile-visible",
                 "mobile-turn-prev"
             );
@@ -656,34 +652,15 @@ function previousPage() {
 
         setTimeout(() => {
 
-            mobilePage--;
+            clearAll();
 
-            showMobilePage(mobilePage);
+            currentState--;
 
-            const newPage = pages[mobilePage];
+            showState(currentState);
 
-            if (newPage) {
+            isTurning = false;
 
-                newPage.classList.add(
-                    "mobile-visible",
-                    "mobile-turn-prev"
-                );
-
-            }
-
-            setTimeout(() => {
-
-                if (newPage) {
-                    newPage.classList.remove(
-                        "mobile-turn-prev"
-                    );
-                }
-
-                isTurning = false;
-
-            }, 650);
-
-        }, 650);
+        }, MOBILE_TURN_TIME);
 
         return;
     }
@@ -693,16 +670,10 @@ function previousPage() {
        DESKTOP
        ===================================================== */
 
-    if (currentState <= 0) return;
-
     isTurning = true;
 
-    playSound();
 
-
-    /* =====================================================
-       PAGE 6 -> PAGE 4 + 5
-       ===================================================== */
+    /* PAGE 6 -> PAGE 4 + 5 */
 
     if (currentState === 3) {
 
@@ -724,7 +695,7 @@ function previousPage() {
 
             currentState = 2;
 
-            groups[2].classList.add("active");
+            showState(2);
 
             isTurning = false;
 
@@ -734,9 +705,7 @@ function previousPage() {
     }
 
 
-    /* =====================================================
-       PAGE 4 + 5 -> PAGE 2 + 3
-       ===================================================== */
+    /* PAGE 4 + 5 -> PAGE 2 + 3 */
 
     if (currentState === 2) {
 
@@ -764,9 +733,7 @@ function previousPage() {
     }
 
 
-    /* =====================================================
-       PAGE 2 + 3 -> PAGE 1
-       ===================================================== */
+    /* PAGE 2 + 3 -> PAGE 1 */
 
     if (currentState === 1) {
 
@@ -795,7 +762,6 @@ function previousPage() {
         }, TURN_TIME);
 
     }
-
 }
 
 
@@ -806,9 +772,7 @@ function previousPage() {
 function closeContents() {
 
     const menu =
-        document.getElementById(
-            "contentsMenu"
-        );
+        document.getElementById("contentsMenu");
 
     if (menu) {
         menu.classList.remove("show");
@@ -820,9 +784,7 @@ function goToPage(pageNumber) {
 
     closeContents();
 
-    if (isTurning) {
-        return;
-    }
+    if (isTurning) return;
 
 
     /* =====================================================
@@ -838,9 +800,9 @@ function goToPage(pageNumber) {
             return;
         }
 
-        mobilePage = pageNumber;
+        currentState = pageNumber;
 
-        showMobilePage(mobilePage);
+        showState(currentState);
 
         return;
     }
@@ -873,13 +835,10 @@ function goToPage(pageNumber) {
     } else {
 
         targetState = 3;
-
     }
 
 
-    if (
-        targetState === currentState
-    ) {
+    if (targetState === currentState) {
         return;
     }
 
@@ -898,6 +857,7 @@ document
     .onclick = function(e) {
 
         e.preventDefault();
+
         nextPage();
 
     };
@@ -908,6 +868,7 @@ document
     .onclick = function(e) {
 
         e.preventDefault();
+
         previousPage();
 
     };
@@ -934,18 +895,17 @@ document
     )
     .forEach(button => {
 
-        button.onclick =
-            function(e) {
+        button.onclick = function(e) {
 
-                e.preventDefault();
+            e.preventDefault();
 
-                goToPage(
-                    Number(
-                        this.dataset.target
-                    )
-                );
+            goToPage(
+                Number(
+                    this.dataset.target
+                )
+            );
 
-            };
+        };
 
     });
 
@@ -959,7 +919,9 @@ document.addEventListener(
                 ".contents-dropdown"
             )
         ) {
+
             closeContents();
+
         }
 
     }
@@ -972,6 +934,7 @@ document.addEventListener(
 
 let startX = 0;
 let startY = 0;
+
 
 document.addEventListener(
     "touchstart",
@@ -1026,9 +989,13 @@ document.addEventListener(
         }
 
         if (dx < 0) {
+
             nextPage();
+
         } else {
+
             previousPage();
+
         }
 
     },
@@ -1052,17 +1019,26 @@ window.addEventListener(
             setTimeout(
                 function() {
 
-                    if (isTurning) {
-                        return;
-                    }
+                    if (!isTurning) {
 
-                    if (isMobile()) {
+                        /*
+                         * عند تغيير الجهاز/حجم الشاشة
+                         * نعيد عرض الحالة الحالية.
+                         */
 
-                        showMobilePage(
-                            mobilePage
-                        );
+                        if (isMobile()) {
 
-                    } else {
+                            if (currentState > 5) {
+                                currentState = 5;
+                            }
+
+                        } else {
+
+                            if (currentState > 3) {
+                                currentState = 3;
+                            }
+
+                        }
 
                         showState(
                             currentState
@@ -1082,19 +1058,7 @@ window.addEventListener(
    START
    ========================================================= */
 
-if (isMobile()) {
-
-    mobilePage = 0;
-
-    showMobilePage(0);
-
-} else {
-
-    currentState = 0;
-
-    showState(0);
-
-}
+showState(0);
 
 </script>
 
