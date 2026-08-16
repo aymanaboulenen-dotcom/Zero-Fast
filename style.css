@@ -345,7 +345,7 @@ body {
     width: 100%;
     height: 100%;
 
-    object-fit: contain;
+    object-fit: cover;
     background: #fff;
 }
 
@@ -768,8 +768,6 @@ body {
 
 @media (min-width: 701px) {
 
-    /* PAGE 1 */
-
     .page1 .logo-circle {
         top: 2%;
         width: 39%;
@@ -783,12 +781,11 @@ body {
         min-height: 7%;
     }
 
-    /* تم تصغير صورة الصفحة 1 */
     .page1 .frame-page1 {
-        top: 49%;
-        left: 35%;
-        width: 36%;
-        height: 25%;
+        top: 48%;
+        left: 33%;
+        width: 40%;
+        height: 28%;
     }
 
 
@@ -905,12 +902,13 @@ body {
         height: 30%;
     }
 
-    /* تم تصغير الصورة السفلية */
+    /* الصورة الصغيرة — تملأ الإطار بالكامل */
+
     .frame-page4-small {
-        top: 65%;
+        top: 64%;
         right: 8%;
 
-        width: 29%;
+        width: 32%;
         height: auto;
         aspect-ratio: 16 / 9;
     }
@@ -918,21 +916,22 @@ body {
     .frame-page4-small img {
         width: 100%;
         height: 100%;
-        object-fit: contain;
+        object-fit: cover;
     }
 
-    /* مربع الشرح - سطرين */
+    /* مربع الشرح */
+
     .page4-description {
         top: 64%;
-        left: 7%;
+        left: 6%;
 
-        width: 46%;
+        width: 48%;
         height: 13%;
 
-        padding: 5px 12px;
+        padding: 5px 10px;
 
         font-size: clamp(17px,1.8vw,24px);
-        line-height: 1.25;
+        line-height: 1.22;
     }
 
     .page4 .bottom-pill {
@@ -1004,14 +1003,14 @@ body {
     }
 
     .page6 .program-title {
-        top: 33%;
+        top: 34%;
         left: 15%;
         width: 70%;
         min-height: 7%;
     }
 
     .page6-title {
-        top: 43%;
+        top: 44%;
         left: 25%;
         width: 50%;
         height: 8.5%;
@@ -1313,16 +1312,19 @@ body {
         top: 35%;
     }
 
-    /* تصغير مربع الصورة في الصفحة 1 */
     .page1 .frame-page1 {
-        top: 49%;
-        left: 32%;
-        width: 36%;
-        height: 21%;
+        top: 48%;
+        left: 29%;
+        width: 42%;
+        height: 23%;
     }
 
+    /* مهم: الصورة تملأ المربع بالكامل */
+
     .page1 .frame-page1 img {
-        object-fit: contain;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
 
 
@@ -1493,12 +1495,13 @@ body {
         height: 29%;
     }
 
-    /* تصغير الصورة السفلية في الصفحة 4 */
-    .page4 .frame-page4-small {
-        top: 65%;
-        right: 8%;
+    /* الصورة الصغيرة تملأ الإطار */
 
-        width: 29%;
+    .page4 .frame-page4-small {
+        top: 64%;
+        right: 7%;
+
+        width: 32%;
         height: auto;
         aspect-ratio: 16 / 9;
     }
@@ -1506,26 +1509,29 @@ body {
     .page4 .frame-page4-small img {
         width: 100%;
         height: 100%;
-        object-fit: contain;
+        object-fit: cover;
     }
 
     /*
        مربع الشرح:
-       أعرض قليلًا حتى يظهر النص في سطرين
+       أكبر قليلًا من السابق حتى النص
+       الموجود في HTML (وفيه <br>)
+       يظل سطرين على الموبايل.
     */
+
     .page4-description {
         top: 64%;
-        left: 6%;
+        left: 5%;
 
-        width: 48%;
+        width: 50%;
         height: 13%;
 
         padding: 4px 6px;
 
-        font-size: clamp(11px,2.8vw,16px);
-        line-height: 1.15;
+        font-size: clamp(11px,2.8vw,15px);
+        line-height: 1.18;
 
-        white-space: normal;
+        white-space: nowrap;
     }
 
     .page4 .bottom-pill {
@@ -1614,16 +1620,21 @@ body {
     }
 
     /*
-       المسافات في صفحة 6:
+       الترتيب الجديد:
+       
        الدائرة
-           ↓
-       عنوان البرنامج
-           ↓
-       مميزات البرنامج
+       ↓
+       مسافة واضحة
+       ↓
+       العنوان الأول
+       ↓
+       مسافة واضحة
+       ↓
+       العنوان الثاني
     */
 
     .page6 .program-title {
-        top: 40%;
+        top: 41%;
         left: 10%;
         width: 80%;
         min-height: 7%;
@@ -1632,7 +1643,7 @@ body {
     }
 
     .page6-title {
-        top: 48%;
+        top: 50%;
         left: 25%;
         width: 50%;
         height: 8%;
@@ -1641,7 +1652,7 @@ body {
     }
 
     .page6 .frame-page6 {
-        top: 66%;
+        top: 67%;
         left: 8%;
         width: 34%;
         height: 22%;
@@ -1652,7 +1663,7 @@ body {
     }
 
     .page6-benefits {
-        top: 58%;
+        top: 59%;
         right: 7%;
         width: 46%;
         min-height: 34%;
@@ -1777,6 +1788,11 @@ body {
 
     .page2 .small-contact {
         font-size: 11px;
+    }
+
+    .page4-description {
+        font-size: 11px;
+        line-height: 1.15;
     }
 
     .page6-benefits {
