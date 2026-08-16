@@ -140,7 +140,7 @@ body {
 
 .page-group:not(.spread) .book-page {
     width: min(
-        calc((100vw - 72px) * .97),
+        calc((100vw - 72px) * .96),
         calc((100vh - 92px) * var(--page-ratio))
     );
 }
@@ -796,9 +796,9 @@ body {
 
     .page1 .contact-card,
     .page2 .small-contact {
-        width: 27%;
-        min-height: 12.5%;
-        height: 12.5%;
+        width: 25%;
+        min-height: 12%;
+        height: 12%;
 
         padding: 5px 6px;
 
@@ -808,12 +808,12 @@ body {
     }
 
     .page1 .contact-card {
-        left: 6%;
+        left: 8%;
         bottom: 5%;
     }
 
     .page2 .small-contact {
-        right: 7%;
+        right: 8%;
         bottom: 2%;
     }
 
@@ -913,7 +913,7 @@ body {
     .page4-description {
         top: 65%;
         left: 8%;
-        width: 39%;
+        width: 44%;
         height: 16%;
 
         font-size: clamp(17px,1.8vw,24px);
@@ -948,7 +948,7 @@ body {
     }
 
     .frame-page5-1 {
-        right: 6%;
+        right: 8%;
     }
 
     .frame-page5-2 {
@@ -956,7 +956,7 @@ body {
     }
 
     .frame-page5-3 {
-        left: 6%;
+        left: 8%;
     }
 
     .page5-description {
@@ -992,7 +992,7 @@ body {
     }
 
     .page6-title {
-        top: 43%;
+        top: 41%;
         left: 25%;
         width: 50%;
         height: 9%;
@@ -1010,10 +1010,10 @@ body {
     }
 
     .page6-benefits {
-        top: 55%;
+        top: 53%;
         right: 7%;
         width: 50%;
-        min-height: 31%;
+        min-height: 34%;
 
         padding: 9px 11px;
 
@@ -1295,12 +1295,6 @@ body {
         top: 35%;
     }
 
-    /*
-       تم تحديد مكان وحجم الصورة صراحة.
-       هذا يمنع الصورة من أن تكبر وتدخل تحت
-       الدائرة والعنوان.
-    */
-
     .page1 .frame-page1 {
         top: 48%;
         left: 29%;
@@ -1316,10 +1310,10 @@ body {
     /* CONTACT PAGE 1 */
 
     .page1 .contact-card {
-        left: 5%;
+        left: 7%;
         bottom: 5%;
 
-        width: 34%;
+        width: 31%;
         min-height: 13%;
         height: 13%;
 
@@ -1382,12 +1376,12 @@ body {
     /* CONTACT PAGE 2 */
 
     .page2 .small-contact {
-        right: 7%;
+        right: 8%;
         left: auto;
 
         bottom: 2%;
 
-        width: 30%;
+        width: 27%;
         min-height: 11%;
         height: 11%;
 
@@ -1441,11 +1435,6 @@ body {
         height: 24%;
     }
 
-    /*
-       Cover يمنع الفراغات الجانبية داخل الفريم
-       بدون Stretch للصورة.
-    */
-
     .page3 .frame-page3-1 img,
     .page3 .frame-page3-2 img {
         object-fit: cover;
@@ -1495,7 +1484,7 @@ body {
     .page4-description {
         top: 65%;
         left: 8%;
-        width: 39%;
+        width: 43%;
         height: 16%;
 
         padding: 5px;
@@ -1540,7 +1529,7 @@ body {
     }
 
     .page5 .frame-page5-1 {
-        right: 5%;
+        right: 7%;
     }
 
     .page5 .frame-page5-2 {
@@ -1548,7 +1537,7 @@ body {
     }
 
     .page5 .frame-page5-3 {
-        left: 5%;
+        left: 7%;
     }
 
     .page5 .frame-page5-1 img,
@@ -1583,21 +1572,11 @@ body {
        PAGE 6
        ===================================================== */
 
-    /*
-       الدائرة أصغر قليلًا حتى يظهر Zero Fast كاملًا
-       ولا يدخل عنوان البرنامج داخلها.
-    */
-
     .page6 .logo-circle {
         top: 3%;
         width: 36%;
         left: 32%;
     }
-
-    /*
-       عنوان البرنامج يأتي أسفل الدائرة
-       وفوق عنوان مميزات البرنامج.
-    */
 
     .page6 .program-title {
         top: 41%;
@@ -1609,18 +1588,13 @@ body {
     }
 
     .page6-title {
-        top: 51%;
+        top: 49%;
         left: 25%;
         width: 50%;
         height: 8%;
 
         font-size: clamp(16px,4vw,21px);
     }
-
-
-    /*
-       الصورة والكلام ينزلان إلى الأسفل.
-    */
 
     .page6 .frame-page6 {
         top: 66%;
@@ -1634,10 +1608,10 @@ body {
     }
 
     .page6-benefits {
-        top: 63%;
+        top: 61%;
         right: 7%;
         width: 50%;
-        min-height: 27%;
+        min-height: 30%;
 
         padding: 7px 8px;
 
