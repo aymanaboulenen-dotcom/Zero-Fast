@@ -1,14 +1,16 @@
 :root {
     --navy: #082742;
     --orange: #F4A83A;
-    --light-gray: #bdbdbd;
-    --ink: #171b2b;
     --page-ratio: 0.716;
+    --light-gray: #bdbdbd;
 }
 
-* { box-sizing: border-box; }
+* {
+    box-sizing: border-box;
+}
 
-html, body {
+html,
+body {
     margin: 0;
     padding: 0;
     width: 100%;
@@ -22,565 +24,54 @@ body {
 }
 
 /* =========================================================
-   PAGE GROUP
+   BOOK / CATALOG
    ========================================================= */
 
-.page-group {
-    display: none;
+.book {
     width: 100%;
-    min-height: calc(100vh - 65px);
+    min-height: 100vh;
+    display: flex;
     justify-content: center;
-    align-items: center;
-    padding: 16px 22px 10px;
+    align-items: flex-start;
+    padding: 20px;
 }
 
-.page-group.active { display: flex; }
-
-/* =========================================================
-   BOOK / PAGE
-   ========================================================= */
-
-.book-page {
+.book-container {
     position: relative;
-    width: min(
-        calc((100vw - 72px) / 2),
-        calc((100vh - 92px) * var(--page-ratio))
-    );
-    aspect-ratio: 623.622 / 870.236;
-    flex: 0 0 auto;
-    background: #fff;
+    width: min(100%, 1200px);
+    perspective: 2000px;
+}
+
+/* =========================================================
+   PAGE
+   ========================================================= */
+
+.page {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 0.716;
+    background: white;
     overflow: hidden;
-    isolation: isolate;
-    border-radius: 0;
-    border: 1px solid rgba(8,39,66,.08);
-    box-shadow:
-        0 14px 28px rgba(0,0,0,.24),
-        0 4px 9px rgba(0,0,0,.14);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
 }
 
-.page-group:not(.spread) .book-page {
-    width: min(
-        calc((100vw - 72px) * .96),
-        calc((100vh - 92px) * var(--page-ratio))
-    );
-}
-
-@media (min-width: 701px) {
-    .page-group.spread.active {
-        display: flex;
-        flex-direction: row;
-        direction: rtl;
-        gap: 0;
-        justify-content: center;
-        align-items: center;
-        perspective: 1800px;
-    }
-
-    .spread .book-page {
-        margin: 0 !important;
-        transform-style: preserve-3d;
-    }
-
-    .spread .book-page:first-child {
-        box-shadow:
-            -3px 14px 28px rgba(0,0,0,.20),
-            inset -4px 0 8px rgba(0,0,0,.07);
-    }
-
-    .spread .book-page:last-child {
-        box-shadow:
-            3px 14px 28px rgba(0,0,0,.20),
-            inset 4px 0 8px rgba(0,0,0,.07);
-    }
-
-    .spread .book-page:first-child::after,
-    .spread .book-page:last-child::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        width: 3px;
-        z-index: 30;
-        pointer-events: none;
-    }
-
-    .spread .book-page:first-child::after {
-        right: 0;
-        background: linear-gradient(to left, rgba(40,40,40,.10), transparent);
-    }
-
-    .spread .book-page:last-child::after {
-        left: 0;
-        background: linear-gradient(to right, rgba(40,40,40,.10), transparent);
-    }
+.page-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
 }
 
 /* =========================================================
-   AI BACKGROUND
+   PAGE FRAME
    ========================================================= */
 
-.design-bg {
-    position: absolute;
-    inset: 0;
-    z-index: -5;
-    overflow: hidden;
-    background: #fff;
-}
-
-/* Grey textured left column */
-.design-bg::before {
+.page::before {
     content: "";
     position: absolute;
-    z-index: 0;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 24%;
-    background:
-        linear-gradient(
-            104deg,
-            rgba(55,55,55,.82) 0%,
-            rgba(95,95,95,.70) 24%,
-            rgba(190,190,190,.36) 63%,
-            rgba(255,255,255,0) 100%
-        ),
-        repeating-linear-gradient(
-            104deg,
-            rgba(70,70,70,.38) 0 1px,
-            rgba(255,255,255,.08) 1px 5px
-        );
-    box-shadow:
-        inset -18px 0 28px rgba(255,255,255,.34);
-}
-
-/* Orange curved lower field */
-.design-bg::after {
-    content: "";
-    position: absolute;
-    z-index: 1;
-    left: -20%;
-    bottom: -18%;
-    width: 118%;
-    height: 57%;
-    background: var(--orange);
-    border-radius: 54% 46% 0 0 / 34% 30% 0 0;
-    transform: rotate(3deg);
-    box-shadow: inset 0 16px 18px rgba(255,255,255,.10);
-}
-
-/* Dark translucent layer across the lower orange field */
-.page1 .design-bg,
-.page6 .design-bg,
-.page2 .design-bg,
-.page3 .design-bg,
-.page4 .design-bg,
-.page5 .design-bg {
-    background:
-        linear-gradient(
-            150deg,
-            transparent 0 39%,
-            rgba(8,39,66,.08) 39% 55%,
-            transparent 55%
-        ),
-        #fff;
-}
-
-/* Navy diagonal wedge at lower/right */
-.page1::before,
-.page2::before,
-.page3::before,
-.page4::before,
-.page5::before,
-.page6::before {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    right: -18%;
-    bottom: -6%;
-    width: 62%;
-    height: 54%;
-    background: var(--navy);
-    clip-path: polygon(100% 0, 100% 100%, 34% 100%, 0 28%);
-    opacity: .98;
-}
-
-/* Page 1 / 6 lower navy shape mirrors the AI */
-.page1::before,
-.page6::before {
-    right: -17%;
-    bottom: -8%;
-    width: 61%;
-    height: 57%;
-    clip-path: polygon(100% 0, 100% 100%, 38% 100%, 0 28%);
-}
-
-/* =========================================================
-   LOGO — AI COVER
-   ========================================================= */
-
-.logo-circle {
-    position: absolute;
-    z-index: 15;
-    top: 4.5%;
-    left: 27%;
-    width: 50%;
-    aspect-ratio: 1;
-    border-radius: 50%;
-    background: var(--navy);
-    border: clamp(5px,.65vw,8px) solid var(--orange);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    direction: ltr;
-    box-shadow:
-        0 12px 18px rgba(0,0,0,.24),
-        0 3px 4px rgba(0,0,0,.12);
-}
-
-.logo-zero,
-.logo-fast {
-    font-size: clamp(25px,4.1vw,56px);
-    font-weight: bold;
-    font-family: "Times New Roman", serif;
-}
-
-.logo-zero { color: var(--orange); }
-.logo-fast { color: #fff; margin-left: 7px; }
-
-/* =========================================================
-   PROGRAM HEADER
-   ========================================================= */
-
-.program-title {
-    position: absolute;
-    z-index: 25;
-    top: 4.5%;
-    left: 10%;
-    width: 80%;
-    min-height: 10%;
-    padding: 8px 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--navy);
-    color: #fff;
-    border-radius: 48px;
-    border: 0;
-    font-size: clamp(18px,2.65vw,31px);
-    font-weight: normal;
-    text-align: center;
-    line-height: 1.15;
-    white-space: nowrap;
-    box-shadow:
-        8px 9px 14px rgba(0,0,0,.27);
-}
-
-/* AI cover pages do not have the program header */
-.page1 .program-title,
-.page2 .program-title,
-.page6 .program-title {
-    display: none;
-}
-
-/* =========================================================
-   TITLE PILLS
-   ========================================================= */
-
-.title-pill,
-.bottom-pill {
-    position: absolute;
+    inset: 2.5mm;
+    border: 1px solid var(--navy);
+    pointer-events: none;
     z-index: 20;
-    background: var(--navy);
-    color: #fff;
-    border-radius: 40px;
-    border: 0;
-    text-align: center;
-    box-shadow:
-        8px 9px 14px rgba(0,0,0,.27);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    line-height: 1.1;
-    white-space: nowrap;
-    font-weight: normal;
-}
-
-/* Page 2 */
-.page2-title {
-    top: 6%;
-    left: 31%;
-    width: 38%;
-    height: 11%;
-    font-size: clamp(20px,2.7vw,34px);
-}
-
-/* Page 3 */
-.page3-title {
-    top: 16%;
-    left: 10%;
-    width: 42%;
-    height: 9%;
-    font-size: clamp(20px,2.5vw,32px);
-}
-
-/* Page 4 / 5 */
-.page4-title,
-.page5-title {
-    top: 16%;
-    left: 25%;
-    width: 50%;
-    height: 9%;
-    font-size: clamp(19px,2.45vw,31px);
-}
-
-/* Page 6 */
-.page6-title {
-    top: 42%;
-    left: 27%;
-    width: 46%;
-    height: 9%;
-    font-size: clamp(20px,2.55vw,33px);
-}
-
-/* =========================================================
-   IMAGE FRAMES
-   ========================================================= */
-
-.image-frame {
-    position: absolute;
-    background: #fff;
-    border: 2px solid var(--ink);
-    padding: 0;
-    overflow: hidden;
-    z-index: 8;
-    box-shadow: none;
-    border-radius: 0;
-}
-
-.image-frame img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    background: #fff;
-}
-
-/* Page 1 */
-.frame-page1 {
-    top: 43%;
-    left: 30%;
-    width: 40%;
-    height: 28%;
-}
-
-/* Page 2 */
-.intro-text {
-    position: absolute;
-    z-index: 7;
-    top: 20%;
-    left: 7%;
-    right: 7%;
-    height: 53%;
-    padding: 5% 7%;
-    color: #222;
-    font-size: clamp(15px,1.9vw,25px);
-    line-height: 1.8;
-    text-align: right;
-    background: rgba(255,255,255,.98);
-    border: 2px solid var(--ink);
-    border-radius: 0;
-    box-shadow: none;
-    overflow: hidden;
-}
-
-.intro-text p { margin: 0 0 16px; }
-
-/* Page 3 */
-.frame-page3-1 {
-    top: 22%;
-    right: 8%;
-    width: 39%;
-    height: 28%;
-}
-
-.frame-page3-2 {
-    top: 50%;
-    left: 14%;
-    width: 39%;
-    height: 28%;
-}
-
-/* Page 4 */
-.frame-page4-main {
-    top: 26%;
-    left: 7%;
-    width: 86%;
-    height: 30%;
-}
-
-.frame-page4-small {
-    top: 57%;
-    left: 7%;
-    width: 39%;
-    height: 25%;
-}
-
-.page4 .frame-page4-small {
-    transform: none;
-}
-
-.page4-description {
-    top: 55%;
-    left: 50%;
-    width: 39%;
-    height: 25%;
-    padding: 8px;
-    background: #fff;
-    color: #222;
-    border: 2px solid var(--ink);
-    border-radius: 0;
-    box-shadow: none;
-    transform: rotate(25deg);
-    font-size: clamp(16px,2vw,25px);
-    line-height: 1.35;
-}
-
-/* Page 5 */
-.frame-page5-1,
-.frame-page5-2,
-.frame-page5-3 {
-    top: 28%;
-    width: 26%;
-    height: 27%;
-}
-
-.frame-page5-1 { right: 7%; }
-.frame-page5-2 { left: 37%; }
-.frame-page5-3 { left: 7%; }
-
-.page5-description {
-    top: 60%;
-    left: 16%;
-    width: 68%;
-    height: 19%;
-    padding: 10px 14px;
-    background: #fff;
-    color: #222;
-    border: 2px solid var(--ink);
-    border-radius: 0;
-    box-shadow: none;
-    font-size: clamp(16px,2vw,24px);
-    line-height: 1.35;
-}
-
-/* Page 6 */
-.frame-page6 {
-    top: 62%;
-    left: 4%;
-    width: 40%;
-    height: 29%;
-}
-
-.page6-benefits {
-    position: absolute;
-    z-index: 10;
-    top: 58%;
-    right: 5%;
-    width: 45%;
-    min-height: 36%;
-    padding: 10px 12px;
-    direction: rtl;
-    text-align: center;
-    color: #fff;
-    background: transparent;
-    border: 2px solid var(--ink);
-    border-radius: 0;
-    font-size: clamp(16px,2vw,24px);
-    font-weight: normal;
-    line-height: 1.55;
-    box-shadow: none;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.page6-benefits p {
-    margin: 0 0 11px;
-    color: #fff;
-}
-
-/* =========================================================
-   CONTACT CARD — AI
-   ========================================================= */
-
-.contact-card {
-    position: absolute;
-    z-index: 25;
-    left: 8%;
-    bottom: 5%;
-    width: 25%;
-    min-height: 23%;
-    padding: 12px 8px;
-    background: var(--navy);
-    color: white;
-    border-radius: 20px;
-    text-align: center;
-    font-size: clamp(17px,2vw,25px);
-    line-height: 1.45;
-    box-shadow: 9px 10px 15px rgba(0,0,0,.28);
-}
-
-.contact-item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 7px;
-    direction: ltr;
-    white-space: nowrap;
-}
-
-.contact-item + .contact-item { margin-top: 10px; }
-
-.phone-icon {
-    font-size: 1.1em;
-    color: var(--orange);
-}
-
-.whatsapp-icon {
-    width: 1.2em;
-    height: 1.2em;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.whatsapp-icon svg {
-    width: 100%;
-    height: 100%;
-    fill: #fff;
-}
-
-.small-contact {
-    right: auto;
-    left: 7%;
-    bottom: 5%;
-    width: 25%;
-    min-height: 20%;
-    font-size: clamp(16px,1.9vw,24px);
-}
-
-/* =========================================================
-   BOTTOM PILLS
-   ========================================================= */
-
-.page3 .bottom-pill,
-.page4 .bottom-pill,
-.page5 .bottom-pill {
-    bottom: 5%;
-    left: 29%;
-    width: 58%;
-    height: 9%;
-    font-size: clamp(16px,2vw,26px);
 }
 
 /* =========================================================
@@ -588,26 +79,22 @@ body {
    ========================================================= */
 
 .navigation {
-    height: 65px;
     display: flex;
-    align-items: center;
     justify-content: center;
-    gap: 12px;
-    direction: ltr;
-    position: relative;
-    z-index: 100;
+    align-items: center;
+    gap: 15px;
+    margin-top: 18px;
 }
 
 .navigation button {
-    border: 0;
+    border: none;
     background: var(--navy);
     color: white;
-    padding: 10px 21px;
-    border-radius: 7px;
-    cursor: pointer;
+    padding: 10px 22px;
     font-family: "Times New Roman", serif;
-    font-size: 15px;
-    box-shadow: 0 4px 8px rgba(0,0,0,.28);
+    font-size: 18px;
+    cursor: pointer;
+    transition: 0.2s ease;
 }
 
 .navigation button:hover {
@@ -615,333 +102,145 @@ body {
     color: var(--navy);
 }
 
-.contents-dropdown { position: relative; }
-
-.contents-list {
-    position: absolute;
-    display: none;
-    bottom: 49px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 115px;
-    background: white;
-    border: 1px solid var(--navy);
-    box-shadow: 0 7px 14px rgba(0,0,0,.30);
-}
-
-.contents-list.show { display: block; }
-
-.contents-list button {
-    width: 100%;
-    border-radius: 0;
-    background: white;
-    color: var(--navy);
-    border-bottom: 1px solid #ddd;
-    box-shadow: none;
-    font-size: 14px;
+.navigation button:disabled {
+    opacity: 0.4;
+    cursor: default;
 }
 
 /* =========================================================
-   DESKTOP PAGE TURN
+   LOGO
    ========================================================= */
 
-@media (min-width: 701px) {
-    .desktop-flip-next,
-    .desktop-flip-prev {
-        z-index: 100;
-        transform-style: preserve-3d;
-        backface-visibility: hidden;
-        will-change: transform, box-shadow;
-        transform-origin: right center;
-    }
+.logo {
+    position: absolute;
+    z-index: 10;
+}
 
-    .desktop-flip-next {
-        animation: softPageNext 1.15s cubic-bezier(.22,.70,.30,1) both;
-    }
+.logo img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
 
-    .desktop-flip-prev {
-        animation: softPagePrev 1.15s cubic-bezier(.22,.70,.30,1) both;
-    }
+/* =========================================================
+   TITLE
+   ========================================================= */
 
-    @keyframes softPageNext {
-        0% { transform: perspective(1800px) rotateY(0) scaleX(1); }
-        25% { transform: perspective(1800px) rotateY(10deg) scaleX(.992); }
-        50% { transform: perspective(1800px) rotateY(48deg) scaleX(.955); }
-        70% { transform: perspective(1800px) rotateY(92deg) scaleX(.935); }
-        85% { transform: perspective(1800px) rotateY(135deg) scaleX(.965); }
-        100% { transform: perspective(1800px) rotateY(180deg) scaleX(1); }
-    }
+.page-title {
+    color: var(--navy);
+    font-size: clamp(28px, 4vw, 52px);
+    font-weight: bold;
+    text-align: center;
+}
 
-    @keyframes softPagePrev {
-        0% { transform: perspective(1800px) rotateY(180deg) scaleX(1); }
-        15% { transform: perspective(1800px) rotateY(135deg) scaleX(.965); }
-        30% { transform: perspective(1800px) rotateY(92deg) scaleX(.935); }
-        50% { transform: perspective(1800px) rotateY(48deg) scaleX(.955); }
-        75% { transform: perspective(1800px) rotateY(10deg) scaleX(.992); }
-        100% { transform: perspective(1800px) rotateY(0) scaleX(1); }
-    }
+.page-subtitle {
+    color: var(--orange);
+    font-size: clamp(20px, 2.5vw, 34px);
+    font-weight: bold;
+}
+
+/* =========================================================
+   TEXT
+   ========================================================= */
+
+.page-text {
+    color: var(--navy);
+    line-height: 1.7;
+    font-size: clamp(16px, 1.6vw, 25px);
+}
+
+.page-text p {
+    margin: 0 0 12px;
+}
+
+/* =========================================================
+   CONTACT
+   ========================================================= */
+
+.contact {
+    position: absolute;
+    left: 4%;
+    bottom: 4%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 10;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--navy);
+    font-size: clamp(15px, 1.5vw, 23px);
+}
+
+.contact-item img {
+    width: clamp(24px, 2.5vw, 38px);
+    height: clamp(24px, 2.5vw, 38px);
+    object-fit: contain;
+}
+
+/* =========================================================
+   FLIP
+   ========================================================= */
+
+.flip-page {
+    transform-style: preserve-3d;
+    transform-origin: left center;
+    transition: transform 0.9s ease;
+    backface-visibility: hidden;
+}
+
+.flip-page.flipped {
+    transform: rotateY(-180deg);
+}
+
+.page-front,
+.page-back {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+}
+
+.page-back {
+    transform: rotateY(180deg);
 }
 
 /* =========================================================
    MOBILE
    ========================================================= */
 
-@media (max-width: 700px) {
-    body {
-        background: var(--light-gray);
-        overflow-x: hidden;
-    }
+@media (max-width: 768px) {
 
-    .page-group {
-        min-height: calc(100vh - 58px);
-        padding: 0 0 3px;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-        top: -10px;
-    }
-
-    .book-page {
-        display: none;
-        width: 99vw !important;
-        max-width: none;
-        aspect-ratio: 623.622 / 870.236;
-        box-shadow: 0 12px 25px rgba(0,0,0,.30);
-        transform: scale(1.1385);
-    }
-
-    .page-group.active .book-page.mobile-visible {
-        display: block;
-    }
-
-    .program-title {
-        top: 4.5%;
-        left: 8%;
-        width: 84%;
-        min-height: 9%;
-        font-size: clamp(16px,4.6vw,23px);
-        padding: 5px 8px;
-        border-radius: 38px;
-    }
-
-    .page1 .logo-circle,
-    .page6 .logo-circle {
-        width: 50%;
-        left: 25%;
-        top: 4%;
-    }
-
-    .page1 .program-title,
-    .page2 .program-title,
-    .page6 .program-title {
-        display: none;
-    }
-
-    .logo-zero,
-    .logo-fast {
-        font-size: clamp(22px,8vw,40px);
-    }
-
-    .frame-page1 {
-        top: 43%;
-        left: 30%;
-        width: 40%;
-        height: 28%;
-    }
-
-    .page1 .contact-card,
-    .page2 .small-contact {
-        left: 7%;
-        right: auto;
-        bottom: 5%;
-        width: 25%;
-        min-height: 20%;
-        height: auto;
-        padding: 7px 4px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        font-size: clamp(12px,3.2vw,17px);
-        line-height: 1.3;
-    }
-
-    .page2-title {
-        top: 6%;
-        left: 31%;
-        width: 38%;
-        height: 10%;
-        font-size: clamp(17px,4.5vw,22px);
-    }
-
-    .intro-text {
-        top: 20%;
-        left: 7%;
-        right: 7%;
-        height: 53%;
-        padding: 5% 5%;
-        font-size: clamp(12px,3.2vw,16px);
-        line-height: 1.55;
-    }
-
-    .page3 .program-title,
-    .page4 .program-title,
-    .page5 .program-title {
-        display: flex;
-        top: 4.5%;
-    }
-
-    .page3-title {
-        top: 16%;
-        left: 10%;
-        width: 42%;
-        height: 9%;
-        font-size: clamp(16px,4.2vw,21px);
-    }
-
-    .frame-page3-1 {
-        top: 22%;
-        right: 8%;
-        width: 39%;
-        height: 28%;
-    }
-
-    .frame-page3-2 {
-        top: 50%;
-        left: 14%;
-        width: 39%;
-        height: 28%;
-    }
-
-    .page3 .bottom-pill,
-    .page4 .bottom-pill,
-    .page5 .bottom-pill {
-        bottom: 5%;
-        left: 29%;
-        width: 58%;
-        height: 9%;
-        font-size: clamp(12px,3.3vw,18px);
-    }
-
-    .page4-title,
-    .page5-title {
-        top: 16%;
-        left: 25%;
-        width: 50%;
-        height: 9%;
-        font-size: clamp(16px,4vw,21px);
-    }
-
-    .frame-page4-main {
-        top: 26%;
-        left: 7%;
-        width: 86%;
-        height: 30%;
-    }
-
-    .frame-page4-small {
-        top: 57%;
-        left: 7%;
-        width: 39%;
-        height: 25%;
-    }
-
-    .page4-description {
-        top: 55%;
-        left: 50%;
-        width: 39%;
-        height: 25%;
-        font-size: clamp(12px,3.2vw,17px);
-    }
-
-    .frame-page5-1,
-    .frame-page5-2,
-    .frame-page5-3 {
-        top: 28%;
-        width: 26%;
-        height: 27%;
-    }
-
-    .page5-description {
-        top: 60%;
-        left: 16%;
-        width: 68%;
-        height: 19%;
-        font-size: clamp(12px,3.2vw,17px);
-    }
-
-    .page6-title {
-        top: 42%;
-        left: 27%;
-        width: 46%;
-        height: 9%;
-        font-size: clamp(16px,4.2vw,22px);
-    }
-
-    .frame-page6 {
-        top: 62%;
-        left: 4%;
-        width: 40%;
-        height: 29%;
-    }
-
-    .page6-benefits {
-        top: 58%;
-        right: 5%;
-        width: 45%;
-        min-height: 36%;
+    .book {
         padding: 8px;
-        font-size: clamp(11px,3vw,16px);
-        line-height: 1.4;
+    }
+
+    .book-container {
+        width: 100%;
+    }
+
+    .page {
+        aspect-ratio: auto;
+        min-height: 620px;
+    }
+
+    .page-title {
+        font-size: clamp(25px, 7vw, 40px);
+    }
+
+    .page-text {
+        font-size: clamp(15px, 4vw, 21px);
     }
 
     .navigation {
-        height: 58px;
-        gap: 7px;
-        position: relative;
-        top: -19px;
+        gap: 8px;
+        margin-top: 10px;
     }
 
     .navigation button {
-        min-width: auto;
-        padding: 8px 13px;
-        font-size: 13px;
+        padding: 8px 14px;
+        font-size: 15px;
     }
-
-    .mobile-turn-next {
-        animation: mobileNext .65s cubic-bezier(.22,.61,.36,1) both;
-    }
-
-    .mobile-turn-prev {
-        animation: mobilePrev .65s cubic-bezier(.22,.61,.36,1) both;
-    }
-
-    @keyframes mobileNext {
-        from {
-            opacity: .3;
-            transform: scale(1.1385) perspective(1000px) rotateY(-18deg) translateX(30px);
-        }
-        to {
-            opacity: 1;
-            transform: scale(1.1385) perspective(1000px) rotateY(0) translateX(0);
-        }
-    }
-
-    @keyframes mobilePrev {
-        from {
-            opacity: .3;
-            transform: scale(1.1385) perspective(1000px) rotateY(18deg) translateX(-30px);
-        }
-        to {
-            opacity: 1;
-            transform: scale(1.1385) perspective(1000px) rotateY(0) translateX(0);
-        }
-    }
-}
-
-@media (max-width: 390px) {
-    .program-title { font-size: 15px; }
-    .page1 .contact-card,
-    .page2 .small-contact { font-size: 11px; }
-    .page6-benefits { font-size: 10px; }
-    .navigation button { padding: 7px 10px; font-size: 12px; }
 }
