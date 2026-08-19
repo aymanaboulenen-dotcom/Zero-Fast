@@ -1,246 +1,330 @@
-:root {
-    --navy: #082742;
+:root { 
+    --navy: #082742; 
     --orange: #F4A83A;
     --page-ratio: 0.716;
     --light-gray: #bdbdbd;
 }
-
 * {
     box-sizing: border-box;
 }
-
 html,
 body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    min-height: 100%;
-}
-
-body {
-    background: #bdbdbd;
+    background: var(--light-gray);
     font-family: "Times New Roman", serif;
     overflow-x: hidden;
 }
 
-/* =========================================================
-   BOOK / CATALOG
-   ========================================================= */
-
-.book {
+/*
+=========================================================
+PAGE GROUP
+========================================================= */
+.page-group { 
+    display: none; 
     width: 100%;
-    min-height: 100vh;
-    display: flex;
+    min-height: calc(100vh - 65px);
     justify-content: center;
-    align-items: flex-start;
-    padding: 20px;
+    align-items: center;
+    padding: 16px 22px 10px;
 }
 
-.book-container {
+/*
+=========================================================
+DESKTOP BOOK
+========================================================= */
+
+@media (min-width: 701px) {
+    .page-group.spread.active {
+        display: flex;
+        flex-direction: row;
+        direction: rtl; gap: 0;
+        justify-content: center;
+        align-items: center;
+        perspective: 1800px;
+    }
+    .spread .book-page {
+        margin: 0 !important;
+        transform-style: preserve-3d;
+    }
+
+    .spread .book-page:first-child {
+        box-shadow:
+        -3px 14px 28px rgba(0,0,0,.22)
+        inset -5px 0 10px rgba(0,0,0,.10),
+        inset 0 0 0 1px rgba(0,0,0,.08);
+    }
+
+    .spread .book-page:last-child {
+        box-shadow:
+        3px 14px 28px rgba(0,0,0,.22),
+            inset 5px 0 10px rgba(0,0,0,.10),
+            inset 0 0 0 1px rgba(0,0,0,.08);
+    }
+    .spread .book-page:first-child::after,
+    .spread .book-page:last-child::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 4px;
+        z-index: 30;
+        pointer-events: none;
+    }
+    .spread .book-page:first-child::after {
+        right: 0;
+        background:
+            linear-gradient(
+            to left,
+            rgba(80,80,80,.16),
+                rgba(255,255,255,.04)
+            );
+    }
+
+.spread .book-page:last-child::after {
+    left: 0;
+    background:
+        linear-gradient( 
+            to right,
+            rgba(80,80,80,.16),
+            rgba(255,255,255,.04)
+            );
+
+}
+    
+}
+/* 
+=========================================================
+PAGE 
+========================================================= */
+.book-page {
     position: relative;
-    width: min(100%, 1200px);
-    perspective: 2000px;
+    width: min(
+    calc((100vw - 72px) / 2),
+    calc((100vh - 92px) * var(--page-ratio))
+    );
+    aspect-ratio: 623.622 / 870.236;
+flex: 0 0 auto;
+background: #fff;
+overflow: hidden;
+isolation: isolate;
+border-radius: 1px;
+box-shadow:
+0 14px 28px rgba(0,0,0,.32),
+0 4px 9px rgba(0,0,0,.20),
+inset 0 0 0 1px rgba(0,0,0,.08);
+}
+.page-group:not(.spread) .book-page {
+width: min(
+calc((100vw - 72px) * .96),
+    calc((100vh - 92px) * var(--page-ratio))
+);
+
 }
 
-/* =========================================================
-   PAGE
-   ========================================================= */
+/* 
+=========================================================
+BACKGROUND
+========================================================= */
 
-.page {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 1 / 0.716;
-    background: white;
-    overflow: hidden;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+.design-bg {
+position: absolute;
+inset: 0;
+z-index: -5;
+background: #fff;
+}
+.design-bg::before { 
+content: "";
+position: absolute;
+top: 0;
+bottom: 0;
+left: 0;
+width: 24%;
+background:
+ repeating-linear-gradient(
+    110deg,
+    rgba(80,80,80,.20) 0px,
+    rgba(80,80,80,.20) 1px,
+    rgba(180,180,180,.08) 1px,
+    rgba(180,180,180,.08) 5px
+);
+
+box-shadow:
+inset -32px 0 38px rgba(255,255,255,.78);
+
+}
+.design-bg::after {
+ content: "";
+position: absolute;
+left: -18%;
+bottom: -23%;
+width: 130%;
+height: 54%;   
+    
+background: var(--orange);
+border-radius:
+52% 48% 0 0 /
+28% 32% 0 0;
+     
+transform: rotate(3deg);
+box-shadow:
+inset 0 18px 20px rgba(255,255,255,.12);
 }
 
-.page-content {
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
+/* 
+=========================================================
+ZIGZAG / GRAY STRIP 
+========================================================= */
 
-/* =========================================================
-   PAGE FRAME
-   ========================================================= */
+.page3 .design-bg::before,
+.page5 .design-bg::before {
+    left: auto;
+    right: 0;
+box-shadow:
+inset 32px 0 38px rgba(255,255,255,.78);
+    }
 
-.page::before {
+/*
+=========================================================
+NAVY SHAPE 
+========================================================= */
+
+.page1::before,
+.page3::before,
+.page4::before,
+.page5::before,
+.page6::before {
     content: "";
     position: absolute;
-    inset: 2.5mm;
-    border: 1px solid var(--navy);
-    pointer-events: none;
-    z-index: 20;
+    z-index: -2;
+
+    right: -12%;
+    bottom: -5%;
+
+    width: 42%;
+    height: 50%;
+background: var(--navy);
+    clip-path:
+    polygon( 
+        100% 0,
+        100% 100%,
+        0 100%
+           );
 }
 
-/* =========================================================
-   NAVIGATION
-   ========================================================= */
+/* 
+=========================================================
+PROGRAM TITLE
+========================================================= */
+.program-title {
+position: absolute;
+z-index: 25;
 
-.navigation {
+    top: 18%;
+    left: 15%;
+    width: 70%;
+    min-height: 8%;
+
+    padding: 6px 12px;
+
     display: flex;
-    justify-content: center;
     align-items: center;
-    gap: 15px;
-    margin-top: 18px;
-}
+    justify-content: center;
 
-.navigation button {
-    border: none;
     background: var(--navy);
     color: white;
-    padding: 10px 22px;
-    font-family: "Times New Roman", serif;
-    font-size: 18px;
-    cursor: pointer;
-    transition: 0.2s ease;
-}
 
-.navigation button:hover {
-    background: var(--orange);
-    color: var(--navy);
-}
+border-radius: 12px;
+border: 2px solid var(--orange);
 
-.navigation button:disabled {
-    opacity: 0.4;
-    cursor: default;
-}
-
-/* =========================================================
-   LOGO
-   ========================================================= */
-
-.logo {
-    position: absolute;
-    z-index: 10;
-}
-
-.logo img {
-    display: block;
-    max-width: 100%;
-    height: auto;
-}
-
-/* =========================================================
-   TITLE
-   ========================================================= */
-
-.page-title {
-    color: var(--navy);
-    font-size: clamp(28px, 4vw, 52px);
+    font-size: clamp(17px,2.5vw,30px);
     font-weight: bold;
     text-align: center;
+
+
+box-shadow:
+    0 7px 14px rgba(0,0,0,.30);
 }
 
-.page-subtitle {
-    color: var(--orange);
-    font-size: clamp(20px, 2.5vw, 34px);
-    font-weight: bold;
+/* 
+=========================================================
+LOGO 
+========================================================= */ 
+
+.logo-circle {
+position: absolute;
+z-index: 10;
+
+top: 5%;
+left: 29%;
+width: 42%;
+aspect-ratio: 1;
+    
+order-radius: 50%;
+
+background: var(--navy);
+border: clamp(3px,.5vw,6px) solid var(--orange);
+
+display: flex;
+align-items:enter;
+justify-content: center;
+
+    direction: ltr;
+
+    box-shadow:
+    0 9px 17px rgba(0,0,0,.35),
+        0 2px 4px rgba(0,0,0,.20);
+
+}
+
+.logo-zero,
+.logo-fast {
+font-size: clamp(20px,3.5vw,50px);
+font-weight: bold;
+
+}
+
+.logo-zero {
+color: var(--orange);
+
+}
+
+.logo-fast {
+color: white;
+margin-left: 6px;
+
+}
+
+/* 
+=========================================================
+IMAGE 
+========================================================= */
+
+.image-frame {
+position: absolute;
+
+background: var(--orange);
+
+border: 3px solid var(--navy);
+padding: 6px;
+
+overflow: hidden;
+z-index: 6;
+
+box-shadow:
+0 9px 16px rgba(0,0,0,.35);
+
+}    
+
+.image-frame img {
+display: block;
+width: 100%;
+height: 100%;
+
+object-fit: cover;
+background: #fff;
+
 }
 
 /* =========================================================
-   TEXT
-   ========================================================= */
+TITLES 
+========================================================= */
 
-.page-text {
-    color: var(--navy);
-    line-height: 1.7;
-    font-size: clamp(16px, 1.6vw, 25px);
-}
-
-.page-text p {
-    margin: 0 0 12px;
-}
-
-/* =========================================================
-   CONTACT
-   ========================================================= */
-
-.contact {
-    position: absolute;
-    left: 4%;
-    bottom: 4%;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    z-index: 10;
-}
-
-.contact-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: var(--navy);
-    font-size: clamp(15px, 1.5vw, 23px);
-}
-
-.contact-item img {
-    width: clamp(24px, 2.5vw, 38px);
-    height: clamp(24px, 2.5vw, 38px);
-    object-fit: contain;
-}
-
-/* =========================================================
-   FLIP
-   ========================================================= */
-
-.flip-page {
-    transform-style: preserve-3d;
-    transform-origin: left center;
-    transition: transform 0.9s ease;
-    backface-visibility: hidden;
-}
-
-.flip-page.flipped {
-    transform: rotateY(-180deg);
-}
-
-.page-front,
-.page-back {
-    position: absolute;
-    inset: 0;
-    backface-visibility: hidden;
-}
-
-.page-back {
-    transform: rotateY(180deg);
-}
-
-/* =========================================================
-   MOBILE
-   ========================================================= */
-
-@media (max-width: 768px) {
-
-    .book {
-        padding: 8px;
-    }
-
-    .book-container {
-        width: 100%;
-    }
-
-    .page {
-        aspect-ratio: auto;
-        min-height: 620px;
-    }
-
-    .page-title {
-        font-size: clamp(25px, 7vw, 40px);
-    }
-
-    .page-text {
-        font-size: clamp(15px, 4vw, 21px);
-    }
-
-    .navigation {
-        gap: 8px;
-        margin-top: 10px;
-    }
-
-    .navigation button {
-        padding: 8px 14px;
-        font-size: 15px;
-    }
-}
