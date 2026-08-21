@@ -1419,31 +1419,112 @@ body {
     }
 
  /* =====================================================
-   MOBILE PAGE MOTION — WIND
+   MOBILE PAGE MOTION — SOFT WIND
    ===================================================== */
 
 .mobile-turn-next {
-    animation: mobileWindNext .55s ease-out both;
+    animation: mobileWindNext .75s cubic-bezier(.25,.70,.25,1) both;
+    transform-origin: center center;
 }
 
 .mobile-turn-prev {
-    animation: mobileWindPrev .55s ease-out both;
+    animation: mobileWindPrev .75s cubic-bezier(.25,.70,.25,1) both;
+    transform-origin: center center;
 }
 
 @keyframes mobileWindNext {
 
     0% {
-        opacity: 0;
+        opacity: .65;
         transform:
             scale(1.1385)
-            translateX(45px);
+            translateX(38px)
+            skewX(-2deg)
+            scaleX(.97);
+    }
+
+    25% {
+        opacity: .82;
+        transform:
+            scale(1.1385)
+            translateX(20px)
+            skewX(-1deg)
+            scaleX(.985);
+    }
+
+    55% {
+        opacity: .94;
+        transform:
+            scale(1.1385)
+            translateX(7px)
+            skewX(.4deg)
+            scaleX(.995);
+    }
+
+    80% {
+        opacity: .99;
+        transform:
+            scale(1.1385)
+            translateX(-2px)
+            skewX(-.15deg)
+            scaleX(1.002);
     }
 
     100% {
         opacity: 1;
         transform:
             scale(1.1385)
-            translateX(0);
+            translateX(0)
+            skewX(0)
+            scaleX(1);
+    }
+}
+
+@keyframes mobileWindPrev {
+
+    0% {
+        opacity: .65;
+        transform:
+            scale(1.1385)
+            translateX(-38px)
+            skewX(2deg)
+            scaleX(.97);
+    }
+
+    25% {
+        opacity: .82;
+        transform:
+            scale(1.1385)
+            translateX(-20px)
+            skewX(1deg)
+            scaleX(.985);
+    }
+
+    55% {
+        opacity: .94;
+        transform:
+            scale(1.1385)
+            translateX(-7px)
+            skewX(-.4deg)
+            scaleX(.995);
+    }
+
+    80% {
+        opacity: .99;
+        transform:
+            scale(1.1385)
+            translateX(2px)
+            skewX(.15deg)
+            scaleX(1.002);
+    }
+
+    100% {
+        opacity: 1;
+        transform:
+            scale(1.1385)
+            translateX(0)
+            skewX(0)
+            scaleX(1);
     }
 }
 
