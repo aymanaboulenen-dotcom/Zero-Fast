@@ -1418,39 +1418,87 @@ body {
         font-size: 13px;
     }
 
-    /* =====================================================
-       MOBILE PAGE MOTION
-       ===================================================== */
+   /* =====================================================
+   MOBILE PAGE MOTION — WIND
+   ===================================================== */
 
-    .mobile-turn-next {
-        animation: mobileNext .65s cubic-bezier(.22,.61,.36,1) both;
+.mobile-turn-next {
+    animation: mobileWindNext .65s cubic-bezier(.22,.61,.36,1) both;
+}
+
+.mobile-turn-prev {
+    animation: mobileWindPrev .65s cubic-bezier(.22,.61,.36,1) both;
+}
+
+@keyframes mobileWindNext {
+
+    0% {
+        opacity: .35;
+        transform:
+            scale(1.1385)
+            translateX(28px)
+            rotateZ(1.2deg);
     }
 
-    .mobile-turn-prev {
-        animation: mobilePrev .65s cubic-bezier(.22,.61,.36,1) both;
+    35% {
+        opacity: .75;
+        transform:
+            scale(1.1385)
+            translateX(10px)
+            rotateZ(.5deg);
     }
 
-    @keyframes mobileNext {
-
-        from {
-            opacity: .3;
-            transform:
-                scale(1.1385)
-                perspective(1000px)
-                rotateY(-18deg)
-                translateX(30px);
-        }
-
-        to {
-            opacity: 1;
-            transform:
-                scale(1.1385)
-                perspective(1000px)
-                rotateY(0)
-                translateX(0);
-        }
+    70% {
+        opacity: .95;
+        transform:
+            scale(1.1385)
+            translateX(2px)
+            rotateZ(-.15deg);
     }
 
+    100% {
+        opacity: 1;
+        transform:
+            scale(1.1385)
+            translateX(0)
+            rotateZ(0);
+    }
+}
+
+@keyframes mobileWindPrev {
+
+    0% {
+        opacity: .35;
+        transform:
+            scale(1.1385)
+            translateX(-28px)
+            rotateZ(-1.2deg);
+    }
+
+    35% {
+        opacity: .75;
+        transform:
+            scale(1.1385)
+            translateX(-10px)
+            rotateZ(-.5deg);
+    }
+
+    70% {
+        opacity: .95;
+        transform:
+            scale(1.1385)
+            translateX(-2px)
+            rotateZ(.15deg);
+    }
+
+    100% {
+        opacity: 1;
+        transform:
+            scale(1.1385)
+            translateX(0)
+            rotateZ(0);
+    }
+}
     @keyframes mobilePrev {
 
         from {
