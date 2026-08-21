@@ -1419,120 +1419,83 @@ body {
     }
 
     /* =====================================================
-       MOBILE PAGE MOTION — SOFT WIND
+       MOBILE PAGE MOTION — CURTAIN
        ===================================================== */
 
+    .mobile-turn-next,
+    .mobile-turn-prev {
+        animation-duration: .65s;
+        animation-timing-function: cubic-bezier(.22,.61,.36,1);
+        animation-fill-mode: both;
+        will-change: clip-path;
+    }
+
     .mobile-turn-next {
-        animation: mobileWindNext .75s cubic-bezier(.25,.70,.25,1) both;
-        transform-origin: center center;
+        animation-name: mobileCurtainNext;
     }
 
     .mobile-turn-prev {
-        animation: mobileWindPrev .75s cubic-bezier(.25,.70,.25,1) both;
-        transform-origin: center center;
+        animation-name: mobileCurtainPrev;
     }
 
-    /* =====================================================
-       NEXT
-       ===================================================== */
-
-    @keyframes mobileWindNext {
+    @keyframes mobileCurtainNext {
 
         0% {
-            opacity: .65;
-            transform:
-                scale(1.1385)
-                translateX(38px)
-                skewX(-2deg)
-                scaleX(.97);
+            opacity: 1;
+            clip-path: inset(0 50% 0 50%);
         }
 
-        25% {
-            opacity: .82;
-            transform:
-                scale(1.1385)
-                translateX(20px)
-                skewX(-1deg)
-                scaleX(.985);
+        20% {
+            opacity: 1;
+            clip-path: inset(0 42% 0 42%);
         }
 
-        55% {
-            opacity: .94;
-            transform:
-                scale(1.1385)
-                translateX(7px)
-                skewX(.4deg)
-                scaleX(.995);
+        45% {
+            opacity: 1;
+            clip-path: inset(0 27% 0 27%);
         }
 
-        80% {
-            opacity: .99;
-            transform:
-                scale(1.1385)
-                translateX(-2px)
-                skewX(-.15deg)
-                scaleX(1.002);
+        70% {
+            opacity: 1;
+            clip-path: inset(0 10% 0 10%);
+        }
+
+        88% {
+            opacity: 1;
+            clip-path: inset(0 2% 0 2%);
         }
 
         100% {
             opacity: 1;
-            transform:
-                scale(1.1385)
-                translateX(0)
-                skewX(0)
-                scaleX(1);
+            clip-path: inset(0 0 0 0);
         }
     }
 
-    /* =====================================================
-       PREVIOUS
-       ===================================================== */
-
-    @keyframes mobileWindPrev {
+    @keyframes mobileCurtainPrev {
 
         0% {
-            opacity: .65;
-            transform:
-                scale(1.1385)
-                translateX(-38px)
-                skewX(2deg)
-                scaleX(.97);
+            opacity: 1;
+            clip-path: inset(0 0 0 0);
         }
 
-        25% {
-            opacity: .82;
-            transform:
-                scale(1.1385)
-                translateX(-20px)
-                skewX(1deg)
-                scaleX(.985);
+        20% {
+            opacity: 1;
+            clip-path: inset(0 10% 0 10%);
         }
 
-        55% {
-            opacity: .94;
-            transform:
-                scale(1.1385)
-                translateX(-7px)
-                skewX(-.4deg)
-                scaleX(.995);
+        45% {
+            opacity: 1;
+            clip-path: inset(0 27% 0 27%);
         }
 
-        80% {
-            opacity: .99;
-            transform:
-                scale(1.1385)
-                translateX(2px)
-                skewX(.15deg)
-                scaleX(1.002);
+        70% {
+            opacity: 1;
+            clip-path: inset(0 42% 0 42%);
         }
 
         100% {
             opacity: 1;
-            transform:
-                scale(1.1385)
-                translateX(0)
-                skewX(0)
-                scaleX(1);
+            clip-path: inset(0 50% 0 50%);
         }
     }
 }
