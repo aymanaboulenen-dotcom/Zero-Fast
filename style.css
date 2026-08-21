@@ -1067,7 +1067,147 @@ body {
     .page-group.active .book-page.mobile-visible {
         display: block;
     }
+    /* =====================================================
+   REAL MOBILE WIND — TEST
+   ===================================================== */
 
+.mobile-wind-out-next {
+    animation: realWindOutNext .75s ease-in-out both;
+    transform-origin: right center;
+    z-index: 20;
+}
+
+.mobile-wind-out-prev {
+    animation: realWindOutPrev .75s ease-in-out both;
+    transform-origin: left center;
+    z-index: 20;
+}
+
+.mobile-wind-in {
+    animation: realWindIn .75s ease-out both;
+    z-index: 10;
+}
+
+@keyframes realWindOutNext {
+
+    0% {
+        transform:
+            scale(1.1385)
+            rotateZ(0deg)
+            scaleX(1);
+        opacity: 1;
+    }
+
+    25% {
+        transform:
+            scale(1.1385)
+            rotateZ(-1deg)
+            scaleX(.96);
+        opacity: 1;
+    }
+
+    55% {
+        transform:
+            scale(1.1385)
+            rotateZ(1deg)
+            scaleX(.88);
+        opacity: .85;
+    }
+
+    80% {
+        transform:
+            scale(1.1385)
+            rotateZ(-.5deg)
+            scaleX(.72);
+        opacity: .45;
+    }
+
+    100% {
+        transform:
+            scale(1.1385)
+            rotateZ(0)
+            scaleX(.15);
+        opacity: 0;
+    }
+}
+
+@keyframes realWindOutPrev {
+
+    0% {
+        transform:
+            scale(1.1385)
+            rotateZ(0deg)
+            scaleX(1);
+        opacity: 1;
+    }
+
+    25% {
+        transform:
+            scale(1.1385)
+            rotateZ(1deg)
+            scaleX(.96);
+        opacity: 1;
+    }
+
+    55% {
+        transform:
+            scale(1.1385)
+            rotateZ(-1deg)
+            scaleX(.88);
+        opacity: .85;
+    }
+
+    80% {
+        transform:
+            scale(1.1385)
+            rotateZ(.5deg)
+            scaleX(.72);
+        opacity: .45;
+    }
+
+    100% {
+        transform:
+            scale(1.1385)
+            rotateZ(0)
+            scaleX(.15);
+        opacity: 0;
+    }
+}
+
+@keyframes realWindIn {
+
+    0% {
+        transform:
+            scale(1.1385)
+            scaleX(.15)
+            rotateZ(0);
+        opacity: 0;
+    }
+
+    45% {
+        transform:
+            scale(1.1385)
+            scaleX(.88)
+            rotateZ(1deg);
+        opacity: .75;
+    }
+
+    75% {
+        transform:
+            scale(1.1385)
+            scaleX(1.02)
+            rotateZ(-.3deg);
+        opacity: .95;
+    }
+
+    100% {
+        transform:
+            scale(1.1385)
+            scaleX(1)
+            rotateZ(0);
+        opacity: 1;
+    }
+}
     /* =====================================================
        GENERAL MOBILE
        ===================================================== */
