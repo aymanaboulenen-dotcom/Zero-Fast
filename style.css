@@ -1418,50 +1418,49 @@ body {
         font-size: 13px;
     }
 
-   /* =====================================================
+ /* =====================================================
    MOBILE PAGE MOTION — WIND
    ===================================================== */
 
 .mobile-turn-next {
-    animation: mobileWindNext .65s cubic-bezier(.22,.61,.36,1) both;
+    animation: mobileWindNext .55s ease-out both;
 }
 
 .mobile-turn-prev {
-    animation: mobileWindPrev .65s cubic-bezier(.22,.61,.36,1) both;
+    animation: mobileWindPrev .55s ease-out both;
 }
 
 @keyframes mobileWindNext {
 
     0% {
-        opacity: .35;
+        opacity: 0;
         transform:
             scale(1.1385)
-            translateX(28px)
-            rotateZ(1.2deg);
-    }
-
-    35% {
-        opacity: .75;
-        transform:
-            scale(1.1385)
-            translateX(10px)
-            rotateZ(.5deg);
-    }
-
-    70% {
-        opacity: .95;
-        transform:
-            scale(1.1385)
-            translateX(2px)
-            rotateZ(-.15deg);
+            translateX(45px);
     }
 
     100% {
         opacity: 1;
         transform:
             scale(1.1385)
-            translateX(0)
-            rotateZ(0);
+            translateX(0);
+    }
+}
+
+@keyframes mobileWindPrev {
+
+    0% {
+        opacity: 0;
+        transform:
+            scale(1.1385)
+            translateX(-45px);
+    }
+
+    100% {
+        opacity: 1;
+        transform:
+            scale(1.1385)
+            translateX(0);
     }
 }
 
