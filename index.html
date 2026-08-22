@@ -333,8 +333,12 @@ let currentState = 0;
 let isTurning = false;
 
 const TURN_TIME = 1150;
-const MOBILE_TURN_TIME = 650;
+const MOBILE_TURN_TIME = 850;
 
+
+/* =========================================================
+   DEVICE
+   ========================================================= */
 
 function isMobile() {
     return window.innerWidth <= 700;
@@ -362,7 +366,7 @@ function playSound() {
 
 
 /* =========================================================
-   MOBILE GROUP
+   MOBILE PAGE -> GROUP
    ========================================================= */
 
 function mobileGroupForPage(pageNumber) {
@@ -382,21 +386,23 @@ function mobileGroupForPage(pageNumber) {
 
 
 /* =========================================================
-   CLEAR
+   CLEAR ALL
    ========================================================= */
 
 function clearAll() {
 
     groups.forEach(group => {
-        group.classList.remove("active");
+        group.classList.remove(
+            "active",
+            "wind-enter-next",
+            "wind-enter-prev"
+        );
     });
 
     pages.forEach(page => {
 
         page.classList.remove(
             "mobile-visible",
-            "mobile-turn-next",
-            "mobile-turn-prev",
             "desktop-flip-next",
             "desktop-flip-prev"
         );
@@ -409,7 +415,7 @@ function clearAll() {
    SHOW STATE
    ========================================================= */
 
-function showState(state) {
+function showState(state, direction = null) {
 
     clearAll();
 
@@ -423,12 +429,39 @@ function showState(state) {
         const groupNumber =
             mobileGroupForPage(pageNumber);
 
-        groups[groupNumber].classList.add("active");
+        const group = groups[groupNumber];
+
+        if (!group) return;
+
+        group.classList.add("active");
 
         if (pages[pageNumber]) {
 
             pages[pageNumber].classList.add(
                 "mobile-visible"
+            );
+
+        }
+
+        /*
+         * WIND مستقل تمامًا عن الصفحة.
+         * الحركة تُطبق على PAGE-GROUP وليس على page1/page2...
+         */
+
+        if (direction === "next") {
+
+            void group.offsetWidth;
+
+            group.classList.add(
+                "wind-enter-next"
+            );
+
+        } else if (direction === "prev") {
+
+            void group.offsetWidth;
+
+            group.classList.add(
+                "wind-enter-prev"
             );
 
         }
@@ -455,12 +488,40 @@ function showState(state) {
 
 
 /* =========================================================
+   FINISH MOBILE WIND
+   ========================================================= */
+
+function finishMobileTurn() {
+
+    const activeGroup =
+        groups.find(group =>
+            group.classList.contains("active")
+        );
+
+    if (!activeGroup) {
+        isTurning = false;
+        return;
+    }
+
+    activeGroup.classList.remove(
+        "wind-enter-next",
+        "wind-enter-prev"
+    );
+
+    isTurning = false;
+}
+
+
+/* =========================================================
    NEXT PAGE
    ========================================================= */
 
 function nextPage(soundAlreadyPlayed = false) {
 
     if (isTurning) return;
+
+    if (currentState >= 5 && isMobile()) return;
+    if (currentState >= 3 && !isMobile()) return;
 
     if (!soundAlreadyPlayed) {
         playSound();
@@ -473,32 +534,19 @@ function nextPage(soundAlreadyPlayed = false) {
 
     if (isMobile()) {
 
-        if (currentState >= 5) return;
-
         isTurning = true;
 
-        const currentPage = pages[currentState];
+        currentState++;
 
-        if (currentPage) {
+        showState(
+            currentState,
+            "next"
+        );
 
-            currentPage.classList.add(
-                "mobile-visible",
-                "mobile-turn-next"
-            );
-
-        }
-
-        setTimeout(() => {
-
-            clearAll();
-
-            currentState++;
-
-            showState(currentState);
-
-            isTurning = false;
-
-        }, MOBILE_TURN_TIME);
+        setTimeout(
+            finishMobileTurn,
+            MOBILE_TURN_TIME
+        );
 
         return;
     }
@@ -507,8 +555,6 @@ function nextPage(soundAlreadyPlayed = false) {
     /* =====================================================
        DESKTOP
        ===================================================== */
-
-    if (currentState >= 3) return;
 
     isTurning = true;
 
@@ -643,28 +689,17 @@ function previousPage(soundAlreadyPlayed = false) {
 
         isTurning = true;
 
-        const currentPage = pages[currentState];
+        currentState--;
 
-        if (currentPage) {
+        showState(
+            currentState,
+            "prev"
+        );
 
-            currentPage.classList.add(
-                "mobile-visible",
-                "mobile-turn-prev"
-            );
-
-        }
-
-        setTimeout(() => {
-
-            clearAll();
-
-            currentState--;
-
-            showState(currentState);
-
-            isTurning = false;
-
-        }, MOBILE_TURN_TIME);
+        setTimeout(
+            finishMobileTurn,
+            MOBILE_TURN_TIME
+        );
 
         return;
     }
@@ -804,9 +839,21 @@ function goToPage(pageNumber) {
             return;
         }
 
+        if (pageNumber === currentState) {
+            return;
+        }
+
+        const direction =
+            pageNumber > currentState
+                ? "next"
+                : "prev";
+
         currentState = pageNumber;
 
-        showState(currentState);
+        showState(
+            currentState,
+            direction
+        );
 
         return;
     }
@@ -991,12 +1038,6 @@ document.addEventListener(
         ) {
             return;
         }
-
-        /*
-         * تشغيل الصوت هنا مباشرة داخل touchend
-         * حتى تسمح متصفحات الموبايل بتشغيله
-         * مع حركة السحب.
-         */
 
         playSound();
 
