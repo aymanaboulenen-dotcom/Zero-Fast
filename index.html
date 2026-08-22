@@ -1,1114 +1,707 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zero Fast</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<audio id="pageFlipSound" preload="auto">
-    <source src="mixkit-page-turn-single-1104.mp3" type="audio/mpeg">
-</audio>
+    <!-- =====================================================
+         NAVIGATION
+    ====================================================== -->
 
+    <div class="navigation">
 
-<!-- =========================================================
-     PAGE 1
-     ========================================================= -->
-
-<div class="page-group active" data-group="0">
-
-    <section class="book-page page1">
-
-        <div class="design-bg"></div>
-
-        <div class="logo-circle">
-            <span class="logo-zero">Zero</span>
-            <span class="logo-fast">Fast</span>
-        </div>
-
-        <div class="program-title">
-            برنامج لإدارة شركات التوصيل
-        </div>
-
-        <div class="image-frame frame-page1">
-            <img
-                src="images/Speeding%20Good%20Morning%20GIF%20by%20My%20Doodles%20Atalier.gif"
-                alt="Zero Fast">
-        </div>
-
-        <div class="contact-card">
-
-            <div class="contact-item">
-                <span class="phone-icon">☎</span>
-                <span>97789777</span>
-            </div>
-
-            <div class="contact-item">
-
-                <span class="whatsapp-icon">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M12 2C6.48 2 2 6.48 2 12c0 1.77.46 3.43 1.26 4.88L2 22l5.27-1.23A9.93 9.93 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.56 0-3.02-.4-4.31-1.1l-.31-.17-3.13.73.74-3.05-.18-.31A7.94 7.94 0 0 1 4 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8zm4.39-5.61c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.92-1.18-.71-.63-1.19-1.41-1.33-1.65-.14-.24-.01-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.47-.4-.41-.54-.42h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.33.98 2.49c.12.16 1.69 2.58 4.1 3.62.57.25 1.02.4 1.37.51.58.18 1.11.16 1.53.1.47-.07 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28z"/>
-                    </svg>
-                </span>
-
-                <span>98926486</span>
-            </div>
-
-        </div>
-
-    </section>
-
-</div>
-
-
-<!-- =========================================================
-     PAGE 2 + PAGE 3
-     ========================================================= -->
-
-<div class="page-group spread" data-group="1">
-
-    <section class="book-page page2">
-
-        <div class="design-bg"></div>
-
-        <div class="program-title">
-            برنامج لإدارة شركات التوصيل
-        </div>
-
-        <div class="title-pill page2-title">
-            مقدمة
-        </div>
-
-        <div class="intro-text">
-
-            <p>
-                <strong>Zero Fast</strong> هي شركة متخصصة في توصيل الطلبات
-                الاستهلاكية، وتسعى دائمًا إلى تطوير أسلوب العمل وتحسين مستوى الأداء.
-            </p>
-
-            <p>
-                وانطلاقًا من هذا الهدف، قامت الشركة بتطوير
-                <strong>برنامج محاسبي وإداري شامل</strong>
-                يساعد على توفير الوقت والجهد على إدارة الشركة، كما يساهم في تقليل
-                الأخطاء وتحسين دقة العمل وتنظيم البيانات والتقارير.
-            </p>
-
-            <p>
-                وقد تم تجربة البرنامج عمليًا، وأثبت فعاليته في تسهيل العمليات اليومية
-                ودعم إدارة الشركة في متابعة أعمالها بصورة أكثر تنظيمًا وكفاءة.
-            </p>
-
-        </div>
-
-        <div class="contact-card small-contact">
-
-            <div class="contact-item">
-                <span class="phone-icon">☎</span>
-                <span>97789777</span>
-            </div>
-
-            <div class="contact-item">
-
-                <span class="whatsapp-icon">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M12 2C6.48 2 2 6.48 2 12c0 1.77.46 3.43 1.26 4.88L2 22l5.27-1.23A9.93 9.93 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.56 0-3.02-.4-4.31-1.1l-.31-.17-3.13.73.74-3.05-.18-.31A7.94 7.94 0 0 1 4 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8zm4.39-5.61c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.92-1.18-.71-.63-1.19-1.41-1.33-1.65-.14-.24-.01-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.47-.4-.41-.54-.42h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.33.98 2.49c.12.16 1.69 2.58 4.1 3.62.57.25 1.02.4 1.37.51.58.18 1.11.16 1.53.1.47-.07 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28z"/>
-                    </svg>
-                </span>
-
-                <span>98926486</span>
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <section class="book-page page3">
-
-        <div class="design-bg"></div>
-
-        <div class="program-title">
-            برنامج لإدارة شركات التوصيل
-        </div>
-
-        <div class="title-pill page3-title">
-            قائمة الدخول
-        </div>
-
-        <div class="image-frame frame-page3-1">
-            <img
-                src="images/Untitled%20%E2%80%91%20Made%20with%20FlexClip%20%281%29.gif"
-                alt="خطوات الدخول">
-        </div>
-
-        <div class="image-frame frame-page3-2">
-            <img
-                src="images/Untitled%20%E2%80%91%20Made%20with%20FlexClip%20%281%29.gif"
-                alt="قائمة الدخول">
-        </div>
-
-        <div class="bottom-pill">
-            دخول سهل - سريع - آمن
-        </div>
-
-    </section>
-
-</div>
-
-
-<!-- =========================================================
-     PAGE 4 + PAGE 5
-     ========================================================= -->
-
-<div class="page-group spread" data-group="2">
-
-    <section class="book-page page4">
-
-        <div class="design-bg"></div>
-
-        <div class="program-title">
-            برنامج لإدارة شركات التوصيل
-        </div>
-
-        <div class="title-pill page4-title">
-            الواجهة الرئيسية
-        </div>
-
-        <div class="image-frame frame-page4-main">
-            <img
-                src="images/Main_Account_Jul_2026.xlsm%20-%20Excel%202026-08-13%2016-52-03.gif"
-                alt="الواجهة الرئيسية">
-        </div>
-
-        <div class="image-frame frame-page4-small">
-            <img
-                src="images/Screenshot%202026-08-13%20165552.png"
-                alt="واجهة البرنامج">
-        </div>
-
-        <div class="page4-description">
-            واجهة رئيسية تجمع أهم أدوات البرنامج<br>
-            في مكان واحد لتسهيل متابعة العمل.
-        </div>
-
-        <div class="bottom-pill">
-            وضوح في الاستخدام... استقلالية في العمل.
-        </div>
-
-    </section>
-
-
-    <section class="book-page page5">
-
-        <div class="design-bg"></div>
-
-        <div class="program-title">
-            برنامج لإدارة شركات التوصيل
-        </div>
-
-        <div class="title-pill page5-title">
-            مميزات الواجهة الرئيسية
-        </div>
-
-        <div class="image-frame frame-page5-1">
-            <img
-                src="images/Screenshot%202026-08-13%20165504.png"
-                alt="واجهة البرنامج">
-        </div>
-
-        <div class="image-frame frame-page5-2">
-            <img
-                src="images/Screenshot%202026-08-13%20165530.png"
-                alt="الواجهة الرئيسية">
-        </div>
-
-        <div class="image-frame frame-page5-3">
-            <img
-                src="images/Screenshot%202026-08-13%20172635.png"
-                alt="واجهة البرنامج">
-        </div>
-
-        <div class="page5-description">
-            أدوات وتقارير منظمة تمنحك رؤية أوضح للعمل،
-            وتساعدك على الوصول إلى المعلومات ومتابعة التفاصيل بسهولة.
-        </div>
-
-        <div class="bottom-pill">
-            وضوح في الاستخدام... استقلالية في العمل.
-        </div>
-
-    </section>
-
-</div>
-
-
-<!-- =========================================================
-     PAGE 6
-     ========================================================= -->
-
-<div class="page-group" data-group="3">
-
-    <section class="book-page page6">
-
-        <div class="design-bg"></div>
-
-        <div class="logo-circle">
-            <span class="logo-zero">Zero</span>
-            <span class="logo-fast">Fast</span>
-        </div>
-
-        <div class="program-title">
-            برنامج لإدارة شركات التوصيل
-        </div>
-
-        <div class="title-pill page6-title">
-            مميزات البرنامج
-        </div>
-
-        <div class="image-frame frame-page6">
-            <img
-                src="images/Delivery%20Take%20Out%20GIF%20by%20Devon%20Blow.gif"
-                alt="فوائد البرنامج">
-        </div>
-
-        <div class="page6-benefits">
-
-            <p>* توفير الوقت والجهد</p>
-            <p>* تقليل الأخطاء وتحسين دقة العمل</p>
-            <p>* تنظيم البيانات والعمليات</p>
-            <p>* سهولة متابعة الموظفين والطلبات</p>
-            <p>* تقارير واضحة تساعد على اتخاذ القرار</p>
-            <p>* إدارة أكثر كفاءة من خلال نظام واحد</p>
-
-        </div>
-
-    </section>
-
-</div>
-
-
-<!-- =========================================================
-     NAVIGATION
-     ========================================================= -->
-
-<nav class="navigation">
-
-    <button id="prevBtn">Previous</button>
-
-    <div class="contents-dropdown">
-
-        <button id="contentsBtn">
-            Contents ▾
+        <button type="button" id="prevBtn">
+            السابق
         </button>
 
-        <div id="contentsMenu" class="contents-list">
+        <div class="contents-dropdown">
 
-            <button data-target="0">Page 1</button>
-            <button data-target="1">Page 2</button>
-            <button data-target="2">Page 3</button>
-            <button data-target="3">Page 4</button>
-            <button data-target="4">Page 5</button>
-            <button data-target="5">Page 6</button>
+            <button type="button" id="contentsBtn">
+                المحتويات
+            </button>
+
+            <div class="contents-list" id="contentsList">
+
+                <button type="button" data-page="1">
+                    الغلاف
+                </button>
+
+                <button type="button" data-page="2">
+                    مقدمة
+                </button>
+
+                <button type="button" data-page="3">
+                    البرنامج
+                </button>
+
+                <button type="button" data-page="4">
+                    المميزات
+                </button>
+
+                <button type="button" data-page="5">
+                    التقارير
+                </button>
+
+                <button type="button" data-page="6">
+                    الخاتمة
+                </button>
+
+            </div>
 
         </div>
+
+        <button type="button" id="nextBtn">
+            التالي
+        </button>
 
     </div>
 
-    <button id="nextBtn">Next</button>
 
-</nav>
+    <!-- =====================================================
+         PAGE 1
+    ====================================================== -->
 
+    <section class="page-group single-page active" data-group="1">
 
-<script>
+        <article class="book-page page1">
 
-const groups = [...document.querySelectorAll(".page-group")];
-const pages = [...document.querySelectorAll(".book-page")];
-const sound = document.getElementById("pageFlipSound");
+            <div class="design-bg"></div>
 
-let currentState = 0;
-let isTurning = false;
+            <div class="logo-circle">
+                <span class="logo-zero">ZERO</span>
+                <span class="logo-fast">FAST</span>
+            </div>
 
-const TURN_TIME = 1150;
-const MOBILE_TURN_TIME = 850;
+            <div class="program-title">
+                برنامج ادارة شركات التوصيل
+            </div>
 
+            <div class="image-frame frame-page1">
+                <img src="images/image1.jpg" alt="Zero Fast">
+            </div>
 
-/* =========================================================
-   DEVICE
-   ========================================================= */
+            <div class="contact-card">
 
-function isMobile() {
-    return window.innerWidth <= 700;
-}
+                <div class="contact-item">
+                    <span class="phone-icon">☎</span>
+                    <span>+965 00000000</span>
+                </div>
 
+                <div class="contact-item">
+                    <span class="whatsapp-icon">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M20.52 3.48A11.84 11.84 0 0 0 12.08 0C5.56 0 .25 5.31.25 11.83c0 2.08.54 4.11 1.57 5.9L.2 24l6.42-1.68a11.84 11.84 0 0 0 5.46 1.34h.01c6.51 0 11.82-5.31 11.82-11.83 0-3.16-1.23-6.13-3.39-8.35ZM12.09 21.66h-.01a9.82 9.82 0 0 1-5.01-1.37l-.36-.21-3.81 1 1.02-3.72-.23-.38a9.81 9.81 0 0 1-1.51-5.15C2.18 6.41 6.62 1.98 12.08 1.98c2.64 0 5.12 1.03 6.98 2.9a9.81 9.81 0 0 1 2.89 6.99c0 5.46-4.43 9.89-9.86 9.89Zm5.42-7.4c-.3-.15-1.77-.87-2.05-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.17-.17.2-.35.22-.65.07-.3-.15-1.27-.47-2.42-1.5-.9-.8-1.51-1.79-1.69-2.09-.17-.3-.02-.46.13-.61.14-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.49s1.07 2.89 1.22 3.09c.15.2 2.1 3.2 5.09 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.08 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35Z"/>
+                        </svg>
+                    </span>
+                    <span>WhatsApp</span>
+                </div>
 
-/* =========================================================
-   SOUND
-   ========================================================= */
+            </div>
 
-function playSound() {
+        </article>
 
-    if (!sound) return;
-
-    sound.pause();
-    sound.currentTime = 0;
-    sound.volume = 0.85;
-
-    const promise = sound.play();
-
-    if (promise) {
-        promise.catch(() => {});
-    }
-}
-
-
-/* =========================================================
-   MOBILE PAGE -> GROUP
-   ========================================================= */
-
-function mobileGroupForPage(pageNumber) {
-
-    if (pageNumber === 0) return 0;
-
-    if (pageNumber === 1 || pageNumber === 2) {
-        return 1;
-    }
-
-    if (pageNumber === 3 || pageNumber === 4) {
-        return 2;
-    }
-
-    return 3;
-}
+    </section>
 
 
-/* =========================================================
-   CLEAR ALL
-   ========================================================= */
+    <!-- =====================================================
+         PAGE 2
+    ====================================================== -->
 
-function clearAll() {
+    <section class="page-group single-page" data-group="2">
 
-    groups.forEach(group => {
-        group.classList.remove(
-            "active",
-            "wind-enter-next",
-            "wind-enter-prev"
+        <article class="book-page page2">
+
+            <div class="design-bg"></div>
+
+            <div class="program-title">
+                برنامج ادارة شركات التوصيل
+            </div>
+
+            <div class="title-pill page2-title">
+                مقدمة
+            </div>
+
+            <div class="intro-text">
+
+                <p>
+                    تم تصميم برنامج Zero Fast خصيصًا لإدارة شركات التوصيل
+                    بطريقة سهلة وسريعة ومنظمة.
+                </p>
+
+                <p>
+                    يساعد البرنامج على تنظيم بيانات السائقين والمركبات،
+                    ومتابعة الطلبات والحسابات والتقارير اليومية والشهرية.
+                </p>
+
+                <p>
+                    كما يوفر نظامًا متكاملًا للحسابات والتقارير المالية،
+                    مما يساعد الإدارة والمحاسب على الوصول إلى المعلومات
+                    المطلوبة بسهولة ودقة.
+                </p>
+
+                <p>
+                    تم تصميم الواجهة لتكون بسيطة وواضحة حتى يتمكن المستخدم
+                    من التعامل مع البرنامج دون الحاجة إلى خبرة تقنية.
+                </p>
+
+            </div>
+
+            <div class="contact-card small-contact">
+
+                <div class="contact-item">
+                    <span class="phone-icon">☎</span>
+                    <span>+965 00000000</span>
+                </div>
+
+                <div class="contact-item">
+                    <span class="whatsapp-icon">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M20.52 3.48A11.84 11.84 0 0 0 12.08 0C5.56 0 .25 5.31.25 11.83c0 2.08.54 4.11 1.57 5.9L.2 24l6.42-1.68a11.84 11.84 0 0 0 5.46 1.34h.01c6.51 0 11.82-5.31 11.82-11.83 0-3.16-1.23-6.13-3.39-8.35ZM12.09 21.66h-.01a9.82 9.82 0 0 1-5.01-1.37l-.36-.21-3.81 1 1.02-3.72-.23-.38a9.81 9.81 0 0 1-1.51-5.15C2.18 6.41 6.62 1.98 12.08 1.98c2.64 0 5.12 1.03 6.98 2.9a9.81 9.81 0 0 1 2.89 6.99c0 5.46-4.43 9.89-9.86 9.89Zm5.42-7.4c-.3-.15-1.77-.87-2.05-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.17-.17.2-.35.22-.65.07-.3-.15-1.27-.47-2.42-1.5-.9-.8-1.51-1.79-1.69-2.09-.17-.3-.02-.46.13-.61.14-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.49s1.07 2.89 1.22 3.09c.15.2 2.1 3.2 5.09 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.08 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35Z"/>
+                        </svg>
+                    </span>
+                    <span>WhatsApp</span>
+                </div>
+
+            </div>
+
+        </article>
+
+    </section>
+
+
+    <!-- =====================================================
+         PAGE 3
+    ====================================================== -->
+
+    <section class="page-group spread" data-group="3">
+
+        <article class="book-page page3">
+
+            <div class="design-bg"></div>
+
+            <div class="program-title">
+                برنامج ادارة شركات التوصيل
+            </div>
+
+            <div class="title-pill page3-title">
+                إدارة التشغيل
+            </div>
+
+            <div class="image-frame frame-page3-1">
+                <img src="images/image2.jpg" alt="إدارة التشغيل">
+            </div>
+
+            <div class="image-frame frame-page3-2">
+                <img src="images/image3.jpg" alt="إدارة السائقين">
+            </div>
+
+            <div class="bottom-pill">
+                متابعة التشغيل والسائقين بسهولة
+            </div>
+
+        </article>
+
+        <article class="book-page page4">
+
+            <div class="design-bg"></div>
+
+            <div class="program-title">
+                برنامج ادارة شركات التوصيل
+            </div>
+
+            <div class="title-pill page4-title">
+                إدارة البيانات
+            </div>
+
+            <div class="image-frame frame-page4-main">
+                <img src="images/image4.jpg" alt="إدارة البيانات">
+            </div>
+
+            <div class="image-frame frame-page4-small">
+                <img src="images/image5.jpg" alt="بيانات الموظفين">
+            </div>
+
+            <div class="page4-description">
+                تنظيم بيانات الموظفين والمركبات
+            </div>
+
+            <div class="bottom-pill">
+                بيانات منظمة وسهلة الوصول
+            </div>
+
+        </article>
+
+    </section>
+
+
+    <!-- =====================================================
+         PAGE 5
+    ====================================================== -->
+
+    <section class="page-group single-page" data-group="5">
+
+        <article class="book-page page5">
+
+            <div class="design-bg"></div>
+
+            <div class="program-title">
+                برنامج ادارة شركات التوصيل
+            </div>
+
+            <div class="title-pill page5-title">
+                التقارير والحسابات
+            </div>
+
+            <div class="image-frame frame-page5-1">
+                <img src="images/image6.jpg" alt="التقارير">
+            </div>
+
+            <div class="image-frame frame-page5-2">
+                <img src="images/image7.jpg" alt="الحسابات">
+            </div>
+
+            <div class="image-frame frame-page5-3">
+                <img src="images/image8.jpg" alt="النتائج">
+            </div>
+
+            <div class="page5-description">
+                تقارير دقيقة تساعد الإدارة على اتخاذ القرار
+            </div>
+
+            <div class="bottom-pill">
+                دقة - سرعة - تنظيم
+            </div>
+
+        </article>
+
+    </section>
+
+
+    <!-- =====================================================
+         PAGE 6
+    ====================================================== -->
+
+    <section class="page-group single-page" data-group="6">
+
+        <article class="book-page page6">
+
+            <div class="design-bg"></div>
+
+            <div class="logo-circle">
+                <span class="logo-zero">ZERO</span>
+                <span class="logo-fast">FAST</span>
+            </div>
+
+            <div class="program-title">
+                برنامج ادارة شركات التوصيل
+            </div>
+
+            <div class="title-pill page6-title">
+                لماذا Zero Fast؟
+            </div>
+
+            <div class="page6-benefits">
+
+                <p>
+                    دخول سهل وسريع وآمن
+                </p>
+
+                <p>
+                    تنظيم كامل لبيانات الشركة
+                </p>
+
+                <p>
+                    متابعة دقيقة للتشغيل والسائقين
+                </p>
+
+                <p>
+                    تقارير وحسابات واضحة
+                </p>
+
+                <p>
+                    تصميم بسيط يناسب جميع المستخدمين
+                </p>
+
+            </div>
+
+            <div class="image-frame frame-page6">
+                <img src="images/image9.jpg" alt="Zero Fast">
+            </div>
+
+        </article>
+
+    </section>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script>
+
+        const groups = Array.from(
+            document.querySelectorAll(".page-group")
         );
-    });
 
-    pages.forEach(page => {
+        const prevBtn = document.getElementById("prevBtn");
+        const nextBtn = document.getElementById("nextBtn");
+        const contentsBtn = document.getElementById("contentsBtn");
+        const contentsList = document.getElementById("contentsList");
 
-        page.classList.remove(
-            "mobile-visible",
-            "desktop-flip-next",
-            "desktop-flip-prev"
-        );
+        let currentGroup = 0;
+        let isAnimating = false;
 
-    });
-}
-
-
-/* =========================================================
-   SHOW STATE
-   ========================================================= */
-
-function showState(state, direction = null) {
-
-    clearAll();
-
-    if (isMobile()) {
-
-        const pageNumber = Math.max(
-            0,
-            Math.min(5, state)
-        );
-
-        const groupNumber =
-            mobileGroupForPage(pageNumber);
-
-        const group = groups[groupNumber];
-
-        if (!group) return;
-
-        group.classList.add("active");
-
-        if (pages[pageNumber]) {
-
-            pages[pageNumber].classList.add(
-                "mobile-visible"
-            );
-
+        function isMobile() {
+            return window.innerWidth <= 700;
         }
 
-        /*
-         * WIND مستقل تمامًا عن الصفحة.
-         * الحركة تُطبق على PAGE-GROUP وليس على page1/page2...
-         */
+        function prepareMobilePage(group) {
 
-        if (direction === "next") {
+            if (!isMobile()) {
+                return;
+            }
 
-            void group.offsetWidth;
+            const pages = group.querySelectorAll(".book-page");
 
-            group.classList.add(
-                "wind-enter-next"
-            );
+            pages.forEach((page, index) => {
 
-        } else if (direction === "prev") {
+                page.classList.remove("mobile-visible");
 
-            void group.offsetWidth;
+                if (index === 0) {
+                    page.classList.add("mobile-visible");
+                }
 
-            group.classList.add(
-                "wind-enter-prev"
-            );
-
+            });
         }
 
-        return;
-    }
+        function clearAnimations(group) {
 
+            if (!group) return;
 
-    /* =====================================================
-       DESKTOP
-       ===================================================== */
+            const pages = group.querySelectorAll(".book-page");
 
-    const desktopState = Math.max(
-        0,
-        Math.min(3, state)
-    );
+            pages.forEach(page => {
 
-    const group = groups[desktopState];
-
-    if (!group) return;
-
-    group.classList.add("active");
-}
-
-
-/* =========================================================
-   FINISH MOBILE WIND
-   ========================================================= */
-
-function finishMobileTurn() {
-
-    const activeGroup =
-        groups.find(group =>
-            group.classList.contains("active")
-        );
-
-    if (!activeGroup) {
-        isTurning = false;
-        return;
-    }
-
-    activeGroup.classList.remove(
-        "wind-enter-next",
-        "wind-enter-prev"
-    );
-
-    isTurning = false;
-}
-
-
-/* =========================================================
-   NEXT PAGE
-   ========================================================= */
-
-function nextPage(soundAlreadyPlayed = false) {
-
-    if (isTurning) return;
-
-    if (currentState >= 5 && isMobile()) return;
-    if (currentState >= 3 && !isMobile()) return;
-
-    if (!soundAlreadyPlayed) {
-        playSound();
-    }
-
-
-    /* =====================================================
-       MOBILE
-       ===================================================== */
-
-    if (isMobile()) {
-
-        isTurning = true;
-
-        currentState++;
-
-        showState(
-            currentState,
-            "next"
-        );
-
-        setTimeout(
-            finishMobileTurn,
-            MOBILE_TURN_TIME
-        );
-
-        return;
-    }
-
-
-    /* =====================================================
-       DESKTOP
-       ===================================================== */
-
-    isTurning = true;
-
-
-    /* PAGE 1 -> PAGE 2 + 3 */
-
-    if (currentState === 0) {
-
-        const page1 = pages[0];
-
-        page1.classList.add(
-            "desktop-flip-next"
-        );
-
-        setTimeout(() => {
-
-            clearAll();
-
-            currentState = 1;
-
-            showState(1);
-
-            isTurning = false;
-
-        }, TURN_TIME);
-
-        return;
-    }
-
-
-    /* PAGE 2 + 3 -> PAGE 4 + 5 */
-
-    if (currentState === 1) {
-
-        clearAll();
-
-        groups[1].classList.add("active");
-
-        const page3 = pages[2];
-
-        void page3.offsetWidth;
-
-        page3.classList.add(
-            "desktop-flip-next"
-        );
-
-        setTimeout(() => {
-
-            clearAll();
-
-            currentState = 2;
-
-            showState(2);
-
-            isTurning = false;
-
-        }, TURN_TIME);
-
-        return;
-    }
-
-
-    /* PAGE 4 + 5 -> PAGE 6 */
-
-    if (currentState === 2) {
-
-        clearAll();
-
-        groups[2].classList.add("active");
-
-        const page5 = pages[4];
-
-        void page5.offsetWidth;
-
-        page5.classList.add(
-            "desktop-flip-next"
-        );
-
-        setTimeout(() => {
-
-            clearAll();
-
-            currentState = 3;
-
-            groups[3].classList.add("active");
-
-            const page6 = pages[5];
-
-            void page6.offsetWidth;
-
-            page6.classList.add(
-                "desktop-flip-prev"
-            );
-
-            setTimeout(() => {
-
-                page6.classList.remove(
+                page.classList.remove(
+                    "wind-enter-next",
+                    "wind-enter-prev",
+                    "desktop-flip-next",
                     "desktop-flip-prev"
                 );
 
-                isTurning = false;
+                void page.offsetWidth;
 
-            }, TURN_TIME);
+            });
+        }
 
-        }, TURN_TIME);
+        function showGroup(index, direction = "next") {
 
-        return;
-    }
-}
+            if (isAnimating) return;
 
+            if (index < 0 || index >= groups.length) {
+                return;
+            }
 
-/* =========================================================
-   PREVIOUS PAGE
-   ========================================================= */
+            const oldGroup = groups[currentGroup];
+            const newGroup = groups[index];
 
-function previousPage(soundAlreadyPlayed = false) {
+            if (oldGroup === newGroup) {
+                return;
+            }
 
-    if (isTurning) return;
+            isAnimating = true;
 
-    if (currentState <= 0) return;
+            clearAnimations(oldGroup);
+            clearAnimations(newGroup);
 
-    if (!soundAlreadyPlayed) {
-        playSound();
-    }
+            oldGroup.classList.remove("active");
 
+            newGroup.classList.add("active");
 
-    /* =====================================================
-       MOBILE
-       ===================================================== */
+            prepareMobilePage(newGroup);
 
-    if (isMobile()) {
+            if (isMobile()) {
 
-        isTurning = true;
+                const newPage =
+                    newGroup.querySelector(".book-page.mobile-visible");
 
-        currentState--;
+                if (newPage) {
 
-        showState(
-            currentState,
-            "prev"
+                    newPage.classList.add(
+                        direction === "next"
+                            ? "wind-enter-next"
+                            : "wind-enter-prev"
+                    );
+
+                }
+
+            } else {
+
+                const newPages =
+                    newGroup.querySelectorAll(".book-page");
+
+                newPages.forEach(page => {
+
+                    page.classList.add(
+                        direction === "next"
+                            ? "desktop-flip-next"
+                            : "desktop-flip-prev"
+                    );
+
+                });
+
+            }
+
+            currentGroup = index;
+
+            setTimeout(() => {
+
+                clearAnimations(newGroup);
+                isAnimating = false;
+
+            }, isMobile() ? 800 : 1200);
+
+        }
+
+        function nextPage() {
+
+            if (currentGroup < groups.length - 1) {
+
+                showGroup(
+                    currentGroup + 1,
+                    "next"
+                );
+
+            }
+
+        }
+
+        function prevPage() {
+
+            if (currentGroup > 0) {
+
+                showGroup(
+                    currentGroup - 1,
+                    "prev"
+                );
+
+            }
+
+        }
+
+        nextBtn.addEventListener(
+            "click",
+            nextPage
         );
 
-        setTimeout(
-            finishMobileTurn,
-            MOBILE_TURN_TIME
+        prevBtn.addEventListener(
+            "click",
+            prevPage
         );
 
-        return;
-    }
 
+        /* =====================================================
+           CONTENTS
+        ===================================================== */
 
-    /* =====================================================
-       DESKTOP
-       ===================================================== */
+        contentsBtn.addEventListener(
+            "click",
+            function (event) {
 
-    isTurning = true;
+                event.stopPropagation();
 
+                contentsList.classList.toggle("show");
 
-    /* PAGE 6 -> PAGE 4 + 5 */
-
-    if (currentState === 3) {
-
-        clearAll();
-
-        groups[3].classList.add("active");
-
-        const page6 = pages[5];
-
-        void page6.offsetWidth;
-
-        page6.classList.add(
-            "desktop-flip-next"
+            }
         );
 
-        setTimeout(() => {
 
-            clearAll();
-
-            currentState = 2;
-
-            showState(2);
-
-            isTurning = false;
-
-        }, TURN_TIME);
-
-        return;
-    }
-
-
-    /* PAGE 4 + 5 -> PAGE 2 + 3 */
-
-    if (currentState === 2) {
-
-        clearAll();
-
-        groups[1].classList.add("active");
-
-        const page3 = pages[2];
-
-        void page3.offsetWidth;
-
-        page3.classList.add(
-            "desktop-flip-prev"
-        );
-
-        currentState = 1;
-
-        setTimeout(() => {
-
-            isTurning = false;
-
-        }, TURN_TIME);
-
-        return;
-    }
-
-
-    /* PAGE 2 + 3 -> PAGE 1 */
-
-    if (currentState === 1) {
-
-        clearAll();
-
-        groups[0].classList.add("active");
-
-        const page1 = pages[0];
-
-        void page1.offsetWidth;
-
-        page1.classList.add(
-            "desktop-flip-prev"
-        );
-
-        currentState = 0;
-
-        setTimeout(() => {
-
-            page1.classList.remove(
-                "desktop-flip-prev"
-            );
-
-            isTurning = false;
-
-        }, TURN_TIME);
-
-    }
-}
-
-
-/* =========================================================
-   CONTENTS
-   ========================================================= */
-
-function closeContents() {
-
-    const menu =
-        document.getElementById("contentsMenu");
-
-    if (menu) {
-        menu.classList.remove("show");
-    }
-}
-
-
-function goToPage(pageNumber) {
-
-    closeContents();
-
-    if (isTurning) return;
-
-
-    /* =====================================================
-       MOBILE
-       ===================================================== */
-
-    if (isMobile()) {
-
-        if (
-            pageNumber < 0 ||
-            pageNumber > 5
-        ) {
-            return;
-        }
-
-        if (pageNumber === currentState) {
-            return;
-        }
-
-        const direction =
-            pageNumber > currentState
-                ? "next"
-                : "prev";
-
-        currentState = pageNumber;
-
-        showState(
-            currentState,
-            direction
-        );
-
-        return;
-    }
-
-
-    /* =====================================================
-       DESKTOP
-       ===================================================== */
-
-    let targetState = 0;
-
-    if (pageNumber === 0) {
-
-        targetState = 0;
-
-    } else if (
-        pageNumber === 1 ||
-        pageNumber === 2
-    ) {
-
-        targetState = 1;
-
-    } else if (
-        pageNumber === 3 ||
-        pageNumber === 4
-    ) {
-
-        targetState = 2;
-
-    } else {
-
-        targetState = 3;
-    }
-
-
-    if (targetState === currentState) {
-        return;
-    }
-
-    currentState = targetState;
-
-    showState(currentState);
-}
-
-
-/* =========================================================
-   BUTTONS
-   ========================================================= */
-
-document
-    .getElementById("nextBtn")
-    .onclick = function(e) {
-
-        e.preventDefault();
-
-        nextPage();
-
-    };
-
-
-document
-    .getElementById("prevBtn")
-    .onclick = function(e) {
-
-        e.preventDefault();
-
-        previousPage();
-
-    };
-
-
-document
-    .getElementById("contentsBtn")
-    .onclick = function(e) {
-
-        e.preventDefault();
-        e.stopPropagation();
-
-        document
-            .getElementById("contentsMenu")
-            .classList
-            .toggle("show");
-
-    };
-
-
-document
-    .querySelectorAll(
-        "#contentsMenu [data-target]"
-    )
-    .forEach(button => {
-
-        button.onclick = function(e) {
-
-            e.preventDefault();
-
-            goToPage(
-                Number(
-                    this.dataset.target
-                )
-            );
-
-        };
-
-    });
-
-
-document.addEventListener(
-    "click",
-    function(e) {
-
-        if (
-            !e.target.closest(
-                ".contents-dropdown"
-            )
-        ) {
-
-            closeContents();
-
-        }
-
-    }
-);
-
-
-/* =========================================================
-   MOBILE SWIPE
-   ========================================================= */
-
-let startX = 0;
-let startY = 0;
-
-
-document.addEventListener(
-    "touchstart",
-    function(e) {
-
-        if (!isMobile()) return;
-
-        if (e.touches.length !== 1) return;
-
-        startX =
-            e.touches[0].clientX;
-
-        startY =
-            e.touches[0].clientY;
-
-    },
-    { passive: true }
-);
-
-
-document.addEventListener(
-    "touchend",
-    function(e) {
-
-        if (!isMobile()) return;
-
-        if (
-            e.changedTouches.length !== 1
-        ) {
-            return;
-        }
-
-        const dx =
-            e.changedTouches[0].clientX -
-            startX;
-
-        const dy =
-            e.changedTouches[0].clientY -
-            startY;
-
-        if (
-            Math.abs(dy) >
-            Math.abs(dx)
-        ) {
-            return;
-        }
-
-        if (
-            Math.abs(dx) < 45
-        ) {
-            return;
-        }
-
-        playSound();
-
-        if (dx < 0) {
-
-            nextPage(true);
-
-        } else {
-
-            previousPage(true);
-
-        }
-
-    },
-    { passive: true }
-);
-
-
-/* =========================================================
-   RESIZE
-   ========================================================= */
-
-let resizeTimer;
-
-window.addEventListener(
-    "resize",
-    function() {
-
-        clearTimeout(resizeTimer);
-
-        resizeTimer =
-            setTimeout(
-                function() {
-
-                    if (!isTurning) {
-
-                        if (isMobile()) {
-
-                            if (currentState > 5) {
-                                currentState = 5;
-                            }
-
-                        } else {
-
-                            if (currentState > 3) {
-                                currentState = 3;
-                            }
+        contentsList
+            .querySelectorAll("button")
+            .forEach(button => {
+
+                button.addEventListener(
+                    "click",
+                    function () {
+
+                        const target =
+                            Number(this.dataset.page);
+
+                        const targetIndex =
+                            groups.findIndex(
+                                group =>
+                                    Number(group.dataset.group) === target
+                            );
+
+                        if (targetIndex !== -1) {
+
+                            const direction =
+                                targetIndex > currentGroup
+                                    ? "next"
+                                    : "prev";
+
+                            showGroup(
+                                targetIndex,
+                                direction
+                            );
 
                         }
 
-                        showState(
-                            currentState
-                        );
+                        contentsList.classList.remove("show");
 
                     }
+                );
 
-                },
-                120
-            );
-
-    }
-);
+            });
 
 
-/* =========================================================
-   START
-   ========================================================= */
+        document.addEventListener(
+            "click",
+            function (event) {
 
-showState(0);
+                if (
+                    !event.target.closest(".contents-dropdown")
+                ) {
 
-</script>
+                    contentsList.classList.remove("show");
+
+                }
+
+            }
+        );
+
+
+        /* =====================================================
+           KEYBOARD
+        ===================================================== */
+
+        document.addEventListener(
+            "keydown",
+            function (event) {
+
+                if (event.key === "ArrowRight") {
+                    nextPage();
+                }
+
+                if (event.key === "ArrowLeft") {
+                    prevPage();
+                }
+
+            }
+        );
+
+
+        /* =====================================================
+           TOUCH SWIPE
+        ===================================================== */
+
+        let touchStartX = 0;
+        let touchStartY = 0;
+
+        document.addEventListener(
+            "touchstart",
+            function (event) {
+
+                if (!isMobile()) return;
+
+                touchStartX =
+                    event.touches[0].clientX;
+
+                touchStartY =
+                    event.touches[0].clientY;
+
+            },
+            {
+                passive: true
+            }
+        );
+
+
+        document.addEventListener(
+            "touchend",
+            function (event) {
+
+                if (!isMobile()) return;
+
+                const touchEndX =
+                    event.changedTouches[0].clientX;
+
+                const touchEndY =
+                    event.changedTouches[0].clientY;
+
+                const diffX =
+                    touchEndX - touchStartX;
+
+                const diffY =
+                    touchEndY - touchStartY;
+
+                if (
+                    Math.abs(diffX) < 50 ||
+                    Math.abs(diffX) < Math.abs(diffY)
+                ) {
+                    return;
+                }
+
+                if (diffX < 0) {
+                    nextPage();
+                } else {
+                    prevPage();
+                }
+
+            },
+            {
+                passive: true
+            }
+        );
+
+
+        /* =====================================================
+           RESIZE
+        ===================================================== */
+
+        window.addEventListener(
+            "resize",
+            function () {
+
+                prepareMobilePage(
+                    groups[currentGroup]
+                );
+
+            }
+        );
+
+
+        /* =====================================================
+           INITIALIZE
+        ===================================================== */
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+                groups.forEach(
+                    group => group.classList.remove("active")
+                );
+
+                currentGroup = 0;
+
+                groups[currentGroup]
+                    .classList.add("active");
+
+                prepareMobilePage(
+                    groups[currentGroup]
+                );
+
+            }
+        );
+
+    </script>
 
 </body>
 </html>
