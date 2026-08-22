@@ -1418,123 +1418,482 @@ body {
         font-size: 13px;
     }
 
-   /* =====================================================
-   MOBILE PAGE MOTION — WIND
-   SW -> NE / NAVY PAPER WITH WHITE SHADING
+  /* =====================================================
+   MOBILE PAGE MOTION — HORIZONTAL WIND
+   NAVY WIND + WHITE SHADING
+   NEXT  : RIGHT  -> LEFT
+   PREV  : LEFT   -> RIGHT
    ===================================================== */
 
 .wind-enter-next,
 .wind-enter-prev {
-    animation-duration: .75s;
+    position: relative;
+    z-index: 50;
+    animation-duration: .78s;
     animation-timing-function: cubic-bezier(.22,.61,.36,1);
     animation-fill-mode: both;
-    will-change: clip-path, transform, opacity;
+    will-change: transform, clip-path, opacity, filter;
+    overflow: hidden;
 }
 
 /* =====================================================
+   NAVY WIND LAYER
+   ===================================================== */
+
+.wind-enter-next::after,
+.wind-enter-prev::after {
+    content: "";
+    position: absolute;
+    top: -5%;
+    bottom: -5%;
+    width: 145%;
+    height: 110%;
+    z-index: 999;
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(8,39,66,0) 0%,
+            rgba(8,39,66,.08) 12%,
+            rgba(8,39,66,.42) 27%,
+            rgba(8,39,66,.82) 43%,
+            rgba(8,39,66,.96) 51%,
+            rgba(8,39,66,.76) 59%,
+            rgba(8,39,66,.38) 75%,
+            rgba(8,39,66,.10) 90%,
+            rgba(8,39,66,0) 100%
+        ),
+
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,0) 0%,
+            rgba(255,255,255,.04) 18%,
+            rgba(255,255,255,.34) 34%,
+            rgba(255,255,255,.62) 42%,
+            rgba(255,255,255,.16) 49%,
+            rgba(255,255,255,.48) 58%,
+            rgba(255,255,255,.10) 72%,
+            rgba(255,255,255,0) 88%
+        );
+
+    mix-blend-mode: normal;
+    filter: blur(.15px);
+    opacity: .88;
+
+    transform-origin: center center;
+}
+
+
+/* =====================================================
    NEXT
-   FROM SOUTH-WEST -> NORTH-EAST
+   RIGHT -> LEFT
    ===================================================== */
 
 .wind-enter-next {
-    animation-name: mobileWindNext;
+    animation-name: horizontalWindNext;
 }
 
-@keyframes mobileWindNext {
+.wind-enter-next::after {
+    left: 100%;
+    animation: windShadeNext .78s cubic-bezier(.22,.61,.36,1) both;
+}
+
+@keyframes horizontalWindNext {
 
     0% {
-        opacity: 0;
+        opacity: .25;
+
         clip-path: polygon(
-            0% 100%,
-            0% 100%,
-            12% 88%,
-            25% 75%
+            100% 0%,
+            100% 0%,
+            100% 100%,
+            100% 100%
         );
+
         transform:
-            translate(-4%, 4%)
+            translateX(8%)
             skewX(-2deg)
-            scale(.985);
+            scaleX(.965)
+            scaleY(.995);
     }
 
-    20% {
+    12% {
         opacity: .45;
+
         clip-path: polygon(
-            0% 100%,
-            0% 86%,
-            18% 68%,
-            38% 48%,
-            55% 31%
+            88% 0%,
+            100% 0%,
+            100% 100%,
+            82% 100%
         );
+
         transform:
-            translate(-3%, 3%)
-            skewX(-1.6deg)
-            scale(.99);
+            translateX(6%)
+            skewX(-2.4deg)
+            scaleX(.972)
+            scaleY(.997);
     }
 
-    40% {
+    28% {
         opacity: .70;
+
         clip-path: polygon(
-            0% 100%,
-            0% 66%,
-            20% 46%,
-            42% 24%,
-            66% 4%,
-            82% 0%
+            67% 0%,
+            100% 0%,
+            100% 100%,
+            61% 100%
         );
+
         transform:
-            translate(-2%, 2%)
-            skewX(-1.1deg)
-            scale(.995);
+            translateX(4%)
+            skewX(-2deg)
+            scaleX(.982)
+            scaleY(1);
     }
 
-    60% {
+    45% {
         opacity: .88;
+
         clip-path: polygon(
-            0% 100%,
-            0% 42%,
-            24% 20%,
-            46% 0%,
+            43% 0%,
             100% 0%,
-            100% 30%
+            100% 100%,
+            39% 100%
         );
+
         transform:
-            translate(-1%, 1%)
-            skewX(-.7deg)
-            scale(1);
+            translateX(2%)
+            skewX(-1.5deg)
+            scaleX(.991)
+            scaleY(1);
     }
 
-    80% {
+    62% {
         opacity: .96;
+
         clip-path: polygon(
-            0% 100%,
-            0% 0%,
+            22% 0%,
             100% 0%,
-            100% 65%,
-            75% 100%,
-            38% 100%
+            100% 100%,
+            18% 100%
         );
+
         transform:
-            translate(-.3%, .3%)
-            skewX(-.25deg)
-            scale(1);
+            translateX(.8%)
+            skewX(-.9deg)
+            scaleX(.997)
+            scaleY(1);
     }
 
-    100% {
+    78% {
         opacity: 1;
+
+        clip-path: polygon(
+            7% 0%,
+            100% 0%,
+            100% 100%,
+            5% 100%
+        );
+
+        transform:
+            translateX(.2%)
+            skewX(-.35deg)
+            scaleX(1)
+            scaleY(1);
+    }
+
+    90% {
+        opacity: 1;
+
         clip-path: polygon(
             0% 0%,
             100% 0%,
             100% 100%,
             0% 100%
         );
+
         transform:
-            translate(0,0)
+            translateX(0)
+            skewX(.1deg)
+            scaleX(1)
+            scaleY(1);
+    }
+
+    100% {
+        opacity: 1;
+
+        clip-path: polygon(
+            0% 0%,
+            100% 0%,
+            100% 100%,
+            0% 100%
+        );
+
+        transform:
+            translateX(0)
             skewX(0)
-            scale(1);
+            scaleX(1)
+            scaleY(1);
+    }
+}
+
+@keyframes windShadeNext {
+
+    0% {
+        left: 100%;
+        opacity: 0;
+        transform:
+            skewX(-4deg)
+            scaleX(.72);
+    }
+
+    20% {
+        left: 67%;
+        opacity: .55;
+        transform:
+            skewX(-5deg)
+            scaleX(.88);
+    }
+
+    40% {
+        left: 38%;
+        opacity: .82;
+        transform:
+            skewX(-3deg)
+            scaleX(1);
+    }
+
+    60% {
+        left: 12%;
+        opacity: .92;
+        transform:
+            skewX(-2deg)
+            scaleX(1.04);
+    }
+
+    78% {
+        left: -18%;
+        opacity: .58;
+        transform:
+            skewX(-1deg)
+            scaleX(1.08);
+    }
+
+    100% {
+        left: -48%;
+        opacity: 0;
+        transform:
+            skewX(0)
+            scaleX(1.12);
     }
 }
 
 
+/* =====================================================
+   PREV
+   LEFT -> RIGHT
+   ===================================================== */
+
+.wind-enter-prev {
+    animation-name: horizontalWindPrev;
+}
+
+.wind-enter-prev::after {
+    right: 100%;
+    left: auto;
+    animation: windShadePrev .78s cubic-bezier(.22,.61,.36,1) both;
+}
+
+@keyframes horizontalWindPrev {
+
+    0% {
+        opacity: .25;
+
+        clip-path: polygon(
+            0% 0%,
+            0% 0%,
+            0% 100%,
+            0% 100%
+        );
+
+        transform:
+            translateX(-8%)
+            skewX(2deg)
+            scaleX(.965)
+            scaleY(.995);
+    }
+
+    12% {
+        opacity: .45;
+
+        clip-path: polygon(
+            0% 0%,
+            12% 0%,
+            18% 100%,
+            0% 100%
+        );
+
+        transform:
+            translateX(-6%)
+            skewX(2.4deg)
+            scaleX(.972)
+            scaleY(.997);
+    }
+
+    28% {
+        opacity: .70;
+
+        clip-path: polygon(
+            0% 0%,
+            33% 0%,
+            39% 100%,
+            0% 100%
+        );
+
+        transform:
+            translateX(-4%)
+            skewX(2deg)
+            scaleX(.982)
+            scaleY(1);
+    }
+
+    45% {
+        opacity: .88;
+
+        clip-path: polygon(
+            0% 0%,
+            57% 0%,
+            61% 100%,
+            0% 100%
+        );
+
+        transform:
+            translateX(-2%)
+            skewX(1.5deg)
+            scaleX(.991)
+            scaleY(1);
+    }
+
+    62% {
+        opacity: .96;
+
+        clip-path: polygon(
+            0% 0%,
+            78% 0%,
+            82% 100%,
+            0% 100%
+        );
+
+        transform:
+            translateX(-.8%)
+            skewX(.9deg)
+            scaleX(.997)
+            scaleY(1);
+    }
+
+    78% {
+        opacity: 1;
+
+        clip-path: polygon(
+            0% 0%,
+            93% 0%,
+            95% 100%,
+            0% 100%
+        );
+
+        transform:
+            translateX(-.2%)
+            skewX(.35deg)
+            scaleX(1)
+            scaleY(1);
+    }
+
+    90% {
+        opacity: 1;
+
+        clip-path: polygon(
+            0% 0%,
+            100% 0%,
+            100% 100%,
+            0% 100%
+        );
+
+        transform:
+            translateX(0)
+            skewX(-.1deg)
+            scaleX(1)
+            scaleY(1);
+    }
+
+    100% {
+        opacity: 1;
+
+        clip-path: polygon(
+            0% 0%,
+            100% 0%,
+            100% 100%,
+            0% 100%
+        );
+
+        transform:
+            translateX(0)
+            skewX(0)
+            scaleX(1)
+            scaleY(1);
+    }
+}
+
+@keyframes windShadePrev {
+
+    0% {
+        right: 100%;
+        opacity: 0;
+        transform:
+            skewX(4deg)
+            scaleX(.72);
+    }
+
+    20% {
+        right: 67%;
+        opacity: .55;
+        transform:
+            skewX(5deg)
+            scaleX(.88);
+    }
+
+    40% {
+        right: 38%;
+        opacity: .82;
+        transform:
+            skewX(3deg)
+            scaleX(1);
+    }
+
+    60% {
+        right: 12%;
+        opacity: .92;
+        transform:
+            skewX(2deg)
+            scaleX(1.04);
+    }
+
+    78% {
+        right: -18%;
+        opacity: .58;
+        transform:
+            skewX(1deg)
+            scaleX(1.08);
+    }
+
+    100% {
+        right: -48%;
+        opacity: 0;
+        transform:
+            skewX(0)
+            scaleX(1.12);
+    }
+}
 /* =====================================================
    PREV
    FROM NORTH-EAST -> SOUTH-WEST
