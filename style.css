@@ -1419,45 +1419,26 @@ body {
     }
 
     /* =====================================================
-       MOBILE PAGE MOTION — WIND
-       ===================================================== */
+   MOBILE PAGE MOTION — WIND
+   ===================================================== */
 
-    .mobile-turn-next,
-    .mobile-turn-prev {
-        animation-duration: .65s;
-        animation-timing-function: cubic-bezier(.22,.61,.36,1);
-        animation-fill-mode: both;
-        will-change: clip-path, transform, opacity;
-        transform-origin: center center;
-        overflow: hidden;
-    }
+.wind-enter-next,
+.wind-enter-prev {
+    animation-duration: .65s;
+    animation-timing-function: cubic-bezier(.22,.61,.36,1);
+    animation-fill-mode: both;
+    will-change: clip-path, transform, opacity;
+    transform-origin: center center;
+    overflow: hidden;
+}
 
-    /*
-     * NEXT
-     *
-     * الحركة تبدأ من الجنوب الغربي
-     * وتتجه قطريًا إلى الشمال الشرقي.
-     *
-     * الفكرة:
-     * الصفحة تكون شبه مطوية/مضغوطة في
-     * الركن الجنوبي الغربي، ثم تنتشر
-     * بزاوية قطرية عبر الشاشة.
-     */
+.wind-enter-next {
+    animation-name: mobileWindNext;
+}
 
-    .mobile-turn-next {
-        animation-name: mobileWindNext;
-    }
-
-    /*
-     * PREVIOUS
-     *
-     * عكس الاتجاه تمامًا:
-     * من الشمال الشرقي إلى الجنوب الغربي.
-     */
-
-    .mobile-turn-prev {
-        animation-name: mobileWindPrev;
-    }
+.wind-enter-prev {
+    animation-name: mobileWindPrev;
+}
 
     @keyframes mobileWindNext {
 
